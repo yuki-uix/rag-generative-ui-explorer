@@ -22,7 +22,8 @@ sources:
 The argument this note is drawn from was a response to a debate that has
 returned almost unchanged: whether interface research should improve direct
 manipulation or build agents that act on the user's behalf. Its answer was that
-the framing is false, and that the interesting work is in coupling the two well.
+the framing is false, and that the interesting work is in coupling the two
+well.
 
 ## The debate that came back
 
@@ -46,19 +47,21 @@ it knows. Systems that skip this produce confidently wrong behaviour, which is
 worse than hesitant correct behaviour because it gives the user nothing to push
 against.
 
-**Weigh the cost of being wrong against the benefit of being right.** Automation
-is worth it when the expected value is positive, and that calculation depends on
-how expensive a mistake is and how hard it is to undo. Cheap, reversible actions
-should be taken; expensive or irreversible ones should be proposed.
+**Weigh the cost of being wrong against the benefit of being right.**
+Automation is worth it when the expected value is positive, and that
+calculation depends on how expensive a mistake is and how hard it is to undo.
+Cheap, reversible actions should be taken; expensive or irreversible ones
+should be proposed.
 
-**Provide efficient ways to invoke and terminate.** The user must be able to ask
-for the automated service directly, and to stop it, without hunting. A system
-that decides on the user's behalf and offers no handle is not mixed-initiative,
-it is just automated.
+**Provide efficient ways to invoke and terminate.** The user must be able to
+ask for the automated service directly, and to stop it, without hunting. A
+system that decides on the user's behalf and offers no handle is not
+mixed-initiative, it is just automated.
 
 **Minimise the cost of poor guesses.** Design so that a wrong inference is
-cheap to recover from. This is a design property, not a model property: the same
-error rate is tolerable or intolerable depending on what a wrong guess costs.
+cheap to recover from. This is a design property, not a model property: the
+same error rate is tolerable or intolerable depending on what a wrong guess
+costs.
 
 **Maintain working memory of recent interactions.** The system should remember
 what just happened rather than treating each turn as fresh. This maps directly
@@ -79,18 +82,19 @@ question and a full regeneration.
 
 The system should **not present a guess as a certainty**. An interface that
 renders a confident comparison from thin evidence has made an uncertain
-inference and displayed it with the visual authority of a fact. The presentation
-overstates what is known, which is a failure of calibration rather than of
-retrieval.
+inference and displayed it with the visual authority of a fact. The
+presentation overstates what is known, which is a failure of calibration rather
+than of retrieval.
 
 ## What this means here
 
-The reader initiates every retrieval; nothing is fetched speculatively. The
-three supported actions are all reader-initiated, and one of them — showing
-sources — is deliberately local, so the cheapest way to check the system's work
-never requires asking it again.
+The design has the reader initiate every retrieval, with nothing fetched
+speculatively. All three specified actions are reader-initiated, and one of
+them — showing sources — is deliberately local, so the cheapest way to check
+the system's work never requires asking it again. The actions are M4.
 
-Presentation is a guess, and it is a guess made once per question. The evaluation
-measures how often it is the guess a person would have made, and treats a
-plausible-but-wrong choice as a failure rather than a near miss — because to the
-reader, a definition rendered as a comparison is not nearly right.
+Presentation is a guess, and it is a guess made once per question. The
+evaluation is to measure how often it is the guess a person would have made,
+and to treat a plausible-but-wrong choice as a failure rather than a near miss
+— because to the reader, a definition rendered as a comparison is not nearly
+right.

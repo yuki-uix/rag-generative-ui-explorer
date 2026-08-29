@@ -45,15 +45,15 @@ and prose for another, the reader reasonably infers a reason. If there is no
 reason — if the model simply chose differently — the interface has taught them
 something false.
 
-Consistency is therefore not aesthetic tidiness. It is the mechanism by which an
-interface becomes cheap to use, and a system that varies without meaning is
+Consistency is therefore not aesthetic tidiness. It is the mechanism by which
+an interface becomes cheap to use, and a system that varies without meaning is
 spending the user's attention to no purpose.
 
 ## Control has to be cheap and obvious
 
-The principles this note draws on include providing efficient ways to invoke and
-terminate an automated service, and designing so that a poor guess costs little
-to recover from.
+The principles this note draws on include providing efficient ways to invoke
+and terminate an automated service, and designing so that a poor guess costs
+little to recover from.
 
 Applied to presentation: if the model chose the wrong form, how does the reader
 get a different one? If the answer is "rephrase the question and hope", the
@@ -61,12 +61,12 @@ system has offered no control at all — it has offered resampling.
 
 The distinction that matters is between control over *content* and control over
 *presentation*. Asking a follow-up question changes the content and hopes the
-presentation follows. Being able to say "show me this as a list" is control over
-presentation, and it is separable — a presentation change need not go back to
-the model, because the underlying evidence has not changed.
+presentation follows. Being able to say "show me this as a list" is control
+over presentation, and it is separable — a presentation change need not go back
+to the model, because the underlying evidence has not changed.
 
-The malleability argument extends this: a user who can adapt their tool has real
-control, and their adaptation is the durable artefact. A user who can only
+The malleability argument extends this: a user who can adapt their tool has
+real control, and their adaptation is the durable artefact. A user who can only
 resubmit does not.
 
 ## Visual authority is a claim
@@ -90,16 +90,17 @@ is supported.
 
 ## What this means here
 
-Presentation-only interactions stay in the browser: showing sources does not
-call the model, so the cheapest correction is also the cheapest to perform and
-never resamples the answer.
+Presentation-only interactions are specified to stay in the browser: showing
+sources will not call the model, so the cheapest correction is also the
+cheapest to perform and never resamples the answer. That action is M4.
 
-Every factual field carries how it relates to its sources — extracted,
-summarised, or inferred — and inferred content is rendered visibly differently.
-A response can also mark itself incomplete, with a reason distinguishing missing
-evidence from conflicting evidence, so weak support is stated rather than
-smoothed into a confident-looking card.
+Two of the mechanisms this depends on exist today in the response schema. Every
+factual field carries how it relates to its sources — extracted, summarised, or
+inferred — and a response can mark itself incomplete with a reason
+distinguishing missing evidence from conflicting evidence, so weak support has
+somewhere to be stated rather than being smoothed into a confident-looking
+card. Rendering inferred content visibly differently is M2.
 
-The variation itself is measured. Consistency is a named metric, and an
+The variation itself is to be measured. Consistency is a named metric, and an
 unnecessary-card rate exists because a card that adds nothing still costs the
 reader the effort of working out that it adds nothing.

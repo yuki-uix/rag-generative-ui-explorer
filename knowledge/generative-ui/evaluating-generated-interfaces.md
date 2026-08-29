@@ -42,15 +42,15 @@ attempted.
 
 **Model-graded.** A model scores the output. Work on learned assessment of
 interface design shows this can be trained to agree with human judgement of
-design quality, which makes it useful for scanning many outputs cheaply. It also
-inherits the usual caveats: scores vary between runs, vary with the grading
-model and prompt, and can be wrong in ways correlated with the generator's own
-blind spots. A number without the grader pinned and the dispersion reported is
-not a measurement.
+design quality, which makes it useful for scanning many outputs cheaply. It
+also inherits the usual caveats: scores vary between runs, vary with the
+grading model and prompt, and can be wrong in ways correlated with the
+generator's own blind spots. A number without the grader pinned and the
+dispersion reported is not a measurement.
 
-**Human.** Task completion, time to find a fact, correction rate, comprehension,
-preference. Expensive, small-n, and the only source of truth for whether the
-interface helped.
+**Human.** Task completion, time to find a fact, correction rate,
+comprehension, preference. Expensive, small-n, and the only source of truth for
+whether the interface helped.
 
 ## The metrics that matter, and what each is for
 
@@ -58,9 +58,9 @@ interface helped.
 reader can find what they came for faster, structure earned its cost; if not,
 nothing else redeems it.
 
-**Correction rate.** How often the reader has to redirect the system — rephrase,
-ask again, switch presentation. A high rate with high eventual completion means
-the system gets there by making the user work.
+**Correction rate.** How often the reader has to redirect the system —
+rephrase, ask again, switch presentation. A high rate with high eventual
+completion means the system gets there by making the user work.
 
 **Comprehension.** Whether the reader can answer questions about what they read
 afterwards. Distinct from completion: a reader can extract a fact from a table
@@ -101,10 +101,11 @@ Card-type selection accuracy is scored against expected card types labelled per
 question in advance — the label has to exist before the system does, or the
 metric is uncomputable and the discovery comes too late to act on.
 
-The evaluation runs four arms: Markdown, fixed cards, dynamic cards, and an
-oracle arm where human-selected evidence is fed to the planner. The oracle arm
-exists to separate a bad card choice from a bad retrieval, which look identical
-at the output and call for entirely different fixes.
+The evaluation is specified to run four arms: Markdown, fixed cards, dynamic
+cards, and an oracle arm where human-selected evidence is fed to the planner.
+The oracle arm exists to separate a bad card choice from a bad retrieval, which
+look identical at the output and call for entirely different fixes. None of the
+arms is built; they are M4.
 
 The findings are required to document where dynamic cards perform *worse*. A
 comparison that only reports where the new thing won is not a comparison.

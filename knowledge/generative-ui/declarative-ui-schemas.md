@@ -41,13 +41,14 @@ between a producer and a host for years, on the premise that the producer says
 what it wants shown and the host decides how it looks in its own surface.
 
 The declarative agent-UI format takes the same position explicitly: agents send
-a JSON description of the *intent* of the UI, and the client renders it with its
-own component library — Flutter, Angular, Lit, whatever the host happens to be.
+a JSON description of the *intent* of the UI, and the client renders it with
+its own component library — Flutter, Angular, Lit, whatever the host happens to
+be.
 
 The separation is what makes the arrangement safe across a trust boundary. If
 the description carried appearance, a remote producer could make its content
-look like the host's own chrome. Because it carries intent, the host's rendering
-of a "confirm" is the host's confirm.
+look like the host's own chrome. Because it carries intent, the host's
+rendering of a "confirm" is the host's confirm.
 
 ## What a schema can enforce
 
@@ -60,13 +61,13 @@ the node is one of a known set of kinds. An unknown kind fails.
 
 **A schema does not enforce coherence.** A comparison with three entities and
 two values per row can be perfectly valid and renders misaligned. A step list
-whose steps are in the wrong order validates. Cross-field rules of this sort are
-generally unrepresentable in JSON Schema, which means they must be checked
+whose steps are in the wrong order validates. Cross-field rules of this sort
+are generally unrepresentable in JSON Schema, which means they must be checked
 somewhere else, and that somewhere else has to be treated as part of the
 contract rather than as an implementation detail.
 
-**A schema does not enforce sense.** Nothing in a valid document says the chosen
-presentation suits the content.
+**A schema does not enforce sense.** Nothing in a valid document says the
+chosen presentation suits the content.
 
 The practical consequence: a schema plus a runtime validator that can express
 what the schema cannot, with the second treated as authoritative. If the two
@@ -82,9 +83,9 @@ interpreter you now maintain, and the fewer of its expressible documents anyone
 has looked at. A grammar that can express a hundred million interfaces has been
 reviewed for approximately none of them.
 
-Small grammars fail by being unable to express something. Large grammars fail by
-expressing something nobody intended. The first failure is visible at authoring
-time; the second is visible to a user.
+Small grammars fail by being unable to express something. Large grammars fail
+by expressing something nobody intended. The first failure is visible at
+authoring time; the second is visible to a user.
 
 ## What this means here
 

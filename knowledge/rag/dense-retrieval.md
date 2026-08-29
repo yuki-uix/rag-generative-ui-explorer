@@ -27,8 +27,9 @@ sources:
 # Dense retrieval
 
 Dense retrieval represents queries and passages as vectors in a learned space
-and retrieves by proximity. Where lexical retrieval asks which documents contain
-these words, dense retrieval asks which passages mean something close to this.
+and retrieves by proximity. Where lexical retrieval asks which documents
+contain these words, dense retrieval asks which passages mean something close
+to this.
 
 ## The dual encoder
 
@@ -38,14 +39,15 @@ passages are returned by vector similarity.
 
 The asymmetry is what makes it practical. Encoding the corpus is a one-off cost
 paid at ingest, and search is a nearest-neighbour lookup rather than a model
-call per candidate. This is exactly what a cross-encoder cannot do — it must see
-the query and the passage together, so it cannot precompute anything, which is
-why cross-encoders end up in the reranking stage rather than the retrieval one.
+call per candidate. This is exactly what a cross-encoder cannot do — it must
+see the query and the passage together, so it cannot precompute anything, which
+is why cross-encoders end up in the reranking stage rather than the retrieval
+one.
 
-The paper's central practical result was that the encoders can be trained with a
-modest number of question-passage pairs and still beat a strong lexical baseline
-on open-domain QA. Before it, the assumption was that dense retrieval needed far
-more supervision to be competitive.
+The paper's central practical result was that the encoders can be trained with
+a modest number of question-passage pairs and still beat a strong lexical
+baseline on open-domain QA. Before it, the assumption was that dense retrieval
+needed far more supervision to be competitive.
 
 ## What training is doing
 
@@ -56,16 +58,16 @@ little, while passages that are lexically similar but wrong are what force the
 encoder to learn a useful distinction.
 
 The consequence for anyone using an off-the-shelf embedding model is that the
-model encodes the notion of similarity it was trained on. A model trained on web
-question-answer pairs and a model trained on scientific abstracts disagree about
-what "close" means, and neither is right in general.
+model encodes the notion of similarity it was trained on. A model trained on
+web question-answer pairs and a model trained on scientific abstracts disagree
+about what "close" means, and neither is right in general.
 
 ## The dependency nobody sees until it moves
 
 The index is a function of the embedding model. Change the model — a version
-bump, a different provider, a dimensionality change — and every stored vector is
-stale. There is no partial migration: old and new vectors are not comparable, so
-the corpus has to be re-embedded in full.
+bump, a different provider, a dimensionality change — and every stored vector
+is stale. There is no partial migration: old and new vectors are not
+comparable, so the corpus has to be re-embedded in full.
 
 This makes the embedding model and its version part of the corpus identity, not
 a configuration detail. An evaluation result recorded without it cannot be

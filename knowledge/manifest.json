@@ -1,7 +1,7 @@
 {
-  "corpusVersion": "corpus-23c76105d3f8",
-  "documentCount": 29,
-  "sourceCount": 56,
+  "corpusVersion": "corpus-8f704738603b",
+  "documentCount": 36,
+  "sourceCount": 68,
   "documents": [
     {
       "documentId": "generative-ui/accessibility-of-generated-interfaces",
@@ -35,7 +35,7 @@
           "primary": false
         }
       ],
-      "contentHash": "f80689e7052f83e2",
+      "contentHash": "e0709de2cb08cf7e",
       "metadataHash": "c8fbc9c657a32b89"
     },
     {
@@ -88,7 +88,7 @@
           "primary": false
         }
       ],
-      "contentHash": "4fed60e88daa5006",
+      "contentHash": "e97845b68223471b",
       "metadataHash": "9f1ef98e2c44e693"
     },
     {
@@ -122,7 +122,7 @@
           "primary": false
         }
       ],
-      "contentHash": "ebe66e11361da7b0",
+      "contentHash": "69f8ec43950b840e",
       "metadataHash": "d2e2c3d910055f12"
     },
     {
@@ -191,7 +191,7 @@
           "primary": true
         }
       ],
-      "contentHash": "5a231f0b5aff0d78",
+      "contentHash": "09e44d56823b969d",
       "metadataHash": "2b52cc834655cfc3"
     },
     {
@@ -227,7 +227,7 @@
           "primary": false
         }
       ],
-      "contentHash": "9584a346bdbb19e5",
+      "contentHash": "f82c923ee2182889",
       "metadataHash": "5a8d2e23d551908b"
     },
     {
@@ -262,7 +262,7 @@
           "primary": false
         }
       ],
-      "contentHash": "02bb0e5442434e32",
+      "contentHash": "21b4fa1270a46721",
       "metadataHash": "3150b3d2aaad19d5"
     },
     {
@@ -299,7 +299,7 @@
           "primary": false
         }
       ],
-      "contentHash": "45bd05147624bed3",
+      "contentHash": "bdb1e72782fd00a8",
       "metadataHash": "61e3dab1582f8e13"
     },
     {
@@ -325,7 +325,7 @@
           "primary": true
         }
       ],
-      "contentHash": "8783f168e6c9be82",
+      "contentHash": "c1f2aefb7a6cc2a3",
       "metadataHash": "8718b4de1ed82588"
     },
     {
@@ -360,7 +360,7 @@
           "primary": false
         }
       ],
-      "contentHash": "41bccaa2a72c30cf",
+      "contentHash": "0e5fe781df346066",
       "metadataHash": "e5c1c0a1211ea5a1"
     },
     {
@@ -406,7 +406,7 @@
           "primary": false
         }
       ],
-      "contentHash": "5f424a5857cb1fb8",
+      "contentHash": "ba71d135c0904316",
       "metadataHash": "b72991ddd2fdd18a"
     },
     {
@@ -440,7 +440,7 @@
           "primary": false
         }
       ],
-      "contentHash": "0c143e9c691624e7",
+      "contentHash": "01981aa1d7154b58",
       "metadataHash": "e69ed7dc9497c4e2"
     },
     {
@@ -483,7 +483,7 @@
           "primary": false
         }
       ],
-      "contentHash": "e89fbc760ceb5f24",
+      "contentHash": "a12ee95553316380",
       "metadataHash": "017394f4c1ce5085"
     },
     {
@@ -526,8 +526,237 @@
           "primary": false
         }
       ],
-      "contentHash": "67ab21b9d3d352f2",
+      "contentHash": "eaac450e9f17d471",
       "metadataHash": "94fddcc8d46d7cac"
+    },
+    {
+      "documentId": "intersection/card-state-across-turns",
+      "path": "knowledge/intersection/card-state-across-turns.md",
+      "title": "Preserving card state across retrieval turns",
+      "domain": "intersection",
+      "author": "yuki-uix",
+      "revised": "2026-08-29",
+      "summary": "A follow-up regenerates knowledge, not the reader's place in it, and keeping those apart requires identity that survives a new retrieval.",
+      "tags": [
+        "card-state-continuity"
+      ],
+      "sources": [
+        {
+          "sourceType": "documentation",
+          "title": "Malleable Software",
+          "url": "https://www.inkandswitch.com/malleable-software/",
+          "author": "Ink & Switch",
+          "retrieved": "2026-08-29",
+          "license": "Research programme page; no author or publication date stated. Short attributed quotations only.",
+          "primary": true
+        },
+        {
+          "sourceType": "documentation",
+          "title": "AG-UI Overview",
+          "url": "https://docs.ag-ui.com/",
+          "author": "AG-UI Protocol contributors",
+          "retrieved": "2026-08-29",
+          "license": "Living documentation; no publication date stated. Short attributed quotations only.",
+          "primary": false
+        }
+      ],
+      "contentHash": "ab5350965e5b58d7",
+      "metadataHash": "ed4ffb8853b6b77a"
+    },
+    {
+      "documentId": "intersection/choosing-a-ui-from-knowledge-structure",
+      "path": "knowledge/intersection/choosing-a-ui-from-knowledge-structure.md",
+      "title": "Choosing a UI from knowledge structure",
+      "domain": "intersection",
+      "author": "yuki-uix",
+      "revised": "2026-08-29",
+      "summary": "Retrieved evidence has a shape, and the claim under test is that the shape should determine the presentation rather than the question's phrasing.",
+      "tags": [
+        "ui-from-knowledge-structure"
+      ],
+      "sources": [
+        {
+          "sourceType": "paper",
+          "title": "Enabling Large Language Models to Generate Text with Citations",
+          "url": "https://arxiv.org/abs/2305.14627",
+          "author": "Tianyu Gao, Howard Yen, Jiatong Yu et al.",
+          "published": "2023-05-24",
+          "retrieved": "2026-08-29",
+          "license": "arXiv preprint, arXiv:2305.14627. Non-exclusive licence to distribute; short attributed quotations only. published is the v1 submission date.",
+          "primary": true
+        }
+      ],
+      "contentHash": "fdcc4461a9d59c2f",
+      "metadataHash": "24e81919a6f1b31a"
+    },
+    {
+      "documentId": "intersection/comparing-presentation-modes",
+      "path": "knowledge/intersection/comparing-presentation-modes.md",
+      "title": "Comparing Markdown, fixed cards, and dynamic cards",
+      "domain": "intersection",
+      "author": "yuki-uix",
+      "revised": "2026-08-29",
+      "summary": "Four arms, what each one isolates, and the results this project should expect to lose on if the experiment is honest.",
+      "tags": [
+        "presentation-comparison"
+      ],
+      "sources": [
+        {
+          "sourceType": "paper",
+          "title": "Automatically Generating Personalized User Interfaces with Supple",
+          "url": "https://www.eecs.harvard.edu/~kgajos/papers/2010/gajos10supple-aij.pdf",
+          "author": "Krzysztof Z. Gajos, Daniel S. Weld, and Jacob O. Wobbrock",
+          "published": "2010",
+          "retrieved": "2026-08-29",
+          "license": "Artificial Intelligence journal. Author-hosted copy; short attributed quotations only.",
+          "primary": true
+        },
+        {
+          "sourceType": "paper",
+          "title": "Evaluating Verifiability in Generative Search Engines",
+          "url": "https://arxiv.org/abs/2304.09848",
+          "author": "Nelson F. Liu, Tianyi Zhang, Percy Liang",
+          "published": "2023-04-19",
+          "retrieved": "2026-08-29",
+          "license": "arXiv preprint, arXiv:2304.09848. Non-exclusive licence to distribute; short attributed quotations only. published is the v1 submission date.",
+          "primary": false
+        }
+      ],
+      "contentHash": "7c237b8b07a4d560",
+      "metadataHash": "e994fdfa27abd113"
+    },
+    {
+      "documentId": "intersection/evidence-aware-cards",
+      "path": "knowledge/intersection/evidence-aware-cards.md",
+      "title": "Evidence-aware knowledge cards",
+      "domain": "intersection",
+      "author": "yuki-uix",
+      "revised": "2026-08-29",
+      "summary": "A card that carries its evidence is a different object from a card that was built from evidence, and the difference is what the reader can check.",
+      "tags": [
+        "evidence-aware-cards"
+      ],
+      "sources": [
+        {
+          "sourceType": "paper",
+          "title": "Evaluating Verifiability in Generative Search Engines",
+          "url": "https://arxiv.org/abs/2304.09848",
+          "author": "Nelson F. Liu, Tianyi Zhang, Percy Liang",
+          "published": "2023-04-19",
+          "retrieved": "2026-08-29",
+          "license": "arXiv preprint, arXiv:2304.09848. Non-exclusive licence to distribute; short attributed quotations only. published is the v1 submission date.",
+          "primary": true
+        }
+      ],
+      "contentHash": "5da19d71c1389b85",
+      "metadataHash": "e831ef604d1bc0d8"
+    },
+    {
+      "documentId": "intersection/field-level-citation",
+      "path": "knowledge/intersection/field-level-citation.md",
+      "title": "Claim-level and field-level citation",
+      "domain": "intersection",
+      "author": "yuki-uix",
+      "revised": "2026-08-29",
+      "summary": "Where a citation attaches decides what can be checked, and structured output makes the finest granularity enforceable rather than merely encouraged.",
+      "tags": [
+        "field-level-citation"
+      ],
+      "sources": [
+        {
+          "sourceType": "paper",
+          "title": "Measuring Attribution in Natural Language Generation Models",
+          "url": "https://arxiv.org/abs/2112.12870",
+          "author": "Hannah Rashkin, Vitaly Nikolaev, Matthew Lamm et al.",
+          "published": "2021-12-23",
+          "retrieved": "2026-08-29",
+          "license": "arXiv preprint, arXiv:2112.12870. Non-exclusive licence to distribute; short attributed quotations only. published is the v1 submission date.",
+          "primary": true
+        },
+        {
+          "sourceType": "paper",
+          "title": "Enabling Large Language Models to Generate Text with Citations",
+          "url": "https://arxiv.org/abs/2305.14627",
+          "author": "Tianyu Gao, Howard Yen, Jiatong Yu et al.",
+          "published": "2023-05-24",
+          "retrieved": "2026-08-29",
+          "license": "arXiv preprint, arXiv:2305.14627. Non-exclusive licence to distribute; short attributed quotations only. published is the v1 submission date.",
+          "primary": false
+        }
+      ],
+      "contentHash": "381629342fcc428b",
+      "metadataHash": "e262b5acff7cee71"
+    },
+    {
+      "documentId": "intersection/not-overstating-weak-evidence",
+      "path": "knowledge/intersection/not-overstating-weak-evidence.md",
+      "title": "Not overstating weak evidence",
+      "domain": "intersection",
+      "author": "yuki-uix",
+      "revised": "2026-08-29",
+      "summary": "Structured presentation renders strong and weak support identically, so uncertainty has to be carried in the data rather than left to the reader to infer.",
+      "tags": [
+        "evidence-strength-honesty"
+      ],
+      "sources": [
+        {
+          "sourceType": "paper",
+          "title": "Teaching Models to Express Their Uncertainty in Words",
+          "url": "https://arxiv.org/abs/2205.14334",
+          "author": "Stephanie Lin, Jacob Hilton, Owain Evans",
+          "published": "2022-05-28",
+          "retrieved": "2026-08-29",
+          "license": "arXiv preprint, arXiv:2205.14334. Non-exclusive licence to distribute; short attributed quotations only. published is the v1 submission date.",
+          "primary": true
+        },
+        {
+          "sourceType": "paper",
+          "title": "Evaluating Verifiability in Generative Search Engines",
+          "url": "https://arxiv.org/abs/2304.09848",
+          "author": "Nelson F. Liu, Tianyi Zhang, Percy Liang",
+          "published": "2023-04-19",
+          "retrieved": "2026-08-29",
+          "license": "arXiv preprint, arXiv:2304.09848. Non-exclusive licence to distribute; short attributed quotations only. published is the v1 submission date.",
+          "primary": false
+        }
+      ],
+      "contentHash": "19c72e3323497ba7",
+      "metadataHash": "7b5ba3e331277eaf"
+    },
+    {
+      "documentId": "intersection/ui-driven-retrieval",
+      "path": "knowledge/intersection/ui-driven-retrieval.md",
+      "title": "Retrieval driven by UI actions",
+      "domain": "intersection",
+      "author": "yuki-uix",
+      "revised": "2026-08-29",
+      "summary": "Some interface actions need the model and some do not, and treating them alike is what makes a grounded interface slow and unreliable.",
+      "tags": [
+        "ui-driven-retrieval"
+      ],
+      "sources": [
+        {
+          "sourceType": "paper",
+          "title": "Principles of Mixed-Initiative User Interfaces",
+          "url": "https://erichorvitz.com/chi99horvitz.pdf",
+          "author": "Eric Horvitz",
+          "published": "1999-05",
+          "retrieved": "2026-08-29",
+          "license": "CHI 1999, pages 159-166, DOI 10.1145/302979.303030. Author-hosted copy; short attributed quotations only.",
+          "primary": true
+        },
+        {
+          "sourceType": "documentation",
+          "title": "AG-UI Overview",
+          "url": "https://docs.ag-ui.com/",
+          "author": "AG-UI Protocol contributors",
+          "retrieved": "2026-08-29",
+          "license": "Living documentation; no publication date stated. Short attributed quotations only.",
+          "primary": false
+        }
+      ],
+      "contentHash": "685bda9efe36984f",
+      "metadataHash": "2c2e40cbbac13330"
     },
     {
       "documentId": "rag/advanced-patterns",
@@ -582,7 +811,7 @@
           "primary": false
         }
       ],
-      "contentHash": "10e2145a9e6938b6",
+      "contentHash": "2329835782809f62",
       "metadataHash": "c6872fc4efcec6a3"
     },
     {
@@ -682,7 +911,7 @@
           "primary": false
         }
       ],
-      "contentHash": "98f91c7682fcc987",
+      "contentHash": "d311c05df561e346",
       "metadataHash": "31646107a25c8436"
     },
     {
@@ -744,7 +973,7 @@
           "primary": true
         }
       ],
-      "contentHash": "32eaf452fe0aa67b",
+      "contentHash": "2636d5aaf2e9f9e2",
       "metadataHash": "c12019d8ce5971fa"
     },
     {
@@ -790,7 +1019,7 @@
           "primary": false
         }
       ],
-      "contentHash": "1d085549a90a592d",
+      "contentHash": "c3c6882eafbc9400",
       "metadataHash": "70ee4b5250d86208"
     },
     {
@@ -816,7 +1045,7 @@
           "primary": true
         }
       ],
-      "contentHash": "d14e961098b7b86f",
+      "contentHash": "640feb8b20d177a3",
       "metadataHash": "d6d0ca7a93a7e733"
     },
     {
@@ -842,7 +1071,7 @@
           "primary": true
         }
       ],
-      "contentHash": "375e6f86a1d8712b",
+      "contentHash": "77787420ec68c3c3",
       "metadataHash": "188333aa945cefe1"
     },
     {
@@ -904,7 +1133,7 @@
           "primary": false
         }
       ],
-      "contentHash": "ff72e57ff79d0a27",
+      "contentHash": "24526a04e229fa5a",
       "metadataHash": "cef877b7231b75ed"
     },
     {
@@ -930,7 +1159,7 @@
           "primary": true
         }
       ],
-      "contentHash": "0eb5c1106f1fd465",
+      "contentHash": "51835454090938ab",
       "metadataHash": "bc5f3943dcf8dbad"
     },
     {
@@ -956,7 +1185,7 @@
           "primary": true
         }
       ],
-      "contentHash": "3a05a745177a275d",
+      "contentHash": "7dd2f7c7f47e9fde",
       "metadataHash": "f30056d6aa2c716f"
     },
     {
@@ -982,7 +1211,7 @@
           "primary": true
         }
       ],
-      "contentHash": "e6d65f9c9b4f434c",
+      "contentHash": "b7dad9bd55fc948e",
       "metadataHash": "0379c98ba2919170"
     },
     {

@@ -32,8 +32,8 @@ components that fail independently:
 **Faithfulness** — is every claim in the answer supported by the retrieved
 context? This is the hallucination measure. It is computed by breaking the
 answer into individual statements and checking each against the context, which
-matters: an answer that is 90% grounded and 10% invented is not 90% correct, and
-a whole-answer judgement tends to round it up.
+matters: an answer that is 90% grounded and 10% invented is not 90% correct,
+and a whole-answer judgement tends to round it up.
 
 **Answer relevance** — does the answer address the question that was asked? An
 answer can be perfectly faithful to the context and still not respond to the
@@ -44,9 +44,9 @@ the retriever that achieves recall by returning everything. Sending twenty
 chunks where three would do inflates recall while degrading the answer, for the
 reasons the context-assembly note covers.
 
-The decomposition is the durable contribution. A single "quality" score conflates
-three failures that call for three different fixes: better retrieval, better
-query understanding, and less context.
+The decomposition is the durable contribution. A single "quality" score
+conflates three failures that call for three different fixes: better retrieval,
+better query understanding, and less context.
 
 ## The metrics are model-graded
 
@@ -87,5 +87,5 @@ repetitions.
 
 But the exit criteria lean on the mechanical checks — every factual field
 references a valid retrieved evidence ID, no unresolvable citation reaches the
-renderer — because those are the ones that can be stated as facts rather than as
-estimates.
+renderer — because those are the ones that can be stated as facts rather than
+as estimates.

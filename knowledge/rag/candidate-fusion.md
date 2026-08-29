@@ -40,10 +40,10 @@ correct when any of those change.
 
 ## Reciprocal rank fusion
 
-Reciprocal rank fusion discards the scores and uses only the rank position. Each
-document receives, from each list, a contribution of `1 / (k + rank)`, and the
-contributions are summed. Documents appearing high in several lists accumulate
-the most.
+Reciprocal rank fusion discards the scores and uses only the rank position.
+Each document receives, from each list, a contribution of `1 / (k + rank)`, and
+the contributions are summed. Documents appearing high in several lists
+accumulate the most.
 
 Two properties follow from this shape:
 
@@ -86,5 +86,5 @@ replayed exactly; everything after it involves a model.
 
 That makes the fused list a good place to snapshot for evaluation. Recorded
 before reranking, it separates "the candidate was never retrieved" from "the
-candidate was retrieved and then ranked away" — two failures that look identical
-at the output but call for entirely different fixes.
+candidate was retrieved and then ranked away" — two failures that look
+identical at the output but call for entirely different fixes.

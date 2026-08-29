@@ -54,8 +54,8 @@ deliberate choice with different consequences at each point.
 
 ## What changes along the spectrum
 
-**Reviewability.** A fixed component set can be inspected once, by a person, and
-that review holds for every future rendering. Generated markup can only be
+**Reviewability.** A fixed component set can be inspected once, by a person,
+and that review holds for every future rendering. Generated markup can only be
 reviewed per instance, which in practice means not at all.
 
 **Failure mode.** A model that picks the wrong component from a registry
@@ -77,17 +77,18 @@ An unbounded output space cannot be, so testing shifts from "does it work" to
 Calling all of this "generative UI" hides the question that matters, which is
 whether the model's output crosses the boundary into executable code.
 
-A model emitting `{"type": "comparison", "entities": [...]}` and a model emitting
-`<div onclick="...">` are described the same way in most writing about the
-subject. They have almost nothing in common operationally: one is data validated
-against a schema, the other is code, and the difference determines the entire
-security model.
+A model emitting `{"type": "comparison", "entities": [...]}` and a model
+emitting `<div onclick="...">` are described the same way in most writing about
+the subject. They have almost nothing in common operationally: one is data
+validated against a schema, the other is code, and the difference determines
+the entire security model.
 
 ## What this means here
 
-This project sits deliberately at the constrained end. The model selects among
-five reviewed card types and populates their fields; it never emits markup,
-styles, or script.
+This project sits deliberately at the constrained end. The model is to select
+among five reviewed card types and populate their fields, never emitting
+markup, styles, or script. The five types and their grammar exist today as a
+validated schema; the selection that will use them is M3.
 
 The consequence worth being honest about: some interfaces are unreachable. A
 question whose best presentation is a diagram, a map, or an interactive

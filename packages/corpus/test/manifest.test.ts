@@ -201,3 +201,34 @@ describe('domain and directory agreement', () => {
     expect(manifest.documentCount).toBe(0);
   });
 });
+
+describe('claims about verification work', () => {
+  /**
+   * The corpus is this system's evidence base. A note claiming a test exists
+   * when it does not is a false claim the system will later retrieve, cite, and
+   * present as grounded — passing every mechanical check.
+   */
+  it('rejects a note asserting that a test exists', () => {
+    const { errors } = buildManifest(
+      corpus([{ path: 'rag/dpr.md', body: 'Showing sources is local and a test asserts it makes no model call.' }]),
+    );
+    expect(errors).toHaveLength(1);
+    expect(errors[0]!.message).toMatch(/claims verification work exists/);
+  });
+
+  it.each(['tests assert this holds', 'the property is asserted by the suite'])(
+    'rejects %s',
+    (phrase) => {
+      const { errors } = buildManifest(corpus([{ path: 'rag/dpr.md', body: `Prose. ${phrase}.` }]));
+      expect(errors).toHaveLength(1);
+    },
+  );
+
+  /** The gerund describes a specification rather than an existing test. */
+  it('allows the gerund form, which describes intent', () => {
+    const { errors } = buildManifest(
+      corpus([{ path: 'rag/dpr.md', body: 'The design requires a test asserting it makes no model call.' }]),
+    );
+    expect(errors.map((error) => error.message)).toEqual([]);
+  });
+});

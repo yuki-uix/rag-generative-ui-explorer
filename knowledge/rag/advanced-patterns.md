@@ -41,8 +41,8 @@ sources:
 # Advanced RAG patterns
 
 Plain retrieve-then-generate assumes one retrieval round returns everything the
-answer needs. The patterns below each relax a different part of that assumption,
-and each costs something specific.
+answer needs. The patterns below each relax a different part of that
+assumption, and each costs something specific.
 
 ## Multi-hop
 
@@ -85,21 +85,21 @@ same question are no longer the same experiment.
 
 ## Graph RAG
 
-The pattern this note is anchored to addresses a question chunk retrieval cannot
-answer at all: queries about the corpus as a whole. "What are the main themes
-across these documents?" has no answer in any individual chunk, so no top-K
-retrieval over chunks can find one.
+The pattern this note is anchored to addresses a question chunk retrieval
+cannot answer at all: queries about the corpus as a whole. "What are the main
+themes across these documents?" has no answer in any individual chunk, so no
+top-K retrieval over chunks can find one.
 
 The approach builds a graph of entities and relationships from the corpus,
-clusters it into communities, and summarises each community in advance. A global
-question is then answered from those summaries rather than from retrieved
-passages.
+clusters it into communities, and summarises each community in advance. A
+global question is then answered from those summaries rather than from
+retrieved passages.
 
-The costs are substantial and worth stating plainly: a graph extraction pass over
-the whole corpus, summary generation per community, and a re-run of both whenever
-the corpus changes. It buys a class of question that is otherwise unanswerable —
-which is either exactly what you need or entirely irrelevant, with little middle
-ground.
+The costs are substantial and worth stating plainly: a graph extraction pass
+over the whole corpus, summary generation per community, and a re-run of both
+whenever the corpus changes. It buys a class of question that is otherwise
+unanswerable — which is either exactly what you need or entirely irrelevant,
+with little middle ground.
 
 ## Choosing
 
@@ -115,10 +115,11 @@ approaches only if global questions are actually being asked.
 
 ## What this means here
 
-None of these are in the MVP. The three supported actions include one that
-re-retrieves — explaining further runs a narrower retrieval scoped to a card —
-which is a constrained, user-initiated hop rather than an autonomous one: the
-user decides there should be another round, and what it is about.
+None of these are in the MVP. Of the three actions the design specifies, one
+re-retrieves: explaining further is to run a narrower retrieval scoped to a
+card, a constrained user-initiated hop rather than an autonomous one — the user
+decides there should be another round, and what it is about. The actions are M4
+and are not built.
 
 That constraint is deliberate. The MVP's question is whether dynamic card
 selection helps comprehension, and answering it requires holding retrieval

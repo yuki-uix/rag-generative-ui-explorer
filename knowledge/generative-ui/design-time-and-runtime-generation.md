@@ -49,10 +49,10 @@ where a generated interface measurably outperformed the hand-designed one.
 ## What is genuinely different now
 
 A language model generating UI has none of those three properties. There is no
-functional specification, no stated objective, and no trace-derived model of the
-user. It has, in exchange, something the earlier systems could not do at all:
-it can generate an interface for a request nobody anticipated, expressed in
-prose.
+functional specification, no stated objective, and no trace-derived model of
+the user. It has, in exchange, something the earlier systems could not do at
+all: it can generate an interface for a request nobody anticipated, expressed
+in prose.
 
 That is a real gain and it is worth being precise about what it costs. When the
 output is wrong there is no objective term to inspect; the answer is that the
@@ -92,7 +92,7 @@ This project generates at runtime within a design-time vocabulary. Five card
 types are reviewed once; the model chooses among them per question and fills
 their fields.
 
-The evaluation is designed around exactly that seam. A fixed-card arm renders
-the same retrieval results in a predetermined layout, so a difference between it
-and the dynamic arm isolates the value of the runtime decision — separately from
-the value of having cards at all.
+The evaluation is designed around exactly that seam. A fixed-card arm is to
+render the same retrieval results in a predetermined layout, so a difference
+between it and the dynamic arm isolates the value of the runtime decision —
+separately from the value of having cards at all. The arms are M4.

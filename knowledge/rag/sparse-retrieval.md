@@ -21,8 +21,8 @@ sources:
 
 Sparse retrieval scores a document by the query terms it literally contains.
 The representation is a vector over the vocabulary, almost all of whose entries
-are zero — hence "sparse" — and matching is a lookup in an inverted index rather
-than a distance computation in a learned space.
+are zero — hence "sparse" — and matching is a lookup in an inverted index
+rather than a distance computation in a learned space.
 
 BM25 is the scoring function most systems mean when they say "keyword search".
 It is forty years old, has no learned parameters beyond two constants, and
@@ -33,19 +33,19 @@ remains a serious baseline that dense retrievers are still measured against.
 For each query term, BM25 combines three quantities:
 
 **Inverse document frequency.** A term appearing in few documents discriminates
-better than one appearing everywhere. Terms that occur in most of the collection
-contribute almost nothing.
+better than one appearing everywhere. Terms that occur in most of the
+collection contribute almost nothing.
 
 **Term frequency, saturated.** A document containing a query term ten times is
-more relevant than one containing it once, but not ten times more relevant. BM25
-passes term frequency through a saturating function controlled by `k1`, so
-additional occurrences yield diminishing returns. This is the part naive
-tf-idf gets wrong, and it matters: without saturation, a page that repeats a
-word two hundred times outranks a page that discusses it properly.
+more relevant than one containing it once, but not ten times more relevant.
+BM25 passes term frequency through a saturating function controlled by `k1`, so
+additional occurrences yield diminishing returns. This is the part naive tf-idf
+gets wrong, and it matters: without saturation, a page that repeats a word two
+hundred times outranks a page that discusses it properly.
 
 **Document length normalisation.** A long document contains more terms by
-accident. BM25 divides by a length ratio, damped by `b`, so a long document must
-contain proportionally more query terms to score as highly as a short one.
+accident. BM25 divides by a length ratio, damped by `b`, so a long document
+must contain proportionally more query terms to score as highly as a short one.
 
 The two constants have conventional defaults that work well enough across
 collections that most systems never tune them.
@@ -59,8 +59,8 @@ surname, a newly coined term of art. An embedding model maps unfamiliar tokens
 to something vague. An inverted index either has the term or does not.
 
 For a corpus like this project's, which is dense with terminology — `nDCG`,
-`pgvector`, `AG-UI`, `Recall@K` — this is not a corner case. A question naming a
-specific technique is precisely the question a lexical index answers best.
+`pgvector`, `AG-UI`, `Recall@K` — this is not a corner case. A question naming
+a specific technique is precisely the question a lexical index answers best.
 
 BM25 also needs no training, no embedding model, and no vector store. Its index
 is cheap to build and cheap to update incrementally, which matters for corpus
@@ -75,8 +75,8 @@ between what an author wrote and what a reader asks is the classic failure of
 lexical retrieval, and it is exactly what dense retrieval was built to fix.
 
 It also has no notion of a term's importance beyond corpus statistics. A term
-that is rare in the collection is treated as discriminative even when it is rare
-because it is incidental.
+that is rare in the collection is treated as discriminative even when it is
+rare because it is incidental.
 
 ## What this means here
 

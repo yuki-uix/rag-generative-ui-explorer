@@ -20,14 +20,15 @@ sources:
 # Reranking
 
 Reranking re-scores an already-retrieved candidate list by reading each
-candidate together with the query. It is the second stage of a retrieve-then-rank
-pipeline, and its value comes entirely from being allowed to be expensive.
+candidate together with the query. It is the second stage of a
+retrieve-then-rank pipeline, and its value comes entirely from being allowed to
+be expensive.
 
 ## Cross-encoder versus dual encoder
 
 A dual encoder embeds the query and the passage independently. Whatever
-interaction exists between them has to survive being compressed into two vectors
-before they ever meet.
+interaction exists between them has to survive being compressed into two
+vectors before they ever meet.
 
 A cross-encoder concatenates query and passage and processes them together, so
 every query term can attend to every passage term. It can notice that a passage
@@ -62,8 +63,8 @@ determines what is *sent*.
 Reranking adds latency linear in candidates, and it sits on the critical path
 before generation can start. Three things decide whether it pays:
 
-**How large the candidate set is.** Reranking 100 candidates to pick 10 has room
-to work. Reranking 12 to pick 10 mostly reorders noise.
+**How large the candidate set is.** Reranking 100 candidates to pick 10 has
+room to work. Reranking 12 to pick 10 mostly reorders noise.
 
 **How good the first stage already is.** A well-fused hybrid retriever leaves
 less for a reranker to fix.
@@ -75,12 +76,12 @@ discards everything below rank ten.
 
 ## What this means here
 
-Reranking is optional and measured with the switch on and off, holding the
-question set, corpus version, and configuration fixed. Both arms report recall
-and ordering metrics separately, so an ordering improvement is not read as a
-retrieval improvement.
+Reranking is specified as optional and is to be measured with the switch on and
+off, holding the question set, corpus version, and configuration fixed. Both
+arms are to report recall and ordering metrics separately, so an ordering
+improvement is not read as a retrieval improvement. This is M1 and unbuilt.
 
-The added latency and cost are measured on real runs rather than projected. The
-decision to keep or drop it belongs to whichever configuration the numbers
-support, and the numbers have to include what it costs, not only what it
-improves.
+The added latency and cost are to be measured on real runs rather than
+projected. The decision to keep or drop it belongs to whichever configuration
+the numbers support, and the numbers have to include what it costs, not only
+what it improves.
