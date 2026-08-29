@@ -14,6 +14,10 @@ sources:
     published: 2023-04-19
     retrieved: 2026-08-29
     license: arXiv preprint, arXiv:2304.09848. Non-exclusive licence to distribute; short attributed quotations only. published is the v1 submission date.
+    supports:
+      - verifiability-is-not-the-presence-of-citations
+      - what-evidence-aware-has-to-mean-to-be-worth-anything
+      - cheap-traversal-is-the-point
     primary: true
 ---
 

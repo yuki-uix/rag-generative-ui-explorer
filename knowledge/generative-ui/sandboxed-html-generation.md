@@ -14,6 +14,8 @@ sources:
     published: 2025-11-21
     retrieved: 2026-08-29
     license: Status Final, Extensions Track. Short attributed quotations only; published is the SEP Created date.
+    supports:
+      - what-a-specification-for-this-looks-like
     primary: true
   - sourceType: documentation
     title: <iframe> HTML inline frame element
@@ -22,6 +24,8 @@ sources:
     published: 2026-08-04
     retrieved: 2026-08-29
     license: CC BY-SA 2.5. Short attributed quotations only; published is the page last-modified date.
+    supports:
+      - what-the-browser-provides
   - sourceType: documentation
     title: Content Security Policy (CSP)
     url: https://developer.mozilla.org/en-US/docs/Web/HTTP/Guides/CSP
@@ -29,6 +33,8 @@ sources:
     published: 2026-03-22
     retrieved: 2026-08-29
     license: CC BY-SA 2.5. Short attributed quotations only; published is the page last-modified date.
+    supports:
+      - what-the-browser-provides
 ---
 
 # Sandboxed open-ended HTML generation

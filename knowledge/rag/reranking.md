@@ -14,6 +14,10 @@ sources:
     published: "2019-01-13"
     retrieved: "2026-08-29"
     license: "arXiv preprint, arXiv:1901.04085. Non-exclusive licence to distribute; short attributed quotations only. published is the v1 submission date; the link serves the latest version."
+    supports:
+      - cross-encoder-versus-dual-encoder
+      - reranking-cannot-raise-recall
+      - deciding-whether-it-is-worth-it
     primary: true
 ---
 

@@ -15,6 +15,9 @@ sources:
     published: 2026-01-15
     retrieved: 2026-08-29
     license: Replace with the licence or quotation constraint that applies
+    supports:
+      - the-note-and-its-sources-are-different-things
+      - citing-more-than-one-source
     primary: true
 ---
 
@@ -48,6 +51,18 @@ List every source the note draws on, not only the main one. Exactly one carries
 If a section discusses a technique from a different paper, that paper belongs in
 `sources`. A note whose content outruns its citations is the failure this corpus
 exists to avoid.
+
+Each source also lists the section slugs it `supports`. That is what makes the
+relationship checkable in both directions: a slug matching no heading is a
+source claiming more than it gives, and a heading no source claims is a section
+drawing on something uncited. Both defects reached review before the field
+existed, in opposite directions, and neither was visible to any check.
+
+A section that genuinely rests on no external source — your own analysis, a
+worked example, a design rule you are proposing — belongs in
+`UNSOURCED_SECTIONS` in `packages/corpus/src/manifest.ts`, with a reason. That
+list is keyed per note, so exempting one note's heading does not exempt every
+note that reuses the wording.
 
 ## Design intent, not implementation status
 

@@ -14,6 +14,8 @@ sources:
     published: 2021-12-23
     retrieved: 2026-08-29
     license: arXiv preprint, arXiv:2112.12870. Non-exclusive licence to distribute; short attributed quotations only. published is the v1 submission date.
+    supports:
+      - attribution-needs-a-unit-to-attribute
     primary: true
   - sourceType: paper
     title: Enabling Large Language Models to Generate Text with Citations
@@ -22,6 +24,8 @@ sources:
     published: 2023-05-24
     retrieved: 2026-08-29
     license: arXiv preprint, arXiv:2305.14627. Non-exclusive licence to distribute; short attributed quotations only. published is the v1 submission date.
+    supports:
+      - granularity-and-what-each-level-permits
 ---
 
 # Claim-level and field-level citation

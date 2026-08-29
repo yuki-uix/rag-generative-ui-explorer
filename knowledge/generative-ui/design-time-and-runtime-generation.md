@@ -14,6 +14,11 @@ sources:
     published: "2010"
     retrieved: 2026-08-29
     license: Artificial Intelligence journal. Author-hosted copy; short attributed quotations only.
+    supports:
+      - interface-generation-as-optimisation
+      - what-is-genuinely-different-now
+      - design-time-versus-runtime
+      - what-partial-runtime-generation-buys
     primary: true
 ---
 

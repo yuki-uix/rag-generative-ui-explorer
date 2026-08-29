@@ -14,6 +14,8 @@ sources:
     published: 1999-05
     retrieved: 2026-08-29
     license: CHI 1999, pages 159-166, DOI 10.1145/302979.303030. Author-hosted copy; short attributed quotations only.
+    supports:
+      - constrained-hops-not-an-autonomous-loop
     primary: true
   - sourceType: documentation
     title: AG-UI Overview
@@ -21,6 +23,8 @@ sources:
     author: AG-UI Protocol contributors
     retrieved: 2026-08-29
     license: Living documentation; no publication date stated. Short attributed quotations only.
+    supports:
+      - constrained-hops-not-an-autonomous-loop
 ---
 
 # Retrieval driven by UI actions

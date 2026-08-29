@@ -13,6 +13,8 @@ sources:
     author: Ink & Switch
     retrieved: 2026-08-29
     license: Research programme page; no author or publication date stated. Short attributed quotations only.
+    supports:
+      - malleability-is-the-same-problem-further-out
     primary: true
   - sourceType: documentation
     title: AG-UI Overview
@@ -20,6 +22,8 @@ sources:
     author: AG-UI Protocol contributors
     retrieved: 2026-08-29
     license: Living documentation; no publication date stated. Short attributed quotations only.
+    supports:
+      - state-as-a-protocol-concern-not-an-application-one
 ---
 
 # State continuity and malleable interfaces

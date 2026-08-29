@@ -14,6 +14,9 @@ sources:
     published: 2024-04-18
     retrieved: 2026-08-29
     license: arXiv preprint, arXiv:2404.12500. Non-exclusive licence to distribute; short attributed quotations only. published is the v1 submission date.
+    supports:
+      - three-kinds-of-measurement
+      - the-metrics-that-matter-and-what-each-is-for
     primary: true
   - sourceType: paper
     title: Automatically Generating Personalized User Interfaces with Supple
@@ -22,6 +25,8 @@ sources:
     published: "2010"
     retrieved: 2026-08-29
     license: Artificial Intelligence journal. Author-hosted copy; short attributed quotations only.
+    supports:
+      - the-comparison-has-to-be-designed-not-assembled
 ---
 
 # Evaluating generated interfaces

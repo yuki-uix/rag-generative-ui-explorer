@@ -14,6 +14,11 @@ sources:
     published: 2023-05-24
     retrieved: 2026-08-29
     license: arXiv preprint, arXiv:2305.14627. Non-exclusive licence to distribute; short attributed quotations only. published is the v1 submission date.
+    supports:
+      - two-signals-and-they-disagree
+      - when-the-evidence-has-no-usable-shape
+      - structure-is-not-in-the-text
+      - what-the-citation-work-suggests-about-the-harder-version
     primary: true
 ---
 

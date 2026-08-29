@@ -18,6 +18,7 @@ const source = {
   published: '2020-04-10',
   retrieved: '2026-08-28',
   license: 'arXiv non-exclusive licence; short quotations only',
+  supports: ['the-dual-encoder'],
   primary: true,
 };
 
@@ -40,6 +41,7 @@ const REQUIRED_SOURCE_FIELDS = [
   'published',
   'retrieved',
   'license',
+  'supports',
 ] as const;
 
 const asFile = (frontmatter: Record<string, unknown>, body: string): string =>
@@ -232,6 +234,7 @@ describe('undated documentation', () => {
     author: 'Vercel',
     retrieved: '2026-08-28',
     license: 'Vendor documentation. Short attributed quotations only.',
+    supports: ['the-dual-encoder'],
     primary: true,
   };
 

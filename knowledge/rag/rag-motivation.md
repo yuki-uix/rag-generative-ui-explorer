@@ -14,6 +14,10 @@ sources:
     published: "2020-05-22"
     retrieved: "2026-08-29"
     license: "arXiv preprint, arXiv:2005.11401. Non-exclusive licence to distribute; short attributed quotations only. published is the v1 submission date; the link serves the latest version."
+    supports:
+      - the-distinction-the-paper-draws
+      - the-architecture
+      - what-holds-and-what-does-not
     primary: true
 ---
 

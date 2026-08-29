@@ -13,6 +13,9 @@ sources:
     author: A2UI Project contributors
     retrieved: 2026-08-29
     license: Apache-2.0. Short attributed quotations only; no publication date stated.
+    supports:
+      - intent-not-appearance
+      - grammar-size
     primary: true
   - sourceType: documentation
     title: Adaptive Cards
@@ -20,12 +23,16 @@ sources:
     author: Microsoft
     retrieved: 2026-08-29
     license: Living documentation; no publication date stated. Short attributed quotations only.
+    supports:
+      - intent-not-appearance
   - sourceType: documentation
     title: JSON Schema
     url: https://json-schema.org/
     author: JSON Schema organization
     retrieved: 2026-08-29
     license: Living documentation; no publication date stated. Short attributed quotations only.
+    supports:
+      - what-a-schema-can-enforce
 ---
 
 # Declarative UI schemas and UI grammars

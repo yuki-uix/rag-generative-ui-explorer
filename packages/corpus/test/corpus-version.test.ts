@@ -33,12 +33,14 @@ const SOURCE_ALTERNATIVES: Record<string, unknown> = {
   published: '2020-04-11',
   retrieved: '2026-08-27',
   license: 'CC BY 4.0',
+  // Differs from the default, which claims both sections.
+  supports: ['the-dual-encoder'],
   primary: true,
 };
 
 function versionOf(
   noteOverrides: Record<string, unknown> = {},
-  body = 'Body prose.',
+  body = '## The dual encoder\n\nProse.\n\n## What training is doing\n\nBody prose.',
 ): string {
   const { manifest, errors } = buildManifest(
     corpus([{ path: 'rag/dpr.md', frontmatter: noteOverrides, body }]),
@@ -62,7 +64,12 @@ describe('corpus version sensitivity', () => {
     },
   );
 
-  it.each(SOURCE_FIELDS.filter((field) => field !== 'primary'))(
+  /**
+   * `supports` is excluded from the sweep for the same reason `domain` is: it
+   * is cross-checked against the body, so it cannot be varied in isolation.
+   * It gets a purpose-built case below rather than a hole here.
+   */
+  it.each(SOURCE_FIELDS.filter((field) => field !== 'primary' && field !== 'supports'))(
     'changes when the source field %s changes',
     (field) => {
       expect(
@@ -71,8 +78,45 @@ describe('corpus version sensitivity', () => {
     },
   );
 
+  it('changes when a source claims a different set of sections', () => {
+    const body = [
+      '## The dual encoder',
+      '',
+      'Prose.',
+      '',
+      '## What training is doing',
+      '',
+      'More prose.',
+    ].join('\n');
+
+    const both = versionOf(
+      { sources: [{ ...DEFAULT_SOURCE, supports: ['the-dual-encoder', 'what-training-is-doing'] }] },
+      body,
+    );
+    const split = versionOf(
+      {
+        sources: [
+          { ...DEFAULT_SOURCE, supports: ['the-dual-encoder'] },
+          {
+            ...DEFAULT_SOURCE,
+            url: 'https://arxiv.org/abs/2004.12832',
+            supports: ['what-training-is-doing'],
+            primary: undefined,
+          },
+        ].map((source) => {
+          const copy: Record<string, unknown> = { ...source };
+          if (copy.primary === undefined) delete copy.primary;
+          return copy;
+        }),
+      },
+      body,
+    );
+
+    expect(split).not.toBe(both);
+  });
+
   it('changes when the body changes', () => {
-    expect(versionOf({}, 'Entirely different prose.')).not.toBe(baseline);
+    expect(versionOf({}, '## The dual encoder\n\nProse.\n\n## What training is doing\n\nEntirely different prose.')).not.toBe(baseline);
   });
 
   it('changes when a source is added', () => {
@@ -95,7 +139,9 @@ describe('corpus version sensitivity', () => {
   });
 
   it('ignores whitespace reflow, matching evidence ID hashing', () => {
-    expect(versionOf({}, 'Body\n   prose.')).toBe(versionOf({}, 'Body prose.'));
+    expect(versionOf({}, '## The dual encoder\n\nProse.\n\n## What training is doing\n\nBody\n   prose.')).toBe(
+      versionOf({}, '## The dual encoder\n\nProse.\n\n## What training is doing\n\nBody prose.'),
+    );
   });
 
   it('does not depend on frontmatter key order', () => {

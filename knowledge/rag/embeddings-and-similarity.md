@@ -14,6 +14,10 @@ sources:
     published: "2019-08-27"
     retrieved: "2026-08-29"
     license: "arXiv preprint, arXiv:1908.10084. Non-exclusive licence to distribute; short attributed quotations only. published is the v1 submission date; the link serves the latest version."
+    supports:
+      - embeddings-are-trained-for-a-comparison
+      - cosine-similarity-and-what-it-does-not-say
+      - dimensionality-and-cost
     primary: true
 ---
 

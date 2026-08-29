@@ -13,6 +13,8 @@ sources:
     author: AG-UI Protocol contributors
     retrieved: 2026-08-29
     license: Living documentation; no publication date stated. Short attributed quotations only.
+    supports:
+      - a-spectrum-not-a-category
     primary: true
   - sourceType: documentation
     title: "A2UI: Agent-to-User Interface"
@@ -20,12 +22,16 @@ sources:
     author: A2UI Project contributors
     retrieved: 2026-08-29
     license: Apache-2.0. Short attributed quotations only; no publication date stated.
+    supports:
+      - a-spectrum-not-a-category
   - sourceType: documentation
     title: Generative User Interfaces
     url: https://ai-sdk.dev/docs/ai-sdk-ui/generative-user-interfaces
     author: Vercel
     retrieved: 2026-08-29
     license: Living documentation; no publication date stated. Short attributed quotations only.
+    supports:
+      - a-spectrum-not-a-category
 ---
 
 # What generative UI is

@@ -14,6 +14,10 @@ sources:
     published: "2020-04-10"
     retrieved: "2026-08-29"
     license: "arXiv preprint, arXiv:2004.04906. Non-exclusive licence to distribute; short attributed quotations only. published is the v1 submission date; the link serves the latest version."
+    supports:
+      - the-dual-encoder
+      - what-training-is-doing
+      - the-dependency-nobody-sees-until-it-moves
     primary: true
   - sourceType: "paper"
     title: "ColBERT: Efficient and Effective Passage Search via Contextualized Late Interaction over BERT"
@@ -22,6 +26,8 @@ sources:
     published: "2020-04-27"
     retrieved: "2026-08-29"
     license: "arXiv preprint, arXiv:2004.12832. Non-exclusive licence to distribute; short attributed quotations only. published is the v1 submission date; the link serves the latest version."
+    supports:
+      - the-dual-encoder
 ---
 
 # Dense retrieval

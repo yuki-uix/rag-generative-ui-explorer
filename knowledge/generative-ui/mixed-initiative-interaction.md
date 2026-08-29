@@ -14,6 +14,10 @@ sources:
     published: 1999-05
     retrieved: 2026-08-29
     license: CHI 1999, pages 159-166, DOI 10.1145/302979.303030. Author-hosted copy; short attributed quotations only.
+    supports:
+      - the-debate-that-came-back
+      - the-principles-that-transfer
+      - applied-to-generated-interfaces
     primary: true
 ---
 

@@ -15,6 +15,10 @@ sources:
     published: "2023-09-26"
     retrieved: "2026-08-29"
     license: "arXiv preprint, arXiv:2309.15217. Non-exclusive licence to distribute; short attributed quotations only. published is the v1 submission date; the link serves the latest version."
+    supports:
+      - three-questions-not-one
+      - the-metrics-are-model-graded
+      - mechanical-checks-come-first
     primary: true
 ---
 

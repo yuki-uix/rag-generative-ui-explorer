@@ -14,6 +14,11 @@ sources:
     published: "2023-10-17"
     retrieved: "2026-08-29"
     license: "arXiv preprint, arXiv:2310.11511. Non-exclusive licence to distribute; short attributed quotations only. published is the v1 submission date; the link serves the latest version."
+    supports:
+      - retrieval-as-a-decision-not-a-fixed-step
+      - where-the-claim-gets-checked
+      - citation-granularity
+      - labelling-what-kind-of-statement-it-is
     primary: true
 ---
 

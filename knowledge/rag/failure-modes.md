@@ -14,6 +14,10 @@ sources:
     published: "2023-09-04"
     retrieved: "2026-08-29"
     license: "arXiv preprint, arXiv:2309.01431. Non-exclusive licence to distribute; short attributed quotations only. published is the v1 submission date; the link serves the latest version."
+    supports:
+      - retrieval-miss
+      - conflicting-sources
+      - unsupported-synthesis
     primary: true
   - sourceType: "paper"
     title: "Large Language Models Can Be Easily Distracted by Irrelevant Context"
@@ -22,6 +26,8 @@ sources:
     published: "2023-01-31"
     retrieved: "2026-08-29"
     license: "arXiv preprint, arXiv:2302.00093. Non-exclusive licence to distribute; short attributed quotations only. published is the v1 submission date; the link serves the latest version."
+    supports:
+      - lost-context
   - sourceType: "paper"
     title: "Lost in the Middle: How Language Models Use Long Contexts"
     url: "https://arxiv.org/abs/2307.03172"
@@ -29,6 +35,8 @@ sources:
     published: "2023-07-06"
     retrieved: "2026-08-29"
     license: "arXiv preprint, arXiv:2307.03172. Non-exclusive licence to distribute; short attributed quotations only. published is the v1 submission date; the link serves the latest version."
+    supports:
+      - lost-context
 ---
 
 # Failure modes

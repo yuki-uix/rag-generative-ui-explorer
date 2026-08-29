@@ -15,6 +15,12 @@ sources:
     published: 2025-11-21
     retrieved: 2026-08-29
     license: Status Final, Extensions Track. Short attributed quotations only; published is the SEP Created date.
+    supports:
+      - the-problem-it-names
+      - predeclared-resources-rather-than-inline-embedding
+      - reusing-json-rpc-rather-than-a-custom-protocol
+      - html-only-deliberately
+      - the-security-model
     primary: true
   - sourceType: specification
     title: MCP Apps extension specification, revision 2026-01-26
@@ -23,6 +29,9 @@ sources:
     published: 2026-01-26
     retrieved: 2026-08-29
     license: Short attributed quotations only; published is the dated specification revision.
+    supports:
+      - predeclared-resources-rather-than-inline-embedding
+      - the-security-model
 ---
 
 # The MCP Apps design decisions

@@ -13,6 +13,10 @@ sources:
     author: AG-UI Protocol contributors
     retrieved: 2026-08-29
     license: Living documentation; no publication date stated. Short attributed quotations only.
+    supports:
+      - the-layers
+      - the-bet-each-one-makes
+      - why-the-event-model-matters
     primary: true
   - sourceType: documentation
     title: "A2UI: Agent-to-User Interface"
@@ -20,6 +24,9 @@ sources:
     author: A2UI Project contributors
     retrieved: 2026-08-29
     license: Apache-2.0. Short attributed quotations only; no publication date stated.
+    supports:
+      - the-layers
+      - the-bet-each-one-makes
   - sourceType: specification
     title: "SEP-1865: MCP Apps - Interactive User Interfaces for MCP"
     url: https://modelcontextprotocol.io/seps/1865-mcp-apps-interactive-user-interfaces-for-mcp
@@ -27,12 +34,17 @@ sources:
     published: 2025-11-21
     retrieved: 2026-08-29
     license: Status Final, Extensions Track. Short attributed quotations only; published is the SEP Created date.
+    supports:
+      - the-layers
+      - the-bet-each-one-makes
   - sourceType: documentation
     title: What is the Model Context Protocol (MCP)?
     url: https://modelcontextprotocol.io/
     author: Model Context Protocol contributors
     retrieved: 2026-08-29
     license: Living documentation; no publication date stated. Short attributed quotations only.
+    supports:
+      - the-layers
 ---
 
 # Agent-UI protocols

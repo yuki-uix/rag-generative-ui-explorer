@@ -14,6 +14,9 @@ sources:
     published: "2023-05-23"
     retrieved: "2026-08-29"
     license: "arXiv preprint, arXiv:2305.14283. Non-exclusive licence to distribute; short attributed quotations only. published is the v1 submission date; the link serves the latest version."
+    supports:
+      - why-the-raw-question-underperforms
+      - the-three-transformations
     primary: true
   - sourceType: "paper"
     title: "Precise Zero-Shot Dense Retrieval without Relevance Labels"
@@ -22,6 +25,8 @@ sources:
     published: "2022-12-20"
     retrieved: "2026-08-29"
     license: "arXiv preprint, arXiv:2212.10496. Non-exclusive licence to distribute; short attributed quotations only. published is the v1 submission date; the link serves the latest version."
+    supports:
+      - the-three-transformations
 ---
 
 # Query rewriting, decomposition, and expansion

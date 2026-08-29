@@ -14,6 +14,8 @@ sources:
     published: "2023-07-06"
     retrieved: "2026-08-29"
     license: "arXiv preprint, arXiv:2307.03172. Non-exclusive licence to distribute; short attributed quotations only. published is the v1 submission date; the link serves the latest version."
+    supports:
+      - position-is-not-neutral
     primary: true
   - sourceType: "paper"
     title: "Leveraging Passage Retrieval with Generative Models for Open Domain Question Answering"
@@ -22,6 +24,8 @@ sources:
     published: "2020-07-02"
     retrieved: "2026-08-29"
     license: "arXiv preprint, arXiv:2007.01282. Non-exclusive licence to distribute; short attributed quotations only. published is the v1 submission date; the link serves the latest version."
+    supports:
+      - position-is-not-neutral
   - sourceType: "paper"
     title: "Large Language Models Can Be Easily Distracted by Irrelevant Context"
     url: "https://arxiv.org/abs/2302.00093"
@@ -29,6 +33,8 @@ sources:
     published: "2023-01-31"
     retrieved: "2026-08-29"
     license: "arXiv preprint, arXiv:2302.00093. Non-exclusive licence to distribute; short attributed quotations only. published is the v1 submission date; the link serves the latest version."
+    supports:
+      - more-context-is-not-more-information
 ---
 
 # Context assembly

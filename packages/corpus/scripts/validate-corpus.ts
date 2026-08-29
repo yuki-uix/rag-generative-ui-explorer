@@ -58,6 +58,21 @@ console.log(
   `${manifest.documentCount} document(s), ${manifest.sourceCount} cited source(s), corpus version ${manifest.corpusVersion}`,
 );
 
+const supportCounts = manifest.documents.flatMap((document) =>
+  document.sources.map((source) => source.supports.length),
+);
+if (supportCounts.length > 0) {
+  const total = supportCounts.reduce((sum, count) => sum + count, 0);
+  /**
+   * Reported routinely because it is the honest measure of how much work the
+   * citations do. A note can carry three sources that between them support one
+   * section, which reads as well-cited and is not.
+   */
+  console.log(
+    `${total} section attribution(s), ${(total / supportCounts.length).toFixed(1)} per source`,
+  );
+}
+
 console.log('\ntopic coverage');
 for (const domain of coverage(manifest)) {
   const total = domain.covered.length + domain.uncovered.length;

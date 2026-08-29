@@ -14,6 +14,8 @@ sources:
     published: "2024-04-24"
     retrieved: "2026-08-29"
     license: "arXiv preprint, arXiv:2404.16130. Non-exclusive licence to distribute; short attributed quotations only. published is the v1 submission date; the link serves the latest version."
+    supports:
+      - graph-rag
     primary: true
   - sourceType: "paper"
     title: "Interleaving Retrieval with Chain-of-Thought Reasoning for Knowledge-Intensive Multi-Step Questions"
@@ -22,6 +24,8 @@ sources:
     published: "2022-12-20"
     retrieved: "2026-08-29"
     license: "arXiv preprint, arXiv:2212.10509. Non-exclusive licence to distribute; short attributed quotations only. published is the v1 submission date; the link serves the latest version."
+    supports:
+      - multi-hop
   - sourceType: "paper"
     title: "Corrective Retrieval Augmented Generation"
     url: "https://arxiv.org/abs/2401.15884"
@@ -29,6 +33,8 @@ sources:
     published: "2024-01-29"
     retrieved: "2026-08-29"
     license: "arXiv preprint, arXiv:2401.15884. Non-exclusive licence to distribute; short attributed quotations only. published is the v1 submission date; the link serves the latest version."
+    supports:
+      - corrective-retrieval
   - sourceType: "paper"
     title: "Self-RAG: Learning to Retrieve, Generate, and Critique through Self-Reflection"
     url: "https://arxiv.org/abs/2310.11511"
@@ -36,6 +42,8 @@ sources:
     published: "2023-10-17"
     retrieved: "2026-08-29"
     license: "arXiv preprint, arXiv:2310.11511. Non-exclusive licence to distribute; short attributed quotations only. published is the v1 submission date; the link serves the latest version."
+    supports:
+      - agentic-rag
 ---
 
 # Advanced RAG patterns

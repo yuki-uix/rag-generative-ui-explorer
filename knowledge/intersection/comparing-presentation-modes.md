@@ -14,6 +14,8 @@ sources:
     published: "2010"
     retrieved: 2026-08-29
     license: Artificial Intelligence journal. Author-hosted copy; short attributed quotations only.
+    supports:
+      - four-arms-three-claims
     primary: true
   - sourceType: paper
     title: Evaluating Verifiability in Generative Search Engines
@@ -22,6 +24,8 @@ sources:
     published: 2023-04-19
     retrieved: 2026-08-29
     license: arXiv preprint, arXiv:2304.09848. Non-exclusive licence to distribute; short attributed quotations only. published is the v1 submission date.
+    supports:
+      - results-this-project-should-expect-to-lose
 ---
 
 # Comparing Markdown, fixed cards, and dynamic cards

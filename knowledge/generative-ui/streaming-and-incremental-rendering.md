@@ -13,6 +13,8 @@ sources:
     author: Vercel
     retrieved: 2026-08-29
     license: Living documentation; no publication date stated. Short attributed quotations only.
+    supports:
+      - text-streams-structure-does-not
     primary: true
   - sourceType: documentation
     title: Server Components
@@ -20,12 +22,16 @@ sources:
     author: React team, Meta
     retrieved: 2026-08-29
     license: Living documentation; no publication date stated. Short attributed quotations only.
+    supports:
+      - text-streams-structure-does-not
   - sourceType: documentation
     title: AG-UI Overview
     url: https://docs.ag-ui.com/
     author: AG-UI Protocol contributors
     retrieved: 2026-08-29
     license: Living documentation; no publication date stated. Short attributed quotations only.
+    supports:
+      - text-streams-structure-does-not
 ---
 
 # Streaming and incremental rendering

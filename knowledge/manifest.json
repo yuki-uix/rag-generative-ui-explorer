@@ -1,5 +1,5 @@
 {
-  "corpusVersion": "corpus-dd6094f7202c",
+  "corpusVersion": "corpus-2e83fa4d3065",
   "chunking": {
     "boundary": "h2-section",
     "maxChunkChars": 1200
@@ -21,6 +21,10 @@
       "sources": [
         {
           "sourceType": "specification",
+          "supports": [
+            "semantics-are-what-assistive-technology-reads",
+            "why-the-level-of-generation-decides-the-outcome"
+          ],
           "title": "Accessible Rich Internet Applications (WAI-ARIA) 1.2",
           "url": "https://www.w3.org/TR/wai-aria-1.2/",
           "author": "W3C",
@@ -31,6 +35,10 @@
         },
         {
           "sourceType": "documentation",
+          "supports": [
+            "semantics-are-what-assistive-technology-reads",
+            "what-generation-still-breaks-in-a-bounded-vocabulary"
+          ],
           "title": "ARIA Authoring Practices Guide",
           "url": "https://www.w3.org/WAI/ARIA/apg/",
           "author": "W3C Web Accessibility Initiative",
@@ -40,7 +48,7 @@
         }
       ],
       "contentHash": "e0709de2cb08cf7e",
-      "metadataHash": "c8fbc9c657a32b89"
+      "metadataHash": "76bc405e2c5d7439"
     },
     {
       "documentId": "generative-ui/agent-ui-protocols",
@@ -56,6 +64,11 @@
       "sources": [
         {
           "sourceType": "documentation",
+          "supports": [
+            "the-bet-each-one-makes",
+            "the-layers",
+            "why-the-event-model-matters"
+          ],
           "title": "AG-UI Overview",
           "url": "https://docs.ag-ui.com/",
           "author": "AG-UI Protocol contributors",
@@ -65,6 +78,10 @@
         },
         {
           "sourceType": "documentation",
+          "supports": [
+            "the-bet-each-one-makes",
+            "the-layers"
+          ],
           "title": "A2UI: Agent-to-User Interface",
           "url": "https://github.com/a2ui-project/a2ui",
           "author": "A2UI Project contributors",
@@ -74,6 +91,10 @@
         },
         {
           "sourceType": "specification",
+          "supports": [
+            "the-bet-each-one-makes",
+            "the-layers"
+          ],
           "title": "SEP-1865: MCP Apps - Interactive User Interfaces for MCP",
           "url": "https://modelcontextprotocol.io/seps/1865-mcp-apps-interactive-user-interfaces-for-mcp",
           "author": "Ido Salomon, Liad Yosef, Olivier Chafik et al.",
@@ -84,6 +105,9 @@
         },
         {
           "sourceType": "documentation",
+          "supports": [
+            "the-layers"
+          ],
           "title": "What is the Model Context Protocol (MCP)?",
           "url": "https://modelcontextprotocol.io/",
           "author": "Model Context Protocol contributors",
@@ -93,7 +117,7 @@
         }
       ],
       "contentHash": "e97845b68223471b",
-      "metadataHash": "9f1ef98e2c44e693"
+      "metadataHash": "5dbd1a6c1f23b119"
     },
     {
       "documentId": "generative-ui/component-registries",
@@ -109,6 +133,11 @@
       "sources": [
         {
           "sourceType": "documentation",
+          "supports": [
+            "closed-lookup-not-dynamic-resolution",
+            "the-registry-is-a-vocabulary",
+            "the-shape-of-the-pattern"
+          ],
           "title": "Generative User Interfaces",
           "url": "https://ai-sdk.dev/docs/ai-sdk-ui/generative-user-interfaces",
           "author": "Vercel",
@@ -118,6 +147,9 @@
         },
         {
           "sourceType": "documentation",
+          "supports": [
+            "the-shape-of-the-pattern"
+          ],
           "title": "A2UI: Agent-to-User Interface",
           "url": "https://github.com/a2ui-project/a2ui",
           "author": "A2UI Project contributors",
@@ -127,7 +159,7 @@
         }
       ],
       "contentHash": "69f8ec43950b840e",
-      "metadataHash": "d2e2c3d910055f12"
+      "metadataHash": "4eda93af33eeba13"
     },
     {
       "documentId": "generative-ui/declarative-ui-schemas",
@@ -143,6 +175,10 @@
       "sources": [
         {
           "sourceType": "documentation",
+          "supports": [
+            "grammar-size",
+            "intent-not-appearance"
+          ],
           "title": "A2UI: Agent-to-User Interface",
           "url": "https://github.com/a2ui-project/a2ui",
           "author": "A2UI Project contributors",
@@ -152,6 +188,9 @@
         },
         {
           "sourceType": "documentation",
+          "supports": [
+            "intent-not-appearance"
+          ],
           "title": "Adaptive Cards",
           "url": "https://adaptivecards.io/",
           "author": "Microsoft",
@@ -161,6 +200,9 @@
         },
         {
           "sourceType": "documentation",
+          "supports": [
+            "what-a-schema-can-enforce"
+          ],
           "title": "JSON Schema",
           "url": "https://json-schema.org/",
           "author": "JSON Schema organization",
@@ -170,7 +212,7 @@
         }
       ],
       "contentHash": "aff160ed1e488b4d",
-      "metadataHash": "4717c9ae3afd9492"
+      "metadataHash": "28d32ee5ea6fef80"
     },
     {
       "documentId": "generative-ui/design-time-and-runtime-generation",
@@ -186,6 +228,12 @@
       "sources": [
         {
           "sourceType": "paper",
+          "supports": [
+            "design-time-versus-runtime",
+            "interface-generation-as-optimisation",
+            "what-is-genuinely-different-now",
+            "what-partial-runtime-generation-buys"
+          ],
           "title": "Automatically Generating Personalized User Interfaces with Supple",
           "url": "https://www.eecs.harvard.edu/~kgajos/papers/2010/gajos10supple-aij.pdf",
           "author": "Krzysztof Z. Gajos, Daniel S. Weld, and Jacob O. Wobbrock",
@@ -196,7 +244,7 @@
         }
       ],
       "contentHash": "09e44d56823b969d",
-      "metadataHash": "2b52cc834655cfc3"
+      "metadataHash": "dfafae8abead6ec8"
     },
     {
       "documentId": "generative-ui/evaluating-generated-interfaces",
@@ -212,6 +260,10 @@
       "sources": [
         {
           "sourceType": "paper",
+          "supports": [
+            "the-metrics-that-matter-and-what-each-is-for",
+            "three-kinds-of-measurement"
+          ],
           "title": "UIClip: A Data-driven Model for Assessing User Interface Design",
           "url": "https://arxiv.org/abs/2404.12500",
           "author": "Jason Wu, Yi-Hao Peng, Amanda Li et al.",
@@ -222,6 +274,9 @@
         },
         {
           "sourceType": "paper",
+          "supports": [
+            "the-comparison-has-to-be-designed-not-assembled"
+          ],
           "title": "Automatically Generating Personalized User Interfaces with Supple",
           "url": "https://www.eecs.harvard.edu/~kgajos/papers/2010/gajos10supple-aij.pdf",
           "author": "Krzysztof Z. Gajos, Daniel S. Weld, and Jacob O. Wobbrock",
@@ -232,7 +287,7 @@
         }
       ],
       "contentHash": "f82c923ee2182889",
-      "metadataHash": "5a8d2e23d551908b"
+      "metadataHash": "3081bca541c11e81"
     },
     {
       "documentId": "generative-ui/levels-of-generation",
@@ -248,6 +303,10 @@
       "sources": [
         {
           "sourceType": "documentation",
+          "supports": [
+            "component",
+            "layout"
+          ],
           "title": "A2UI: Agent-to-User Interface",
           "url": "https://github.com/a2ui-project/a2ui",
           "author": "A2UI Project contributors",
@@ -257,6 +316,9 @@
         },
         {
           "sourceType": "specification",
+          "supports": [
+            "whole-application"
+          ],
           "title": "SEP-1865: MCP Apps - Interactive User Interfaces for MCP",
           "url": "https://modelcontextprotocol.io/seps/1865-mcp-apps-interactive-user-interfaces-for-mcp",
           "author": "Ido Salomon, Liad Yosef, Olivier Chafik et al.",
@@ -267,7 +329,7 @@
         }
       ],
       "contentHash": "21b4fa1270a46721",
-      "metadataHash": "3150b3d2aaad19d5"
+      "metadataHash": "5b6f4c04de5a0862"
     },
     {
       "documentId": "generative-ui/mcp-apps-design",
@@ -284,6 +346,13 @@
       "sources": [
         {
           "sourceType": "specification",
+          "supports": [
+            "html-only-deliberately",
+            "predeclared-resources-rather-than-inline-embedding",
+            "reusing-json-rpc-rather-than-a-custom-protocol",
+            "the-problem-it-names",
+            "the-security-model"
+          ],
           "title": "SEP-1865: MCP Apps - Interactive User Interfaces for MCP",
           "url": "https://modelcontextprotocol.io/seps/1865-mcp-apps-interactive-user-interfaces-for-mcp",
           "author": "Ido Salomon, Liad Yosef, Olivier Chafik et al.",
@@ -294,6 +363,10 @@
         },
         {
           "sourceType": "specification",
+          "supports": [
+            "predeclared-resources-rather-than-inline-embedding",
+            "the-security-model"
+          ],
           "title": "MCP Apps extension specification, revision 2026-01-26",
           "url": "https://github.com/modelcontextprotocol/ext-apps/blob/main/specification/2026-01-26/apps.mdx",
           "author": "Model Context Protocol contributors",
@@ -304,7 +377,7 @@
         }
       ],
       "contentHash": "bdb1e72782fd00a8",
-      "metadataHash": "61e3dab1582f8e13"
+      "metadataHash": "27167c5dae7ca234"
     },
     {
       "documentId": "generative-ui/mixed-initiative-interaction",
@@ -320,6 +393,11 @@
       "sources": [
         {
           "sourceType": "paper",
+          "supports": [
+            "applied-to-generated-interfaces",
+            "the-debate-that-came-back",
+            "the-principles-that-transfer"
+          ],
           "title": "Principles of Mixed-Initiative User Interfaces",
           "url": "https://erichorvitz.com/chi99horvitz.pdf",
           "author": "Eric Horvitz",
@@ -330,7 +408,7 @@
         }
       ],
       "contentHash": "c1f2aefb7a6cc2a3",
-      "metadataHash": "8718b4de1ed82588"
+      "metadataHash": "dcf9e02fad450b54"
     },
     {
       "documentId": "generative-ui/predictability-and-user-control",
@@ -346,6 +424,9 @@
       "sources": [
         {
           "sourceType": "paper",
+          "supports": [
+            "control-has-to-be-cheap-and-obvious"
+          ],
           "title": "Principles of Mixed-Initiative User Interfaces",
           "url": "https://erichorvitz.com/chi99horvitz.pdf",
           "author": "Eric Horvitz",
@@ -356,6 +437,9 @@
         },
         {
           "sourceType": "documentation",
+          "supports": [
+            "control-has-to-be-cheap-and-obvious"
+          ],
           "title": "Malleable Software",
           "url": "https://www.inkandswitch.com/malleable-software/",
           "author": "Ink & Switch",
@@ -365,7 +449,7 @@
         }
       ],
       "contentHash": "0e5fe781df346066",
-      "metadataHash": "e5c1c0a1211ea5a1"
+      "metadataHash": "cd045408021118d9"
     },
     {
       "documentId": "generative-ui/sandboxed-html-generation",
@@ -381,6 +465,9 @@
       "sources": [
         {
           "sourceType": "specification",
+          "supports": [
+            "what-a-specification-for-this-looks-like"
+          ],
           "title": "SEP-1865: MCP Apps - Interactive User Interfaces for MCP",
           "url": "https://modelcontextprotocol.io/seps/1865-mcp-apps-interactive-user-interfaces-for-mcp",
           "author": "Ido Salomon, Liad Yosef, Olivier Chafik et al.",
@@ -391,6 +478,9 @@
         },
         {
           "sourceType": "documentation",
+          "supports": [
+            "what-the-browser-provides"
+          ],
           "title": "<iframe> HTML inline frame element",
           "url": "https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Elements/iframe",
           "author": "MDN contributors",
@@ -401,6 +491,9 @@
         },
         {
           "sourceType": "documentation",
+          "supports": [
+            "what-the-browser-provides"
+          ],
           "title": "Content Security Policy (CSP)",
           "url": "https://developer.mozilla.org/en-US/docs/Web/HTTP/Guides/CSP",
           "author": "MDN contributors",
@@ -411,7 +504,7 @@
         }
       ],
       "contentHash": "ba71d135c0904316",
-      "metadataHash": "b72991ddd2fdd18a"
+      "metadataHash": "b74f33c946876b64"
     },
     {
       "documentId": "generative-ui/state-continuity",
@@ -427,6 +520,9 @@
       "sources": [
         {
           "sourceType": "documentation",
+          "supports": [
+            "malleability-is-the-same-problem-further-out"
+          ],
           "title": "Malleable Software",
           "url": "https://www.inkandswitch.com/malleable-software/",
           "author": "Ink & Switch",
@@ -436,6 +532,9 @@
         },
         {
           "sourceType": "documentation",
+          "supports": [
+            "state-as-a-protocol-concern-not-an-application-one"
+          ],
           "title": "AG-UI Overview",
           "url": "https://docs.ag-ui.com/",
           "author": "AG-UI Protocol contributors",
@@ -445,7 +544,7 @@
         }
       ],
       "contentHash": "01981aa1d7154b58",
-      "metadataHash": "e69ed7dc9497c4e2"
+      "metadataHash": "9e191d309a9d2fa9"
     },
     {
       "documentId": "generative-ui/streaming-and-incremental-rendering",
@@ -461,6 +560,9 @@
       "sources": [
         {
           "sourceType": "documentation",
+          "supports": [
+            "text-streams-structure-does-not"
+          ],
           "title": "Generative User Interfaces",
           "url": "https://ai-sdk.dev/docs/ai-sdk-ui/generative-user-interfaces",
           "author": "Vercel",
@@ -470,6 +572,9 @@
         },
         {
           "sourceType": "documentation",
+          "supports": [
+            "text-streams-structure-does-not"
+          ],
           "title": "Server Components",
           "url": "https://react.dev/reference/rsc/server-components",
           "author": "React team, Meta",
@@ -479,6 +584,9 @@
         },
         {
           "sourceType": "documentation",
+          "supports": [
+            "text-streams-structure-does-not"
+          ],
           "title": "AG-UI Overview",
           "url": "https://docs.ag-ui.com/",
           "author": "AG-UI Protocol contributors",
@@ -488,7 +596,7 @@
         }
       ],
       "contentHash": "a12ee95553316380",
-      "metadataHash": "017394f4c1ce5085"
+      "metadataHash": "bafd3837dd3e0983"
     },
     {
       "documentId": "generative-ui/what-generative-ui-is",
@@ -504,6 +612,9 @@
       "sources": [
         {
           "sourceType": "documentation",
+          "supports": [
+            "a-spectrum-not-a-category"
+          ],
           "title": "AG-UI Overview",
           "url": "https://docs.ag-ui.com/",
           "author": "AG-UI Protocol contributors",
@@ -513,6 +624,9 @@
         },
         {
           "sourceType": "documentation",
+          "supports": [
+            "a-spectrum-not-a-category"
+          ],
           "title": "A2UI: Agent-to-User Interface",
           "url": "https://github.com/a2ui-project/a2ui",
           "author": "A2UI Project contributors",
@@ -522,6 +636,9 @@
         },
         {
           "sourceType": "documentation",
+          "supports": [
+            "a-spectrum-not-a-category"
+          ],
           "title": "Generative User Interfaces",
           "url": "https://ai-sdk.dev/docs/ai-sdk-ui/generative-user-interfaces",
           "author": "Vercel",
@@ -531,7 +648,7 @@
         }
       ],
       "contentHash": "eaac450e9f17d471",
-      "metadataHash": "94fddcc8d46d7cac"
+      "metadataHash": "161fd6ff9402d7ad"
     },
     {
       "documentId": "intersection/card-state-across-turns",
@@ -547,6 +664,9 @@
       "sources": [
         {
           "sourceType": "documentation",
+          "supports": [
+            "the-reader-who-explores-most-loses-most"
+          ],
           "title": "Malleable Software",
           "url": "https://www.inkandswitch.com/malleable-software/",
           "author": "Ink & Switch",
@@ -556,6 +676,9 @@
         },
         {
           "sourceType": "documentation",
+          "supports": [
+            "identity-has-to-survive-the-turn"
+          ],
           "title": "AG-UI Overview",
           "url": "https://docs.ag-ui.com/",
           "author": "AG-UI Protocol contributors",
@@ -565,7 +688,7 @@
         }
       ],
       "contentHash": "ab5350965e5b58d7",
-      "metadataHash": "ed4ffb8853b6b77a"
+      "metadataHash": "522c987a63b2c300"
     },
     {
       "documentId": "intersection/choosing-a-ui-from-knowledge-structure",
@@ -581,6 +704,12 @@
       "sources": [
         {
           "sourceType": "paper",
+          "supports": [
+            "structure-is-not-in-the-text",
+            "two-signals-and-they-disagree",
+            "what-the-citation-work-suggests-about-the-harder-version",
+            "when-the-evidence-has-no-usable-shape"
+          ],
           "title": "Enabling Large Language Models to Generate Text with Citations",
           "url": "https://arxiv.org/abs/2305.14627",
           "author": "Tianyu Gao, Howard Yen, Jiatong Yu et al.",
@@ -591,7 +720,7 @@
         }
       ],
       "contentHash": "fdcc4461a9d59c2f",
-      "metadataHash": "24e81919a6f1b31a"
+      "metadataHash": "19818c2d7b8231c9"
     },
     {
       "documentId": "intersection/comparing-presentation-modes",
@@ -607,6 +736,9 @@
       "sources": [
         {
           "sourceType": "paper",
+          "supports": [
+            "four-arms-three-claims"
+          ],
           "title": "Automatically Generating Personalized User Interfaces with Supple",
           "url": "https://www.eecs.harvard.edu/~kgajos/papers/2010/gajos10supple-aij.pdf",
           "author": "Krzysztof Z. Gajos, Daniel S. Weld, and Jacob O. Wobbrock",
@@ -617,6 +749,9 @@
         },
         {
           "sourceType": "paper",
+          "supports": [
+            "results-this-project-should-expect-to-lose"
+          ],
           "title": "Evaluating Verifiability in Generative Search Engines",
           "url": "https://arxiv.org/abs/2304.09848",
           "author": "Nelson F. Liu, Tianyi Zhang, Percy Liang",
@@ -627,7 +762,7 @@
         }
       ],
       "contentHash": "7c237b8b07a4d560",
-      "metadataHash": "e994fdfa27abd113"
+      "metadataHash": "72b472ab7a417f75"
     },
     {
       "documentId": "intersection/evidence-aware-cards",
@@ -643,6 +778,11 @@
       "sources": [
         {
           "sourceType": "paper",
+          "supports": [
+            "cheap-traversal-is-the-point",
+            "verifiability-is-not-the-presence-of-citations",
+            "what-evidence-aware-has-to-mean-to-be-worth-anything"
+          ],
           "title": "Evaluating Verifiability in Generative Search Engines",
           "url": "https://arxiv.org/abs/2304.09848",
           "author": "Nelson F. Liu, Tianyi Zhang, Percy Liang",
@@ -653,7 +793,7 @@
         }
       ],
       "contentHash": "5da19d71c1389b85",
-      "metadataHash": "e831ef604d1bc0d8"
+      "metadataHash": "d4c2920f13172200"
     },
     {
       "documentId": "intersection/field-level-citation",
@@ -669,6 +809,9 @@
       "sources": [
         {
           "sourceType": "paper",
+          "supports": [
+            "attribution-needs-a-unit-to-attribute"
+          ],
           "title": "Measuring Attribution in Natural Language Generation Models",
           "url": "https://arxiv.org/abs/2112.12870",
           "author": "Hannah Rashkin, Vitaly Nikolaev, Matthew Lamm et al.",
@@ -679,6 +822,9 @@
         },
         {
           "sourceType": "paper",
+          "supports": [
+            "granularity-and-what-each-level-permits"
+          ],
           "title": "Enabling Large Language Models to Generate Text with Citations",
           "url": "https://arxiv.org/abs/2305.14627",
           "author": "Tianyu Gao, Howard Yen, Jiatong Yu et al.",
@@ -689,7 +835,7 @@
         }
       ],
       "contentHash": "381629342fcc428b",
-      "metadataHash": "e262b5acff7cee71"
+      "metadataHash": "a6f63f3b51cf3a71"
     },
     {
       "documentId": "intersection/not-overstating-weak-evidence",
@@ -705,6 +851,9 @@
       "sources": [
         {
           "sourceType": "paper",
+          "supports": [
+            "calibrated-words-not-calibrated-numbers"
+          ],
           "title": "Teaching Models to Express Their Uncertainty in Words",
           "url": "https://arxiv.org/abs/2205.14334",
           "author": "Stephanie Lin, Jacob Hilton, Owain Evans",
@@ -715,6 +864,9 @@
         },
         {
           "sourceType": "paper",
+          "supports": [
+            "the-failure-the-verifiability-work-predicts"
+          ],
           "title": "Evaluating Verifiability in Generative Search Engines",
           "url": "https://arxiv.org/abs/2304.09848",
           "author": "Nelson F. Liu, Tianyi Zhang, Percy Liang",
@@ -725,7 +877,7 @@
         }
       ],
       "contentHash": "19c72e3323497ba7",
-      "metadataHash": "7b5ba3e331277eaf"
+      "metadataHash": "1b530b5eabdcb1fa"
     },
     {
       "documentId": "intersection/ui-driven-retrieval",
@@ -741,6 +893,9 @@
       "sources": [
         {
           "sourceType": "paper",
+          "supports": [
+            "constrained-hops-not-an-autonomous-loop"
+          ],
           "title": "Principles of Mixed-Initiative User Interfaces",
           "url": "https://erichorvitz.com/chi99horvitz.pdf",
           "author": "Eric Horvitz",
@@ -751,6 +906,9 @@
         },
         {
           "sourceType": "documentation",
+          "supports": [
+            "constrained-hops-not-an-autonomous-loop"
+          ],
           "title": "AG-UI Overview",
           "url": "https://docs.ag-ui.com/",
           "author": "AG-UI Protocol contributors",
@@ -760,7 +918,7 @@
         }
       ],
       "contentHash": "685bda9efe36984f",
-      "metadataHash": "2c2e40cbbac13330"
+      "metadataHash": "b920b51a3abe7c72"
     },
     {
       "documentId": "rag/advanced-patterns",
@@ -776,6 +934,9 @@
       "sources": [
         {
           "sourceType": "paper",
+          "supports": [
+            "graph-rag"
+          ],
           "title": "From Local to Global: A Graph RAG Approach to Query-Focused Summarization",
           "url": "https://arxiv.org/abs/2404.16130",
           "author": "Darren Edge, Ha Trinh, Newman Cheng et al.",
@@ -786,6 +947,9 @@
         },
         {
           "sourceType": "paper",
+          "supports": [
+            "multi-hop"
+          ],
           "title": "Interleaving Retrieval with Chain-of-Thought Reasoning for Knowledge-Intensive Multi-Step Questions",
           "url": "https://arxiv.org/abs/2212.10509",
           "author": "Harsh Trivedi, Niranjan Balasubramanian, Tushar Khot et al.",
@@ -796,6 +960,9 @@
         },
         {
           "sourceType": "paper",
+          "supports": [
+            "corrective-retrieval"
+          ],
           "title": "Corrective Retrieval Augmented Generation",
           "url": "https://arxiv.org/abs/2401.15884",
           "author": "Shi-Qi Yan, Jia-Chen Gu, Yun Zhu et al.",
@@ -806,6 +973,9 @@
         },
         {
           "sourceType": "paper",
+          "supports": [
+            "agentic-rag"
+          ],
           "title": "Self-RAG: Learning to Retrieve, Generate, and Critique through Self-Reflection",
           "url": "https://arxiv.org/abs/2310.11511",
           "author": "Akari Asai, Zeqiu Wu, Yizhong Wang et al.",
@@ -816,7 +986,7 @@
         }
       ],
       "contentHash": "2329835782809f62",
-      "metadataHash": "c6872fc4efcec6a3"
+      "metadataHash": "a9b86eb825d84cba"
     },
     {
       "documentId": "rag/answer-quality-evaluation",
@@ -833,6 +1003,11 @@
       "sources": [
         {
           "sourceType": "paper",
+          "supports": [
+            "mechanical-checks-come-first",
+            "the-metrics-are-model-graded",
+            "three-questions-not-one"
+          ],
           "title": "Ragas: Automated Evaluation of Retrieval Augmented Generation",
           "url": "https://arxiv.org/abs/2309.15217",
           "author": "Shahul Es, Jithin James, Luis Espinosa-Anke et al.",
@@ -843,7 +1018,7 @@
         }
       ],
       "contentHash": "2d7145c5389888b3",
-      "metadataHash": "3e74c227a1c44940"
+      "metadataHash": "c7ea997161d248eb"
     },
     {
       "documentId": "rag/candidate-fusion",
@@ -860,6 +1035,11 @@
       "sources": [
         {
           "sourceType": "paper",
+          "supports": [
+            "fusion-is-not-reranking",
+            "reciprocal-rank-fusion",
+            "the-problem-with-combining-scores"
+          ],
           "title": "Reciprocal Rank Fusion outperforms Condorcet and individual Rank Learning Methods",
           "url": "https://plg.uwaterloo.ca/~gvcormac/cormacksigir09-rrf.pdf",
           "author": "Gordon V. Cormack, Charles L. A. Clarke, and Stefan Buettcher",
@@ -870,7 +1050,7 @@
         }
       ],
       "contentHash": "b81104ac7303ebb4",
-      "metadataHash": "dc4d44d656646725"
+      "metadataHash": "34f256be2996b8bd"
     },
     {
       "documentId": "rag/context-assembly",
@@ -886,6 +1066,9 @@
       "sources": [
         {
           "sourceType": "paper",
+          "supports": [
+            "position-is-not-neutral"
+          ],
           "title": "Lost in the Middle: How Language Models Use Long Contexts",
           "url": "https://arxiv.org/abs/2307.03172",
           "author": "Nelson F. Liu, Kevin Lin, John Hewitt et al.",
@@ -896,6 +1079,9 @@
         },
         {
           "sourceType": "paper",
+          "supports": [
+            "position-is-not-neutral"
+          ],
           "title": "Leveraging Passage Retrieval with Generative Models for Open Domain Question Answering",
           "url": "https://arxiv.org/abs/2007.01282",
           "author": "Gautier Izacard, Edouard Grave",
@@ -906,6 +1092,9 @@
         },
         {
           "sourceType": "paper",
+          "supports": [
+            "more-context-is-not-more-information"
+          ],
           "title": "Large Language Models Can Be Easily Distracted by Irrelevant Context",
           "url": "https://arxiv.org/abs/2302.00093",
           "author": "Freda Shi, Xinyun Chen, Kanishka Misra et al.",
@@ -916,7 +1105,7 @@
         }
       ],
       "contentHash": "d311c05df561e346",
-      "metadataHash": "31646107a25c8436"
+      "metadataHash": "1a74ef41eee4ecd8"
     },
     {
       "documentId": "rag/dense-retrieval",
@@ -932,6 +1121,11 @@
       "sources": [
         {
           "sourceType": "paper",
+          "supports": [
+            "the-dependency-nobody-sees-until-it-moves",
+            "the-dual-encoder",
+            "what-training-is-doing"
+          ],
           "title": "Dense Passage Retrieval for Open-Domain Question Answering",
           "url": "https://arxiv.org/abs/2004.04906",
           "author": "Vladimir Karpukhin, Barlas Oğuz, Sewon Min et al.",
@@ -942,6 +1136,9 @@
         },
         {
           "sourceType": "paper",
+          "supports": [
+            "the-dual-encoder"
+          ],
           "title": "ColBERT: Efficient and Effective Passage Search via Contextualized Late Interaction over BERT",
           "url": "https://arxiv.org/abs/2004.12832",
           "author": "Omar Khattab, Matei Zaharia",
@@ -952,7 +1149,7 @@
         }
       ],
       "contentHash": "8685df4f9990c1af",
-      "metadataHash": "36a66291000ad900"
+      "metadataHash": "ee97c4728b953625"
     },
     {
       "documentId": "rag/embeddings-and-similarity",
@@ -968,6 +1165,11 @@
       "sources": [
         {
           "sourceType": "paper",
+          "supports": [
+            "cosine-similarity-and-what-it-does-not-say",
+            "dimensionality-and-cost",
+            "embeddings-are-trained-for-a-comparison"
+          ],
           "title": "Sentence-BERT: Sentence Embeddings using Siamese BERT-Networks",
           "url": "https://arxiv.org/abs/1908.10084",
           "author": "Nils Reimers, Iryna Gurevych",
@@ -978,7 +1180,7 @@
         }
       ],
       "contentHash": "2636d5aaf2e9f9e2",
-      "metadataHash": "c12019d8ce5971fa"
+      "metadataHash": "9bcef8ad6b4e0b29"
     },
     {
       "documentId": "rag/failure-modes",
@@ -994,6 +1196,11 @@
       "sources": [
         {
           "sourceType": "paper",
+          "supports": [
+            "conflicting-sources",
+            "retrieval-miss",
+            "unsupported-synthesis"
+          ],
           "title": "Benchmarking Large Language Models in Retrieval-Augmented Generation",
           "url": "https://arxiv.org/abs/2309.01431",
           "author": "Jiawei Chen, Hongyu Lin, Xianpei Han et al.",
@@ -1004,6 +1211,9 @@
         },
         {
           "sourceType": "paper",
+          "supports": [
+            "lost-context"
+          ],
           "title": "Large Language Models Can Be Easily Distracted by Irrelevant Context",
           "url": "https://arxiv.org/abs/2302.00093",
           "author": "Freda Shi, Xinyun Chen, Kanishka Misra et al.",
@@ -1014,6 +1224,9 @@
         },
         {
           "sourceType": "paper",
+          "supports": [
+            "lost-context"
+          ],
           "title": "Lost in the Middle: How Language Models Use Long Contexts",
           "url": "https://arxiv.org/abs/2307.03172",
           "author": "Nelson F. Liu, Kevin Lin, John Hewitt et al.",
@@ -1024,7 +1237,7 @@
         }
       ],
       "contentHash": "c3c6882eafbc9400",
-      "metadataHash": "70ee4b5250d86208"
+      "metadataHash": "b9f798043ff7154f"
     },
     {
       "documentId": "rag/grounded-generation",
@@ -1040,6 +1253,12 @@
       "sources": [
         {
           "sourceType": "paper",
+          "supports": [
+            "citation-granularity",
+            "labelling-what-kind-of-statement-it-is",
+            "retrieval-as-a-decision-not-a-fixed-step",
+            "where-the-claim-gets-checked"
+          ],
           "title": "Self-RAG: Learning to Retrieve, Generate, and Critique through Self-Reflection",
           "url": "https://arxiv.org/abs/2310.11511",
           "author": "Akari Asai, Zeqiu Wu, Yizhong Wang et al.",
@@ -1050,7 +1269,7 @@
         }
       ],
       "contentHash": "640feb8b20d177a3",
-      "metadataHash": "d6d0ca7a93a7e733"
+      "metadataHash": "fe176970273adddf"
     },
     {
       "documentId": "rag/ingestion-and-chunking",
@@ -1066,6 +1285,12 @@
       "sources": [
         {
           "sourceType": "documentation",
+          "supports": [
+            "identity-has-to-be-stable",
+            "metadata-is-part-of-ingestion",
+            "the-chunk-is-the-unit-of-retrieval-and-of-citation",
+            "what-a-chunk-loses-when-it-is-extracted"
+          ],
           "title": "Introducing Contextual Retrieval",
           "url": "https://www.anthropic.com/news/contextual-retrieval",
           "author": "Anthropic",
@@ -1076,7 +1301,7 @@
         }
       ],
       "contentHash": "77787420ec68c3c3",
-      "metadataHash": "188333aa945cefe1"
+      "metadataHash": "932322c34c4bc158"
     },
     {
       "documentId": "rag/production-concerns",
@@ -1092,6 +1317,14 @@
       "sources": [
         {
           "sourceType": "paper",
+          "supports": [
+            "access-control",
+            "cache-invalidation",
+            "freshness-and-staleness",
+            "latency-and-where-it-is-spent",
+            "observability",
+            "versioning-is-the-one-that-cannot-be-retrofitted"
+          ],
           "title": "Retrieval-Augmented Generation for Large Language Models: A Survey",
           "url": "https://arxiv.org/abs/2312.10997",
           "author": "Yunfan Gao, Yun Xiong, Xinyu Gao et al.",
@@ -1102,7 +1335,7 @@
         }
       ],
       "contentHash": "b566783ed6620069",
-      "metadataHash": "b20facf69f6fe80e"
+      "metadataHash": "b55a675e493b04cd"
     },
     {
       "documentId": "rag/query-transformation",
@@ -1118,6 +1351,10 @@
       "sources": [
         {
           "sourceType": "paper",
+          "supports": [
+            "the-three-transformations",
+            "why-the-raw-question-underperforms"
+          ],
           "title": "Query Rewriting for Retrieval-Augmented Large Language Models",
           "url": "https://arxiv.org/abs/2305.14283",
           "author": "Xinbei Ma, Yeyun Gong, Pengcheng He et al.",
@@ -1128,6 +1365,9 @@
         },
         {
           "sourceType": "paper",
+          "supports": [
+            "the-three-transformations"
+          ],
           "title": "Precise Zero-Shot Dense Retrieval without Relevance Labels",
           "url": "https://arxiv.org/abs/2212.10496",
           "author": "Luyu Gao, Xueguang Ma, Jimmy Lin et al.",
@@ -1138,7 +1378,7 @@
         }
       ],
       "contentHash": "24526a04e229fa5a",
-      "metadataHash": "cef877b7231b75ed"
+      "metadataHash": "0305c57133001ca1"
     },
     {
       "documentId": "rag/rag-motivation",
@@ -1154,6 +1394,11 @@
       "sources": [
         {
           "sourceType": "paper",
+          "supports": [
+            "the-architecture",
+            "the-distinction-the-paper-draws",
+            "what-holds-and-what-does-not"
+          ],
           "title": "Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks",
           "url": "https://arxiv.org/abs/2005.11401",
           "author": "Patrick Lewis, Ethan Perez, Aleksandra Piktus et al.",
@@ -1164,7 +1409,7 @@
         }
       ],
       "contentHash": "51835454090938ab",
-      "metadataHash": "bc5f3943dcf8dbad"
+      "metadataHash": "5f76885a6cc7ca4b"
     },
     {
       "documentId": "rag/reranking",
@@ -1180,6 +1425,11 @@
       "sources": [
         {
           "sourceType": "paper",
+          "supports": [
+            "cross-encoder-versus-dual-encoder",
+            "deciding-whether-it-is-worth-it",
+            "reranking-cannot-raise-recall"
+          ],
           "title": "Passage Re-ranking with BERT",
           "url": "https://arxiv.org/abs/1901.04085",
           "author": "Rodrigo Nogueira, Kyunghyun Cho",
@@ -1190,7 +1440,7 @@
         }
       ],
       "contentHash": "7dd2f7c7f47e9fde",
-      "metadataHash": "f30056d6aa2c716f"
+      "metadataHash": "eb332ee250b2ef68"
     },
     {
       "documentId": "rag/retrieval-metrics",
@@ -1206,6 +1456,12 @@
       "sources": [
         {
           "sourceType": "paper",
+          "supports": [
+            "choosing-among-them",
+            "graded-relevance-and-ndcg",
+            "mean-reciprocal-rank",
+            "recall-k"
+          ],
           "title": "IR evaluation methods for retrieving highly relevant documents",
           "url": "https://sigir.org/wp-content/uploads/2017/06/p243.pdf",
           "author": "Kalervo Jarvelin and Jaana Kekalainen",
@@ -1216,7 +1472,7 @@
         }
       ],
       "contentHash": "b7dad9bd55fc948e",
-      "metadataHash": "0379c98ba2919170"
+      "metadataHash": "a7987bd7cd8370a8"
     },
     {
       "documentId": "rag/sparse-retrieval",
@@ -1232,6 +1488,11 @@
       "sources": [
         {
           "sourceType": "paper",
+          "supports": [
+            "what-bm25-actually-computes",
+            "where-it-fails",
+            "why-it-survives"
+          ],
           "title": "The Probabilistic Relevance Framework: BM25 and Beyond",
           "url": "https://www.staff.city.ac.uk/~sbrp622/papers/foundations_bm25_review.pdf",
           "author": "Stephen Robertson and Hugo Zaragoza",
@@ -1242,7 +1503,7 @@
         }
       ],
       "contentHash": "b20ce07f4dd76aaa",
-      "metadataHash": "650f4fc993526b14"
+      "metadataHash": "0bc19daa152eb22d"
     }
   ]
 }
