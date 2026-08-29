@@ -44,7 +44,7 @@ Two checks guard the pair, and they catch different things:
   shape check while removing its question from the recall denominator.
 
 Both run in CI. The acceptance criterion for this set is that resolution is
-checked by script rather than by review, because 109 identifiers is exactly the
+checked by script rather than by review, because 141 identifiers is exactly the
 quantity a reviewer skims.
 
 ## What the set contains
