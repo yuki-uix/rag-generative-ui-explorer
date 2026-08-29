@@ -1,15 +1,41 @@
 ---
-sourceType: paper
-title: "From Local to Global: A Graph RAG Approach to Query-Focused Summarization"
+title: "Advanced RAG patterns"
 domain: rag
 tags:
   - advanced-rag-patterns
-summary: Multi-hop, corrective, agentic, and graph-based RAG — what question each pattern answers that plain retrieval cannot, and what each costs.
-url: https://arxiv.org/abs/2404.16130
-author: Darren Edge, Ha Trinh, Newman Cheng, Joshua Bradley et al.
-published: 2024-04-24
-retrieved: 2026-08-29
-license: "arXiv preprint, arXiv:2404.16130. Non-exclusive licence to distribute; short attributed quotations only."
+summary: "Multi-hop, corrective, agentic, and graph-based RAG - what question each pattern answers that plain retrieval cannot, and what each costs."
+author: yuki-uix
+revised: 2026-08-29
+sources:
+  - sourceType: "paper"
+    title: "From Local to Global: A Graph RAG Approach to Query-Focused Summarization"
+    url: "https://arxiv.org/abs/2404.16130"
+    author: "Darren Edge, Ha Trinh, Newman Cheng et al."
+    published: "2024-04-24"
+    retrieved: "2026-08-29"
+    license: "arXiv preprint, arXiv:2404.16130. Non-exclusive licence to distribute; short attributed quotations only. published is the v1 submission date; the link serves the latest version."
+    primary: true
+  - sourceType: "paper"
+    title: "Interleaving Retrieval with Chain-of-Thought Reasoning for Knowledge-Intensive Multi-Step Questions"
+    url: "https://arxiv.org/abs/2212.10509"
+    author: "Harsh Trivedi, Niranjan Balasubramanian, Tushar Khot et al."
+    published: "2022-12-20"
+    retrieved: "2026-08-29"
+    license: "arXiv preprint, arXiv:2212.10509. Non-exclusive licence to distribute; short attributed quotations only. published is the v1 submission date; the link serves the latest version."
+  - sourceType: "paper"
+    title: "Corrective Retrieval Augmented Generation"
+    url: "https://arxiv.org/abs/2401.15884"
+    author: "Shi-Qi Yan, Jia-Chen Gu, Yun Zhu et al."
+    published: "2024-01-29"
+    retrieved: "2026-08-29"
+    license: "arXiv preprint, arXiv:2401.15884. Non-exclusive licence to distribute; short attributed quotations only. published is the v1 submission date; the link serves the latest version."
+  - sourceType: "paper"
+    title: "Self-RAG: Learning to Retrieve, Generate, and Critique through Self-Reflection"
+    url: "https://arxiv.org/abs/2310.11511"
+    author: "Akari Asai, Zeqiu Wu, Yizhong Wang et al."
+    published: "2023-10-17"
+    retrieved: "2026-08-29"
+    license: "arXiv preprint, arXiv:2310.11511. Non-exclusive licence to distribute; short attributed quotations only. published is the v1 submission date; the link serves the latest version."
 ---
 
 # Advanced RAG patterns

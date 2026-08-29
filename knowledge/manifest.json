@@ -1,275 +1,489 @@
 {
-  "corpusVersion": "corpus-b6889ce9cc83",
+  "corpusVersion": "corpus-7ca544304374",
   "documentCount": 15,
+  "sourceCount": 24,
   "documents": [
     {
       "documentId": "rag/advanced-patterns",
       "path": "knowledge/rag/advanced-patterns.md",
-      "title": "From Local to Global: A Graph RAG Approach to Query-Focused Summarization",
+      "title": "Advanced RAG patterns",
       "domain": "rag",
-      "sourceType": "paper",
-      "author": "Darren Edge, Ha Trinh, Newman Cheng, Joshua Bradley et al.",
-      "summary": "Multi-hop, corrective, agentic, and graph-based RAG — what question each pattern answers that plain retrieval cannot, and what each costs.",
-      "url": "https://arxiv.org/abs/2404.16130",
-      "published": "2024-04-24",
-      "retrieved": "2026-08-29",
-      "license": "arXiv preprint, arXiv:2404.16130. Non-exclusive licence to distribute; short attributed quotations only.",
+      "author": "yuki-uix",
+      "revised": "2026-08-29",
+      "summary": "Multi-hop, corrective, agentic, and graph-based RAG - what question each pattern answers that plain retrieval cannot, and what each costs.",
       "tags": [
         "advanced-rag-patterns"
       ],
+      "sources": [
+        {
+          "sourceType": "paper",
+          "title": "From Local to Global: A Graph RAG Approach to Query-Focused Summarization",
+          "url": "https://arxiv.org/abs/2404.16130",
+          "author": "Darren Edge, Ha Trinh, Newman Cheng et al.",
+          "published": "2024-04-24",
+          "retrieved": "2026-08-29",
+          "license": "arXiv preprint, arXiv:2404.16130. Non-exclusive licence to distribute; short attributed quotations only. published is the v1 submission date; the link serves the latest version.",
+          "primary": true
+        },
+        {
+          "sourceType": "paper",
+          "title": "Interleaving Retrieval with Chain-of-Thought Reasoning for Knowledge-Intensive Multi-Step Questions",
+          "url": "https://arxiv.org/abs/2212.10509",
+          "author": "Harsh Trivedi, Niranjan Balasubramanian, Tushar Khot et al.",
+          "published": "2022-12-20",
+          "retrieved": "2026-08-29",
+          "license": "arXiv preprint, arXiv:2212.10509. Non-exclusive licence to distribute; short attributed quotations only. published is the v1 submission date; the link serves the latest version.",
+          "primary": false
+        },
+        {
+          "sourceType": "paper",
+          "title": "Corrective Retrieval Augmented Generation",
+          "url": "https://arxiv.org/abs/2401.15884",
+          "author": "Shi-Qi Yan, Jia-Chen Gu, Yun Zhu et al.",
+          "published": "2024-01-29",
+          "retrieved": "2026-08-29",
+          "license": "arXiv preprint, arXiv:2401.15884. Non-exclusive licence to distribute; short attributed quotations only. published is the v1 submission date; the link serves the latest version.",
+          "primary": false
+        },
+        {
+          "sourceType": "paper",
+          "title": "Self-RAG: Learning to Retrieve, Generate, and Critique through Self-Reflection",
+          "url": "https://arxiv.org/abs/2310.11511",
+          "author": "Akari Asai, Zeqiu Wu, Yizhong Wang et al.",
+          "published": "2023-10-17",
+          "retrieved": "2026-08-29",
+          "license": "arXiv preprint, arXiv:2310.11511. Non-exclusive licence to distribute; short attributed quotations only. published is the v1 submission date; the link serves the latest version.",
+          "primary": false
+        }
+      ],
       "contentHash": "10e2145a9e6938b6",
-      "metadataHash": "ff3b02f03e455514"
+      "metadataHash": "c6872fc4efcec6a3"
     },
     {
       "documentId": "rag/answer-quality-evaluation",
       "path": "knowledge/rag/answer-quality-evaluation.md",
-      "title": "RAGAS: Automated Evaluation of Retrieval Augmented Generation",
+      "title": "Answer quality evaluation",
       "domain": "rag",
-      "sourceType": "paper",
-      "author": "Shahul Es, Jithin James, Luis Espinosa-Anke, and Steven Schockaert",
+      "author": "yuki-uix",
+      "revised": "2026-08-29",
       "summary": "Decomposing RAG answer quality into faithfulness, answer relevance, and context relevance, and what a model-graded metric can and cannot be trusted to tell you.",
-      "url": "https://arxiv.org/abs/2309.15217",
-      "published": "2023-09-26",
-      "retrieved": "2026-08-29",
-      "license": "arXiv preprint, arXiv:2309.15217. Non-exclusive licence to distribute; short attributed quotations only.",
       "tags": [
         "grounded-generation",
         "rag-evaluation"
       ],
+      "sources": [
+        {
+          "sourceType": "paper",
+          "title": "Ragas: Automated Evaluation of Retrieval Augmented Generation",
+          "url": "https://arxiv.org/abs/2309.15217",
+          "author": "Shahul Es, Jithin James, Luis Espinosa-Anke et al.",
+          "published": "2023-09-26",
+          "retrieved": "2026-08-29",
+          "license": "arXiv preprint, arXiv:2309.15217. Non-exclusive licence to distribute; short attributed quotations only. published is the v1 submission date; the link serves the latest version.",
+          "primary": true
+        }
+      ],
       "contentHash": "2d7145c5389888b3",
-      "metadataHash": "ea04cf737b8f04d0"
+      "metadataHash": "3e74c227a1c44940"
     },
     {
       "documentId": "rag/candidate-fusion",
       "path": "knowledge/rag/candidate-fusion.md",
-      "title": "Reciprocal Rank Fusion outperforms Condorcet and individual Rank Learning Methods",
+      "title": "Candidate fusion",
       "domain": "rag",
-      "sourceType": "paper",
-      "author": "Gordon V. Cormack, Charles L. A. Clarke, and Stefan Buettcher",
+      "author": "yuki-uix",
+      "revised": "2026-08-29",
       "summary": "Why reciprocal rank fusion combines retrievers using rank position rather than score, and what that buys over score normalisation.",
-      "url": "https://plg.uwaterloo.ca/~gvcormac/cormacksigir09-rrf.pdf",
-      "published": "2009-07",
-      "retrieved": "2026-08-29",
-      "license": "SIGIR'09, July 19-23, 2009, Boston. Copyright 2009 ACM. Author-hosted copy; short attributed quotations only.",
       "tags": [
         "reranking-fusion",
         "retrieval-strategies"
       ],
+      "sources": [
+        {
+          "sourceType": "paper",
+          "title": "Reciprocal Rank Fusion outperforms Condorcet and individual Rank Learning Methods",
+          "url": "https://plg.uwaterloo.ca/~gvcormac/cormacksigir09-rrf.pdf",
+          "author": "Gordon V. Cormack, Charles L. A. Clarke, and Stefan Buettcher",
+          "published": "2009-07",
+          "retrieved": "2026-08-29",
+          "license": "SIGIR'09, July 19-23 2009, Boston. Copyright 2009 ACM. Author-hosted copy; short attributed quotations only.",
+          "primary": true
+        }
+      ],
       "contentHash": "b81104ac7303ebb4",
-      "metadataHash": "a7b35e29d56f6bef"
+      "metadataHash": "dc4d44d656646725"
     },
     {
       "documentId": "rag/context-assembly",
       "path": "knowledge/rag/context-assembly.md",
-      "title": "Lost in the Middle: How Language Models Use Long Contexts",
+      "title": "Context assembly",
       "domain": "rag",
-      "sourceType": "paper",
-      "author": "Nelson F. Liu et al. (Stanford University, UC Berkeley, Samaya AI)",
+      "author": "yuki-uix",
+      "revised": "2026-08-29",
       "summary": "Position within the context window changes how well a model uses retrieved evidence, which makes assembly order a design decision rather than an implementation detail.",
-      "url": "https://arxiv.org/abs/2307.03172",
-      "published": "2023-07-06",
-      "retrieved": "2026-08-29",
-      "license": "arXiv preprint, arXiv:2307.03172. Non-exclusive licence to distribute; short attributed quotations only.",
       "tags": [
         "context-assembly"
       ],
+      "sources": [
+        {
+          "sourceType": "paper",
+          "title": "Lost in the Middle: How Language Models Use Long Contexts",
+          "url": "https://arxiv.org/abs/2307.03172",
+          "author": "Nelson F. Liu, Kevin Lin, John Hewitt et al.",
+          "published": "2023-07-06",
+          "retrieved": "2026-08-29",
+          "license": "arXiv preprint, arXiv:2307.03172. Non-exclusive licence to distribute; short attributed quotations only. published is the v1 submission date; the link serves the latest version.",
+          "primary": true
+        },
+        {
+          "sourceType": "paper",
+          "title": "Leveraging Passage Retrieval with Generative Models for Open Domain Question Answering",
+          "url": "https://arxiv.org/abs/2007.01282",
+          "author": "Gautier Izacard, Edouard Grave",
+          "published": "2020-07-02",
+          "retrieved": "2026-08-29",
+          "license": "arXiv preprint, arXiv:2007.01282. Non-exclusive licence to distribute; short attributed quotations only. published is the v1 submission date; the link serves the latest version.",
+          "primary": false
+        },
+        {
+          "sourceType": "paper",
+          "title": "Large Language Models Can Be Easily Distracted by Irrelevant Context",
+          "url": "https://arxiv.org/abs/2302.00093",
+          "author": "Freda Shi, Xinyun Chen, Kanishka Misra et al.",
+          "published": "2023-01-31",
+          "retrieved": "2026-08-29",
+          "license": "arXiv preprint, arXiv:2302.00093. Non-exclusive licence to distribute; short attributed quotations only. published is the v1 submission date; the link serves the latest version.",
+          "primary": false
+        }
+      ],
       "contentHash": "98f91c7682fcc987",
-      "metadataHash": "02b364e6f59f23f3"
+      "metadataHash": "31646107a25c8436"
     },
     {
       "documentId": "rag/dense-retrieval",
       "path": "knowledge/rag/dense-retrieval.md",
-      "title": "Dense Passage Retrieval for Open-Domain Question Answering",
+      "title": "Dense retrieval",
       "domain": "rag",
-      "sourceType": "paper",
-      "author": "Vladimir Karpukhin, Barlas Oguz, Sewon Min, Patrick Lewis et al.",
+      "author": "yuki-uix",
+      "revised": "2026-08-29",
       "summary": "How a dual-encoder retriever matches meaning rather than words, what training it requires, and why it is complementary to lexical search rather than a replacement.",
-      "url": "https://arxiv.org/abs/2004.04906",
-      "published": "2020-04-10",
-      "retrieved": "2026-08-29",
-      "license": "arXiv preprint, arXiv:2004.04906. Non-exclusive licence to distribute; short attributed quotations only.",
       "tags": [
         "retrieval-strategies"
       ],
+      "sources": [
+        {
+          "sourceType": "paper",
+          "title": "Dense Passage Retrieval for Open-Domain Question Answering",
+          "url": "https://arxiv.org/abs/2004.04906",
+          "author": "Vladimir Karpukhin, Barlas Oğuz, Sewon Min et al.",
+          "published": "2020-04-10",
+          "retrieved": "2026-08-29",
+          "license": "arXiv preprint, arXiv:2004.04906. Non-exclusive licence to distribute; short attributed quotations only. published is the v1 submission date; the link serves the latest version.",
+          "primary": true
+        },
+        {
+          "sourceType": "paper",
+          "title": "ColBERT: Efficient and Effective Passage Search via Contextualized Late Interaction over BERT",
+          "url": "https://arxiv.org/abs/2004.12832",
+          "author": "Omar Khattab, Matei Zaharia",
+          "published": "2020-04-27",
+          "retrieved": "2026-08-29",
+          "license": "arXiv preprint, arXiv:2004.12832. Non-exclusive licence to distribute; short attributed quotations only. published is the v1 submission date; the link serves the latest version.",
+          "primary": false
+        }
+      ],
       "contentHash": "8685df4f9990c1af",
-      "metadataHash": "5e5b4e7a909b3766"
+      "metadataHash": "36a66291000ad900"
     },
     {
       "documentId": "rag/embeddings-and-similarity",
       "path": "knowledge/rag/embeddings-and-similarity.md",
-      "title": "Sentence-BERT: Sentence Embeddings using Siamese BERT-Networks",
+      "title": "Embeddings and similarity measures",
       "domain": "rag",
-      "sourceType": "paper",
-      "author": "Nils Reimers and Iryna Gurevych",
+      "author": "yuki-uix",
+      "revised": "2026-08-29",
       "summary": "Why a sentence embedding needs training for the comparison it will be used for, and what cosine similarity does and does not tell you about two passages.",
-      "url": "https://arxiv.org/abs/1908.10084",
-      "published": "2019-08-27",
-      "retrieved": "2026-08-29",
-      "license": "arXiv preprint, arXiv:1908.10084. Non-exclusive licence to distribute; short attributed quotations only.",
       "tags": [
         "embeddings-similarity"
       ],
+      "sources": [
+        {
+          "sourceType": "paper",
+          "title": "Sentence-BERT: Sentence Embeddings using Siamese BERT-Networks",
+          "url": "https://arxiv.org/abs/1908.10084",
+          "author": "Nils Reimers, Iryna Gurevych",
+          "published": "2019-08-27",
+          "retrieved": "2026-08-29",
+          "license": "arXiv preprint, arXiv:1908.10084. Non-exclusive licence to distribute; short attributed quotations only. published is the v1 submission date; the link serves the latest version.",
+          "primary": true
+        }
+      ],
       "contentHash": "32eaf452fe0aa67b",
-      "metadataHash": "43d84bfd96d13992"
+      "metadataHash": "c12019d8ce5971fa"
     },
     {
       "documentId": "rag/failure-modes",
       "path": "knowledge/rag/failure-modes.md",
-      "title": "Benchmarking Large Language Models in Retrieval-Augmented Generation",
+      "title": "Failure modes",
       "domain": "rag",
-      "sourceType": "paper",
-      "author": "Jiawei Chen, Hongyu Lin, Xianpei Han, and Le Sun",
-      "summary": "Four failures that look identical at the output — retrieval miss, lost context, conflicting sources, and unsupported synthesis — and how to tell them apart.",
-      "url": "https://arxiv.org/abs/2309.01431",
-      "published": "2023-09-04",
-      "retrieved": "2026-08-29",
-      "license": "arXiv preprint, arXiv:2309.01431. Non-exclusive licence to distribute; short attributed quotations only.",
+      "author": "yuki-uix",
+      "revised": "2026-08-29",
+      "summary": "Four failures that look identical at the output - retrieval miss, lost context, conflicting sources, and unsupported synthesis - and how to tell them apart.",
       "tags": [
         "rag-failure-modes"
       ],
+      "sources": [
+        {
+          "sourceType": "paper",
+          "title": "Benchmarking Large Language Models in Retrieval-Augmented Generation",
+          "url": "https://arxiv.org/abs/2309.01431",
+          "author": "Jiawei Chen, Hongyu Lin, Xianpei Han et al.",
+          "published": "2023-09-04",
+          "retrieved": "2026-08-29",
+          "license": "arXiv preprint, arXiv:2309.01431. Non-exclusive licence to distribute; short attributed quotations only. published is the v1 submission date; the link serves the latest version.",
+          "primary": true
+        },
+        {
+          "sourceType": "paper",
+          "title": "Large Language Models Can Be Easily Distracted by Irrelevant Context",
+          "url": "https://arxiv.org/abs/2302.00093",
+          "author": "Freda Shi, Xinyun Chen, Kanishka Misra et al.",
+          "published": "2023-01-31",
+          "retrieved": "2026-08-29",
+          "license": "arXiv preprint, arXiv:2302.00093. Non-exclusive licence to distribute; short attributed quotations only. published is the v1 submission date; the link serves the latest version.",
+          "primary": false
+        },
+        {
+          "sourceType": "paper",
+          "title": "Lost in the Middle: How Language Models Use Long Contexts",
+          "url": "https://arxiv.org/abs/2307.03172",
+          "author": "Nelson F. Liu, Kevin Lin, John Hewitt et al.",
+          "published": "2023-07-06",
+          "retrieved": "2026-08-29",
+          "license": "arXiv preprint, arXiv:2307.03172. Non-exclusive licence to distribute; short attributed quotations only. published is the v1 submission date; the link serves the latest version.",
+          "primary": false
+        }
+      ],
       "contentHash": "1d085549a90a592d",
-      "metadataHash": "b71ae93a61cc624f"
+      "metadataHash": "70ee4b5250d86208"
     },
     {
       "documentId": "rag/grounded-generation",
       "path": "knowledge/rag/grounded-generation.md",
-      "title": "Self-RAG: Learning to Retrieve, Generate, and Critique through Self-Reflection",
+      "title": "Grounded generation and citation design",
       "domain": "rag",
-      "sourceType": "paper",
-      "author": "Akari Asai, Zeqiu Wu, Yizhong Wang, Avirup Sil, and Hannaneh Hajishirzi",
+      "author": "yuki-uix",
+      "revised": "2026-08-29",
       "summary": "Making retrieval and grounding decisions explicit outputs of the model, and why the check on those outputs still has to live outside it.",
-      "url": "https://arxiv.org/abs/2310.11511",
-      "published": "2023-10-17",
-      "retrieved": "2026-08-29",
-      "license": "arXiv preprint, arXiv:2310.11511. Non-exclusive licence to distribute; short attributed quotations only.",
       "tags": [
         "grounded-generation"
       ],
+      "sources": [
+        {
+          "sourceType": "paper",
+          "title": "Self-RAG: Learning to Retrieve, Generate, and Critique through Self-Reflection",
+          "url": "https://arxiv.org/abs/2310.11511",
+          "author": "Akari Asai, Zeqiu Wu, Yizhong Wang et al.",
+          "published": "2023-10-17",
+          "retrieved": "2026-08-29",
+          "license": "arXiv preprint, arXiv:2310.11511. Non-exclusive licence to distribute; short attributed quotations only. published is the v1 submission date; the link serves the latest version.",
+          "primary": true
+        }
+      ],
       "contentHash": "d14e961098b7b86f",
-      "metadataHash": "6ceeaa0469905533"
+      "metadataHash": "d6d0ca7a93a7e733"
     },
     {
       "documentId": "rag/ingestion-and-chunking",
       "path": "knowledge/rag/ingestion-and-chunking.md",
-      "title": "Introducing Contextual Retrieval",
+      "title": "Ingestion, parsing, chunking, and metadata",
       "domain": "rag",
-      "sourceType": "documentation",
-      "author": "Anthropic",
+      "author": "yuki-uix",
+      "revised": "2026-08-29",
       "summary": "Why chunk boundaries decide what can be retrieved, what a chunk loses when it is cut out of its document, and how stable chunk identity underpins citation.",
-      "url": "https://www.anthropic.com/news/contextual-retrieval",
-      "published": "2024-09-19",
-      "retrieved": "2026-08-29",
-      "license": "Anthropic engineering post. Short attributed quotations only; text not reproduced.",
       "tags": [
         "ingestion-chunking"
       ],
+      "sources": [
+        {
+          "sourceType": "documentation",
+          "title": "Introducing Contextual Retrieval",
+          "url": "https://www.anthropic.com/news/contextual-retrieval",
+          "author": "Anthropic",
+          "published": "2024-09-19",
+          "retrieved": "2026-08-29",
+          "license": "Anthropic engineering post. Short attributed quotations only; text not reproduced.",
+          "primary": true
+        }
+      ],
       "contentHash": "375e6f86a1d8712b",
-      "metadataHash": "d3cf02deb8612e54"
+      "metadataHash": "188333aa945cefe1"
     },
     {
       "documentId": "rag/production-concerns",
       "path": "knowledge/rag/production-concerns.md",
-      "title": "Production concerns for a grounded knowledge system",
+      "title": "Production concerns",
       "domain": "rag",
-      "sourceType": "original",
       "author": "yuki-uix",
-      "summary": "Freshness, versioning, access control, latency, cost, observability, and cache invalidation, and which of them a corpus-backed explorer can defer.",
       "revised": "2026-08-29",
+      "summary": "Freshness, versioning, access control, latency, cost, observability, and cache invalidation, and which of them a corpus-backed explorer can defer.",
       "tags": [
         "rag-production"
       ],
+      "sources": [
+        {
+          "sourceType": "paper",
+          "title": "Retrieval-Augmented Generation for Large Language Models: A Survey",
+          "url": "https://arxiv.org/abs/2312.10997",
+          "author": "Yunfan Gao, Yun Xiong, Xinyu Gao et al.",
+          "published": "2023-12-18",
+          "retrieved": "2026-08-29",
+          "license": "arXiv preprint, arXiv:2312.10997. Non-exclusive licence to distribute; short attributed quotations only. published is the v1 submission date; the link serves the latest version.",
+          "primary": true
+        }
+      ],
       "contentHash": "b566783ed6620069",
-      "metadataHash": "e9848774605127db"
+      "metadataHash": "b20facf69f6fe80e"
     },
     {
       "documentId": "rag/query-transformation",
       "path": "knowledge/rag/query-transformation.md",
-      "title": "Query Rewriting for Retrieval-Augmented Large Language Models",
+      "title": "Query rewriting, decomposition, and expansion",
       "domain": "rag",
-      "sourceType": "paper",
-      "author": "Xinbei Ma, Yeyun Gong, Pengcheng He, Hai Zhao et al.",
-      "summary": "Rewriting, decomposing, and expanding a question before retrieval, and why each extra transformation is a place the pipeline can lose the user's actual intent.",
-      "url": "https://arxiv.org/abs/2305.14283",
-      "published": "2023-05-23",
-      "retrieved": "2026-08-29",
-      "license": "arXiv preprint, arXiv:2305.14283. Non-exclusive licence to distribute; short attributed quotations only.",
+      "author": "yuki-uix",
+      "revised": "2026-08-29",
+      "summary": "Rewriting, decomposing, and expanding a question before retrieval, and why each extra transformation is a place the pipeline can lose the user intent.",
       "tags": [
         "query-transformation"
       ],
+      "sources": [
+        {
+          "sourceType": "paper",
+          "title": "Query Rewriting for Retrieval-Augmented Large Language Models",
+          "url": "https://arxiv.org/abs/2305.14283",
+          "author": "Xinbei Ma, Yeyun Gong, Pengcheng He et al.",
+          "published": "2023-05-23",
+          "retrieved": "2026-08-29",
+          "license": "arXiv preprint, arXiv:2305.14283. Non-exclusive licence to distribute; short attributed quotations only. published is the v1 submission date; the link serves the latest version.",
+          "primary": true
+        },
+        {
+          "sourceType": "paper",
+          "title": "Precise Zero-Shot Dense Retrieval without Relevance Labels",
+          "url": "https://arxiv.org/abs/2212.10496",
+          "author": "Luyu Gao, Xueguang Ma, Jimmy Lin et al.",
+          "published": "2022-12-20",
+          "retrieved": "2026-08-29",
+          "license": "arXiv preprint, arXiv:2212.10496. Non-exclusive licence to distribute; short attributed quotations only. published is the v1 submission date; the link serves the latest version.",
+          "primary": false
+        }
+      ],
       "contentHash": "ff72e57ff79d0a27",
-      "metadataHash": "0eee640e4fdf7cfe"
+      "metadataHash": "cef877b7231b75ed"
     },
     {
       "documentId": "rag/rag-motivation",
       "path": "knowledge/rag/rag-motivation.md",
-      "title": "Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks",
+      "title": "RAG motivation and core architecture",
       "domain": "rag",
-      "sourceType": "paper",
-      "author": "Patrick Lewis et al. (Facebook AI Research, UCL, New York University)",
+      "author": "yuki-uix",
+      "revised": "2026-08-29",
       "summary": "What problem retrieval-augmented generation was introduced to solve, the shape of the original architecture, and which of its claims still hold.",
-      "url": "https://arxiv.org/abs/2005.11401",
-      "published": "2020-05-22",
-      "retrieved": "2026-08-29",
-      "license": "arXiv preprint, arXiv:2005.11401. Non-exclusive licence to distribute; short attributed quotations only.",
       "tags": [
         "rag-motivation"
       ],
+      "sources": [
+        {
+          "sourceType": "paper",
+          "title": "Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks",
+          "url": "https://arxiv.org/abs/2005.11401",
+          "author": "Patrick Lewis, Ethan Perez, Aleksandra Piktus et al.",
+          "published": "2020-05-22",
+          "retrieved": "2026-08-29",
+          "license": "arXiv preprint, arXiv:2005.11401. Non-exclusive licence to distribute; short attributed quotations only. published is the v1 submission date; the link serves the latest version.",
+          "primary": true
+        }
+      ],
       "contentHash": "0eb5c1106f1fd465",
-      "metadataHash": "8fa6a03cdea9c959"
+      "metadataHash": "bc5f3943dcf8dbad"
     },
     {
       "documentId": "rag/reranking",
       "path": "knowledge/rag/reranking.md",
-      "title": "Passage Re-ranking with BERT",
+      "title": "Reranking",
       "domain": "rag",
-      "sourceType": "paper",
-      "author": "Rodrigo Nogueira and Kyunghyun Cho",
+      "author": "yuki-uix",
+      "revised": "2026-08-29",
       "summary": "What a cross-encoder can judge that a dual encoder cannot, why reranking cannot improve recall, and how to decide whether it earns its latency.",
-      "url": "https://arxiv.org/abs/1901.04085",
-      "published": "2019-01-13",
-      "retrieved": "2026-08-29",
-      "license": "arXiv preprint, arXiv:1901.04085. Non-exclusive licence to distribute; short attributed quotations only.",
       "tags": [
         "reranking-fusion"
       ],
+      "sources": [
+        {
+          "sourceType": "paper",
+          "title": "Passage Re-ranking with BERT",
+          "url": "https://arxiv.org/abs/1901.04085",
+          "author": "Rodrigo Nogueira, Kyunghyun Cho",
+          "published": "2019-01-13",
+          "retrieved": "2026-08-29",
+          "license": "arXiv preprint, arXiv:1901.04085. Non-exclusive licence to distribute; short attributed quotations only. published is the v1 submission date; the link serves the latest version.",
+          "primary": true
+        }
+      ],
       "contentHash": "3a05a745177a275d",
-      "metadataHash": "3190f5ac056725a0"
+      "metadataHash": "f30056d6aa2c716f"
     },
     {
       "documentId": "rag/retrieval-metrics",
       "path": "knowledge/rag/retrieval-metrics.md",
-      "title": "IR evaluation methods for retrieving highly relevant documents",
+      "title": "Retrieval metrics",
       "domain": "rag",
-      "sourceType": "paper",
-      "author": "Kalervo Jarvelin and Jaana Kekalainen",
+      "author": "yuki-uix",
+      "revised": "2026-08-29",
       "summary": "What Recall@K, MRR, and nDCG each measure, why graded relevance was introduced, and which metric answers which question about a retriever.",
-      "url": "https://sigir.org/wp-content/uploads/2017/06/p243.pdf",
-      "published": "2000-07",
-      "retrieved": "2026-08-29",
-      "license": "SIGIR 2000, Athens. Reprinted in ACM SIGIR Forum 51(2), July 2017, from which this copy is taken. Short attributed quotations only.",
       "tags": [
         "rag-evaluation"
       ],
+      "sources": [
+        {
+          "sourceType": "paper",
+          "title": "IR evaluation methods for retrieving highly relevant documents",
+          "url": "https://sigir.org/wp-content/uploads/2017/06/p243.pdf",
+          "author": "Kalervo Jarvelin and Jaana Kekalainen",
+          "published": "2000-07",
+          "retrieved": "2026-08-29",
+          "license": "SIGIR 2000, Athens. Reprinted in ACM SIGIR Forum 51(2), July 2017, from which this copy is taken. Short attributed quotations only.",
+          "primary": true
+        }
+      ],
       "contentHash": "e6d65f9c9b4f434c",
-      "metadataHash": "2f791942c05e60a6"
+      "metadataHash": "0379c98ba2919170"
     },
     {
       "documentId": "rag/sparse-retrieval",
       "path": "knowledge/rag/sparse-retrieval.md",
-      "title": "The Probabilistic Relevance Framework: BM25 and Beyond",
+      "title": "Sparse retrieval",
       "domain": "rag",
-      "sourceType": "paper",
-      "author": "Stephen Robertson and Hugo Zaragoza",
+      "author": "yuki-uix",
+      "revised": "2026-08-29",
       "summary": "How BM25 scores a document against a query, why term saturation and length normalisation matter, and where lexical retrieval still beats embeddings.",
-      "url": "https://www.staff.city.ac.uk/~sbrp622/papers/foundations_bm25_review.pdf",
-      "published": "2009",
-      "retrieved": "2026-08-29",
-      "license": "Foundations and Trends in Information Retrieval 3(4), DOI 10.1561/1500000019, (c) 2009 the authors and Now Publishers. Author-hosted copy; short attributed quotations only.",
       "tags": [
         "retrieval-strategies"
       ],
+      "sources": [
+        {
+          "sourceType": "paper",
+          "title": "The Probabilistic Relevance Framework: BM25 and Beyond",
+          "url": "https://www.staff.city.ac.uk/~sbrp622/papers/foundations_bm25_review.pdf",
+          "author": "Stephen Robertson and Hugo Zaragoza",
+          "published": "2009",
+          "retrieved": "2026-08-29",
+          "license": "Foundations and Trends in Information Retrieval 3(4), DOI 10.1561/1500000019, (c) 2009 the authors and Now Publishers. Author-hosted copy; short attributed quotations only.",
+          "primary": true
+        }
+      ],
       "contentHash": "b20ce07f4dd76aaa",
-      "metadataHash": "9e8fe7891467d710"
+      "metadataHash": "650f4fc993526b14"
     }
   ]
 }

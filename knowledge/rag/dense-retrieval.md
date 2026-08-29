@@ -1,15 +1,27 @@
 ---
-sourceType: paper
-title: Dense Passage Retrieval for Open-Domain Question Answering
+title: "Dense retrieval"
 domain: rag
 tags:
   - retrieval-strategies
-summary: How a dual-encoder retriever matches meaning rather than words, what training it requires, and why it is complementary to lexical search rather than a replacement.
-url: https://arxiv.org/abs/2004.04906
-author: Vladimir Karpukhin, Barlas Oguz, Sewon Min, Patrick Lewis et al.
-published: 2020-04-10
-retrieved: 2026-08-29
-license: "arXiv preprint, arXiv:2004.04906. Non-exclusive licence to distribute; short attributed quotations only."
+summary: "How a dual-encoder retriever matches meaning rather than words, what training it requires, and why it is complementary to lexical search rather than a replacement."
+author: yuki-uix
+revised: 2026-08-29
+sources:
+  - sourceType: "paper"
+    title: "Dense Passage Retrieval for Open-Domain Question Answering"
+    url: "https://arxiv.org/abs/2004.04906"
+    author: "Vladimir Karpukhin, Barlas Oğuz, Sewon Min et al."
+    published: "2020-04-10"
+    retrieved: "2026-08-29"
+    license: "arXiv preprint, arXiv:2004.04906. Non-exclusive licence to distribute; short attributed quotations only. published is the v1 submission date; the link serves the latest version."
+    primary: true
+  - sourceType: "paper"
+    title: "ColBERT: Efficient and Effective Passage Search via Contextualized Late Interaction over BERT"
+    url: "https://arxiv.org/abs/2004.12832"
+    author: "Omar Khattab, Matei Zaharia"
+    published: "2020-04-27"
+    retrieved: "2026-08-29"
+    license: "arXiv preprint, arXiv:2004.12832. Non-exclusive licence to distribute; short attributed quotations only. published is the v1 submission date; the link serves the latest version."
 ---
 
 # Dense retrieval

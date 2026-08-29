@@ -1,15 +1,20 @@
 ---
-sourceType: paper
-title: Passage Re-ranking with BERT
+title: "Reranking"
 domain: rag
 tags:
   - reranking-fusion
-summary: What a cross-encoder can judge that a dual encoder cannot, why reranking cannot improve recall, and how to decide whether it earns its latency.
-url: https://arxiv.org/abs/1901.04085
-author: Rodrigo Nogueira and Kyunghyun Cho
-published: 2019-01-13
-retrieved: 2026-08-29
-license: "arXiv preprint, arXiv:1901.04085. Non-exclusive licence to distribute; short attributed quotations only."
+summary: "What a cross-encoder can judge that a dual encoder cannot, why reranking cannot improve recall, and how to decide whether it earns its latency."
+author: yuki-uix
+revised: 2026-08-29
+sources:
+  - sourceType: "paper"
+    title: "Passage Re-ranking with BERT"
+    url: "https://arxiv.org/abs/1901.04085"
+    author: "Rodrigo Nogueira, Kyunghyun Cho"
+    published: "2019-01-13"
+    retrieved: "2026-08-29"
+    license: "arXiv preprint, arXiv:1901.04085. Non-exclusive licence to distribute; short attributed quotations only. published is the v1 submission date; the link serves the latest version."
+    primary: true
 ---
 
 # Reranking

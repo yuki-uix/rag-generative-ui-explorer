@@ -1,12 +1,20 @@
 ---
-sourceType: original
-title: Production concerns for a grounded knowledge system
+title: "Production concerns"
 domain: rag
 tags:
   - rag-production
-summary: Freshness, versioning, access control, latency, cost, observability, and cache invalidation, and which of them a corpus-backed explorer can defer.
+summary: "Freshness, versioning, access control, latency, cost, observability, and cache invalidation, and which of them a corpus-backed explorer can defer."
 author: yuki-uix
 revised: 2026-08-29
+sources:
+  - sourceType: "paper"
+    title: "Retrieval-Augmented Generation for Large Language Models: A Survey"
+    url: "https://arxiv.org/abs/2312.10997"
+    author: "Yunfan Gao, Yun Xiong, Xinyu Gao et al."
+    published: "2023-12-18"
+    retrieved: "2026-08-29"
+    license: "arXiv preprint, arXiv:2312.10997. Non-exclusive licence to distribute; short attributed quotations only. published is the v1 submission date; the link serves the latest version."
+    primary: true
 ---
 
 # Production concerns

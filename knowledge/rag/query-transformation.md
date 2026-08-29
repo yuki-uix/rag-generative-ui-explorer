@@ -1,15 +1,27 @@
 ---
-sourceType: paper
-title: Query Rewriting for Retrieval-Augmented Large Language Models
+title: "Query rewriting, decomposition, and expansion"
 domain: rag
 tags:
   - query-transformation
-summary: Rewriting, decomposing, and expanding a question before retrieval, and why each extra transformation is a place the pipeline can lose the user's actual intent.
-url: https://arxiv.org/abs/2305.14283
-author: Xinbei Ma, Yeyun Gong, Pengcheng He, Hai Zhao et al.
-published: 2023-05-23
-retrieved: 2026-08-29
-license: "arXiv preprint, arXiv:2305.14283. Non-exclusive licence to distribute; short attributed quotations only."
+summary: "Rewriting, decomposing, and expanding a question before retrieval, and why each extra transformation is a place the pipeline can lose the user intent."
+author: yuki-uix
+revised: 2026-08-29
+sources:
+  - sourceType: "paper"
+    title: "Query Rewriting for Retrieval-Augmented Large Language Models"
+    url: "https://arxiv.org/abs/2305.14283"
+    author: "Xinbei Ma, Yeyun Gong, Pengcheng He et al."
+    published: "2023-05-23"
+    retrieved: "2026-08-29"
+    license: "arXiv preprint, arXiv:2305.14283. Non-exclusive licence to distribute; short attributed quotations only. published is the v1 submission date; the link serves the latest version."
+    primary: true
+  - sourceType: "paper"
+    title: "Precise Zero-Shot Dense Retrieval without Relevance Labels"
+    url: "https://arxiv.org/abs/2212.10496"
+    author: "Luyu Gao, Xueguang Ma, Jimmy Lin et al."
+    published: "2022-12-20"
+    retrieved: "2026-08-29"
+    license: "arXiv preprint, arXiv:2212.10496. Non-exclusive licence to distribute; short attributed quotations only. published is the v1 submission date; the link serves the latest version."
 ---
 
 # Query rewriting, decomposition, and expansion

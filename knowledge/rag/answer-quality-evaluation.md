@@ -1,16 +1,21 @@
 ---
-sourceType: paper
-title: "RAGAS: Automated Evaluation of Retrieval Augmented Generation"
+title: "Answer quality evaluation"
 domain: rag
 tags:
   - rag-evaluation
   - grounded-generation
-summary: Decomposing RAG answer quality into faithfulness, answer relevance, and context relevance, and what a model-graded metric can and cannot be trusted to tell you.
-url: https://arxiv.org/abs/2309.15217
-author: Shahul Es, Jithin James, Luis Espinosa-Anke, and Steven Schockaert
-published: 2023-09-26
-retrieved: 2026-08-29
-license: "arXiv preprint, arXiv:2309.15217. Non-exclusive licence to distribute; short attributed quotations only."
+summary: "Decomposing RAG answer quality into faithfulness, answer relevance, and context relevance, and what a model-graded metric can and cannot be trusted to tell you."
+author: yuki-uix
+revised: 2026-08-29
+sources:
+  - sourceType: "paper"
+    title: "Ragas: Automated Evaluation of Retrieval Augmented Generation"
+    url: "https://arxiv.org/abs/2309.15217"
+    author: "Shahul Es, Jithin James, Luis Espinosa-Anke et al."
+    published: "2023-09-26"
+    retrieved: "2026-08-29"
+    license: "arXiv preprint, arXiv:2309.15217. Non-exclusive licence to distribute; short attributed quotations only. published is the v1 submission date; the link serves the latest version."
+    primary: true
 ---
 
 # Answer quality evaluation

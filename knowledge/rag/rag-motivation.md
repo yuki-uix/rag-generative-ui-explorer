@@ -1,15 +1,20 @@
 ---
-sourceType: paper
-title: Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks
+title: "RAG motivation and core architecture"
 domain: rag
 tags:
   - rag-motivation
-summary: What problem retrieval-augmented generation was introduced to solve, the shape of the original architecture, and which of its claims still hold.
-url: https://arxiv.org/abs/2005.11401
-author: Patrick Lewis et al. (Facebook AI Research, UCL, New York University)
-published: 2020-05-22
-retrieved: 2026-08-29
-license: "arXiv preprint, arXiv:2005.11401. Non-exclusive licence to distribute; short attributed quotations only."
+summary: "What problem retrieval-augmented generation was introduced to solve, the shape of the original architecture, and which of its claims still hold."
+author: yuki-uix
+revised: 2026-08-29
+sources:
+  - sourceType: "paper"
+    title: "Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks"
+    url: "https://arxiv.org/abs/2005.11401"
+    author: "Patrick Lewis, Ethan Perez, Aleksandra Piktus et al."
+    published: "2020-05-22"
+    retrieved: "2026-08-29"
+    license: "arXiv preprint, arXiv:2005.11401. Non-exclusive licence to distribute; short attributed quotations only. published is the v1 submission date; the link serves the latest version."
+    primary: true
 ---
 
 # RAG motivation and core architecture

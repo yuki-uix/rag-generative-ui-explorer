@@ -1,15 +1,34 @@
 ---
-sourceType: paper
-title: Benchmarking Large Language Models in Retrieval-Augmented Generation
+title: "Failure modes"
 domain: rag
 tags:
   - rag-failure-modes
-summary: Four failures that look identical at the output — retrieval miss, lost context, conflicting sources, and unsupported synthesis — and how to tell them apart.
-url: https://arxiv.org/abs/2309.01431
-author: Jiawei Chen, Hongyu Lin, Xianpei Han, and Le Sun
-published: 2023-09-04
-retrieved: 2026-08-29
-license: "arXiv preprint, arXiv:2309.01431. Non-exclusive licence to distribute; short attributed quotations only."
+summary: "Four failures that look identical at the output - retrieval miss, lost context, conflicting sources, and unsupported synthesis - and how to tell them apart."
+author: yuki-uix
+revised: 2026-08-29
+sources:
+  - sourceType: "paper"
+    title: "Benchmarking Large Language Models in Retrieval-Augmented Generation"
+    url: "https://arxiv.org/abs/2309.01431"
+    author: "Jiawei Chen, Hongyu Lin, Xianpei Han et al."
+    published: "2023-09-04"
+    retrieved: "2026-08-29"
+    license: "arXiv preprint, arXiv:2309.01431. Non-exclusive licence to distribute; short attributed quotations only. published is the v1 submission date; the link serves the latest version."
+    primary: true
+  - sourceType: "paper"
+    title: "Large Language Models Can Be Easily Distracted by Irrelevant Context"
+    url: "https://arxiv.org/abs/2302.00093"
+    author: "Freda Shi, Xinyun Chen, Kanishka Misra et al."
+    published: "2023-01-31"
+    retrieved: "2026-08-29"
+    license: "arXiv preprint, arXiv:2302.00093. Non-exclusive licence to distribute; short attributed quotations only. published is the v1 submission date; the link serves the latest version."
+  - sourceType: "paper"
+    title: "Lost in the Middle: How Language Models Use Long Contexts"
+    url: "https://arxiv.org/abs/2307.03172"
+    author: "Nelson F. Liu, Kevin Lin, John Hewitt et al."
+    published: "2023-07-06"
+    retrieved: "2026-08-29"
+    license: "arXiv preprint, arXiv:2307.03172. Non-exclusive licence to distribute; short attributed quotations only. published is the v1 submission date; the link serves the latest version."
 ---
 
 # Failure modes

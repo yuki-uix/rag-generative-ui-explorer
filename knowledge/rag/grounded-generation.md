@@ -1,15 +1,20 @@
 ---
-sourceType: paper
-title: "Self-RAG: Learning to Retrieve, Generate, and Critique through Self-Reflection"
+title: "Grounded generation and citation design"
 domain: rag
 tags:
   - grounded-generation
-summary: Making retrieval and grounding decisions explicit outputs of the model, and why the check on those outputs still has to live outside it.
-url: https://arxiv.org/abs/2310.11511
-author: Akari Asai, Zeqiu Wu, Yizhong Wang, Avirup Sil, and Hannaneh Hajishirzi
-published: 2023-10-17
-retrieved: 2026-08-29
-license: "arXiv preprint, arXiv:2310.11511. Non-exclusive licence to distribute; short attributed quotations only."
+summary: "Making retrieval and grounding decisions explicit outputs of the model, and why the check on those outputs still has to live outside it."
+author: yuki-uix
+revised: 2026-08-29
+sources:
+  - sourceType: "paper"
+    title: "Self-RAG: Learning to Retrieve, Generate, and Critique through Self-Reflection"
+    url: "https://arxiv.org/abs/2310.11511"
+    author: "Akari Asai, Zeqiu Wu, Yizhong Wang et al."
+    published: "2023-10-17"
+    retrieved: "2026-08-29"
+    license: "arXiv preprint, arXiv:2310.11511. Non-exclusive licence to distribute; short attributed quotations only. published is the v1 submission date; the link serves the latest version."
+    primary: true
 ---
 
 # Grounded generation and citation design

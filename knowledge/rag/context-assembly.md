@@ -1,15 +1,34 @@
 ---
-sourceType: paper
-title: "Lost in the Middle: How Language Models Use Long Contexts"
+title: "Context assembly"
 domain: rag
 tags:
   - context-assembly
-summary: Position within the context window changes how well a model uses retrieved evidence, which makes assembly order a design decision rather than an implementation detail.
-url: https://arxiv.org/abs/2307.03172
-author: Nelson F. Liu et al. (Stanford University, UC Berkeley, Samaya AI)
-published: 2023-07-06
-retrieved: 2026-08-29
-license: "arXiv preprint, arXiv:2307.03172. Non-exclusive licence to distribute; short attributed quotations only."
+summary: "Position within the context window changes how well a model uses retrieved evidence, which makes assembly order a design decision rather than an implementation detail."
+author: yuki-uix
+revised: 2026-08-29
+sources:
+  - sourceType: "paper"
+    title: "Lost in the Middle: How Language Models Use Long Contexts"
+    url: "https://arxiv.org/abs/2307.03172"
+    author: "Nelson F. Liu, Kevin Lin, John Hewitt et al."
+    published: "2023-07-06"
+    retrieved: "2026-08-29"
+    license: "arXiv preprint, arXiv:2307.03172. Non-exclusive licence to distribute; short attributed quotations only. published is the v1 submission date; the link serves the latest version."
+    primary: true
+  - sourceType: "paper"
+    title: "Leveraging Passage Retrieval with Generative Models for Open Domain Question Answering"
+    url: "https://arxiv.org/abs/2007.01282"
+    author: "Gautier Izacard, Edouard Grave"
+    published: "2020-07-02"
+    retrieved: "2026-08-29"
+    license: "arXiv preprint, arXiv:2007.01282. Non-exclusive licence to distribute; short attributed quotations only. published is the v1 submission date; the link serves the latest version."
+  - sourceType: "paper"
+    title: "Large Language Models Can Be Easily Distracted by Irrelevant Context"
+    url: "https://arxiv.org/abs/2302.00093"
+    author: "Freda Shi, Xinyun Chen, Kanishka Misra et al."
+    published: "2023-01-31"
+    retrieved: "2026-08-29"
+    license: "arXiv preprint, arXiv:2302.00093. Non-exclusive licence to distribute; short attributed quotations only. published is the v1 submission date; the link serves the latest version."
 ---
 
 # Context assembly

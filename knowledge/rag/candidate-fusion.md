@@ -1,16 +1,21 @@
 ---
-sourceType: paper
-title: Reciprocal Rank Fusion outperforms Condorcet and individual Rank Learning Methods
+title: "Candidate fusion"
 domain: rag
 tags:
   - reranking-fusion
   - retrieval-strategies
-summary: Why reciprocal rank fusion combines retrievers using rank position rather than score, and what that buys over score normalisation.
-url: https://plg.uwaterloo.ca/~gvcormac/cormacksigir09-rrf.pdf
-author: Gordon V. Cormack, Charles L. A. Clarke, and Stefan Buettcher
-published: 2009-07
-retrieved: 2026-08-29
-license: "SIGIR'09, July 19-23, 2009, Boston. Copyright 2009 ACM. Author-hosted copy; short attributed quotations only."
+summary: "Why reciprocal rank fusion combines retrievers using rank position rather than score, and what that buys over score normalisation."
+author: yuki-uix
+revised: 2026-08-29
+sources:
+  - sourceType: "paper"
+    title: "Reciprocal Rank Fusion outperforms Condorcet and individual Rank Learning Methods"
+    url: "https://plg.uwaterloo.ca/~gvcormac/cormacksigir09-rrf.pdf"
+    author: "Gordon V. Cormack, Charles L. A. Clarke, and Stefan Buettcher"
+    published: "2009-07"
+    retrieved: "2026-08-29"
+    license: "SIGIR'09, July 19-23 2009, Boston. Copyright 2009 ACM. Author-hosted copy; short attributed quotations only."
+    primary: true
 ---
 
 # Candidate fusion

@@ -1,15 +1,20 @@
 ---
-sourceType: paper
-title: "The Probabilistic Relevance Framework: BM25 and Beyond"
+title: "Sparse retrieval"
 domain: rag
 tags:
   - retrieval-strategies
-summary: How BM25 scores a document against a query, why term saturation and length normalisation matter, and where lexical retrieval still beats embeddings.
-url: https://www.staff.city.ac.uk/~sbrp622/papers/foundations_bm25_review.pdf
-author: Stephen Robertson and Hugo Zaragoza
-published: 2009
-retrieved: 2026-08-29
-license: "Foundations and Trends in Information Retrieval 3(4), DOI 10.1561/1500000019, (c) 2009 the authors and Now Publishers. Author-hosted copy; short attributed quotations only."
+summary: "How BM25 scores a document against a query, why term saturation and length normalisation matter, and where lexical retrieval still beats embeddings."
+author: yuki-uix
+revised: 2026-08-29
+sources:
+  - sourceType: "paper"
+    title: "The Probabilistic Relevance Framework: BM25 and Beyond"
+    url: "https://www.staff.city.ac.uk/~sbrp622/papers/foundations_bm25_review.pdf"
+    author: "Stephen Robertson and Hugo Zaragoza"
+    published: "2009"
+    retrieved: "2026-08-29"
+    license: "Foundations and Trends in Information Retrieval 3(4), DOI 10.1561/1500000019, (c) 2009 the authors and Now Publishers. Author-hosted copy; short attributed quotations only."
+    primary: true
 ---
 
 # Sparse retrieval

@@ -1,15 +1,20 @@
 ---
-sourceType: paper
-title: IR evaluation methods for retrieving highly relevant documents
+title: "Retrieval metrics"
 domain: rag
 tags:
   - rag-evaluation
-summary: What Recall@K, MRR, and nDCG each measure, why graded relevance was introduced, and which metric answers which question about a retriever.
-url: https://sigir.org/wp-content/uploads/2017/06/p243.pdf
-author: Kalervo Jarvelin and Jaana Kekalainen
-published: 2000-07
-retrieved: 2026-08-29
-license: "SIGIR 2000, Athens. Reprinted in ACM SIGIR Forum 51(2), July 2017, from which this copy is taken. Short attributed quotations only."
+summary: "What Recall@K, MRR, and nDCG each measure, why graded relevance was introduced, and which metric answers which question about a retriever."
+author: yuki-uix
+revised: 2026-08-29
+sources:
+  - sourceType: "paper"
+    title: "IR evaluation methods for retrieving highly relevant documents"
+    url: "https://sigir.org/wp-content/uploads/2017/06/p243.pdf"
+    author: "Kalervo Jarvelin and Jaana Kekalainen"
+    published: "2000-07"
+    retrieved: "2026-08-29"
+    license: "SIGIR 2000, Athens. Reprinted in ACM SIGIR Forum 51(2), July 2017, from which this copy is taken. Short attributed quotations only."
+    primary: true
 ---
 
 # Retrieval metrics

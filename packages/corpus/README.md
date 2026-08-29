@@ -9,17 +9,31 @@ pnpm corpus:check-links   # request every canonical URL (network)
 pnpm corpus:validate --check-urls   # both, for local use
 ```
 
-## Frontmatter is a discriminated union, not a bag of optional fields
+## A note is not its sources
 
-`docs/KNOWLEDGE_SCOPE.md` lists four kinds of source, and the fourth — original
-notes written for this repository — has no canonical URL, publication date, or
-upstream licence to record.
+`title` and `author` describe **the note** — original prose written for this
+repository. `sources` describe what it draws on, and a note may cite several.
 
-Making those fields optional for every note would push the difference into
-review, where "this external note is missing its licence" is exactly the kind of
-thing that gets waved through. Instead `sourceType` discriminates: an external
-note without a URL fails, and an original note claiming an upstream licence
-fails too. Both directions are tested.
+The first version conflated them: a note's `title` was the cited paper's title
+and its single `url` was the paper's. Ingestion carries frontmatter onto every
+chunk, so every chunk of the repository's own analysis would have been displayed
+under that paper's name and link, and a reader following the citation would find
+nothing resembling the text they clicked from. Every mechanical check passed,
+because the misattribution was in the data rather than in the code.
+
+Two gates now hold that line:
+
+- `title` must match the note's top-level heading, checked at build time. The
+  original bug is exactly a title/heading divergence, so it cannot recur
+  silently.
+- Every source a note draws on belongs in `sources`, with exactly one marked
+  `primary`. A note whose content outruns its citations was the second half of
+  the same defect — three notes discussed techniques from papers they never
+  cited.
+
+**Downstream this is only half done.** Ingestion must populate
+`Evidence.documentTitle` from the note title and must not copy a source URL onto
+a chunk; see the M1 ingestion issue.
 
 The required-field tests are driven off a field list rather than written case by
 case, so a field added to the schema without being added to that list shows up
@@ -68,7 +82,11 @@ failure this exists to catch — so the check actually requests each URL.
 It is not in the merge gate. Requiring a third party's uptime before an
 unrelated change can merge produces a check that people re-run until it passes,
 which is worse than not having one. It runs weekly and on demand, and reports
-what has rotted.
+what has rotted. `pnpm corpus:validate --check-urls` runs both locally.
+
+A persistent 403 is reported as `BLOCK` rather than `FAIL`. Publishers behind a
+bot filter answer 403 to an automated request while serving the document to a
+person, and counting that as rot would train everyone to ignore the report.
 
 The unit tests inject `fetchImpl`, so they stay offline and deterministic. Only
 the scheduled workflow touches the network.

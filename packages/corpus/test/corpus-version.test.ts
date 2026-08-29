@@ -1,68 +1,48 @@
 /**
  * The corpus version must move when any note changes.
  *
- * The first version of this test named two fields by hand — and they happened
+ * An earlier version of this test named two fields by hand — and they happened
  * to be the two the manifest projected, so it passed while `license`,
  * `published`, `retrieved`, and `summary` changed nothing. The sensitivity
- * check is now driven off the schema's own field list, so a field the schema
+ * check is driven off the schema's own field lists, so a field the schema
  * accepts cannot go unmeasured.
  */
-import { mkdtempSync, mkdirSync, writeFileSync, rmSync } from 'node:fs';
-import { tmpdir } from 'node:os';
-import { join } from 'node:path';
 import { afterEach, describe, expect, it } from 'vitest';
 import { buildManifest } from '../src/manifest.js';
-import { frontmatterFields } from '../src/frontmatter.js';
+import { NOTE_FIELDS, SOURCE_FIELDS } from '../src/frontmatter.js';
+import { corpus, cleanUpCorpora, DEFAULT_SOURCE } from './support/corpus.js';
 
-const created: string[] = [];
-afterEach(() => {
-  for (const dir of created.splice(0)) rmSync(dir, { recursive: true, force: true });
-});
-
-const EXTERNAL = {
-  sourceType: 'paper',
-  title: 'Dense Passage Retrieval',
-  domain: 'rag',
-  tags: ['retrieval-strategies'],
-  summary: 'Dense retrieval as an alternative to lexical search.',
-  url: 'https://example.invalid/papers/dpr',
-  author: 'Karpukhin et al.',
-  published: '2020-04-10',
-  retrieved: '2026-08-28',
-  license: 'Short quotations only',
-} as const;
+afterEach(cleanUpCorpora);
 
 /** A different, still-valid value for each field the schema accepts. */
-const ALTERNATIVES: Record<string, unknown> = {
-  title: 'Dense Passage Retrieval, revised title',
+const NOTE_ALTERNATIVES: Record<string, unknown> = {
+  title: 'Dense retrieval, revisited',
   domain: 'rag',
   tags: ['retrieval-strategies', 'embeddings-similarity'],
-  summary: 'A materially different summary of the same paper.',
-  url: 'https://example.invalid/papers/dpr-v2',
+  summary: 'A materially different summary of the same material.',
+  author: 'someone-else',
+  revised: '2026-08-27',
+  sources: [],
+};
+
+const SOURCE_ALTERNATIVES: Record<string, unknown> = {
+  sourceType: 'documentation',
+  title: 'Dense Passage Retrieval, revised title',
+  url: 'https://arxiv.org/abs/2004.04906v1',
   author: 'Karpukhin and others',
   published: '2020-04-11',
   retrieved: '2026-08-27',
   license: 'CC BY 4.0',
+  primary: true,
 };
 
-function versionOf(overrides: Record<string, unknown> = {}, body = 'Body prose.'): string {
-  const root = mkdtempSync(join(tmpdir(), 'rgux-version-'));
-  created.push(root);
-  mkdirSync(join(root, 'rag'), { recursive: true });
-
-  const frontmatter = { ...EXTERNAL, ...overrides };
-  writeFileSync(
-    join(root, 'rag', 'dpr.md'),
-    [
-      '---',
-      ...Object.entries(frontmatter).map(([key, value]) => `${key}: ${JSON.stringify(value)}`),
-      '---',
-      '',
-      body,
-    ].join('\n'),
+function versionOf(
+  noteOverrides: Record<string, unknown> = {},
+  body = 'Body prose.',
+): string {
+  const { manifest, errors } = buildManifest(
+    corpus([{ path: 'rag/dpr.md', frontmatter: noteOverrides, body }]),
   );
-
-  const { manifest, errors } = buildManifest(root);
   expect(errors.map((error) => error.message)).toEqual([]);
   return manifest.corpusVersion;
 }
@@ -70,21 +50,24 @@ function versionOf(overrides: Record<string, unknown> = {}, body = 'Body prose.'
 describe('corpus version sensitivity', () => {
   const baseline = versionOf();
 
-  /**
-   * `sourceType` is excluded because changing it changes which fields are
-   * required, so it cannot be varied in isolation; it is covered by the
-   * cross-source-type case below.
-   */
-  const varyingFields = frontmatterFields('paper').filter((field) => field !== 'sourceType');
-
   it('has an alternative value for every field the schema accepts', () => {
-    expect(varyingFields.filter((field) => !(field in ALTERNATIVES))).toEqual([]);
+    expect(NOTE_FIELDS.filter((field) => !(field in NOTE_ALTERNATIVES))).toEqual([]);
+    expect(SOURCE_FIELDS.filter((field) => !(field in SOURCE_ALTERNATIVES))).toEqual([]);
   });
 
-  it.each(varyingFields.filter((field) => field !== 'domain'))(
-    'changes when %s changes',
+  it.each(NOTE_FIELDS.filter((field) => field !== 'domain'))(
+    'changes when the note field %s changes',
     (field) => {
-      expect(versionOf({ [field]: ALTERNATIVES[field] })).not.toBe(baseline);
+      expect(versionOf({ [field]: NOTE_ALTERNATIVES[field] })).not.toBe(baseline);
+    },
+  );
+
+  it.each(SOURCE_FIELDS.filter((field) => field !== 'primary'))(
+    'changes when the source field %s changes',
+    (field) => {
+      expect(
+        versionOf({ sources: [{ ...DEFAULT_SOURCE, [field]: SOURCE_ALTERNATIVES[field] }] }),
+      ).not.toBe(baseline);
     },
   );
 
@@ -92,8 +75,19 @@ describe('corpus version sensitivity', () => {
     expect(versionOf({}, 'Entirely different prose.')).not.toBe(baseline);
   });
 
-  it('changes when the source type changes', () => {
-    expect(versionOf({ sourceType: 'documentation' })).not.toBe(baseline);
+  it('changes when a source is added', () => {
+    expect(
+      versionOf({
+        sources: [
+          DEFAULT_SOURCE,
+          { ...DEFAULT_SOURCE, url: 'https://arxiv.org/abs/2004.12832', primary: undefined },
+        ].map((source) => {
+          const copy: Record<string, unknown> = { ...source };
+          if (copy.primary === undefined) delete copy.primary;
+          return copy;
+        }),
+      }),
+    ).not.toBe(baseline);
   });
 
   it('is stable for identical input', () => {
@@ -106,8 +100,27 @@ describe('corpus version sensitivity', () => {
 
   it('does not depend on frontmatter key order', () => {
     const reordered = Object.fromEntries(
-      Object.entries(EXTERNAL).reverse(),
-    ) as unknown as Record<string, unknown>;
+      Object.entries({
+        revised: '2026-08-28',
+        author: 'yuki-uix',
+        summary: 'How a dual-encoder retriever matches meaning rather than words.',
+        tags: ['retrieval-strategies'],
+        domain: 'rag',
+        title: 'Dense retrieval',
+        sources: [DEFAULT_SOURCE],
+      }),
+    );
     expect(versionOf(reordered)).toBe(baseline);
+  });
+
+  it('does not depend on filesystem ordering', () => {
+    const second = { title: 'BM25', tags: ['retrieval-strategies'] };
+    const forwards = buildManifest(
+      corpus([{ path: 'rag/a.md' }, { path: 'rag/b.md', frontmatter: second }]),
+    ).manifest.corpusVersion;
+    const backwards = buildManifest(
+      corpus([{ path: 'rag/b.md', frontmatter: second }, { path: 'rag/a.md' }]),
+    ).manifest.corpusVersion;
+    expect(forwards).toBe(backwards);
   });
 });

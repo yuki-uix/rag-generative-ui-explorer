@@ -1,15 +1,20 @@
 ---
-sourceType: documentation
-title: Introducing Contextual Retrieval
+title: "Ingestion, parsing, chunking, and metadata"
 domain: rag
 tags:
   - ingestion-chunking
-summary: Why chunk boundaries decide what can be retrieved, what a chunk loses when it is cut out of its document, and how stable chunk identity underpins citation.
-url: https://www.anthropic.com/news/contextual-retrieval
-author: Anthropic
-published: 2024-09-19
-retrieved: 2026-08-29
-license: "Anthropic engineering post. Short attributed quotations only; text not reproduced."
+summary: "Why chunk boundaries decide what can be retrieved, what a chunk loses when it is cut out of its document, and how stable chunk identity underpins citation."
+author: yuki-uix
+revised: 2026-08-29
+sources:
+  - sourceType: "documentation"
+    title: "Introducing Contextual Retrieval"
+    url: "https://www.anthropic.com/news/contextual-retrieval"
+    author: "Anthropic"
+    published: "2024-09-19"
+    retrieved: "2026-08-29"
+    license: "Anthropic engineering post. Short attributed quotations only; text not reproduced."
+    primary: true
 ---
 
 # Ingestion, parsing, chunking, and metadata

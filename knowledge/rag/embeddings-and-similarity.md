@@ -1,15 +1,20 @@
 ---
-sourceType: paper
-title: "Sentence-BERT: Sentence Embeddings using Siamese BERT-Networks"
+title: "Embeddings and similarity measures"
 domain: rag
 tags:
   - embeddings-similarity
-summary: Why a sentence embedding needs training for the comparison it will be used for, and what cosine similarity does and does not tell you about two passages.
-url: https://arxiv.org/abs/1908.10084
-author: Nils Reimers and Iryna Gurevych
-published: 2019-08-27
-retrieved: 2026-08-29
-license: "arXiv preprint, arXiv:1908.10084. Non-exclusive licence to distribute; short attributed quotations only."
+summary: "Why a sentence embedding needs training for the comparison it will be used for, and what cosine similarity does and does not tell you about two passages."
+author: yuki-uix
+revised: 2026-08-29
+sources:
+  - sourceType: "paper"
+    title: "Sentence-BERT: Sentence Embeddings using Siamese BERT-Networks"
+    url: "https://arxiv.org/abs/1908.10084"
+    author: "Nils Reimers, Iryna Gurevych"
+    published: "2019-08-27"
+    retrieved: "2026-08-29"
+    license: "arXiv preprint, arXiv:1908.10084. Non-exclusive licence to distribute; short attributed quotations only. published is the v1 submission date; the link serves the latest version."
+    primary: true
 ---
 
 # Embeddings and similarity measures
