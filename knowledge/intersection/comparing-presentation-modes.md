@@ -87,9 +87,18 @@ a disagreement with a completion-time result.
 ## Pinning the experiment
 
 Non-negotiable, because unpinned runs produce data that has to be discarded:
-same question set, same corpus version, same model and sampling parameters,
-same prompt version, recorded per run. The harness should refuse to compare
-arms that disagree on any pinned variable rather than comparing them silently.
+same question set, same corpus version, same model and generation
+configuration, same prompt version, recorded per run. The harness should refuse
+to compare arms that disagree on any pinned variable rather than comparing them
+silently.
+
+What "generation configuration" contains is worth checking rather than
+assuming. On current frontier models the sampling parameters an evaluation
+protocol would traditionally pin — temperature and the top-k and top-p variants
+— have in several cases been removed from the API entirely, replaced by a
+coarser effort control. Where that holds there is no determinism knob at all:
+variance cannot be configured away and has to be measured instead, which makes
+repetitions mandatory rather than advisable.
 
 Sample size deserves the same honesty. Sixty questions across three groups and
 five card types leaves roughly a dozen per cell. Mechanical results — schema

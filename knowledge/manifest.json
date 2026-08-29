@@ -1,5 +1,5 @@
 {
-  "corpusVersion": "corpus-2e83fa4d3065",
+  "corpusVersion": "corpus-7990d878dcdd",
   "chunking": {
     "boundary": "h2-section",
     "maxChunkChars": 1200
@@ -761,7 +761,7 @@
           "primary": false
         }
       ],
-      "contentHash": "7c237b8b07a4d560",
+      "contentHash": "6e98b89eabe23dd6",
       "metadataHash": "72b472ab7a417f75"
     },
     {

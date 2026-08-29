@@ -97,4 +97,10 @@ checks here establish that the labels resolve, not that they are right.
 Sixty questions across three domains and five card types leaves roughly a dozen
 per cell. Mechanical results are determinate from one run; anything involving
 model choice needs repetitions with dispersion reported, and a per-cell result
-supports a direction at best. `eval/PROTOCOL.md` (M0.10) pins the rest.
+supports a direction at best.
+
+[PROTOCOL.md](PROTOCOL.md) pins the rest: the model, effort, prompt version,
+corpus version, and repetition count every run records, which metrics may be
+concluded from one run, and how token spend is reported. Note that on the pinned
+model there is no `temperature` to fix — sampling parameters are removed — so
+variance is measured rather than configured away.

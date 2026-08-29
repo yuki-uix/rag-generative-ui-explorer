@@ -99,9 +99,22 @@ the corpus rather than being rewritten by the model.
 
 ## Success metrics
 
+Every metric below is classified as mechanical, model-dependent, or human in
+[the evaluation protocol](../eval/PROTOCOL.md), which also pins the model,
+effort, prompt version, corpus version, and repetition count that a run must
+record. A number produced outside those rules is not comparable to one produced
+inside them.
+
+The classification is not bookkeeping. On the pinned model there is no
+`temperature` parameter — it is removed, and sending one returns an error — so
+run-to-run variance cannot be configured away and has to be measured instead.
+Model-dependent metrics therefore require repetitions with dispersion reported;
+a single run of one is a sample, not a measurement.
+
 ### Retrieval and grounding
 
-- Retrieval Recall@10 on the evaluation set.
+- Retrieval Recall@10 on the evaluation set. Deterministic only while no model
+  sits in the retrieval path; query rewriting and reranking each move it.
 - Citation precision.
 - Citation completeness at the card-field level.
 - Unsupported-claim rate.
@@ -119,12 +132,26 @@ the corpus rather than being rewritten by the model.
 
 ### MVP exit criteria
 
+Each is evaluated under [the evaluation protocol](../eval/PROTOCOL.md), which
+records the model, effort, prompt version, and corpus version of the run that
+produced it.
+
 - At least 60 manually reviewed questions across both knowledge domains.
-- At least 90% valid card specs without a second model call.
+  *Mechanical.*
+- At least 90% valid card specs without a second model call. *Model-dependent —
+  a rate, so it requires the protocol's repetitions and dispersion, and is
+  computed from the raw output captured before any repair attempt.*
 - 100% of rendered factual fields reference valid retrieved evidence IDs.
-- Zero executable model-generated code rendered in the browser.
+  *Mechanical.*
+- Zero executable model-generated code rendered in the browser. *Mechanical and
+  binary.*
 - A repeatable comparison of Markdown, fixed-card, and dynamic-card modes.
+  *Mechanical: the harness runs on identical pinned inputs or refuses.*
 - Documented findings, including cases where dynamic cards perform worse.
+
+Four of the six are mechanical and determinate from a single run. That is
+deliberate — a criterion needing statistics to interpret is a criterion people
+argue about.
 
 ## Milestones
 
