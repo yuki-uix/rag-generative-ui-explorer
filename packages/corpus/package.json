@@ -14,6 +14,7 @@
     "corpus:build": "tsx scripts/validate-corpus.ts --write",
     "corpus:check-links": "tsx scripts/check-links.ts",
     "corpus:chunks": "tsx scripts/chunks.ts",
+    "ingest": "tsx scripts/ingest.ts",
     "eval:validate": "tsx scripts/validate-eval.ts",
     "eval:build": "tsx scripts/build-eval.ts --write",
     "eval:check": "tsx scripts/build-eval.ts"
