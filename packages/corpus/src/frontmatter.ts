@@ -26,12 +26,47 @@ const commonFields = {
   summary: z.string().min(1).max(300),
 };
 
+/**
+ * A publication date as precise as the source actually states, and no more.
+ *
+ * Many sources give only a year (a journal volume) or a year and month. Padding
+ * those to a full date fabricates precision in citation metadata, which is
+ * exactly the failure this corpus exists to avoid — so `YYYY`, `YYYY-MM`, and
+ * `YYYY-MM-DD` are all accepted. `retrieved` stays a full date: that one is
+ * ours to know exactly.
+ */
+export const PartialDate = z.preprocess(
+  /**
+   * YAML parses a bare four-digit year as a number, so `published: 2009`
+   * arrives as `2009` rather than `"2009"`. Quoting is easy to forget and the
+   * resulting type error says nothing useful, so a year is coerced here.
+   * `2009-07` and `2009-07-19` already parse as strings.
+   */
+  (value) => (typeof value === 'number' && Number.isInteger(value) ? String(value) : value),
+  z
+  .string()
+  .regex(/^\d{4}(-\d{2}(-\d{2})?)?$/, 'expected YYYY, YYYY-MM, or YYYY-MM-DD')
+  .refine((value) => {
+    const [year, month, day] = value.split('-').map(Number);
+    if (month !== undefined && (month < 1 || month > 12)) return false;
+    if (day === undefined) return true;
+
+    // Round-trip rather than trusting Date.parse, which accepts 2009-02-30.
+    const date = new Date(Date.UTC(year!, month! - 1, day));
+    return (
+      date.getUTCFullYear() === year &&
+      date.getUTCMonth() === month! - 1 &&
+      date.getUTCDate() === day
+    );
+  }, 'not a real date'),
+);
+
 const externalFields = {
   /** Canonical location of the upstream source. Reachability is checked separately. */
   url: z.url(),
   author: z.string().min(1),
-  /** Publication date of the upstream source. */
-  published: z.iso.date(),
+  /** Publication date, at the precision the source itself states. */
+  published: PartialDate,
   /** When the source was last consulted for this note. */
   retrieved: z.iso.date(),
   /**
@@ -52,7 +87,13 @@ function checkDates(
 ): void {
   const today = new Date().toISOString().slice(0, 10);
 
-  if (value.retrieved < value.published) {
+  /**
+   * Compared on the shared prefix, so a year-only `published` is not read as
+   * 1 January: `2026` against a `2026-03-04` retrieval is consistent, not a
+   * violation.
+   */
+  const shared = Math.min(value.published.length, value.retrieved.length);
+  if (value.retrieved.slice(0, shared) < value.published.slice(0, shared)) {
     ctx.addIssue({
       code: 'custom',
       message: `retrieved (${value.retrieved}) is before published (${value.published})`,

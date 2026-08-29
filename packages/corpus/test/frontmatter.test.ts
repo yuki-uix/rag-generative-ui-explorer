@@ -177,3 +177,73 @@ describe('parseNote', () => {
     expect(() => parseNote('rag/dpr.md', note(withoutLicense))).toThrow(/rag\/dpr\.md.*license/s);
   });
 });
+
+describe('publication date precision', () => {
+  const withPublished = (published: string) =>
+    NoteFrontmatter.safeParse({ ...externalFields, published }).success;
+
+  /**
+   * Sources state their date at different precision. Padding a journal volume's
+   * year to 1 January would invent precision the source never claimed.
+   */
+  it('accepts year, year-month, and full dates', () => {
+    expect(withPublished('2009')).toBe(true);
+    expect(withPublished('2009-07')).toBe(true);
+    expect(withPublished('2009-07-19')).toBe(true);
+  });
+
+  it('rejects malformed or impossible dates', () => {
+    expect(withPublished('2009-7')).toBe(false);
+    expect(withPublished('July 2009')).toBe(false);
+    expect(withPublished('2009-13')).toBe(false);
+    expect(withPublished('2009-02-30')).toBe(false);
+  });
+
+  it('compares a year-only publication against retrieval on the shared prefix', () => {
+    expect(
+      NoteFrontmatter.safeParse({
+        ...externalFields,
+        published: '2026',
+        retrieved: '2026-08-28',
+      }).success,
+    ).toBe(true);
+    expect(
+      NoteFrontmatter.safeParse({
+        ...externalFields,
+        published: '2027',
+        retrieved: '2026-08-28',
+      }).success,
+    ).toBe(false);
+  });
+
+  it('still requires a full date for retrieval, which is ours to know exactly', () => {
+    expect(
+      NoteFrontmatter.safeParse({ ...externalFields, retrieved: '2026-08' }).success,
+    ).toBe(false);
+  });
+});
+
+describe('YAML year coercion', () => {
+  /**
+   * `published: 2009` in YAML is the number 2009, not the string. Requiring
+   * authors to remember quotes for exactly one field, with an unhelpful error
+   * when they forget, is a trap rather than a check.
+   */
+  it('accepts a bare year that YAML parsed as a number', () => {
+    expect(
+      NoteFrontmatter.safeParse({ ...externalFields, published: 2009 as unknown as string })
+        .success,
+    ).toBe(true);
+  });
+
+  it('still rejects a number that is not a plausible year', () => {
+    expect(
+      NoteFrontmatter.safeParse({ ...externalFields, published: 20099 as unknown as string })
+        .success,
+    ).toBe(false);
+    expect(
+      NoteFrontmatter.safeParse({ ...externalFields, published: 20.09 as unknown as string })
+        .success,
+    ).toBe(false);
+  });
+});
