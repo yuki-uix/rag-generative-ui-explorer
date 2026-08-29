@@ -1,0 +1,222 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://example.invalid/schemas/knowledge-ui-response.schema.json",
+  "title": "Knowledge UI response",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["query", "cards", "suggestedActions", "evidence", "metadata"],
+  "properties": {
+    "query": { "type": "string", "minLength": 1 },
+    "cards": {
+      "type": "array",
+      "maxItems": 4,
+      "items": { "$ref": "#/$defs/card" }
+    },
+    "suggestedActions": {
+      "type": "array",
+      "maxItems": 3,
+      "items": { "$ref": "#/$defs/action" }
+    },
+    "evidence": {
+      "type": "array",
+      "items": { "$ref": "evidence.schema.json" }
+    },
+    "metadata": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["knowledgeBaseVersion", "generatedAt", "incomplete"],
+      "properties": {
+        "knowledgeBaseVersion": { "type": "string", "minLength": 1 },
+        "generatedAt": { "type": "string", "format": "date-time" },
+        "incomplete": { "type": "boolean" }
+      }
+    }
+  },
+  "$defs": {
+    "groundedText": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["text", "mode", "evidenceIds"],
+      "properties": {
+        "text": { "type": "string", "minLength": 1 },
+        "mode": {
+          "enum": ["extractive", "summarized", "inferred"]
+        },
+        "evidenceIds": {
+          "type": "array",
+          "minItems": 1,
+          "uniqueItems": true,
+          "items": { "type": "string", "minLength": 1 }
+        }
+      }
+    },
+    "card": {
+      "oneOf": [
+        { "$ref": "#/$defs/definitionCard" },
+        { "$ref": "#/$defs/comparisonCard" },
+        { "$ref": "#/$defs/mechanismCard" },
+        { "$ref": "#/$defs/procedureCard" },
+        { "$ref": "#/$defs/evidenceCard" }
+      ]
+    },
+    "cardBase": {
+      "type": "object",
+      "required": ["id", "type", "title"],
+      "properties": {
+        "id": { "type": "string", "minLength": 1 },
+        "type": { "type": "string" },
+        "title": { "type": "string", "minLength": 1 }
+      }
+    },
+    "definitionCard": {
+      "allOf": [
+        { "$ref": "#/$defs/cardBase" },
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["id", "type", "title", "definition", "keyPoints"],
+          "properties": {
+            "id": { "type": "string" },
+            "type": { "const": "definition" },
+            "title": { "type": "string" },
+            "definition": { "$ref": "#/$defs/groundedText" },
+            "keyPoints": {
+              "type": "array",
+              "maxItems": 5,
+              "items": { "$ref": "#/$defs/groundedText" }
+            }
+          }
+        }
+      ]
+    },
+    "comparisonCard": {
+      "allOf": [
+        { "$ref": "#/$defs/cardBase" },
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["id", "type", "title", "entities", "rows"],
+          "properties": {
+            "id": { "type": "string" },
+            "type": { "const": "comparison" },
+            "title": { "type": "string" },
+            "entities": {
+              "type": "array",
+              "minItems": 2,
+              "maxItems": 4,
+              "items": { "type": "string" }
+            },
+            "rows": {
+              "type": "array",
+              "maxItems": 8,
+              "items": {
+                "type": "object",
+                "additionalProperties": false,
+                "required": ["dimension", "values"],
+                "properties": {
+                  "dimension": { "type": "string" },
+                  "values": {
+                    "type": "array",
+                    "items": { "$ref": "#/$defs/groundedText" }
+                  }
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "mechanismCard": {
+      "allOf": [
+        { "$ref": "#/$defs/cardBase" },
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["id", "type", "title", "stages"],
+          "properties": {
+            "id": { "type": "string" },
+            "type": { "const": "mechanism" },
+            "title": { "type": "string" },
+            "stages": {
+              "type": "array",
+              "minItems": 2,
+              "maxItems": 8,
+              "items": {
+                "type": "object",
+                "additionalProperties": false,
+                "required": ["label", "description"],
+                "properties": {
+                  "label": { "type": "string" },
+                  "description": { "$ref": "#/$defs/groundedText" }
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "procedureCard": {
+      "allOf": [
+        { "$ref": "#/$defs/cardBase" },
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["id", "type", "title", "steps"],
+          "properties": {
+            "id": { "type": "string" },
+            "type": { "const": "procedure" },
+            "title": { "type": "string" },
+            "steps": {
+              "type": "array",
+              "minItems": 1,
+              "maxItems": 10,
+              "items": {
+                "type": "object",
+                "additionalProperties": false,
+                "required": ["title", "instruction"],
+                "properties": {
+                  "title": { "type": "string" },
+                  "instruction": { "$ref": "#/$defs/groundedText" }
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "evidenceCard": {
+      "allOf": [
+        { "$ref": "#/$defs/cardBase" },
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["id", "type", "title", "evidenceIds"],
+          "properties": {
+            "id": { "type": "string" },
+            "type": { "const": "evidence" },
+            "title": { "type": "string" },
+            "evidenceIds": {
+              "type": "array",
+              "minItems": 1,
+              "uniqueItems": true,
+              "items": { "type": "string" }
+            }
+          }
+        }
+      ]
+    },
+    "action": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "label", "action"],
+      "properties": {
+        "id": { "type": "string", "minLength": 1 },
+        "label": { "type": "string", "minLength": 1 },
+        "action": {
+          "enum": ["show_sources", "explain_further", "add_to_comparison"]
+        },
+        "payload": { "type": "object" }
+      }
+    }
+  }
+}

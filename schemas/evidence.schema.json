@@ -1,0 +1,35 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://example.invalid/schemas/evidence.schema.json",
+  "title": "Evidence",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "id",
+    "documentId",
+    "documentTitle",
+    "text",
+    "retrievalScore",
+    "metadata"
+  ],
+  "properties": {
+    "id": { "type": "string", "minLength": 1 },
+    "documentId": { "type": "string", "minLength": 1 },
+    "documentTitle": { "type": "string", "minLength": 1 },
+    "section": { "type": "string" },
+    "text": { "type": "string", "minLength": 1 },
+    "url": { "type": "string", "format": "uri" },
+    "updatedAt": { "type": "string", "format": "date-time" },
+    "retrievalScore": { "type": "number" },
+    "rerankScore": { "type": "number" },
+    "metadata": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "author": { "type": "string" },
+        "version": { "type": "string" },
+        "category": { "type": "string" }
+      }
+    }
+  }
+}
