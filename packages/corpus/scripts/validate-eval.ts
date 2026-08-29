@@ -12,7 +12,7 @@ import { fileURLToPath } from 'node:url';
 import { buildManifest } from '../src/manifest.js';
 import { parseNote } from '../src/note.js';
 import { chunkNote } from '../src/chunks.js';
-import { parseEvalSet, resolveGoldenEvidence } from '../src/eval-set.js';
+import { parseEvalSet, resolveGoldenEvidence, uncoveredSections } from '../src/eval-set.js';
 
 const here = dirname(fileURLToPath(import.meta.url));
 const repoRoot = resolve(here, '../../..');
@@ -66,3 +66,26 @@ if (report.untouchedDocuments.length > 0) {
 }
 
 if (report.unresolved.length > 0 || report.corpusMismatch) process.exit(1);
+
+const coverage = uncoveredSections(set, chunkIds);
+if (coverage.unexplained.length > 0) {
+  console.error(`\n${coverage.unexplained.length} section(s) no question measures, with no reason recorded:`);
+  for (const entry of coverage.unexplained) {
+    console.error(`  ${entry.documentId}  §${entry.section}`);
+  }
+  console.error(
+    '\nEither label a question against the section, or record why it needs no\n' +
+      'golden evidence in UNMEASURED_SECTIONS. A silence here is how a note\'s\n' +
+      'central argument went unmeasured while the note-level check stayed green.',
+  );
+  process.exit(1);
+}
+if (coverage.staleExemptions.length > 0) {
+  console.error(
+    `\n${coverage.staleExemptions.length} exemption(s) name a section that is measured after all:`,
+  );
+  for (const slug of coverage.staleExemptions) console.error(`  ${slug}`);
+  console.error('\nRemove them. An exemption nobody needs is a standing permission.');
+  process.exit(1);
+}
+console.log(`\n${coverage.unmeasured.length} section(s) deliberately unmeasured, all with a recorded reason`);

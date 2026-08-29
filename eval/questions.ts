@@ -142,6 +142,7 @@ export const QUESTIONS: QuestionSpec[] = [
     goldenEvidence: [
       { documentId: "rag/ingestion-and-chunking", section: "the-chunk-is-the-unit-of-retrieval-and-of-citation" },
       { documentId: "rag/ingestion-and-chunking", section: "what-a-chunk-loses-when-it-is-extracted" },
+      { documentId: "rag/ingestion-and-chunking", section: "metadata-is-part-of-ingestion" },
     ],
   },
   {
@@ -157,12 +158,16 @@ export const QUESTIONS: QuestionSpec[] = [
   },
   {
     id: "rag-012",
-    question: "What is cosine similarity and what does it not tell me?",
+    question: "What makes an embedding useful for retrieval, and what does cosine similarity not tell me?",
     domain: "rag",
     expectedCardTypes: ["definition", "mechanism"],
     expectInsufficient: false,
     goldenEvidence: [
       { documentId: "rag/embeddings-and-similarity", section: "cosine-similarity-and-what-it-does-not-say" },
+      { documentId: "rag/embeddings-and-similarity", section: "embeddings-are-trained-for-a-comparison" },
+      { documentId: "rag/embeddings-and-similarity", section: "embeddings-are-trained-for-a-comparison", chunkIndex: 1 },
+      { documentId: "rag/dense-retrieval", section: "the-dependency-nobody-sees-until-it-moves" },
+      { documentId: "rag/embeddings-and-similarity", section: "dimensionality-and-cost" },
     ],
   },
   {
@@ -174,6 +179,7 @@ export const QUESTIONS: QuestionSpec[] = [
     goldenEvidence: [
       { documentId: "rag/query-transformation", section: "the-three-transformations" },
       { documentId: "rag/query-transformation", section: "what-each-one-can-break" },
+      { documentId: "rag/query-transformation", section: "why-the-raw-question-underperforms" },
     ],
   },
   {
@@ -185,6 +191,7 @@ export const QUESTIONS: QuestionSpec[] = [
     goldenEvidence: [
       { documentId: "rag/context-assembly", section: "position-is-not-neutral" },
       { documentId: "rag/context-assembly", section: "more-context-is-not-more-information" },
+      { documentId: "rag/context-assembly", section: "what-assembly-has-to-preserve" },
     ],
   },
   {
@@ -248,24 +255,31 @@ export const QUESTIONS: QuestionSpec[] = [
   },
   {
     id: "rag-024",
-    question: "When is GraphRAG worth its cost compared with plain chunk retrieval?",
+    question: "What do multi-hop, corrective, agentic, and graph RAG each add over plain retrieval?",
     domain: "rag",
-    expectedCardTypes: ["comparison", "mechanism"],
+    expectedCardTypes: ["comparison"],
     expectInsufficient: false,
     goldenEvidence: [
       { documentId: "rag/advanced-patterns", section: "graph-rag" },
       { documentId: "rag/advanced-patterns", section: "choosing" },
+      { documentId: "rag/advanced-patterns", section: "multi-hop" },
+      { documentId: "rag/advanced-patterns", section: "corrective-retrieval" },
+      { documentId: "rag/advanced-patterns", section: "agentic-rag" },
     ],
   },
   {
     id: "rag-025",
-    question: "What does a corpus version need to cover to be reproducible?",
+    question: "Which production concerns shape a corpus-backed retrieval system?",
     domain: "rag",
-    expectedCardTypes: ["mechanism", "procedure"],
+    expectedCardTypes: ["comparison", "definition"],
     expectInsufficient: false,
     goldenEvidence: [
       { documentId: "rag/production-concerns", section: "versioning-is-the-one-that-cannot-be-retrofitted" },
       { documentId: "rag/production-concerns", section: "cache-invalidation" },
+      { documentId: "rag/production-concerns", section: "freshness-and-staleness" },
+      { documentId: "rag/production-concerns", section: "latency-and-where-it-is-spent" },
+      { documentId: "rag/production-concerns", section: "observability" },
+      { documentId: "rag/production-concerns", section: "access-control" },
     ],
   },
   {
@@ -299,6 +313,8 @@ export const QUESTIONS: QuestionSpec[] = [
     goldenEvidence: [
       { documentId: "generative-ui/what-generative-ui-is", section: "body" },
       { documentId: "generative-ui/what-generative-ui-is", section: "a-spectrum-not-a-category" },
+      { documentId: "generative-ui/what-generative-ui-is", section: "what-changes-along-the-spectrum" },
+      { documentId: "generative-ui/what-generative-ui-is", section: "the-distinction-the-term-obscures" },
     ],
   },
   {
@@ -377,6 +393,7 @@ export const QUESTIONS: QuestionSpec[] = [
     expectInsufficient: false,
     goldenEvidence: [
       { documentId: "generative-ui/declarative-ui-schemas", section: "what-a-schema-can-enforce" },
+      { documentId: "generative-ui/declarative-ui-schemas", section: "grammar-size" },
     ],
   },
   {
@@ -420,6 +437,8 @@ export const QUESTIONS: QuestionSpec[] = [
     goldenEvidence: [
       { documentId: "generative-ui/state-continuity", section: "the-distinction-to-hold" },
       { documentId: "generative-ui/state-continuity", section: "why-it-gets-lost-by-default" },
+      { documentId: "generative-ui/state-continuity", section: "the-problem-in-its-simplest-form" },
+      { documentId: "generative-ui/state-continuity", section: "state-as-a-protocol-concern-not-an-application-one" },
     ],
   },
   {
@@ -444,16 +463,20 @@ export const QUESTIONS: QuestionSpec[] = [
       { documentId: "generative-ui/agent-ui-protocols", section: "the-layers" },
       { documentId: "generative-ui/agent-ui-protocols", section: "the-layers", chunkIndex: 1 },
       { documentId: "generative-ui/agent-ui-protocols", section: "the-bet-each-one-makes" },
+      { documentId: "generative-ui/agent-ui-protocols", section: "why-the-event-model-matters" },
     ],
   },
   {
     id: "gui-019",
-    question: "Why does MCP Apps require UI resources to be predeclared?",
+    question: "What are the MCP Apps design decisions, and what argument does each rest on?",
     domain: "generative-ui",
-    expectedCardTypes: ["mechanism"],
+    expectedCardTypes: ["comparison", "mechanism"],
     expectInsufficient: false,
     goldenEvidence: [
       { documentId: "generative-ui/mcp-apps-design", section: "predeclared-resources-rather-than-inline-embedding" },
+      { documentId: "generative-ui/mcp-apps-design", section: "reusing-json-rpc-rather-than-a-custom-protocol" },
+      { documentId: "generative-ui/mcp-apps-design", section: "html-only-deliberately" },
+      { documentId: "generative-ui/mcp-apps-design", section: "the-security-model" },
     ],
   },
   {
@@ -486,6 +509,7 @@ export const QUESTIONS: QuestionSpec[] = [
     goldenEvidence: [
       { documentId: "generative-ui/accessibility-of-generated-interfaces", section: "why-the-level-of-generation-decides-the-outcome" },
       { documentId: "generative-ui/accessibility-of-generated-interfaces", section: "semantics-are-what-assistive-technology-reads" },
+      { documentId: "generative-ui/accessibility-of-generated-interfaces", section: "what-generation-still-breaks-in-a-bounded-vocabulary" },
     ],
   },
   {
@@ -497,6 +521,7 @@ export const QUESTIONS: QuestionSpec[] = [
     goldenEvidence: [
       { documentId: "generative-ui/evaluating-generated-interfaces", section: "three-kinds-of-measurement" },
       { documentId: "generative-ui/evaluating-generated-interfaces", section: "the-metrics-that-matter-and-what-each-is-for" },
+      { documentId: "generative-ui/evaluating-generated-interfaces", section: "the-comparison-has-to-be-designed-not-assembled" },
     ],
   },
   {
@@ -529,6 +554,8 @@ export const QUESTIONS: QuestionSpec[] = [
     goldenEvidence: [
       { documentId: "intersection/choosing-a-ui-from-knowledge-structure", section: "two-signals-and-they-disagree" },
       { documentId: "intersection/choosing-a-ui-from-knowledge-structure", section: "when-the-evidence-has-no-usable-shape" },
+      { documentId: "intersection/choosing-a-ui-from-knowledge-structure", section: "structure-is-not-in-the-text" },
+      { documentId: "intersection/choosing-a-ui-from-knowledge-structure", section: "what-the-citation-work-suggests-about-the-harder-version" },
     ],
   },
   {
@@ -550,6 +577,7 @@ export const QUESTIONS: QuestionSpec[] = [
     expectInsufficient: false,
     goldenEvidence: [
       { documentId: "intersection/evidence-aware-cards", section: "what-evidence-aware-has-to-mean-to-be-worth-anything" },
+      { documentId: "intersection/evidence-aware-cards", section: "cheap-traversal-is-the-point" },
     ],
   },
   {
@@ -572,6 +600,7 @@ export const QUESTIONS: QuestionSpec[] = [
     goldenEvidence: [
       { documentId: "intersection/field-level-citation", section: "granularity-and-what-each-level-permits" },
       { documentId: "intersection/field-level-citation", section: "the-property-structure-adds" },
+      { documentId: "intersection/field-level-citation", section: "attribution-needs-a-unit-to-attribute" },
     ],
   },
   {
@@ -593,6 +622,8 @@ export const QUESTIONS: QuestionSpec[] = [
     goldenEvidence: [
       { documentId: "intersection/ui-driven-retrieval", section: "the-division-that-matters" },
       { documentId: "intersection/ui-driven-retrieval", section: "a-ui-action-is-a-better-query-than-a-rephrased-question" },
+      { documentId: "intersection/ui-driven-retrieval", section: "constrained-hops-not-an-autonomous-loop" },
+      { documentId: "intersection/ui-driven-retrieval", section: "what-a-follow-up-must-not-break" },
     ],
   },
   {
@@ -604,6 +635,7 @@ export const QUESTIONS: QuestionSpec[] = [
     goldenEvidence: [
       { documentId: "intersection/card-state-across-turns", section: "identity-has-to-survive-the-turn" },
       { documentId: "intersection/card-state-across-turns", section: "evidence-identity-underneath" },
+      { documentId: "intersection/card-state-across-turns", section: "three-states-and-only-one-is-disposable" },
     ],
   },
   {

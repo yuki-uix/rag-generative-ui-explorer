@@ -52,22 +52,45 @@ quantity a reviewer skims.
 | | Count |
 | --- | --- |
 | Questions | 60 |
-| Golden evidence references | 109 |
+| Golden evidence references | 141 |
 | RAG / Generative UI / Intersection | 25 / 23 / 12 |
 | Deliberately unanswerable | 6 |
 
 The domain split is proportional to the corpus, asserted with a tolerance of
 two questions rather than by eye.
 
-**Every note is drawn on by at least one question**, also asserted. A note no
-question touches is corpus that never gets measured, and the first version of
-this set left two notes untouched — a gap in the questions rather than in the
-corpus.
+**Coverage is checked per section, not per note.** A note-level check passes
+while an entire section goes unmeasured, which is how the first version of this
+set left `embeddings-are-trained-for-a-comparison` — the central argument of its
+note — with no question drawing on it, while the check stayed green because
+other sections of that note were cited.
+
+A section carrying no golden evidence must either gain a question or appear in
+`UNMEASURED_SECTIONS` with a written reason. Silence is not an option, and
+neither is a stale exemption: an exemption naming a section that turns out to be
+measured fails validation, because an exemption nobody needs is a standing
+permission rather than a judgement. Three of the first ten were stale.
+
+Currently 74 sections are deliberately unmeasured, almost all of them structural
+— every note's preamble and its closing `What this means here`, neither of which
+answers a knowledge question about the note's subject.
 
 The unanswerable questions are adjacent to covered topics rather than absurd:
 vector database pricing, embedding benchmark scores, pgvector tuning. A system
 that only declines obviously off-topic questions has not been tested on the case
 that matters, which is a plausible question the corpus happens not to cover.
+
+## Who labelled this
+
+The questions, the golden evidence, and the acceptable card-type sets were all
+written by the same person who wrote the notes. That is worth knowing before
+reading any number derived from them.
+
+It matters most for Recall@K, whose denominator is entirely determined by these
+labels: a chunk a correct answer needs but the label omits will be scored as
+noise when retrieval finds it. Whether a cited chunk genuinely supports its
+question is a judgement, and no check can be built for it — the mechanical
+checks here establish that the labels resolve, not that they are right.
 
 ## Sample size
 

@@ -6,6 +6,7 @@ import {
   parseEvalSet,
   resolveGoldenEvidence,
   EvalQuestion,
+  uncoveredSections,
   type EvalSet,
 } from '../src/eval-set.js';
 import { buildManifest } from '../src/manifest.js';
@@ -172,5 +173,34 @@ describe('the committed question set', () => {
   it('exercises every approved card type in its expected labels', () => {
     const labelled = new Set(set!.questions.flatMap((q) => q.expectedCardTypes));
     expect([...CARD_TYPES].filter((type) => !labelled.has(type))).toEqual([]);
+  });
+});
+
+describe('section-level coverage', () => {
+  const { manifest } = buildManifest(resolve(repoRoot, 'knowledge'));
+  const chunkIds = manifest.documents.flatMap((document) =>
+    chunkNote(
+      document.documentId,
+      parseNote(document.path, readFileSync(resolve(repoRoot, document.path), 'utf8')).body,
+    ).map((chunk) => chunk.evidenceId),
+  );
+  const { set } = parseEvalSet(readFileSync(resolve(repoRoot, 'eval/questions.jsonl'), 'utf8'));
+  const coverage = uncoveredSections(set!, chunkIds);
+
+  /**
+   * The note-level check this replaces stayed green while a note's central
+   * argument went unmeasured, because other sections of that note were cited.
+   */
+  it('leaves no section unmeasured without a recorded reason', () => {
+    expect(coverage.unexplained.map((entry) => `${entry.documentId}#${entry.section}`)).toEqual([]);
+  });
+
+  /** An exemption nobody needs is a standing permission, not a judgement. */
+  it('carries no exemption for a section that is measured after all', () => {
+    expect(coverage.staleExemptions).toEqual([]);
+  });
+
+  it('gives every unmeasured section a reason', () => {
+    for (const entry of coverage.unmeasured) expect(entry.exemptReason).toBeTruthy();
   });
 });
