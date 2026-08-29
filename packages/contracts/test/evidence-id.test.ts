@@ -105,3 +105,20 @@ describe('slugify', () => {
     expect(slugify('!!!')).toBe('body');
   });
 });
+
+describe('timestamp offsets', () => {
+  it('accepts a local UTC offset as well as Z', async () => {
+    const { Evidence } = await import('../src/index.js');
+    const base = {
+      id: 'rag/a#body#0-0123abcd',
+      documentId: 'rag/a',
+      documentTitle: 'A',
+      text: 'text',
+      retrievalScore: 1,
+      metadata: {},
+    };
+    expect(Evidence.safeParse({ ...base, updatedAt: '2026-08-29T10:00:00Z' }).success).toBe(true);
+    expect(Evidence.safeParse({ ...base, updatedAt: '2026-08-29T18:00:00+08:00' }).success).toBe(true);
+    expect(Evidence.safeParse({ ...base, updatedAt: '2026-08-29 18:00:00' }).success).toBe(false);
+  });
+});

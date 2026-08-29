@@ -17,12 +17,12 @@ export const ResponseMetadata = z
   .discriminatedUnion('incomplete', [
     z.strictObject({
       knowledgeBaseVersion: z.string().min(1),
-      generatedAt: z.iso.datetime(),
+      generatedAt: z.iso.datetime({ offset: true }),
       incomplete: z.literal(false),
     }),
     z.strictObject({
       knowledgeBaseVersion: z.string().min(1),
-      generatedAt: z.iso.datetime(),
+      generatedAt: z.iso.datetime({ offset: true }),
       incomplete: z.literal(true),
       /** `missing`: the corpus has no answer. `conflicting`: sources disagree. */
       incompleteReason: z.enum(['missing', 'conflicting']),

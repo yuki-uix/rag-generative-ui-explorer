@@ -62,3 +62,8 @@ these constants rather than re-listing the types.
 `scripts/generate-fixtures.ts` so their evidence IDs are produced by the real
 `makeEvidenceId`, not written by hand. Every invalid fixture names the rule it
 violates.
+
+Fixture coverage is itself asserted: `contracts.test.ts` derives from
+`CARD_TYPES`, `ACTION_KINDS`, and the three grounding modes, and fails when any
+of them has no valid fixture. The first version of this package exercised two of
+five card types and nothing complained, because nothing was asking.

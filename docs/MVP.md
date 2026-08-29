@@ -91,7 +91,10 @@ the corpus rather than being rewritten by the model.
 3. Direct excerpts are stored separately from generated summaries.
 4. Generated content is labeled as `extractive`, `summarized`, or `inferred`.
 5. Inferred content must be visibly distinguishable and cite supporting evidence.
-6. If evidence is missing or conflicting, the response marks itself incomplete.
+6. If evidence is missing or conflicting, the response marks itself
+   incomplete and states which of the two occurred. The two cases are
+   reported separately, and insufficient-evidence detection accuracy is
+   measured against that distinction.
 7. The renderer never converts unverified model output into a card.
 
 ## Success metrics

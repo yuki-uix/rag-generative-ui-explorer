@@ -33,7 +33,11 @@ export const Evidence = z
     /** Verbatim corpus text. Never a model rewrite — see grounding rule 3. */
     text: z.string().min(1),
     url: z.url().optional(),
-    updatedAt: z.iso.datetime().optional(),
+    /**
+     * Accepts a UTC offset, not only `Z`. Note frontmatter is written by hand,
+     * so local-offset timestamps are the norm rather than the exception.
+     */
+    updatedAt: z.iso.datetime({ offset: true }).optional(),
     retrievalScore: z.number(),
     rerankScore: z.number().optional(),
     metadata: EvidenceMetadata,
