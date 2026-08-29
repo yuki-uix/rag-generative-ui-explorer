@@ -1,8 +1,534 @@
 {
-  "corpusVersion": "corpus-7ca544304374",
-  "documentCount": 15,
-  "sourceCount": 24,
+  "corpusVersion": "corpus-a4520029e1c5",
+  "documentCount": 29,
+  "sourceCount": 56,
   "documents": [
+    {
+      "documentId": "generative-ui/accessibility-of-generated-interfaces",
+      "path": "knowledge/generative-ui/accessibility-of-generated-interfaces.md",
+      "title": "Accessibility of generated interfaces",
+      "domain": "generative-ui",
+      "author": "yuki-uix",
+      "revised": "2026-08-29",
+      "summary": "Why accessibility is a property of the component vocabulary rather than of any individual generated rendering, and what that implies about where it is enforced.",
+      "tags": [
+        "genui-quality-attributes"
+      ],
+      "sources": [
+        {
+          "sourceType": "specification",
+          "title": "Accessible Rich Internet Applications (WAI-ARIA) 1.2",
+          "url": "https://www.w3.org/TR/wai-aria-1.2/",
+          "author": "W3C",
+          "published": "2023-06-06",
+          "retrieved": "2026-08-29",
+          "license": "W3C Recommendation, 06 June 2023. W3C Document Licence; short attributed quotations only.",
+          "primary": true
+        },
+        {
+          "sourceType": "documentation",
+          "title": "ARIA Authoring Practices Guide",
+          "url": "https://www.w3.org/WAI/ARIA/apg/",
+          "author": "W3C Web Accessibility Initiative",
+          "retrieved": "2026-08-29",
+          "license": "Living documentation; no publication date stated. Short attributed quotations only.",
+          "primary": false
+        }
+      ],
+      "contentHash": "f80689e7052f83e2",
+      "metadataHash": "c8fbc9c657a32b89"
+    },
+    {
+      "documentId": "generative-ui/agent-ui-protocols",
+      "path": "knowledge/generative-ui/agent-ui-protocols.md",
+      "title": "Agent-UI protocols",
+      "domain": "generative-ui",
+      "author": "yuki-uix",
+      "revised": "2026-08-29",
+      "summary": "AG-UI, A2UI, and MCP Apps occupy different layers and make different bets about where rendering authority sits.",
+      "tags": [
+        "agent-ui-protocols"
+      ],
+      "sources": [
+        {
+          "sourceType": "documentation",
+          "title": "AG-UI Overview",
+          "url": "https://docs.ag-ui.com/",
+          "author": "AG-UI Protocol contributors",
+          "retrieved": "2026-08-29",
+          "license": "Living documentation; no publication date stated. Short attributed quotations only.",
+          "primary": true
+        },
+        {
+          "sourceType": "documentation",
+          "title": "A2UI: Agent-to-User Interface",
+          "url": "https://github.com/a2ui-project/a2ui",
+          "author": "A2UI Project contributors",
+          "retrieved": "2026-08-29",
+          "license": "Apache-2.0. Short attributed quotations only; no publication date stated.",
+          "primary": false
+        },
+        {
+          "sourceType": "specification",
+          "title": "SEP-1865: MCP Apps - Interactive User Interfaces for MCP",
+          "url": "https://modelcontextprotocol.io/seps/1865-mcp-apps-interactive-user-interfaces-for-mcp",
+          "author": "Ido Salomon, Liad Yosef, Olivier Chafik et al.",
+          "published": "2025-11-21",
+          "retrieved": "2026-08-29",
+          "license": "Status Final, Extensions Track. Short attributed quotations only; published is the SEP Created date.",
+          "primary": false
+        },
+        {
+          "sourceType": "documentation",
+          "title": "What is the Model Context Protocol (MCP)?",
+          "url": "https://modelcontextprotocol.io/",
+          "author": "Model Context Protocol contributors",
+          "retrieved": "2026-08-29",
+          "license": "Living documentation; no publication date stated. Short attributed quotations only.",
+          "primary": false
+        }
+      ],
+      "contentHash": "4fed60e88daa5006",
+      "metadataHash": "9f1ef98e2c44e693"
+    },
+    {
+      "documentId": "generative-ui/component-registries",
+      "path": "knowledge/generative-ui/component-registries.md",
+      "title": "Component registries and tool-to-component mapping",
+      "domain": "generative-ui",
+      "author": "yuki-uix",
+      "revised": "2026-08-29",
+      "summary": "Mapping a model's structured output to reviewed components by a discriminator, and why the mapping must be a closed lookup rather than a dynamic resolution.",
+      "tags": [
+        "component-registries"
+      ],
+      "sources": [
+        {
+          "sourceType": "documentation",
+          "title": "Generative User Interfaces",
+          "url": "https://ai-sdk.dev/docs/ai-sdk-ui/generative-user-interfaces",
+          "author": "Vercel",
+          "retrieved": "2026-08-29",
+          "license": "Living documentation; no publication date stated. Short attributed quotations only.",
+          "primary": true
+        },
+        {
+          "sourceType": "documentation",
+          "title": "A2UI: Agent-to-User Interface",
+          "url": "https://github.com/a2ui-project/a2ui",
+          "author": "A2UI Project contributors",
+          "retrieved": "2026-08-29",
+          "license": "Apache-2.0. Short attributed quotations only; no publication date stated.",
+          "primary": false
+        }
+      ],
+      "contentHash": "ebe66e11361da7b0",
+      "metadataHash": "d2e2c3d910055f12"
+    },
+    {
+      "documentId": "generative-ui/declarative-ui-schemas",
+      "path": "knowledge/generative-ui/declarative-ui-schemas.md",
+      "title": "Declarative UI schemas and UI grammars",
+      "domain": "generative-ui",
+      "author": "yuki-uix",
+      "revised": "2026-08-29",
+      "summary": "Describing an interface as validated data rather than code, what a schema can and cannot constrain, and why the renderer keeps authority over presentation.",
+      "tags": [
+        "declarative-ui-schemas"
+      ],
+      "sources": [
+        {
+          "sourceType": "documentation",
+          "title": "A2UI: Agent-to-User Interface",
+          "url": "https://github.com/a2ui-project/a2ui",
+          "author": "A2UI Project contributors",
+          "retrieved": "2026-08-29",
+          "license": "Apache-2.0. Short attributed quotations only; no publication date stated.",
+          "primary": true
+        },
+        {
+          "sourceType": "documentation",
+          "title": "Adaptive Cards",
+          "url": "https://adaptivecards.io/",
+          "author": "Microsoft",
+          "retrieved": "2026-08-29",
+          "license": "Living documentation; no publication date stated. Short attributed quotations only.",
+          "primary": false
+        },
+        {
+          "sourceType": "documentation",
+          "title": "JSON Schema",
+          "url": "https://json-schema.org/",
+          "author": "JSON Schema organization",
+          "retrieved": "2026-08-29",
+          "license": "Living documentation; no publication date stated. Short attributed quotations only.",
+          "primary": false
+        }
+      ],
+      "contentHash": "aff160ed1e488b4d",
+      "metadataHash": "4717c9ae3afd9492"
+    },
+    {
+      "documentId": "generative-ui/design-time-and-runtime-generation",
+      "path": "knowledge/generative-ui/design-time-and-runtime-generation.md",
+      "title": "Design-time and runtime generation",
+      "domain": "generative-ui",
+      "author": "yuki-uix",
+      "revised": "2026-08-29",
+      "summary": "Generating an interface before anyone uses it versus generating one per request, and why the second inherits problems the first never had.",
+      "tags": [
+        "design-time-vs-runtime"
+      ],
+      "sources": [
+        {
+          "sourceType": "paper",
+          "title": "Automatically Generating Personalized User Interfaces with Supple",
+          "url": "https://www.eecs.harvard.edu/~kgajos/papers/2010/gajos10supple-aij.pdf",
+          "author": "Krzysztof Z. Gajos, Daniel S. Weld, and Jacob O. Wobbrock",
+          "published": "2010",
+          "retrieved": "2026-08-29",
+          "license": "Artificial Intelligence journal. Author-hosted copy; short attributed quotations only.",
+          "primary": true
+        }
+      ],
+      "contentHash": "5a231f0b5aff0d78",
+      "metadataHash": "2b52cc834655cfc3"
+    },
+    {
+      "documentId": "generative-ui/evaluating-generated-interfaces",
+      "path": "knowledge/generative-ui/evaluating-generated-interfaces.md",
+      "title": "Evaluating generated interfaces",
+      "domain": "generative-ui",
+      "author": "yuki-uix",
+      "revised": "2026-08-29",
+      "summary": "Task completion, correction rate, comprehension, consistency, and preference — which are mechanical, which need people, and which a model can grade.",
+      "tags": [
+        "genui-evaluation"
+      ],
+      "sources": [
+        {
+          "sourceType": "paper",
+          "title": "UIClip: A Data-driven Model for Assessing User Interface Design",
+          "url": "https://arxiv.org/abs/2404.12500",
+          "author": "Jason Wu, Yi-Hao Peng, Amanda Li et al.",
+          "published": "2024-04-18",
+          "retrieved": "2026-08-29",
+          "license": "arXiv preprint, arXiv:2404.12500. Non-exclusive licence to distribute; short attributed quotations only. published is the v1 submission date.",
+          "primary": true
+        },
+        {
+          "sourceType": "paper",
+          "title": "Automatically Generating Personalized User Interfaces with Supple",
+          "url": "https://www.eecs.harvard.edu/~kgajos/papers/2010/gajos10supple-aij.pdf",
+          "author": "Krzysztof Z. Gajos, Daniel S. Weld, and Jacob O. Wobbrock",
+          "published": "2010",
+          "retrieved": "2026-08-29",
+          "license": "Artificial Intelligence journal. Author-hosted copy; short attributed quotations only.",
+          "primary": false
+        }
+      ],
+      "contentHash": "9584a346bdbb19e5",
+      "metadataHash": "5a8d2e23d551908b"
+    },
+    {
+      "documentId": "generative-ui/levels-of-generation",
+      "path": "knowledge/generative-ui/levels-of-generation.md",
+      "title": "Levels of generation",
+      "domain": "generative-ui",
+      "author": "yuki-uix",
+      "revised": "2026-08-29",
+      "summary": "Content, component, layout, behaviour, and whole-application generation, and why the level a system generates at determines what can go wrong.",
+      "tags": [
+        "generation-levels"
+      ],
+      "sources": [
+        {
+          "sourceType": "documentation",
+          "title": "A2UI: Agent-to-User Interface",
+          "url": "https://github.com/a2ui-project/a2ui",
+          "author": "A2UI Project contributors",
+          "retrieved": "2026-08-29",
+          "license": "Apache-2.0. Short attributed quotations only; no publication date stated.",
+          "primary": true
+        },
+        {
+          "sourceType": "specification",
+          "title": "SEP-1865: MCP Apps - Interactive User Interfaces for MCP",
+          "url": "https://modelcontextprotocol.io/seps/1865-mcp-apps-interactive-user-interfaces-for-mcp",
+          "author": "Ido Salomon, Liad Yosef, Olivier Chafik et al.",
+          "published": "2025-11-21",
+          "retrieved": "2026-08-29",
+          "license": "Status Final, Extensions Track. Short attributed quotations only; published is the SEP Created date.",
+          "primary": false
+        }
+      ],
+      "contentHash": "02bb0e5442434e32",
+      "metadataHash": "3150b3d2aaad19d5"
+    },
+    {
+      "documentId": "generative-ui/mcp-apps-design",
+      "path": "knowledge/generative-ui/mcp-apps-design.md",
+      "title": "The MCP Apps design decisions",
+      "domain": "generative-ui",
+      "author": "yuki-uix",
+      "revised": "2026-08-29",
+      "summary": "Predeclared UI resources, reused JSON-RPC, and an HTML-only first version — three choices whose stated rationale is mostly about what can be reviewed.",
+      "tags": [
+        "agent-ui-protocols",
+        "sandboxed-html"
+      ],
+      "sources": [
+        {
+          "sourceType": "specification",
+          "title": "SEP-1865: MCP Apps - Interactive User Interfaces for MCP",
+          "url": "https://modelcontextprotocol.io/seps/1865-mcp-apps-interactive-user-interfaces-for-mcp",
+          "author": "Ido Salomon, Liad Yosef, Olivier Chafik et al.",
+          "published": "2025-11-21",
+          "retrieved": "2026-08-29",
+          "license": "Status Final, Extensions Track. Short attributed quotations only; published is the SEP Created date.",
+          "primary": true
+        },
+        {
+          "sourceType": "specification",
+          "title": "MCP Apps extension specification, revision 2026-01-26",
+          "url": "https://github.com/modelcontextprotocol/ext-apps/blob/main/specification/2026-01-26/apps.mdx",
+          "author": "Model Context Protocol contributors",
+          "published": "2026-01-26",
+          "retrieved": "2026-08-29",
+          "license": "Short attributed quotations only; published is the dated specification revision.",
+          "primary": false
+        }
+      ],
+      "contentHash": "45bd05147624bed3",
+      "metadataHash": "61e3dab1582f8e13"
+    },
+    {
+      "documentId": "generative-ui/mixed-initiative-interaction",
+      "path": "knowledge/generative-ui/mixed-initiative-interaction.md",
+      "title": "Mixed-initiative interaction",
+      "domain": "generative-ui",
+      "author": "yuki-uix",
+      "revised": "2026-08-29",
+      "summary": "Principles for coupling automated action with direct manipulation, and why the twenty-five-year-old formulation still describes today's failures.",
+      "tags": [
+        "mixed-initiative"
+      ],
+      "sources": [
+        {
+          "sourceType": "paper",
+          "title": "Principles of Mixed-Initiative User Interfaces",
+          "url": "https://erichorvitz.com/chi99horvitz.pdf",
+          "author": "Eric Horvitz",
+          "published": "1999-05",
+          "retrieved": "2026-08-29",
+          "license": "CHI 1999, pages 159-166, DOI 10.1145/302979.303030. Author-hosted copy; short attributed quotations only.",
+          "primary": true
+        }
+      ],
+      "contentHash": "8783f168e6c9be82",
+      "metadataHash": "8718b4de1ed82588"
+    },
+    {
+      "documentId": "generative-ui/predictability-and-user-control",
+      "path": "knowledge/generative-ui/predictability-and-user-control.md",
+      "title": "Predictability and user control",
+      "domain": "generative-ui",
+      "author": "yuki-uix",
+      "revised": "2026-08-29",
+      "summary": "An interface that varies per response cannot be learned, and visual authority that exceeds the underlying evidence is a failure the user cannot see.",
+      "tags": [
+        "genui-quality-attributes"
+      ],
+      "sources": [
+        {
+          "sourceType": "paper",
+          "title": "Principles of Mixed-Initiative User Interfaces",
+          "url": "https://erichorvitz.com/chi99horvitz.pdf",
+          "author": "Eric Horvitz",
+          "published": "1999-05",
+          "retrieved": "2026-08-29",
+          "license": "CHI 1999, pages 159-166, DOI 10.1145/302979.303030. Author-hosted copy; short attributed quotations only.",
+          "primary": true
+        },
+        {
+          "sourceType": "documentation",
+          "title": "Malleable Software",
+          "url": "https://www.inkandswitch.com/malleable-software/",
+          "author": "Ink & Switch",
+          "retrieved": "2026-08-29",
+          "license": "Research programme page; no author or publication date stated. Short attributed quotations only.",
+          "primary": false
+        }
+      ],
+      "contentHash": "41bccaa2a72c30cf",
+      "metadataHash": "e5c1c0a1211ea5a1"
+    },
+    {
+      "documentId": "generative-ui/sandboxed-html-generation",
+      "path": "knowledge/generative-ui/sandboxed-html-generation.md",
+      "title": "Sandboxed open-ended HTML generation",
+      "domain": "generative-ui",
+      "author": "yuki-uix",
+      "revised": "2026-08-29",
+      "summary": "What a sandbox actually contains when a model emits markup, which browser mechanisms do the containing, and what no sandbox can give back.",
+      "tags": [
+        "sandboxed-html"
+      ],
+      "sources": [
+        {
+          "sourceType": "specification",
+          "title": "SEP-1865: MCP Apps - Interactive User Interfaces for MCP",
+          "url": "https://modelcontextprotocol.io/seps/1865-mcp-apps-interactive-user-interfaces-for-mcp",
+          "author": "Ido Salomon, Liad Yosef, Olivier Chafik et al.",
+          "published": "2025-11-21",
+          "retrieved": "2026-08-29",
+          "license": "Status Final, Extensions Track. Short attributed quotations only; published is the SEP Created date.",
+          "primary": true
+        },
+        {
+          "sourceType": "documentation",
+          "title": "<iframe> HTML inline frame element",
+          "url": "https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Elements/iframe",
+          "author": "MDN contributors",
+          "published": "2026-08-04",
+          "retrieved": "2026-08-29",
+          "license": "CC BY-SA 2.5. Short attributed quotations only; published is the page last-modified date.",
+          "primary": false
+        },
+        {
+          "sourceType": "documentation",
+          "title": "Content Security Policy (CSP)",
+          "url": "https://developer.mozilla.org/en-US/docs/Web/HTTP/Guides/CSP",
+          "author": "MDN contributors",
+          "published": "2026-03-22",
+          "retrieved": "2026-08-29",
+          "license": "CC BY-SA 2.5. Short attributed quotations only; published is the page last-modified date.",
+          "primary": false
+        }
+      ],
+      "contentHash": "5f424a5857cb1fb8",
+      "metadataHash": "b72991ddd2fdd18a"
+    },
+    {
+      "documentId": "generative-ui/state-continuity",
+      "path": "knowledge/generative-ui/state-continuity.md",
+      "title": "State continuity and malleable interfaces",
+      "domain": "generative-ui",
+      "author": "yuki-uix",
+      "revised": "2026-08-29",
+      "summary": "What happens to what the user did when the interface is regenerated, and why state has to outlive the rendering that produced it.",
+      "tags": [
+        "state-continuity"
+      ],
+      "sources": [
+        {
+          "sourceType": "documentation",
+          "title": "Malleable Software",
+          "url": "https://www.inkandswitch.com/malleable-software/",
+          "author": "Ink & Switch",
+          "retrieved": "2026-08-29",
+          "license": "Research programme page; no author or publication date stated. Short attributed quotations only.",
+          "primary": true
+        },
+        {
+          "sourceType": "documentation",
+          "title": "AG-UI Overview",
+          "url": "https://docs.ag-ui.com/",
+          "author": "AG-UI Protocol contributors",
+          "retrieved": "2026-08-29",
+          "license": "Living documentation; no publication date stated. Short attributed quotations only.",
+          "primary": false
+        }
+      ],
+      "contentHash": "22da2560ed7f6a93",
+      "metadataHash": "e69ed7dc9497c4e2"
+    },
+    {
+      "documentId": "generative-ui/streaming-and-incremental-rendering",
+      "path": "knowledge/generative-ui/streaming-and-incremental-rendering.md",
+      "title": "Streaming and incremental rendering",
+      "domain": "generative-ui",
+      "author": "yuki-uix",
+      "revised": "2026-08-29",
+      "summary": "Why streaming text is easy and streaming a validated structure is not, and the trade between showing partial output early and never showing an invalid one.",
+      "tags": [
+        "streaming-rendering"
+      ],
+      "sources": [
+        {
+          "sourceType": "documentation",
+          "title": "Generative User Interfaces",
+          "url": "https://ai-sdk.dev/docs/ai-sdk-ui/generative-user-interfaces",
+          "author": "Vercel",
+          "retrieved": "2026-08-29",
+          "license": "Living documentation; no publication date stated. Short attributed quotations only.",
+          "primary": true
+        },
+        {
+          "sourceType": "documentation",
+          "title": "Server Components",
+          "url": "https://react.dev/reference/rsc/server-components",
+          "author": "React team, Meta",
+          "retrieved": "2026-08-29",
+          "license": "Living documentation; no publication date stated. Short attributed quotations only.",
+          "primary": false
+        },
+        {
+          "sourceType": "documentation",
+          "title": "AG-UI Overview",
+          "url": "https://docs.ag-ui.com/",
+          "author": "AG-UI Protocol contributors",
+          "retrieved": "2026-08-29",
+          "license": "Living documentation; no publication date stated. Short attributed quotations only.",
+          "primary": false
+        }
+      ],
+      "contentHash": "58b7ce429ac76044",
+      "metadataHash": "017394f4c1ce5085"
+    },
+    {
+      "documentId": "generative-ui/what-generative-ui-is",
+      "path": "knowledge/generative-ui/what-generative-ui-is.md",
+      "title": "What generative UI is",
+      "domain": "generative-ui",
+      "author": "yuki-uix",
+      "revised": "2026-08-29",
+      "summary": "The boundary between an interface a model populates and an interface a model authors, and why that line decides what can be reviewed.",
+      "tags": [
+        "genui-definitions"
+      ],
+      "sources": [
+        {
+          "sourceType": "documentation",
+          "title": "AG-UI Overview",
+          "url": "https://docs.ag-ui.com/",
+          "author": "AG-UI Protocol contributors",
+          "retrieved": "2026-08-29",
+          "license": "Living documentation; no publication date stated. Short attributed quotations only.",
+          "primary": true
+        },
+        {
+          "sourceType": "documentation",
+          "title": "A2UI: Agent-to-User Interface",
+          "url": "https://github.com/a2ui-project/a2ui",
+          "author": "A2UI Project contributors",
+          "retrieved": "2026-08-29",
+          "license": "Apache-2.0. Short attributed quotations only; no publication date stated.",
+          "primary": false
+        },
+        {
+          "sourceType": "documentation",
+          "title": "Generative User Interfaces",
+          "url": "https://ai-sdk.dev/docs/ai-sdk-ui/generative-user-interfaces",
+          "author": "Vercel",
+          "retrieved": "2026-08-29",
+          "license": "Living documentation; no publication date stated. Short attributed quotations only.",
+          "primary": false
+        }
+      ],
+      "contentHash": "67ab21b9d3d352f2",
+      "metadataHash": "94fddcc8d46d7cac"
+    },
     {
       "documentId": "rag/advanced-patterns",
       "path": "knowledge/rag/advanced-patterns.md",

@@ -223,3 +223,38 @@ describe('empty source lists', () => {
     expect(parsed.sources).toEqual([]);
   });
 });
+
+describe('undated documentation', () => {
+  const doc = {
+    sourceType: 'documentation' as const,
+    title: 'AI SDK UI: Generative User Interfaces',
+    url: 'https://ai-sdk.dev/docs/ai-sdk-ui/generative-user-interfaces',
+    author: 'Vercel',
+    retrieved: '2026-08-28',
+    license: 'Vendor documentation. Short attributed quotations only.',
+    primary: true,
+  };
+
+  /**
+   * Living documentation frequently states no publication date. Requiring one
+   * would mean inventing it — the same fabrication partial dates exist to
+   * avoid.
+   */
+  it('accepts documentation with no publication date', () => {
+    expect(NoteFrontmatter.safeParse({ ...note, sources: [doc] }).success).toBe(true);
+  });
+
+  it('still requires a date from a paper or a specification', () => {
+    for (const sourceType of ['paper', 'specification'] as const) {
+      const result = NoteFrontmatter.safeParse({ ...note, sources: [{ ...doc, sourceType }] });
+      expect(result.success, sourceType).toBe(false);
+      expect(JSON.stringify(result.error?.issues)).toMatch(/states a publication date/);
+    }
+  });
+
+  it('still requires a retrieval date, the only currency signal an undated source has', () => {
+    expect(
+      NoteFrontmatter.safeParse({ ...note, sources: [without(doc, 'retrieved')] }).success,
+    ).toBe(false);
+  });
+});
