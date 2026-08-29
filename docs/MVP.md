@@ -113,7 +113,8 @@ a single run of one is a sample, not a measurement.
 
 ### Retrieval and grounding
 
-- Retrieval Recall@10 on the evaluation set.
+- Retrieval Recall@10 on the evaluation set. Deterministic only while no model
+  sits in the retrieval path; query rewriting and reranking each move it.
 - Citation precision.
 - Citation completeness at the card-field level.
 - Unsupported-claim rate.

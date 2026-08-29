@@ -1,5 +1,12 @@
 # Evaluation protocol
 
+**Version 1, written 2026-08-29.** The API facts below were checked against
+Anthropic's model documentation on that date. They are properties of a specific
+model at a specific time and will go stale without warning — the sampling
+parameters this protocol reports as absent existed on earlier models. Re-check
+them when the pinned model changes, and bump this version when any pinned
+variable or classification changes.
+
 What every evaluation run must pin, record, and report. The MVP exit criteria in
 [MVP](../docs/MVP.md) reference this file; a number produced outside these rules
 is not comparable to one produced inside them and should be discarded rather
@@ -30,8 +37,13 @@ This is the part that would have been written wrong from memory, so it is stated
 first.
 
 **`temperature`, `top_p`, and `top_k` are removed on `claude-opus-5`.** Sending
-any of them returns HTTP 400. There is no seed parameter either. Nothing in the
-request makes generation deterministic.
+any of them returns HTTP 400.
+
+No determinism control appears anywhere in the documented request surface for
+this model — not a sampling parameter, not a seed. That is a statement about
+what the documentation covers, not a proof that no such parameter exists
+anywhere; but nothing available to this harness makes generation repeatable, so
+the protocol is built on the assumption that it cannot be.
 
 The lever that exists instead is `output_config.effort`, which takes `low`,
 `medium`, `high` (the default), `xhigh`, and `max`. It trades thoroughness
@@ -75,9 +87,9 @@ need people and carry their own small-n caveat.
 
 | Metric | Class | Why |
 | --- | --- | --- |
-| Retrieval Recall@10 | **Mechanical** | Retrieval is deterministic given a fixed corpus, index, and query. Becomes model-dependent the moment query rewriting is enabled, and must be reclassified then. |
+| Retrieval Recall@10 | **Mechanical only while the pipeline has no model in it** | Lexical, dense, and fusion are all deterministic given a fixed corpus, index, and query. **Two in-scope features move it:** query rewriting puts a model before retrieval, and reranking selects which 10 of the candidates are counted — reranking cannot change recall over the *candidate set*, but Recall@**10** is a smaller K, so it changes which documents fall inside it. With either enabled this is model-dependent and needs repetitions, and it is the gate metric, so misclassifying it costs the most. |
 | Citation precision | **Model-dependent** | Which passages the model cites varies per run. |
-| Citation completeness at field level | **Mechanical** | Whether every factual field carries a reference is a property of the response object. |
+| Citation completeness at field level | **Schema invariant, not a metric** | A factual field without a reference fails validation and never renders, so among rendered responses this is 100% by construction. Worth stating as an exit criterion because it is binary and checkable; worth *not* reporting as a measurement, because a number that is always 1.0 tells a reader nothing. |
 | Unsupported-claim rate | **Model-dependent** | Requires judging whether a passage supports a claim. |
 | Insufficient-evidence detection accuracy | **Model-dependent** | Scored against the `expectInsufficient` labels; the decision is the model's. |
 
@@ -111,7 +123,7 @@ argue about.
 
 ## Cost accounting
 
-Report token spend in three separate figures, never one total:
+Report token spend as four separate figures, never one total:
 
 | Figure | Field | Relative cost |
 | --- | --- | --- |
@@ -202,6 +214,12 @@ discovery:
 - **Dynamic cards should at best match Markdown on accessibility.** Well-formed
   prose is strongly accessible by default.
 - **Dynamic cards will lose on consistency**, by construction.
+
+Each is a prediction of direction, not of size. Direction is what makes them
+falsifiable: a loss in the predicted direction is a design consequence, a loss
+in the other direction means the reasoning behind the design was wrong. Where a
+result contradicts one of these, say so — a prediction that can absorb any
+outcome was not a prediction.
 
 ## What this protocol does not establish
 
