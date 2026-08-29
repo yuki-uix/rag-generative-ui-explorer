@@ -8,3 +8,4 @@ coverage/
 dist/
 *.log
 .verify-ok
+.claude-worktrees/
