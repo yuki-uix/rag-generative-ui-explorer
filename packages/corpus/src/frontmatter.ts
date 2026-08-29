@@ -67,7 +67,14 @@ export const NoteSource = z.strictObject({
   title: z.string().min(1),
   url: z.url(),
   author: z.string().min(1),
-  published: PartialDate,
+  /**
+   * Optional only for `documentation`. Living documentation frequently states
+   * no publication date at all, and requiring one would mean inventing it —
+   * the same fabrication that partial dates exist to avoid. For an undated
+   * source, `retrieved` is the only honest currency signal, which is why it
+   * stays mandatory everywhere.
+   */
+  published: PartialDate.optional(),
   /** When this source was last consulted for the note. */
   retrieved: z.iso.date(),
   license: z.string().min(1),
@@ -85,29 +92,48 @@ export type NoteSource = z.infer<typeof NoteSource>;
  * in the future. Both are ordinary typos in hand-written frontmatter, and
  * neither is visible to a per-field check.
  */
+/** Source types that always carry a stated publication date. */
+const DATED_SOURCE_TYPES: readonly SourceType[] = ['paper', 'specification'];
+
 function checkSourceDates(source: NoteSource, index: number, ctx: z.RefinementCtx): void {
   const today = new Date().toISOString().slice(0, 10);
 
-  /**
-   * Compared on the shared prefix, so a year-only `published` is not read as
-   * 1 January: `2026` against a `2026-03-04` retrieval is consistent.
-   */
-  const shared = Math.min(source.published.length, source.retrieved.length);
-  if (source.retrieved.slice(0, shared) < source.published.slice(0, shared)) {
-    ctx.addIssue({
-      code: 'custom',
-      message: `retrieved (${source.retrieved}) is before published (${source.published})`,
-      path: ['sources', index, 'retrieved'],
-    });
-  }
-  for (const field of ['published', 'retrieved'] as const) {
-    if (source[field] > today) {
+  if (source.published === undefined) {
+    if (DATED_SOURCE_TYPES.includes(source.sourceType)) {
       ctx.addIssue({
         code: 'custom',
-        message: `${field} (${source[field]}) is in the future`,
-        path: ['sources', index, field],
+        message: `a ${source.sourceType} states a publication date; record it`,
+        path: ['sources', index, 'published'],
       });
     }
+  } else {
+    /**
+     * Compared on the shared prefix, so a year-only `published` is not read as
+     * 1 January: `2026` against a `2026-03-04` retrieval is consistent.
+     */
+    const shared = Math.min(source.published.length, source.retrieved.length);
+    if (source.retrieved.slice(0, shared) < source.published.slice(0, shared)) {
+      ctx.addIssue({
+        code: 'custom',
+        message: `retrieved (${source.retrieved}) is before published (${source.published})`,
+        path: ['sources', index, 'retrieved'],
+      });
+    }
+    if (source.published > today) {
+      ctx.addIssue({
+        code: 'custom',
+        message: `published (${source.published}) is in the future`,
+        path: ['sources', index, 'published'],
+      });
+    }
+  }
+
+  if (source.retrieved > today) {
+    ctx.addIssue({
+      code: 'custom',
+      message: `retrieved (${source.retrieved}) is in the future`,
+      path: ['sources', index, 'retrieved'],
+    });
   }
 }
 
