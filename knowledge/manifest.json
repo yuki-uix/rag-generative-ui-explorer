@@ -1,5 +1,9 @@
 {
-  "corpusVersion": "corpus-8f704738603b",
+  "corpusVersion": "corpus-dd6094f7202c",
+  "chunking": {
+    "boundary": "h2-section",
+    "maxChunkChars": 1200
+  },
   "documentCount": 36,
   "sourceCount": 68,
   "documents": [

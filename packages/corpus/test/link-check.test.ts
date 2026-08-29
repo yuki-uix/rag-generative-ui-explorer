@@ -21,6 +21,7 @@ const source = (url: string, index: number) => ({
 /** One document per entry; each entry is that document's list of source URLs. */
 const manifest = (documents: string[][]): Manifest => ({
   corpusVersion: 'corpus-0123456789ab',
+  chunking: { boundary: 'h2-section', maxChunkChars: 1200 },
   documentCount: documents.length,
   sourceCount: documents.flat().length,
   documents: documents.map((urls, index) => ({

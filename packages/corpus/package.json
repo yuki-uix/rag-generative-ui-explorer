@@ -4,13 +4,19 @@
   "private": true,
   "type": "module",
   "main": "./src/index.ts",
-  "exports": { ".": "./src/index.ts" },
+  "exports": {
+    ".": "./src/index.ts"
+  },
   "scripts": {
     "test": "vitest run",
     "typecheck": "tsc --noEmit",
     "corpus:validate": "tsx scripts/validate-corpus.ts",
     "corpus:build": "tsx scripts/validate-corpus.ts --write",
-    "corpus:check-links": "tsx scripts/check-links.ts"
+    "corpus:check-links": "tsx scripts/check-links.ts",
+    "corpus:chunks": "tsx scripts/chunks.ts",
+    "eval:validate": "tsx scripts/validate-eval.ts",
+    "eval:build": "tsx scripts/build-eval.ts --write",
+    "eval:check": "tsx scripts/build-eval.ts"
   },
   "dependencies": {
     "@rgux/contracts": "workspace:*",
