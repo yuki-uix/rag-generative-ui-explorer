@@ -6,6 +6,12 @@ The corpus is intentionally narrow. It should contain enough connected concepts
 to test definitions, comparisons, mechanisms, procedures, and cross-domain
 questions without becoming a general AI knowledge base.
 
+Each topic bullet below has a matching id in
+`packages/corpus/src/topics.ts`, and note `tags` must come from that list. A
+test parses this file and asserts the two agree in both directions, so a topic
+added here without an id fails, and an id with no entry here fails too. Editing
+a bullet's wording means editing its `label` in the same commit.
+
 ## Domain A — Retrieval-augmented generation
 
 Initial topics:

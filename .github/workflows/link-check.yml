@@ -1,0 +1,26 @@
+# Requests every canonical URL in the corpus manifest and reports the ones that
+# no longer resolve.
+#
+# Deliberately not part of the pull-request gate. A syntax check would pass a
+# URL that 404s, so this has to hit the network — but making every merge depend
+# on a third party's uptime produces a check people re-run until it goes green,
+# which is worse than no check. Weekly, plus on demand.
+name: Link check
+
+on:
+  schedule:
+    - cron: '0 6 * * 1'
+  workflow_dispatch:
+
+jobs:
+  links:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+      - uses: pnpm/action-setup@v6
+      - uses: actions/setup-node@v7
+        with:
+          node-version: 22
+          cache: pnpm
+      - run: pnpm install --frozen-lockfile
+      - run: pnpm corpus:check-links
