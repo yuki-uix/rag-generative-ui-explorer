@@ -37,6 +37,36 @@ Deterministic React card renderer
 An immutable, addressable excerpt produced by ingestion and retrieval. Evidence
 contains source metadata and scores but no presentation instructions.
 
+#### Evidence ID construction
+
+Evidence IDs are stable identifiers, not opaque handles. Grounding validation,
+stored evaluation labels, and generation logs all resolve through them, so an ID
+that changes on re-ingestion invalidates every one of those.
+
+```text
+{documentId}#{sectionSlug}#{chunkIndex}-{contentHash}
+rag/hybrid-retrieval#reciprocal-rank-fusion#0-4f2a9c1b
+```
+
+- `documentId` is the corpus-relative path of the note without its extension.
+- `sectionSlug` is the slugified heading the chunk belongs to; text appearing
+  before the first heading uses `body`.
+- `chunkIndex` is the zero-based position of the chunk within its section.
+- `contentHash` is the first eight hex characters of the SHA-256 of the chunk
+  text, with runs of whitespace collapsed so that reflowing a paragraph without
+  changing its words leaves the ID untouched.
+
+Editing one paragraph therefore rotates only that chunk's ID. **Known
+limitation:** inserting or deleting a chunk shifts `chunkIndex` for every later
+chunk *in the same section*, rotating their IDs even though their text is
+unchanged. Anchoring chunk boundaries to headings keeps that blast radius inside
+one section rather than across the whole document. Re-labelling cost is real but
+bounded, and it is the price of distinguishing two chunks with identical text.
+
+The rule is implemented in `packages/contracts/src/evidence-id.ts` and is
+covered by tests asserting re-ingestion stability, single-paragraph locality,
+and cross-document distinctness.
+
 ### Knowledge card
 
 A model-generated, schema-constrained presentation object. Factual fields carry

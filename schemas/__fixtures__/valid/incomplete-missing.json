@@ -1,0 +1,12 @@
+{
+  "query": "What does the corpus say about vector database pricing?",
+  "cards": [],
+  "evidence": [],
+  "suggestedActions": [],
+  "metadata": {
+    "knowledgeBaseVersion": "corpus-2026-08-29-a1b2c3d4",
+    "generatedAt": "2026-08-29T10:00:00Z",
+    "incomplete": true,
+    "incompleteReason": "missing"
+  }
+}

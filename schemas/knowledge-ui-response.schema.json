@@ -1,222 +1,607 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "https://example.invalid/schemas/knowledge-ui-response.schema.json",
-  "title": "Knowledge UI response",
-  "type": "object",
-  "additionalProperties": false,
-  "required": ["query", "cards", "suggestedActions", "evidence", "metadata"],
-  "properties": {
-    "query": { "type": "string", "minLength": 1 },
-    "cards": {
-      "type": "array",
-      "maxItems": 4,
-      "items": { "$ref": "#/$defs/card" }
-    },
-    "suggestedActions": {
-      "type": "array",
-      "maxItems": 3,
-      "items": { "$ref": "#/$defs/action" }
-    },
-    "evidence": {
-      "type": "array",
-      "items": { "$ref": "evidence.schema.json" }
-    },
-    "metadata": {
-      "type": "object",
-      "additionalProperties": false,
-      "required": ["knowledgeBaseVersion", "generatedAt", "incomplete"],
-      "properties": {
-        "knowledgeBaseVersion": { "type": "string", "minLength": 1 },
-        "generatedAt": { "type": "string", "format": "date-time" },
-        "incomplete": { "type": "boolean" }
-      }
-    }
-  },
+  "$ref": "#/$defs/KnowledgeUIResponse",
   "$defs": {
-    "groundedText": {
+    "KnowledgeUIResponse": {
       "type": "object",
-      "additionalProperties": false,
-      "required": ["text", "mode", "evidenceIds"],
       "properties": {
-        "text": { "type": "string", "minLength": 1 },
+        "query": {
+          "type": "string",
+          "minLength": 1
+        },
+        "cards": {
+          "maxItems": 4,
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/KnowledgeCard"
+          }
+        },
+        "suggestedActions": {
+          "maxItems": 3,
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/SuggestedAction"
+          }
+        },
+        "evidence": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/Evidence"
+          }
+        },
+        "metadata": {
+          "$ref": "#/$defs/ResponseMetadata"
+        }
+      },
+      "required": [
+        "query",
+        "cards",
+        "suggestedActions",
+        "evidence",
+        "metadata"
+      ],
+      "additionalProperties": false,
+      "title": "Knowledge UI response",
+      "description": "Cards, suggested actions, the evidence used, corpus version, and the incomplete flag."
+    },
+    "KnowledgeCard": {
+      "oneOf": [
+        {
+          "$ref": "#/$defs/DefinitionCard"
+        },
+        {
+          "$ref": "#/$defs/ComparisonCard"
+        },
+        {
+          "$ref": "#/$defs/MechanismCard"
+        },
+        {
+          "$ref": "#/$defs/ProcedureCard"
+        },
+        {
+          "$ref": "#/$defs/EvidenceCard"
+        }
+      ],
+      "title": "Knowledge card"
+    },
+    "DefinitionCard": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "$ref": "#/$defs/CardId"
+        },
+        "type": {
+          "type": "string",
+          "const": "definition"
+        },
+        "title": {
+          "type": "string",
+          "minLength": 1
+        },
+        "definition": {
+          "$ref": "#/$defs/GroundedText"
+        },
+        "keyPoints": {
+          "minItems": 1,
+          "maxItems": 5,
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/GroundedText"
+          }
+        }
+      },
+      "required": [
+        "id",
+        "type",
+        "title",
+        "definition",
+        "keyPoints"
+      ],
+      "additionalProperties": false,
+      "title": "Definition card"
+    },
+    "CardId": {
+      "type": "string",
+      "minLength": 1
+    },
+    "GroundedText": {
+      "type": "object",
+      "properties": {
+        "text": {
+          "type": "string",
+          "minLength": 1
+        },
         "mode": {
-          "enum": ["extractive", "summarized", "inferred"]
+          "$ref": "#/$defs/GroundingMode"
         },
         "evidenceIds": {
-          "type": "array",
           "minItems": 1,
-          "uniqueItems": true,
-          "items": { "type": "string", "minLength": 1 }
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/EvidenceId"
+          },
+          "uniqueItems": true
         }
-      }
-    },
-    "card": {
-      "oneOf": [
-        { "$ref": "#/$defs/definitionCard" },
-        { "$ref": "#/$defs/comparisonCard" },
-        { "$ref": "#/$defs/mechanismCard" },
-        { "$ref": "#/$defs/procedureCard" },
-        { "$ref": "#/$defs/evidenceCard" }
-      ]
-    },
-    "cardBase": {
-      "type": "object",
-      "required": ["id", "type", "title"],
-      "properties": {
-        "id": { "type": "string", "minLength": 1 },
-        "type": { "type": "string" },
-        "title": { "type": "string", "minLength": 1 }
-      }
-    },
-    "definitionCard": {
-      "allOf": [
-        { "$ref": "#/$defs/cardBase" },
-        {
-          "type": "object",
-          "additionalProperties": false,
-          "required": ["id", "type", "title", "definition", "keyPoints"],
-          "properties": {
-            "id": { "type": "string" },
-            "type": { "const": "definition" },
-            "title": { "type": "string" },
-            "definition": { "$ref": "#/$defs/groundedText" },
-            "keyPoints": {
-              "type": "array",
-              "maxItems": 5,
-              "items": { "$ref": "#/$defs/groundedText" }
-            }
-          }
-        }
-      ]
-    },
-    "comparisonCard": {
-      "allOf": [
-        { "$ref": "#/$defs/cardBase" },
-        {
-          "type": "object",
-          "additionalProperties": false,
-          "required": ["id", "type", "title", "entities", "rows"],
-          "properties": {
-            "id": { "type": "string" },
-            "type": { "const": "comparison" },
-            "title": { "type": "string" },
-            "entities": {
-              "type": "array",
-              "minItems": 2,
-              "maxItems": 4,
-              "items": { "type": "string" }
-            },
-            "rows": {
-              "type": "array",
-              "maxItems": 8,
-              "items": {
-                "type": "object",
-                "additionalProperties": false,
-                "required": ["dimension", "values"],
-                "properties": {
-                  "dimension": { "type": "string" },
-                  "values": {
-                    "type": "array",
-                    "items": { "$ref": "#/$defs/groundedText" }
-                  }
-                }
-              }
-            }
-          }
-        }
-      ]
-    },
-    "mechanismCard": {
-      "allOf": [
-        { "$ref": "#/$defs/cardBase" },
-        {
-          "type": "object",
-          "additionalProperties": false,
-          "required": ["id", "type", "title", "stages"],
-          "properties": {
-            "id": { "type": "string" },
-            "type": { "const": "mechanism" },
-            "title": { "type": "string" },
-            "stages": {
-              "type": "array",
-              "minItems": 2,
-              "maxItems": 8,
-              "items": {
-                "type": "object",
-                "additionalProperties": false,
-                "required": ["label", "description"],
-                "properties": {
-                  "label": { "type": "string" },
-                  "description": { "$ref": "#/$defs/groundedText" }
-                }
-              }
-            }
-          }
-        }
-      ]
-    },
-    "procedureCard": {
-      "allOf": [
-        { "$ref": "#/$defs/cardBase" },
-        {
-          "type": "object",
-          "additionalProperties": false,
-          "required": ["id", "type", "title", "steps"],
-          "properties": {
-            "id": { "type": "string" },
-            "type": { "const": "procedure" },
-            "title": { "type": "string" },
-            "steps": {
-              "type": "array",
-              "minItems": 1,
-              "maxItems": 10,
-              "items": {
-                "type": "object",
-                "additionalProperties": false,
-                "required": ["title", "instruction"],
-                "properties": {
-                  "title": { "type": "string" },
-                  "instruction": { "$ref": "#/$defs/groundedText" }
-                }
-              }
-            }
-          }
-        }
-      ]
-    },
-    "evidenceCard": {
-      "allOf": [
-        { "$ref": "#/$defs/cardBase" },
-        {
-          "type": "object",
-          "additionalProperties": false,
-          "required": ["id", "type", "title", "evidenceIds"],
-          "properties": {
-            "id": { "type": "string" },
-            "type": { "const": "evidence" },
-            "title": { "type": "string" },
-            "evidenceIds": {
-              "type": "array",
-              "minItems": 1,
-              "uniqueItems": true,
-              "items": { "type": "string" }
-            }
-          }
-        }
-      ]
-    },
-    "action": {
-      "type": "object",
+      },
+      "required": [
+        "text",
+        "mode",
+        "evidenceIds"
+      ],
       "additionalProperties": false,
-      "required": ["id", "label", "action"],
+      "title": "Grounded text",
+      "description": "A factual field carrying its grounding mode and supporting evidence IDs."
+    },
+    "GroundingMode": {
+      "type": "string",
+      "enum": [
+        "extractive",
+        "summarized",
+        "inferred"
+      ]
+    },
+    "EvidenceId": {
+      "type": "string",
+      "minLength": 1,
+      "pattern": "^[a-z0-9][a-z0-9._/-]*#[a-z0-9][a-z0-9-]*#\\d+-[0-9a-f]{8}$",
+      "description": "Stable, addressable identifier for a corpus chunk."
+    },
+    "ComparisonCard": {
+      "type": "object",
       "properties": {
-        "id": { "type": "string", "minLength": 1 },
-        "label": { "type": "string", "minLength": 1 },
-        "action": {
-          "enum": ["show_sources", "explain_further", "add_to_comparison"]
+        "id": {
+          "$ref": "#/$defs/CardId"
         },
-        "payload": { "type": "object" }
-      }
+        "type": {
+          "type": "string",
+          "const": "comparison"
+        },
+        "title": {
+          "type": "string",
+          "minLength": 1
+        },
+        "entities": {
+          "minItems": 2,
+          "maxItems": 4,
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "rows": {
+          "minItems": 1,
+          "maxItems": 8,
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/ComparisonRow"
+          }
+        }
+      },
+      "required": [
+        "id",
+        "type",
+        "title",
+        "entities",
+        "rows"
+      ],
+      "additionalProperties": false,
+      "title": "Comparison card"
+    },
+    "ComparisonRow": {
+      "type": "object",
+      "properties": {
+        "dimension": {
+          "type": "string",
+          "minLength": 1
+        },
+        "values": {
+          "minItems": 2,
+          "maxItems": 4,
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/GroundedText"
+          }
+        }
+      },
+      "required": [
+        "dimension",
+        "values"
+      ],
+      "additionalProperties": false
+    },
+    "MechanismCard": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "$ref": "#/$defs/CardId"
+        },
+        "type": {
+          "type": "string",
+          "const": "mechanism"
+        },
+        "title": {
+          "type": "string",
+          "minLength": 1
+        },
+        "stages": {
+          "minItems": 2,
+          "maxItems": 8,
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "label": {
+                "type": "string",
+                "minLength": 1
+              },
+              "description": {
+                "$ref": "#/$defs/GroundedText"
+              }
+            },
+            "required": [
+              "label",
+              "description"
+            ],
+            "additionalProperties": false
+          }
+        }
+      },
+      "required": [
+        "id",
+        "type",
+        "title",
+        "stages"
+      ],
+      "additionalProperties": false,
+      "title": "Mechanism card"
+    },
+    "ProcedureCard": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "$ref": "#/$defs/CardId"
+        },
+        "type": {
+          "type": "string",
+          "const": "procedure"
+        },
+        "title": {
+          "type": "string",
+          "minLength": 1
+        },
+        "steps": {
+          "minItems": 1,
+          "maxItems": 10,
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "title": {
+                "type": "string",
+                "minLength": 1
+              },
+              "instruction": {
+                "$ref": "#/$defs/GroundedText"
+              }
+            },
+            "required": [
+              "title",
+              "instruction"
+            ],
+            "additionalProperties": false
+          }
+        }
+      },
+      "required": [
+        "id",
+        "type",
+        "title",
+        "steps"
+      ],
+      "additionalProperties": false,
+      "title": "Procedure card"
+    },
+    "EvidenceCard": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "$ref": "#/$defs/CardId"
+        },
+        "type": {
+          "type": "string",
+          "const": "evidence"
+        },
+        "title": {
+          "type": "string",
+          "minLength": 1
+        },
+        "evidenceIds": {
+          "minItems": 1,
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/EvidenceId"
+          },
+          "uniqueItems": true
+        }
+      },
+      "required": [
+        "id",
+        "type",
+        "title",
+        "evidenceIds"
+      ],
+      "additionalProperties": false,
+      "title": "Evidence card"
+    },
+    "SuggestedAction": {
+      "oneOf": [
+        {
+          "$ref": "#/$defs/ShowSourcesAction"
+        },
+        {
+          "$ref": "#/$defs/ExplainFurtherAction"
+        },
+        {
+          "$ref": "#/$defs/AddToComparisonAction"
+        }
+      ],
+      "title": "Suggested action"
+    },
+    "ShowSourcesAction": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "label": {
+          "type": "string",
+          "minLength": 1
+        },
+        "action": {
+          "type": "string",
+          "const": "show_sources"
+        },
+        "payload": {
+          "type": "object",
+          "properties": {
+            "cardId": {
+              "type": "string",
+              "minLength": 1
+            }
+          },
+          "required": [
+            "cardId"
+          ],
+          "additionalProperties": false
+        }
+      },
+      "required": [
+        "id",
+        "label",
+        "action",
+        "payload"
+      ],
+      "additionalProperties": false
+    },
+    "ExplainFurtherAction": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "label": {
+          "type": "string",
+          "minLength": 1
+        },
+        "action": {
+          "type": "string",
+          "const": "explain_further"
+        },
+        "payload": {
+          "type": "object",
+          "properties": {
+            "cardId": {
+              "type": "string",
+              "minLength": 1
+            },
+            "focus": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 200
+            }
+          },
+          "required": [
+            "cardId"
+          ],
+          "additionalProperties": false
+        }
+      },
+      "required": [
+        "id",
+        "label",
+        "action",
+        "payload"
+      ],
+      "additionalProperties": false
+    },
+    "AddToComparisonAction": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "label": {
+          "type": "string",
+          "minLength": 1
+        },
+        "action": {
+          "type": "string",
+          "const": "add_to_comparison"
+        },
+        "payload": {
+          "type": "object",
+          "properties": {
+            "cardId": {
+              "type": "string",
+              "minLength": 1
+            },
+            "entity": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 120
+            }
+          },
+          "required": [
+            "cardId",
+            "entity"
+          ],
+          "additionalProperties": false
+        }
+      },
+      "required": [
+        "id",
+        "label",
+        "action",
+        "payload"
+      ],
+      "additionalProperties": false
+    },
+    "Evidence": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "$ref": "#/$defs/EvidenceId"
+        },
+        "documentId": {
+          "type": "string",
+          "minLength": 1
+        },
+        "documentTitle": {
+          "type": "string",
+          "minLength": 1
+        },
+        "section": {
+          "type": "string",
+          "minLength": 1
+        },
+        "text": {
+          "type": "string",
+          "minLength": 1
+        },
+        "url": {
+          "type": "string",
+          "format": "uri"
+        },
+        "updatedAt": {
+          "type": "string",
+          "format": "date-time",
+          "pattern": "^(?:(?:\\d\\d[2468][048]|\\d\\d[13579][26]|\\d\\d0[48]|[02468][048]00|[13579][26]00)-02-29|\\d{4}-(?:(?:0[13578]|1[02])-(?:0[1-9]|[12]\\d|3[01])|(?:0[469]|11)-(?:0[1-9]|[12]\\d|30)|(?:02)-(?:0[1-9]|1\\d|2[0-8])))T(?:(?:[01]\\d|2[0-3]):[0-5]\\d:[0-5]\\d(?:\\.\\d+)?(?:Z))$"
+        },
+        "retrievalScore": {
+          "type": "number"
+        },
+        "rerankScore": {
+          "type": "number"
+        },
+        "metadata": {
+          "$ref": "#/$defs/EvidenceMetadata"
+        }
+      },
+      "required": [
+        "id",
+        "documentId",
+        "documentTitle",
+        "text",
+        "retrievalScore",
+        "metadata"
+      ],
+      "additionalProperties": false,
+      "title": "Evidence",
+      "description": "An immutable, addressable corpus excerpt with source metadata and scores."
+    },
+    "EvidenceMetadata": {
+      "type": "object",
+      "properties": {
+        "author": {
+          "type": "string",
+          "minLength": 1
+        },
+        "version": {
+          "type": "string",
+          "minLength": 1
+        },
+        "category": {
+          "type": "string",
+          "minLength": 1
+        }
+      },
+      "additionalProperties": false
+    },
+    "ResponseMetadata": {
+      "oneOf": [
+        {
+          "type": "object",
+          "properties": {
+            "knowledgeBaseVersion": {
+              "type": "string",
+              "minLength": 1
+            },
+            "generatedAt": {
+              "type": "string",
+              "format": "date-time",
+              "pattern": "^(?:(?:\\d\\d[2468][048]|\\d\\d[13579][26]|\\d\\d0[48]|[02468][048]00|[13579][26]00)-02-29|\\d{4}-(?:(?:0[13578]|1[02])-(?:0[1-9]|[12]\\d|3[01])|(?:0[469]|11)-(?:0[1-9]|[12]\\d|30)|(?:02)-(?:0[1-9]|1\\d|2[0-8])))T(?:(?:[01]\\d|2[0-3]):[0-5]\\d:[0-5]\\d(?:\\.\\d+)?(?:Z))$"
+            },
+            "incomplete": {
+              "type": "boolean",
+              "const": false
+            }
+          },
+          "required": [
+            "knowledgeBaseVersion",
+            "generatedAt",
+            "incomplete"
+          ],
+          "additionalProperties": false
+        },
+        {
+          "type": "object",
+          "properties": {
+            "knowledgeBaseVersion": {
+              "type": "string",
+              "minLength": 1
+            },
+            "generatedAt": {
+              "type": "string",
+              "format": "date-time",
+              "pattern": "^(?:(?:\\d\\d[2468][048]|\\d\\d[13579][26]|\\d\\d0[48]|[02468][048]00|[13579][26]00)-02-29|\\d{4}-(?:(?:0[13578]|1[02])-(?:0[1-9]|[12]\\d|3[01])|(?:0[469]|11)-(?:0[1-9]|[12]\\d|30)|(?:02)-(?:0[1-9]|1\\d|2[0-8])))T(?:(?:[01]\\d|2[0-3]):[0-5]\\d:[0-5]\\d(?:\\.\\d+)?(?:Z))$"
+            },
+            "incomplete": {
+              "type": "boolean",
+              "const": true
+            },
+            "incompleteReason": {
+              "type": "string",
+              "enum": [
+                "missing",
+                "conflicting"
+              ]
+            }
+          },
+          "required": [
+            "knowledgeBaseVersion",
+            "generatedAt",
+            "incomplete",
+            "incompleteReason"
+          ],
+          "additionalProperties": false
+        }
+      ],
+      "title": "Response metadata"
     }
   }
 }

@@ -9,8 +9,8 @@ cards for the current question.
 
 Most RAG applications return a block of prose. This project tests whether users
 can understand and explore technical knowledge more effectively when the same
-retrieved evidence is rendered as task-appropriate cards such as definitions,
-comparisons, mechanisms, timelines, procedures, and source excerpts.
+retrieved evidence is rendered as task-appropriate cards: definitions,
+comparisons, mechanisms, procedures, and source excerpts.
 
 The model may select and populate approved card types. It may not generate
 arbitrary executable UI code in the MVP.
@@ -56,7 +56,12 @@ contracts and evaluation plan.
 
 ## Repository status
 
-Planning and contract design. Application scaffolding is the next milestone.
+Contract design. `packages/contracts` holds the Zod schemas that define
+`Evidence`, the five knowledge cards, and the response envelope; the JSON
+Schemas under `schemas/` are generated from them. Corpus authoring and the
+retrieval baseline are the next milestones.
+
+Work is tracked as GitHub issues grouped by milestone (M0–M4).
 
 ## License
 
