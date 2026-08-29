@@ -36,7 +36,11 @@ export function ingest(knowledgeRoot: string): IngestResult {
 
   const evidence: Evidence[] = [];
   for (const document of manifest.documents) {
-    const notePath = resolve(knowledgeRoot, `${document.documentId}.md`);
+    // Read the path the manifest declares rather than rebuilding one from the
+    // documentId. The two agree today, but they are two sources: if they ever
+    // diverged, the file read and the label on its error would name different
+    // files, at exactly the moment the label matters most.
+    const notePath = resolve(knowledgeRoot, '..', document.path);
     const { body } = parseNote(document.path, readFileSync(notePath, 'utf8'));
 
     for (const chunk of chunkNote(document.documentId, body)) {

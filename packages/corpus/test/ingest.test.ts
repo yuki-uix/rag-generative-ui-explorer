@@ -6,16 +6,19 @@
  */
 import { readFileSync } from 'node:fs';
 import { resolve } from 'node:path';
-import { describe, expect, it } from 'vitest';
+import { afterAll, describe, expect, it } from 'vitest';
 import { Evidence, parseEvidenceId, slugify } from '@rgux/contracts';
 import { ingest, serialiseIndex } from '../src/ingest.js';
 import { buildManifest } from '../src/manifest.js';
 import { parseNote } from '../src/note.js';
 import { chunkNote } from '../src/chunks.js';
 import { parseEvalSet } from '../src/eval-set.js';
+import { corpus, cleanUpCorpora } from './support/corpus.js';
 
 const repoRoot = resolve(import.meta.dirname, '../../..');
 const knowledgeRoot = resolve(repoRoot, 'knowledge');
+
+afterAll(cleanUpCorpora);
 
 describe('the ingested index', () => {
   const { evidence, errors } = ingest(knowledgeRoot);
@@ -100,5 +103,28 @@ describe('the ingested index', () => {
 
   it('re-ingests to a byte-identical index', () => {
     expect(serialiseIndex(ingest(knowledgeRoot).evidence)).toBe(serialiseIndex(evidence));
+  });
+});
+
+describe('a corpus that does not validate', () => {
+  /**
+   * The error path had no coverage. Ingestion returning an empty index on a
+   * broken note is the behaviour retrieval depends on — serving a partial index
+   * would be worse than serving none, because the gap would be invisible.
+   */
+  const broken = corpus([
+    { path: 'rag/fine.md', body: '## The dual encoder\n\nProse.\n\n## What training is doing\n\nMore.' },
+    { path: 'rag/broken.md', raw: '# No frontmatter at all\n' },
+  ]);
+
+  it('reports the invalid note and ingests nothing', () => {
+    const { evidence, errors } = ingest(broken);
+    expect(errors).toHaveLength(1);
+    expect(errors[0]!.message).toMatch(/broken\.md/);
+    expect(evidence).toEqual([]);
+  });
+
+  it('still reports a corpus version, so the failure is attributable', () => {
+    expect(ingest(broken).corpusVersion).toMatch(/^corpus-[0-9a-f]{12}$/);
   });
 });

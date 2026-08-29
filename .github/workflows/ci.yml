@@ -28,5 +28,8 @@ jobs:
       # questions.jsonl is generated from eval/questions.ts with evidence
       # identifiers resolved. A stale artefact would resolve cleanly against
       # yesterday's chunk set and silently mismeasure recall.
+      # The module is covered by tests; this runs the script itself, so a break
+      # in argument handling or output shape is caught rather than assumed.
+      - run: pnpm corpus:ingest > /dev/null
       - run: pnpm eval:check
       - run: pnpm eval:validate
