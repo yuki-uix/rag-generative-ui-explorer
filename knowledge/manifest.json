@@ -1,7 +1,7 @@
 {
-  "corpusVersion": "corpus-23c76105d3f8",
-  "documentCount": 29,
-  "sourceCount": 56,
+  "corpusVersion": "corpus-9047cf070a78",
+  "documentCount": 36,
+  "sourceCount": 68,
   "documents": [
     {
       "documentId": "generative-ui/accessibility-of-generated-interfaces",
@@ -528,6 +528,235 @@
       ],
       "contentHash": "67ab21b9d3d352f2",
       "metadataHash": "94fddcc8d46d7cac"
+    },
+    {
+      "documentId": "intersection/card-state-across-turns",
+      "path": "knowledge/intersection/card-state-across-turns.md",
+      "title": "Preserving card state across retrieval turns",
+      "domain": "intersection",
+      "author": "yuki-uix",
+      "revised": "2026-08-29",
+      "summary": "A follow-up regenerates knowledge, not the reader's place in it, and keeping those apart requires identity that survives a new retrieval.",
+      "tags": [
+        "card-state-continuity"
+      ],
+      "sources": [
+        {
+          "sourceType": "documentation",
+          "title": "Malleable Software",
+          "url": "https://www.inkandswitch.com/malleable-software/",
+          "author": "Ink & Switch",
+          "retrieved": "2026-08-29",
+          "license": "Research programme page; no author or publication date stated. Short attributed quotations only.",
+          "primary": true
+        },
+        {
+          "sourceType": "documentation",
+          "title": "AG-UI Overview",
+          "url": "https://docs.ag-ui.com/",
+          "author": "AG-UI Protocol contributors",
+          "retrieved": "2026-08-29",
+          "license": "Living documentation; no publication date stated. Short attributed quotations only.",
+          "primary": false
+        }
+      ],
+      "contentHash": "bce625a9071cbf94",
+      "metadataHash": "ed4ffb8853b6b77a"
+    },
+    {
+      "documentId": "intersection/choosing-a-ui-from-knowledge-structure",
+      "path": "knowledge/intersection/choosing-a-ui-from-knowledge-structure.md",
+      "title": "Choosing a UI from knowledge structure",
+      "domain": "intersection",
+      "author": "yuki-uix",
+      "revised": "2026-08-29",
+      "summary": "Retrieved evidence has a shape, and the claim under test is that the shape should determine the presentation rather than the question's phrasing.",
+      "tags": [
+        "ui-from-knowledge-structure"
+      ],
+      "sources": [
+        {
+          "sourceType": "paper",
+          "title": "Enabling Large Language Models to Generate Text with Citations",
+          "url": "https://arxiv.org/abs/2305.14627",
+          "author": "Tianyu Gao, Howard Yen, Jiatong Yu et al.",
+          "published": "2023-05-24",
+          "retrieved": "2026-08-29",
+          "license": "arXiv preprint, arXiv:2305.14627. Non-exclusive licence to distribute; short attributed quotations only. published is the v1 submission date.",
+          "primary": true
+        }
+      ],
+      "contentHash": "3123fd50a9a79b36",
+      "metadataHash": "24e81919a6f1b31a"
+    },
+    {
+      "documentId": "intersection/comparing-presentation-modes",
+      "path": "knowledge/intersection/comparing-presentation-modes.md",
+      "title": "Comparing Markdown, fixed cards, and dynamic cards",
+      "domain": "intersection",
+      "author": "yuki-uix",
+      "revised": "2026-08-29",
+      "summary": "Four arms, what each one isolates, and the results this project should expect to lose on if the experiment is honest.",
+      "tags": [
+        "presentation-comparison"
+      ],
+      "sources": [
+        {
+          "sourceType": "paper",
+          "title": "Automatically Generating Personalized User Interfaces with Supple",
+          "url": "https://www.eecs.harvard.edu/~kgajos/papers/2010/gajos10supple-aij.pdf",
+          "author": "Krzysztof Z. Gajos, Daniel S. Weld, and Jacob O. Wobbrock",
+          "published": "2010",
+          "retrieved": "2026-08-29",
+          "license": "Artificial Intelligence journal. Author-hosted copy; short attributed quotations only.",
+          "primary": true
+        },
+        {
+          "sourceType": "paper",
+          "title": "Evaluating Verifiability in Generative Search Engines",
+          "url": "https://arxiv.org/abs/2304.09848",
+          "author": "Nelson F. Liu, Tianyi Zhang, Percy Liang",
+          "published": "2023-04-19",
+          "retrieved": "2026-08-29",
+          "license": "arXiv preprint, arXiv:2304.09848. Non-exclusive licence to distribute; short attributed quotations only. published is the v1 submission date.",
+          "primary": false
+        }
+      ],
+      "contentHash": "611665f4ea72ee46",
+      "metadataHash": "e994fdfa27abd113"
+    },
+    {
+      "documentId": "intersection/evidence-aware-cards",
+      "path": "knowledge/intersection/evidence-aware-cards.md",
+      "title": "Evidence-aware knowledge cards",
+      "domain": "intersection",
+      "author": "yuki-uix",
+      "revised": "2026-08-29",
+      "summary": "A card that carries its evidence is a different object from a card that was built from evidence, and the difference is what the reader can check.",
+      "tags": [
+        "evidence-aware-cards"
+      ],
+      "sources": [
+        {
+          "sourceType": "paper",
+          "title": "Evaluating Verifiability in Generative Search Engines",
+          "url": "https://arxiv.org/abs/2304.09848",
+          "author": "Nelson F. Liu, Tianyi Zhang, Percy Liang",
+          "published": "2023-04-19",
+          "retrieved": "2026-08-29",
+          "license": "arXiv preprint, arXiv:2304.09848. Non-exclusive licence to distribute; short attributed quotations only. published is the v1 submission date.",
+          "primary": true
+        }
+      ],
+      "contentHash": "4998d7b694407313",
+      "metadataHash": "e831ef604d1bc0d8"
+    },
+    {
+      "documentId": "intersection/field-level-citation",
+      "path": "knowledge/intersection/field-level-citation.md",
+      "title": "Claim-level and field-level citation",
+      "domain": "intersection",
+      "author": "yuki-uix",
+      "revised": "2026-08-29",
+      "summary": "Where a citation attaches decides what can be checked, and structured output makes the finest granularity enforceable rather than merely encouraged.",
+      "tags": [
+        "field-level-citation"
+      ],
+      "sources": [
+        {
+          "sourceType": "paper",
+          "title": "Measuring Attribution in Natural Language Generation Models",
+          "url": "https://arxiv.org/abs/2112.12870",
+          "author": "Hannah Rashkin, Vitaly Nikolaev, Matthew Lamm et al.",
+          "published": "2021-12-23",
+          "retrieved": "2026-08-29",
+          "license": "arXiv preprint, arXiv:2112.12870. Non-exclusive licence to distribute; short attributed quotations only. published is the v1 submission date.",
+          "primary": true
+        },
+        {
+          "sourceType": "paper",
+          "title": "Enabling Large Language Models to Generate Text with Citations",
+          "url": "https://arxiv.org/abs/2305.14627",
+          "author": "Tianyu Gao, Howard Yen, Jiatong Yu et al.",
+          "published": "2023-05-24",
+          "retrieved": "2026-08-29",
+          "license": "arXiv preprint, arXiv:2305.14627. Non-exclusive licence to distribute; short attributed quotations only. published is the v1 submission date.",
+          "primary": false
+        }
+      ],
+      "contentHash": "510ec8b4ea1d6d57",
+      "metadataHash": "e262b5acff7cee71"
+    },
+    {
+      "documentId": "intersection/not-overstating-weak-evidence",
+      "path": "knowledge/intersection/not-overstating-weak-evidence.md",
+      "title": "Not overstating weak evidence",
+      "domain": "intersection",
+      "author": "yuki-uix",
+      "revised": "2026-08-29",
+      "summary": "Structured presentation renders strong and weak support identically, so uncertainty has to be carried in the data rather than left to the reader to infer.",
+      "tags": [
+        "evidence-strength-honesty"
+      ],
+      "sources": [
+        {
+          "sourceType": "paper",
+          "title": "Teaching Models to Express Their Uncertainty in Words",
+          "url": "https://arxiv.org/abs/2205.14334",
+          "author": "Stephanie Lin, Jacob Hilton, Owain Evans",
+          "published": "2022-05-28",
+          "retrieved": "2026-08-29",
+          "license": "arXiv preprint, arXiv:2205.14334. Non-exclusive licence to distribute; short attributed quotations only. published is the v1 submission date.",
+          "primary": true
+        },
+        {
+          "sourceType": "paper",
+          "title": "Evaluating Verifiability in Generative Search Engines",
+          "url": "https://arxiv.org/abs/2304.09848",
+          "author": "Nelson F. Liu, Tianyi Zhang, Percy Liang",
+          "published": "2023-04-19",
+          "retrieved": "2026-08-29",
+          "license": "arXiv preprint, arXiv:2304.09848. Non-exclusive licence to distribute; short attributed quotations only. published is the v1 submission date.",
+          "primary": false
+        }
+      ],
+      "contentHash": "64d59c1eb0ec19fa",
+      "metadataHash": "7b5ba3e331277eaf"
+    },
+    {
+      "documentId": "intersection/ui-driven-retrieval",
+      "path": "knowledge/intersection/ui-driven-retrieval.md",
+      "title": "Retrieval driven by UI actions",
+      "domain": "intersection",
+      "author": "yuki-uix",
+      "revised": "2026-08-29",
+      "summary": "Some interface actions need the model and some do not, and treating them alike is what makes a grounded interface slow and unreliable.",
+      "tags": [
+        "ui-driven-retrieval"
+      ],
+      "sources": [
+        {
+          "sourceType": "paper",
+          "title": "Principles of Mixed-Initiative User Interfaces",
+          "url": "https://erichorvitz.com/chi99horvitz.pdf",
+          "author": "Eric Horvitz",
+          "published": "1999-05",
+          "retrieved": "2026-08-29",
+          "license": "CHI 1999, pages 159-166, DOI 10.1145/302979.303030. Author-hosted copy; short attributed quotations only.",
+          "primary": true
+        },
+        {
+          "sourceType": "documentation",
+          "title": "AG-UI Overview",
+          "url": "https://docs.ag-ui.com/",
+          "author": "AG-UI Protocol contributors",
+          "retrieved": "2026-08-29",
+          "license": "Living documentation; no publication date stated. Short attributed quotations only.",
+          "primary": false
+        }
+      ],
+      "contentHash": "a3e272ae24859310",
+      "metadataHash": "2c2e40cbbac13330"
     },
     {
       "documentId": "rag/advanced-patterns",
