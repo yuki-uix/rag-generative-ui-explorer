@@ -5,6 +5,7 @@ import { z } from 'zod';
 import { KNOWLEDGE_DOMAINS } from './domain.js';
 import type { NoteFrontmatter } from './frontmatter.js';
 import { parseNote, NoteError } from './note.js';
+import { CHUNKING } from './chunks.js';
 
 function segments(relativePath: string): string[] {
   return relativePath.split(sep);
@@ -65,10 +66,18 @@ export const ManifestDocument = z.strictObject({
 
 export const Manifest = z.strictObject({
   /**
-   * Derived entirely from note content and metadata. Two checkouts with the
-   * same notes produce the same version; changing any note changes it.
+   * Derived entirely from note content, note metadata, and the chunking
+   * parameters. Two checkouts with the same notes produce the same version;
+   * changing any note changes it, and so does re-chunking — a re-chunk moves
+   * every evidence identifier, which is a corpus change rather than a
+   * configuration tweak.
    */
   corpusVersion: z.string().regex(/^corpus-[0-9a-f]{12}$/),
+  /** Recorded so a stored evidence identifier can be traced to how it was cut. */
+  chunking: z.strictObject({
+    boundary: z.string().min(1),
+    maxChunkChars: z.number().int().positive(),
+  }),
   documentCount: z.number().int().nonnegative(),
   sourceCount: z.number().int().nonnegative(),
   documents: z.array(ManifestDocument),
@@ -284,9 +293,12 @@ export function buildManifest(knowledgeRoot: string): BuildResult {
   documents.sort((a, b) => a.documentId.localeCompare(b.documentId));
   fingerprints.sort();
 
+  const chunking = { boundary: CHUNKING.boundary as string, maxChunkChars: CHUNKING.maxChunkChars as number };
+
   return {
     manifest: {
-      corpusVersion: `corpus-${hash(fingerprints.join('\n'), 12)}`,
+      corpusVersion: `corpus-${hash([canonical(chunking), ...fingerprints].join('\n'), 12)}`,
+      chunking,
       documentCount: documents.length,
       sourceCount: documents.reduce((total, document) => total + document.sources.length, 0),
       documents,

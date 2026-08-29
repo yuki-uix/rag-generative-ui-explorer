@@ -25,3 +25,8 @@ jobs:
       # reachability runs on its own schedule in link-check.yml, so a third
       # party's outage cannot block an unrelated merge.
       - run: pnpm corpus:validate
+      # questions.jsonl is generated from eval/questions.ts with evidence
+      # identifiers resolved. A stale artefact would resolve cleanly against
+      # yesterday's chunk set and silently mismeasure recall.
+      - run: pnpm eval:check
+      - run: pnpm eval:validate

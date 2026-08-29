@@ -4,5 +4,7 @@ export * from './scope.js';
 export * from './frontmatter.js';
 export * from './note.js';
 export * from './manifest.js';
+export * from './chunks.js';
 export * from './coverage.js';
+export * from './eval-set.js';
 export * from './link-check.js';
