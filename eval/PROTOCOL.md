@@ -1,0 +1,215 @@
+# Evaluation protocol
+
+What every evaluation run must pin, record, and report. The MVP exit criteria in
+[MVP](../docs/MVP.md) reference this file; a number produced outside these rules
+is not comparable to one produced inside them and should be discarded rather
+than caveated.
+
+## The pinned variables
+
+Every run records all of these. A comparison whose arms disagree on any of them
+is not a comparison, and the harness refuses to run rather than reporting one.
+
+| Variable | Value | Recorded from |
+| --- | --- | --- |
+| Model ID | `claude-opus-5` | request |
+| Effort | `output_config.effort` — see below | request |
+| Thinking | `{ type: "adaptive" }` | request |
+| `max_tokens` | pinned per arm, streamed | request |
+| Prompt version | a string bumped on any prompt edit | application |
+| Corpus version | `corpus-<hash>` from the manifest | `knowledge/manifest.json` |
+| Chunking parameters | boundary and size cap | manifest `chunking` |
+| Question set | `eval/questions.jsonl` and its header | file |
+| Repetitions | 3 per question per arm | run config |
+
+Model IDs are exact strings and carry no date suffix.
+
+## There is no temperature to pin
+
+This is the part that would have been written wrong from memory, so it is stated
+first.
+
+**`temperature`, `top_p`, and `top_k` are removed on `claude-opus-5`.** Sending
+any of them returns HTTP 400. There is no seed parameter either. Nothing in the
+request makes generation deterministic.
+
+The lever that exists instead is `output_config.effort`, which takes `low`,
+`medium`, `high` (the default), `xhigh`, and `max`. It trades thoroughness
+against token spend within one model. It is a pinned variable like any other,
+and it is not a determinism control — two runs at the same effort still differ.
+
+Two consequences follow, and they shape everything below:
+
+1. **Run-to-run variance is irreducible.** It cannot be configured away, so it
+   has to be measured. This is why repetitions are mandatory rather than
+   advisable.
+2. **A single run of a model-dependent metric is a sample, not a measurement.**
+   Reporting one without dispersion overstates what is known, which is the
+   failure this whole project argues against.
+
+`budget_tokens` is also removed on this model. Assistant prefill returns 400.
+Neither belongs in a request the harness builds.
+
+## Repetitions and dispersion
+
+**Three repetitions per question per arm.** Report the median and the full range
+for every model-dependent metric, never the mean alone — with n=3 a mean hides
+a bimodal split, which is exactly the shape a card-selection disagreement takes.
+
+Where a range spans more than a few points on a rate metric, that is the finding.
+Add samples before adjusting anything; tuning against a spread that has not been
+characterised is how a random walk gets mistaken for progress.
+
+Per-cell results — domain crossed with card type — sit at roughly a dozen
+questions each. **A per-cell result supports a direction at best**, and the n
+must be printed next to it every time.
+
+## Which metrics may be concluded from one run
+
+Every metric in [MVP](../docs/MVP.md) is classified. Mechanical metrics are
+properties of an artefact and are determinate from a single run. Model-dependent
+metrics vary between runs and require repetitions with dispersion. Human metrics
+need people and carry their own small-n caveat.
+
+### Retrieval and grounding
+
+| Metric | Class | Why |
+| --- | --- | --- |
+| Retrieval Recall@10 | **Mechanical** | Retrieval is deterministic given a fixed corpus, index, and query. Becomes model-dependent the moment query rewriting is enabled, and must be reclassified then. |
+| Citation precision | **Model-dependent** | Which passages the model cites varies per run. |
+| Citation completeness at field level | **Mechanical** | Whether every factual field carries a reference is a property of the response object. |
+| Unsupported-claim rate | **Model-dependent** | Requires judging whether a passage supports a claim. |
+| Insufficient-evidence detection accuracy | **Model-dependent** | Scored against the `expectInsufficient` labels; the decision is the model's. |
+
+### Generative UI
+
+| Metric | Class | Why |
+| --- | --- | --- |
+| Card-type selection accuracy | **Model-dependent** | The selection is the thing under test. Scored against the acceptable-type sets in the question file. |
+| Unnecessary-card rate | **Model-dependent** | Requires judging whether a card earned its place. |
+| Invalid-card-spec rate, pre-repair | **Mechanical** per response, **model-dependent** in aggregate | Whether one response validates is determinate; what fraction do is a distribution. **The exit criterion is a rate, so it needs repetitions.** |
+| Invalid-card-spec rate, post-repair | Same | Recorded separately. A pipeline that repairs quietly looks healthier than it is. |
+| Time to first useful content | **Model-dependent** | Latency varies per run; report median and range. |
+| Time to locate a requested fact | **Human** | Needs participants. |
+| Source-open and follow-up interaction rates | **Human** | Needs participants. |
+| Card-state preservation across turns | **Mechanical** | A property of the implementation, not of a generation. |
+
+### Exit criteria
+
+| Criterion | Class |
+| --- | --- |
+| At least 60 manually reviewed questions | **Mechanical** — the file has 60 or it does not |
+| At least 90% valid card specs without a second model call | **Model-dependent** — a rate, needs repetitions |
+| 100% of rendered factual fields reference valid retrieved evidence IDs | **Mechanical** |
+| Zero executable model-generated code rendered | **Mechanical** — binary, testable |
+| A repeatable comparison of the three modes | **Mechanical** — the harness runs or it does not |
+| Documented findings including where dynamic cards perform worse | Neither; a deliverable |
+
+Four of six exit criteria are mechanical and determinate from one run. **That is
+deliberate.** Criteria that need statistics to interpret are criteria people
+argue about.
+
+## Cost accounting
+
+Report token spend in three separate figures, never one total:
+
+| Figure | Field | Relative cost |
+| --- | --- | --- |
+| Uncached input | `usage.input_tokens` | full |
+| Cache writes | `usage.cache_creation_input_tokens` | ~1.25× |
+| Cache reads | `usage.cache_read_input_tokens` | ~0.1× |
+| Output | `usage.output_tokens` | ~5× input |
+
+A single "total prompt tokens" figure conflates a cache read with an uncached
+token that costs roughly ten times as much. It then usually gets reused as a
+proxy for three different things — money, context pressure, and work done —
+which it measures differently.
+
+Verification: if `cache_read_input_tokens` is zero across repeated runs with the
+same prefix, something is silently invalidating the cache. A timestamp in the
+prompt, a varying tool order, or unsorted JSON will each do it. That is a bug in
+the harness rather than a property of the workload, and it changes the cost
+numbers by roughly an order of magnitude.
+
+Token counts come from `client.messages.countTokens`, never from a third-party
+tokeniser. Costs are computed from the published rates for the pinned model at
+the time of the run, and the rates used are recorded with the result.
+
+**Measure, do not extrapolate.** Latency and cost at the size that matters, not
+projected linearly from a smaller run. Reducing the number of model calls does
+not reliably reduce spend — merging two calls into one larger one can raise
+total tokens and lose a cached prefix.
+
+## Outcomes that are not failures
+
+Three response outcomes must be recorded as themselves rather than retried into
+silence:
+
+- **`stop_reason: "refusal"`.** The model declined; `stop_details.category` says
+  why. Retrying blindly turns a recorded outcome into an invisible one.
+- **`stop_reason: "max_tokens"`.** The response was truncated. Its metrics are
+  not comparable to a complete response and must not be pooled with them.
+- **An incomplete response with a reason.** The system saying the corpus cannot
+  answer is correct behaviour and is scored against `expectInsufficient`, not
+  counted as an error.
+
+## What every run records
+
+Enough to replay it, per the observability requirement in `ARCHITECTURE.md`:
+
+- Query, and the transformation applied to it if any
+- Corpus version, chunking parameters, question set header
+- Model ID, effort, thinking configuration, `max_tokens`
+- Prompt version
+- Retrieval candidates with scores; the fused set; the reranked set
+- **Raw model output before any repair attempt**
+- Validation result per stage, and whether repair ran
+- Final response, `stop_reason`, and `stop_details` when present
+- `usage` in full — all four token figures
+- Wall-clock latency per stage
+
+The pre-repair capture is load-bearing. "Valid without a second model call" is
+an exit criterion and cannot be computed from logs that record only the final
+state.
+
+**Process exit status is not a health signal.** A run can exit zero having made
+no useful call at all — a request can return HTTP 200 carrying an error, and a
+harness can report success while every question failed. Success is read from the
+recorded payload, never from a return code.
+
+## Comparability rules
+
+1. **Same inputs.** Same question set, same corpus version, same chunking.
+2. **Same configuration.** Same model, effort, thinking, `max_tokens`, prompt
+   version.
+3. **The harness refuses rather than reconciles.** If two arms disagree on a
+   pinned variable, it stops. Silently comparing them produces a number that
+   looks like a result.
+4. **Changing a pinned variable starts a new baseline.** Prior results are not
+   carried forward across a model change, a prompt edit, or a re-chunk.
+5. **Report negative results.** Where an arm loses, that is the finding. A
+   comparison that only reports where the new thing won has not tested anything.
+
+## Stated predictions
+
+Recorded in advance so a predictable consequence is not later reported as a
+discovery:
+
+- **Dynamic cards should lose on time to first content.** Markdown streams token
+  by token; cards render atomically after validation. The argument has to be won
+  on time to locate a fact instead, and if it is not won there, the trade was
+  wrong.
+- **Dynamic cards should at best match Markdown on accessibility.** Well-formed
+  prose is strongly accessible by default.
+- **Dynamic cards will lose on consistency**, by construction.
+
+## What this protocol does not establish
+
+It fixes the conditions under which numbers are produced. It says nothing about
+whether the labels those numbers are scored against are correct.
+
+The notes, the questions, the golden evidence, and the source attributions were
+all written by the same person. Recall@10's denominator is entirely determined
+by labels that have never been reviewed by anyone else. Every mechanical check
+in this repository establishes that a claim is well-formed and resolves — never
+that it is right.
