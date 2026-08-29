@@ -160,10 +160,29 @@ describe('against the real corpus', () => {
     }
   });
 
-  it('retrieves the single chunk that names pgvector', () => {
-    // `pgvector` occurs in exactly one note, so the top result is unambiguous.
+  it('retrieves the one chunk that names pgvector, and checks that premise', () => {
+    // The assertion below is only meaningful while exactly one chunk contains
+    // the term, so the premise is checked rather than assumed: a later note
+    // mentioning pgvector should fail here as a stale premise, not silently
+    // turn this into a test of which of several chunks ranks first.
+    const containing = evidence.filter((entry) =>
+      entry.text.toLowerCase().includes('pgvector'),
+    );
+    expect(containing).toHaveLength(1);
+
     const top = retriever.search('pgvector', 3)[0]!;
-    expect(top.evidenceId.startsWith('rag/sparse-retrieval#')).toBe(true);
-    expect(byId.get(top.evidenceId)!.text.toLowerCase()).toContain('pgvector');
+    expect(top.evidenceId).toBe(containing[0]!.id);
+  });
+
+  /**
+   * Ranking has to be repeatable, or an evaluation run cannot be compared with
+   * the one before it. Equal scores resolve by document order because postings
+   * are built in document order and Array.prototype.sort is stable — a property
+   * worth a test rather than a comment.
+   */
+  it('returns identical results for repeated identical queries', () => {
+    for (const query of ['nDCG', 'reciprocal rank fusion', 'how does chunking work']) {
+      expect(retriever.search(query, 10)).toEqual(retriever.search(query, 10));
+    }
   });
 });
