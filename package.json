@@ -6,7 +6,10 @@
     "test": "pnpm -r test",
     "typecheck": "pnpm -r typecheck",
     "schemas:build": "pnpm --filter @rgux/contracts schemas:build",
-    "schemas:check": "pnpm --filter @rgux/contracts schemas:check"
+    "schemas:check": "pnpm --filter @rgux/contracts schemas:check",
+    "corpus:validate": "pnpm --filter @rgux/corpus corpus:validate",
+    "corpus:build": "pnpm --filter @rgux/corpus corpus:build",
+    "corpus:check-links": "pnpm --filter @rgux/corpus corpus:check-links"
   },
   "devDependencies": {
     "typescript": "^7.0.2"

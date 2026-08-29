@@ -21,3 +21,7 @@ jobs:
       # The JSON Schemas are generated artifacts. This fails when they drift
       # from the Zod contracts, so the two can never disagree on main.
       - run: pnpm schemas:check
+      # Note metadata and manifest freshness. Offline: canonical URL
+      # reachability runs on its own schedule in link-check.yml, so a third
+      # party's outage cannot block an unrelated merge.
+      - run: pnpm corpus:validate
