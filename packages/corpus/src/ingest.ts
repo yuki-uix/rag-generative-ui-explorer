@@ -57,7 +57,16 @@ export function ingest(knowledgeRoot: string): IngestResult {
   return { evidence, corpusVersion: manifest.corpusVersion, errors };
 }
 
-/** Key-ordered deterministic JSON, so an unchanged corpus re-ingests byte-identically. */
+/**
+ * Serialises the index for inspection and diffing.
+ *
+ * Determinism comes from the pipeline being ordered, not from sorting here:
+ * the manifest lists documents in a fixed order, `chunkNote` emits chunks in
+ * document order, and every entry is built by the same code path, so key order
+ * is insertion order and is the same on every run. `JSON.stringify` does not
+ * sort keys, so if entries were ever assembled by more than one path this
+ * would stop holding — which is what the byte-identical test guards.
+ */
 export function serialiseIndex(evidence: Evidence[]): string {
   return `${JSON.stringify(evidence, null, 2)}\n`;
 }
