@@ -348,3 +348,37 @@ describe('the repository corpus source support', () => {
     expect(orphans).toEqual([]);
   });
 });
+
+describe('what the support check does not apply to', () => {
+  /**
+   * The template's sections are authoring instructions, not knowledge, so it
+   * owes no source for them. It is still checked for over-claiming, which is
+   * the direction that catches a broken template.
+   */
+  it('does not require the template to source its sections', () => {
+    const { errors } = buildManifest(
+      corpus([
+        {
+          path: '_template.md',
+          body: '## An instruction\n\nHow to write a note.',
+          frontmatter: { sources: [{ ...DEFAULT_SOURCE, supports: ['an-instruction'] }] },
+        },
+      ]),
+    );
+    expect(errors.map((error) => error.message)).toEqual([]);
+  });
+
+  it('still rejects a template whose source claims a section it does not have', () => {
+    const { errors } = buildManifest(
+      corpus([
+        {
+          path: '_template.md',
+          body: '## An instruction\n\nHow to write a note.',
+          frontmatter: { sources: [{ ...DEFAULT_SOURCE, supports: ['not-a-heading'] }] },
+        },
+      ]),
+    );
+    expect(errors).toHaveLength(1);
+    expect(errors[0]!.message).toMatch(/claims to support section "not-a-heading"/);
+  });
+});

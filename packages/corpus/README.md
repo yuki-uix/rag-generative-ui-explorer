@@ -46,6 +46,26 @@ fails, because an exemption nobody needs is a standing permission.
 30 of the corpus's sections are the repository's own analysis and are listed
 there. That figure was invisible before the field existed.
 
+## How much work the citations actually do
+
+`corpus:validate` reports section attributions per source — currently **1.8**
+across 68 sources. That is the honest measure, and it is lower than "68 cited
+sources" suggests. Four notes carry two or three sources that between them
+support a single section, with everything else the repository's own reasoning.
+
+Each of those citations is individually defensible, so no check rejects them
+and none should. The number is reported routinely because a note can read as
+well-cited while its sources do very little, and that is worth seeing rather
+than discovering.
+
+## Who wrote what
+
+The notes, the evaluation questions, the golden evidence labels, and these
+section attributions were all written by the same person. Every mechanical
+check here establishes that a claim is *well-formed and resolves* — never that
+it is *right*. Whether a source genuinely supports the section it claims is a
+judgement, and no check can be built for it.
+
 **Downstream this is only half done.** Ingestion must populate
 `Evidence.documentTitle` from the note title and must not copy a source URL onto
 a chunk; see the M1 ingestion issue.
