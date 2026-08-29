@@ -11,6 +11,7 @@
     "corpus:build": "pnpm --filter @rgux/corpus corpus:build",
     "corpus:check-links": "pnpm --filter @rgux/corpus corpus:check-links",
     "corpus:chunks": "pnpm --filter @rgux/corpus corpus:chunks",
+    "corpus:ingest": "pnpm --filter @rgux/corpus corpus:ingest",
     "eval:validate": "pnpm --filter @rgux/corpus eval:validate",
     "eval:build": "pnpm --filter @rgux/corpus eval:build",
     "eval:check": "pnpm --filter @rgux/corpus eval:check"
