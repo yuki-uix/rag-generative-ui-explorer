@@ -1,30 +1,40 @@
 import { describe, expect, it } from 'vitest';
 import {
   NoteFrontmatter,
+  NoteSource,
   SOURCE_TYPES,
-  hasCanonicalUrl,
-  frontmatterFields,
+  SOURCE_FIELDS,
+  NOTE_FIELDS,
+  primarySource,
+  PartialDate,
 } from '../src/frontmatter.js';
 import { parseNote } from '../src/note.js';
 
-const externalFields = {
+const source = {
   sourceType: 'paper' as const,
-  title: 'Dense Passage Retrieval',
-  domain: 'rag' as const,
-  tags: ['retrieval-strategies', 'embeddings-similarity'],
-  summary: 'Establishes dense retrieval as a competitive alternative to lexical search.',
-  url: 'https://example.invalid/papers/dpr',
-  author: 'Karpukhin et al.',
+  title: 'Dense Passage Retrieval for Open-Domain Question Answering',
+  url: 'https://arxiv.org/abs/2004.04906',
+  author: 'Vladimir Karpukhin et al.',
   published: '2020-04-10',
-  retrieved: '2026-08-29',
+  retrieved: '2026-08-28',
   license: 'arXiv non-exclusive licence; short quotations only',
+  primary: true,
 };
 
-const REQUIRED_EXTERNAL_FIELDS = [
+const note = {
+  title: 'Dense retrieval',
+  domain: 'rag' as const,
+  tags: ['retrieval-strategies'],
+  summary: 'How a dual-encoder retriever matches meaning rather than words.',
+  author: 'yuki-uix',
+  revised: '2026-08-28',
+  sources: [source],
+};
+
+const REQUIRED_NOTE_FIELDS = ['title', 'domain', 'tags', 'summary', 'author', 'revised'] as const;
+const REQUIRED_SOURCE_FIELDS = [
+  'sourceType',
   'title',
-  'domain',
-  'tags',
-  'summary',
   'url',
   'author',
   'published',
@@ -32,129 +42,157 @@ const REQUIRED_EXTERNAL_FIELDS = [
   'license',
 ] as const;
 
-const note = (frontmatter: Record<string, unknown>, body = 'Body text.'): string =>
-  ['---', ...Object.entries(frontmatter).map(([k, v]) => `${k}: ${JSON.stringify(v)}`), '---', '', body].join(
-    '\n',
-  );
+const asFile = (frontmatter: Record<string, unknown>, body: string): string =>
+  [
+    '---',
+    ...Object.entries(frontmatter).map(([key, value]) => `${key}: ${JSON.stringify(value)}`),
+    '---',
+    '',
+    body,
+  ].join('\n');
 
-describe('required metadata', () => {
-  it('accepts a complete external note', () => {
-    expect(NoteFrontmatter.safeParse(externalFields).success).toBe(true);
+const without = (value: object, field: string): Record<string, unknown> => {
+  const copy = { ...value } as Record<string, unknown>;
+  delete copy[field];
+  return copy;
+};
+
+describe('note identity is separate from source attribution', () => {
+  it('accepts a complete note', () => {
+    const result = NoteFrontmatter.safeParse(note);
+    expect(result.success, JSON.stringify(result.error?.issues)).toBe(true);
   });
 
   /**
-   * Driven off the field list rather than written out case by case, so a field
-   * added to the schema without being added here is visible as an untested one.
+   * The failure this separation exists to prevent: frontmatter carrying the
+   * cited paper's title, so every chunk of the note's own prose is displayed
+   * under that paper's name and link.
    */
-  it.each(REQUIRED_EXTERNAL_FIELDS)('rejects a note missing %s', (field) => {
-    const incomplete = { ...externalFields };
-    delete (incomplete as Record<string, unknown>)[field];
-    expect(NoteFrontmatter.safeParse(incomplete).success).toBe(false);
-  });
-
-  it('covers every required field named by the source policy', () => {
-    for (const field of ['title', 'url', 'author', 'published', 'retrieved', 'license', 'tags']) {
-      expect(REQUIRED_EXTERNAL_FIELDS).toContain(field);
-    }
-  });
-
-  it('rejects an empty tag list', () => {
-    expect(NoteFrontmatter.safeParse({ ...externalFields, tags: [] }).success).toBe(false);
-  });
-
-  it('rejects a tag outside the controlled vocabulary', () => {
-    expect(
-      NoteFrontmatter.safeParse({ ...externalFields, tags: ['vector-databases'] }).success,
-    ).toBe(false);
-  });
-
-  it('rejects retrieved earlier than published', () => {
-    expect(
-      NoteFrontmatter.safeParse({ ...externalFields, retrieved: '2019-01-01' }).success,
-    ).toBe(false);
-  });
-
-  it('rejects a date in the future', () => {
-    expect(
-      NoteFrontmatter.safeParse({ ...externalFields, retrieved: '2099-01-01' }).success,
-    ).toBe(false);
-  });
-
-  it('rejects an unknown domain', () => {
-    expect(NoteFrontmatter.safeParse({ ...externalFields, domain: 'security' }).success).toBe(false);
-  });
-
-  it('rejects a non-ISO date', () => {
-    expect(NoteFrontmatter.safeParse({ ...externalFields, published: '10 April 2020' }).success).toBe(
-      false,
+  it('keeps the note title and the source title distinct', () => {
+    const parsed = NoteFrontmatter.parse(note);
+    expect(parsed.title).toBe('Dense retrieval');
+    expect(primarySource(parsed)?.title).toBe(
+      'Dense Passage Retrieval for Open-Domain Question Answering',
     );
   });
 
-  it('rejects unknown frontmatter keys rather than ignoring them', () => {
-    expect(NoteFrontmatter.safeParse({ ...externalFields, autor: 'typo' }).success).toBe(false);
+  it('accepts a note with no external sources', () => {
+    const parsed = NoteFrontmatter.parse(without(note, 'sources'));
+    expect(parsed.sources).toEqual([]);
+    expect(primarySource(parsed)).toBeUndefined();
   });
 });
 
-describe('original notes', () => {
-  const original = {
-    sourceType: 'original' as const,
-    title: 'Why this corpus is deliberately narrow',
-    domain: 'intersection' as const,
-    tags: ['ui-from-knowledge-structure'],
-    summary: 'Explains the corpus boundary chosen for the MVP.',
-    author: 'yuki-uix',
-    revised: '2026-08-29',
-  };
-
-  it('accepts a note with no upstream source', () => {
-    expect(NoteFrontmatter.safeParse(original).success).toBe(true);
+describe('required metadata', () => {
+  /** Driven off the field lists so a new schema field shows up as untested. */
+  it.each(REQUIRED_NOTE_FIELDS)('rejects a note missing %s', (field) => {
+    expect(NoteFrontmatter.safeParse(without(note, field)).success).toBe(false);
   });
 
-  it('rejects an original note claiming an upstream URL or licence', () => {
+  it.each(REQUIRED_SOURCE_FIELDS)('rejects a source missing %s', (field) => {
     expect(
-      NoteFrontmatter.safeParse({ ...original, url: 'https://example.invalid/x' }).success,
+      NoteFrontmatter.safeParse({ ...note, sources: [without(source, field)] }).success,
     ).toBe(false);
-    expect(NoteFrontmatter.safeParse({ ...original, license: 'CC BY 4.0' }).success).toBe(false);
   });
 
-  it('rejects an original note without a revision date', () => {
-    const { revised, ...withoutRevised } = original;
-    expect(revised).toBeDefined();
-    expect(NoteFrontmatter.safeParse(withoutRevised).success).toBe(false);
+  it('covers every field named by the source policy', () => {
+    for (const field of ['title', 'url', 'author', 'published', 'retrieved', 'license']) {
+      expect(REQUIRED_SOURCE_FIELDS).toContain(field);
+    }
+    expect([...SOURCE_FIELDS].sort()).toEqual([...REQUIRED_SOURCE_FIELDS, 'primary'].sort());
+    expect([...NOTE_FIELDS].sort()).toEqual([...REQUIRED_NOTE_FIELDS, 'sources'].sort());
   });
 
-  it('is excluded from URL checking', () => {
-    const parsed = NoteFrontmatter.parse(original);
-    expect(hasCanonicalUrl(parsed)).toBe(false);
-    expect(hasCanonicalUrl(NoteFrontmatter.parse(externalFields))).toBe(true);
+  it('rejects an empty tag list and an invented tag', () => {
+    expect(NoteFrontmatter.safeParse({ ...note, tags: [] }).success).toBe(false);
+    expect(NoteFrontmatter.safeParse({ ...note, tags: ['vector-databases'] }).success).toBe(false);
+  });
+
+  it('rejects an unknown domain and an unknown source type', () => {
+    expect(NoteFrontmatter.safeParse({ ...note, domain: 'security' }).success).toBe(false);
+    expect(
+      NoteFrontmatter.safeParse({ ...note, sources: [{ ...source, sourceType: 'blog' }] }).success,
+    ).toBe(false);
+  });
+
+  it('rejects unknown keys rather than ignoring them', () => {
+    expect(NoteFrontmatter.safeParse({ ...note, autor: 'typo' }).success).toBe(false);
+    expect(
+      NoteFrontmatter.safeParse({ ...note, sources: [{ ...source, doi: '10.1/2' }] }).success,
+    ).toBe(false);
   });
 });
 
-describe('frontmatterFields', () => {
-  it('reports the schema field names for each source type', () => {
-    expect([...frontmatterFields('paper')].sort()).toEqual([...REQUIRED_EXTERNAL_FIELDS, 'sourceType'].sort());
-    expect(frontmatterFields('original')).toContain('revised');
-    expect(frontmatterFields('original')).not.toContain('license');
+describe('source list rules', () => {
+  const secondary = without({ ...source, url: 'https://arxiv.org/abs/2004.12832' }, 'primary');
+
+  it('requires exactly one primary source', () => {
+    expect(NoteFrontmatter.safeParse({ ...note, sources: [secondary] }).success).toBe(false);
+    expect(
+      NoteFrontmatter.safeParse({ ...note, sources: [source, { ...secondary, primary: true }] })
+        .success,
+    ).toBe(false);
+    expect(NoteFrontmatter.safeParse({ ...note, sources: [source, secondary] }).success).toBe(true);
+  });
+
+  it('rejects the same source cited twice', () => {
+    expect(
+      NoteFrontmatter.safeParse({ ...note, sources: [source, without(source, 'primary')] }).success,
+    ).toBe(false);
+  });
+});
+
+describe('dates', () => {
+  const withSource = (patch: Record<string, unknown>) =>
+    NoteFrontmatter.safeParse({ ...note, sources: [{ ...source, ...patch }] }).success;
+
+  it('accepts year, year-month, and full publication dates', () => {
+    expect(withSource({ published: '2009' })).toBe(true);
+    expect(withSource({ published: '2009-07' })).toBe(true);
+    expect(withSource({ published: '2009-07-19' })).toBe(true);
+  });
+
+  it('rejects malformed or impossible dates', () => {
+    for (const value of ['2009-7', 'July 2009', '2009-13', '2009-02-30', '2009-00']) {
+      expect(PartialDate.safeParse(value).success, value).toBe(false);
+    }
+    expect(PartialDate.safeParse('2008-02-29').success).toBe(true);
+  });
+
+  it('accepts a bare year that YAML parsed as a number', () => {
+    expect(withSource({ published: 2009 })).toBe(true);
+    expect(withSource({ published: 20099 })).toBe(false);
+  });
+
+  it('rejects retrieved before published, and dates in the future', () => {
+    expect(withSource({ published: '2020-04-10', retrieved: '2019-01-01' })).toBe(false);
+    expect(withSource({ retrieved: '2099-01-01' })).toBe(false);
+    expect(NoteFrontmatter.safeParse({ ...note, revised: '2099-01-01' }).success).toBe(false);
+  });
+
+  it('compares a year-only publication on the shared prefix', () => {
+    expect(withSource({ published: '2026', retrieved: '2026-08-28' })).toBe(true);
+    expect(withSource({ published: '2027', retrieved: '2026-08-28' })).toBe(false);
+  });
+
+  it('requires a full date for retrieval and revision, which are ours to know', () => {
+    expect(withSource({ retrieved: '2026-08' })).toBe(false);
+    expect(NoteFrontmatter.safeParse({ ...note, revised: '2026-08' }).success).toBe(false);
   });
 });
 
 describe('source types', () => {
-  it('are derived from the union rather than hand-written', () => {
-    expect([...SOURCE_TYPES].sort()).toEqual([
-      'documentation',
-      'original',
-      'paper',
-      'specification',
-    ]);
-    expect(SOURCE_TYPES).toHaveLength(NoteFrontmatter.options.length);
+  it('are derived from the enum rather than hand-written', () => {
+    expect([...SOURCE_TYPES].sort()).toEqual(['documentation', 'paper', 'specification']);
+    expect(NoteSource.shape.sourceType.options).toEqual(SOURCE_TYPES);
   });
 });
 
 describe('parseNote', () => {
   it('separates frontmatter from body', () => {
-    const parsed = parseNote('x.md', note(externalFields, '# Heading\n\nProse.'));
-    expect(parsed.frontmatter.title).toBe('Dense Passage Retrieval');
-    expect(parsed.body).toBe('# Heading\n\nProse.');
+    const parsed = parseNote('x.md', asFile(note, '# Dense retrieval\n\nProse.'));
+    expect(parsed.frontmatter.title).toBe('Dense retrieval');
+    expect(parsed.body).toBe('# Dense retrieval\n\nProse.');
   });
 
   it('rejects a note with no frontmatter block', () => {
@@ -162,7 +200,7 @@ describe('parseNote', () => {
   });
 
   it('rejects a note with an empty body', () => {
-    expect(() => parseNote('x.md', note(externalFields, ''))).toThrow(/body is empty/);
+    expect(() => parseNote('x.md', asFile(note, ''))).toThrow(/body is empty/);
   });
 
   it('reports malformed YAML separately from a schema failure', () => {
@@ -172,8 +210,16 @@ describe('parseNote', () => {
   });
 
   it('names the offending field when validation fails', () => {
-    const { license, ...withoutLicense } = externalFields;
-    expect(license).toBeDefined();
-    expect(() => parseNote('rag/dpr.md', note(withoutLicense))).toThrow(/rag\/dpr\.md.*license/s);
+    const broken = { ...note, sources: [without(source, 'license')] };
+    expect(() => parseNote('rag/dpr.md', asFile(broken, '# Dense retrieval\n\nProse.'))).toThrow(
+      /rag\/dpr\.md.*license/s,
+    );
+  });
+});
+
+describe('empty source lists', () => {
+  it('reads a bare `sources:` key, which YAML parses as null, as no sources', () => {
+    const parsed = NoteFrontmatter.parse({ ...note, sources: null });
+    expect(parsed.sources).toEqual([]);
   });
 });

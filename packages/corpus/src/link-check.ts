@@ -13,10 +13,16 @@ import type { Manifest } from './manifest.js';
 
 export interface LinkResult {
   documentId: string;
+  sourceTitle: string;
   url: string;
   ok: boolean;
   status?: number;
   error?: string;
+  /**
+   * A publisher returning 403 to an automated request is bot policy, not a dead
+   * link. Reported separately so a Cloudflare-fronted DOI does not read as rot.
+   */
+  blocked?: boolean;
 }
 
 export interface LinkCheckOptions {
@@ -27,6 +33,7 @@ export interface LinkCheckOptions {
 
 async function checkOne(
   documentId: string,
+  sourceTitle: string,
   url: string,
   timeoutMs: number,
   fetchImpl: typeof fetch,
@@ -52,9 +59,16 @@ async function checkOne(
     if (response.status === 405 || response.status === 403 || response.status === 501) {
       response = await attempt('GET');
     }
-    return { documentId, url, ok: response.ok, status: response.status };
+    return {
+      documentId,
+      sourceTitle,
+      url,
+      ok: response.ok,
+      status: response.status,
+      ...(response.status === 403 ? { blocked: true } : {}),
+    };
   } catch (error) {
-    return { documentId, url, ok: false, error: (error as Error).message };
+    return { documentId, sourceTitle, url, ok: false, error: (error as Error).message };
   }
 }
 
@@ -64,9 +78,13 @@ export async function checkLinks(
 ): Promise<LinkResult[]> {
   const { timeoutMs = 15_000, concurrency = 4, fetchImpl = fetch } = options;
 
-  const queue = manifest.documents
-    .filter((document): document is typeof document & { url: string } => document.url !== undefined)
-    .map((document) => ({ documentId: document.documentId, url: document.url }));
+  const queue = manifest.documents.flatMap((document) =>
+    document.sources.map((source) => ({
+      documentId: document.documentId,
+      sourceTitle: source.title,
+      url: source.url,
+    })),
+  );
 
   const results: LinkResult[] = [];
   let cursor = 0;
@@ -74,11 +92,15 @@ export async function checkLinks(
   const worker = async (): Promise<void> => {
     while (cursor < queue.length) {
       const item = queue[cursor++]!;
-      results.push(await checkOne(item.documentId, item.url, timeoutMs, fetchImpl));
+      results.push(
+        await checkOne(item.documentId, item.sourceTitle, item.url, timeoutMs, fetchImpl),
+      );
     }
   };
 
   await Promise.all(Array.from({ length: Math.min(concurrency, queue.length) }, worker));
 
-  return results.sort((a, b) => a.documentId.localeCompare(b.documentId));
+  return results.sort(
+    (a, b) => a.documentId.localeCompare(b.documentId) || a.url.localeCompare(b.url),
+  );
 }

@@ -54,7 +54,9 @@ if (write) {
   console.log('ok knowledge/manifest.json');
 }
 
-console.log(`${manifest.documentCount} document(s), corpus version ${manifest.corpusVersion}`);
+console.log(
+  `${manifest.documentCount} document(s), ${manifest.sourceCount} cited source(s), corpus version ${manifest.corpusVersion}`,
+);
 
 console.log('\ntopic coverage');
 for (const domain of coverage(manifest)) {
@@ -71,12 +73,16 @@ if (checkUrls) {
   console.log('\ncanonical URLs');
   const results = await checkLinks(manifest);
   for (const result of results) {
+    const label = result.ok ? 'ok  ' : result.blocked === true ? 'BLOCK' : 'FAIL';
     console.log(
-      `  ${result.ok ? 'ok  ' : 'FAIL'} ${result.documentId}  ${result.url}  ${result.error ?? result.status}`,
+      `  ${label} ${result.documentId}  ${result.url}  ${result.error ?? result.status}`,
     );
   }
-  const unreachable = results.filter((result) => !result.ok);
-  console.log(`  ${results.length} checked, ${unreachable.length} unreachable`);
+  const blocked = results.filter((result) => result.blocked === true);
+  const unreachable = results.filter((result) => !result.ok && result.blocked !== true);
+  console.log(
+    `  ${results.length} checked, ${unreachable.length} unreachable, ${blocked.length} bot-blocked`,
+  );
   if (unreachable.length > 0) {
     process.exit(1);
   }

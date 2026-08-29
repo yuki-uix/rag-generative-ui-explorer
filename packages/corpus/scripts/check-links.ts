@@ -15,15 +15,17 @@ const manifestPath = resolve(here, '../../../knowledge/manifest.json');
 const manifest = Manifest.parse(JSON.parse(readFileSync(manifestPath, 'utf8')));
 
 const results = await checkLinks(manifest);
-const unreachable = results.filter((result) => !result.ok);
+const blocked = results.filter((result) => result.blocked === true);
+const unreachable = results.filter((result) => !result.ok && result.blocked !== true);
 
 for (const result of results) {
   const detail = result.error ?? String(result.status);
-  console.log(`${result.ok ? 'ok  ' : 'FAIL'} ${result.documentId}  ${result.url}  ${detail}`);
+  const label = result.ok ? 'ok  ' : result.blocked === true ? 'BLOCK' : 'FAIL';
+  console.log(`${label} ${result.documentId}  ${result.sourceTitle}  ${result.url}  ${detail}`);
 }
 
 console.log(
-  `\n${results.length} URL(s) checked, ${unreachable.length} unreachable, corpus version ${manifest.corpusVersion}`,
+  `\n${results.length} URL(s) checked, ${unreachable.length} unreachable, ${blocked.length} bot-blocked, corpus version ${manifest.corpusVersion}`,
 );
 
 if (unreachable.length > 0) {

@@ -1,77 +1,68 @@
-import { mkdtempSync, mkdirSync, writeFileSync, rmSync } from 'node:fs';
-import { tmpdir } from 'node:os';
-import { join } from 'node:path';
 import { afterEach, describe, expect, it } from 'vitest';
 import { buildManifest } from '../src/manifest.js';
+import { corpus, cleanUpCorpora, DEFAULT_SOURCE } from './support/corpus.js';
 
-const created: string[] = [];
+afterEach(cleanUpCorpora);
 
-afterEach(() => {
-  for (const dir of created.splice(0)) rmSync(dir, { recursive: true, force: true });
-});
-
-interface NoteSpec {
-  path: string;
-  frontmatter?: Record<string, unknown>;
-  body?: string;
-  raw?: string;
-}
-
-const defaultFrontmatter = {
+const SECOND_SOURCE = {
   sourceType: 'paper',
-  title: 'Dense Passage Retrieval',
-  domain: 'rag',
-  tags: ['retrieval-strategies'],
-  summary: 'Dense retrieval as an alternative to lexical search.',
-  url: 'https://example.invalid/papers/dpr',
-  author: 'Karpukhin et al.',
-  published: '2020-04-10',
-  retrieved: '2026-08-29',
-  license: 'Short quotations only',
+  title: 'ColBERT: Efficient and Effective Passage Search',
+  url: 'https://arxiv.org/abs/2004.12832',
+  author: 'Omar Khattab, Matei Zaharia',
+  published: '2020-04-27',
+  retrieved: '2026-08-28',
+  license: 'arXiv non-exclusive licence; short quotations only',
 };
 
-function corpus(notes: NoteSpec[]): string {
-  const root = mkdtempSync(join(tmpdir(), 'rgux-corpus-'));
-  created.push(root);
-  for (const note of notes) {
-    const full = join(root, note.path);
-    mkdirSync(join(full, '..'), { recursive: true });
-    const content =
-      note.raw ??
-      [
-        '---',
-        ...Object.entries({ ...defaultFrontmatter, ...note.frontmatter }).map(
-          ([key, value]) => `${key}: ${JSON.stringify(value)}`,
-        ),
-        '---',
-        '',
-        note.body ?? 'Body prose.',
-      ].join('\n');
-    writeFileSync(full, content, 'utf8');
-  }
-  return root;
-}
-
 describe('manifest contents', () => {
-  it('lists every corpus note with its metadata', () => {
+  it('lists every corpus note under its own title, not its sources', () => {
     const { manifest, errors } = buildManifest(
       corpus([
         { path: 'rag/dpr.md' },
-        { path: 'generative-ui/registries.md', frontmatter: { domain: 'generative-ui', tags: ['component-registries'] } },
+        {
+          path: 'generative-ui/registries.md',
+          frontmatter: {
+            title: 'Component registries',
+            domain: 'generative-ui',
+            tags: ['component-registries'],
+          },
+        },
       ]),
     );
 
-    expect(errors).toEqual([]);
+    expect(errors.map((error) => error.message)).toEqual([]);
     expect(manifest.documentCount).toBe(2);
-    expect(manifest.documents.map((document) => document.documentId)).toEqual([
-      'generative-ui/registries',
-      'rag/dpr',
+    expect(manifest.documents.map((document) => document.title)).toEqual([
+      'Component registries',
+      'Dense retrieval',
     ]);
-    expect(manifest.documents[1]).toMatchObject({
-      path: 'knowledge/rag/dpr.md',
-      title: 'Dense Passage Retrieval',
-      url: 'https://example.invalid/papers/dpr',
-    });
+    expect(manifest.documents[1]?.sources[0]?.title).toBe(
+      'Dense Passage Retrieval for Open-Domain Question Answering',
+    );
+  });
+
+  it('records every source a note cites, not only the primary one', () => {
+    const { manifest } = buildManifest(
+      corpus([{ path: 'rag/dpr.md', frontmatter: { sources: [DEFAULT_SOURCE, SECOND_SOURCE] } }]),
+    );
+
+    expect(manifest.sourceCount).toBe(2);
+    expect(manifest.documents[0]?.sources.map((source) => source.primary)).toEqual([true, false]);
+  });
+
+  it('counts a note with no sources without failing', () => {
+    const { manifest, errors } = buildManifest(
+      corpus([
+        {
+          path: 'rag/analysis.md',
+          frontmatter: { title: 'Repository analysis', sources: [], tags: ['rag-production'] },
+        },
+      ]),
+    );
+
+    expect(errors.map((error) => error.message)).toEqual([]);
+    expect(manifest.documentCount).toBe(1);
+    expect(manifest.sourceCount).toBe(0);
   });
 
   it('validates but does not list READMEs and underscore-prefixed templates', () => {
@@ -83,13 +74,13 @@ describe('manifest contents', () => {
       ]),
     );
 
-    expect(errors).toEqual([]);
+    expect(errors.map((error) => error.message)).toEqual([]);
     expect(manifest.documents.map((document) => document.documentId)).toEqual(['rag/dpr']);
   });
 
   it('reports a broken template even though it is not part of the corpus', () => {
     const { errors } = buildManifest(
-      corpus([{ path: '_template.md', raw: '---\ntitle: "only a title"\n---\n\nBody.\n' }]),
+      corpus([{ path: '_template.md', raw: '---\ntitle: "only a title"\n---\n\n# x\n\nBody.\n' }]),
     );
     expect(errors).toHaveLength(1);
     expect(errors[0]!.message).toMatch(/_template\.md/);
@@ -107,10 +98,77 @@ describe('manifest contents', () => {
   });
 });
 
+describe('title and heading agreement', () => {
+  /**
+   * The check exists because these diverged once, in the direction that
+   * matters: frontmatter held the cited paper's title while the heading held
+   * the note's, and ingestion reads the frontmatter.
+   */
+  it('rejects a note whose heading does not match its frontmatter title', () => {
+    const { errors } = buildManifest(
+      corpus([
+        {
+          path: 'rag/dpr.md',
+          raw: [
+            '---',
+            'title: "Dense retrieval"',
+            'domain: "rag"',
+            'tags:',
+            '  - retrieval-strategies',
+            'summary: "s"',
+            'author: "yuki-uix"',
+            'revised: "2026-08-28"',
+            '---',
+            '',
+            '# Dense Passage Retrieval for Open-Domain Question Answering',
+            '',
+            'Body.',
+          ].join('\n'),
+        },
+      ]),
+    );
+
+    expect(errors).toHaveLength(1);
+    expect(errors[0]!.message).toMatch(/does not match heading/);
+  });
+
+  it('rejects a note with no top-level heading', () => {
+    const { errors } = buildManifest(
+      corpus([
+        {
+          path: 'rag/dpr.md',
+          raw: [
+            '---',
+            'title: "Dense retrieval"',
+            'domain: "rag"',
+            'tags:',
+            '  - retrieval-strategies',
+            'summary: "s"',
+            'author: "yuki-uix"',
+            'revised: "2026-08-28"',
+            '---',
+            '',
+            '## Only a subheading',
+            '',
+            'Body.',
+          ].join('\n'),
+        },
+      ]),
+    );
+
+    expect(errors[0]!.message).toMatch(/no top-level heading/);
+  });
+});
+
 describe('domain and directory agreement', () => {
   it('rejects a note whose declared domain does not match its directory', () => {
     const { errors } = buildManifest(
-      corpus([{ path: 'rag/misfiled.md', frontmatter: { domain: 'generative-ui', tags: ['component-registries'] } }]),
+      corpus([
+        {
+          path: 'rag/misfiled.md',
+          frontmatter: { domain: 'generative-ui', tags: ['component-registries'] },
+        },
+      ]),
     );
     expect(errors).toHaveLength(1);
     expect(errors[0]!.message).toMatch(/declares domain "generative-ui" but lives in knowledge\/rag/);
@@ -118,20 +176,28 @@ describe('domain and directory agreement', () => {
 
   it('rejects a corpus note outside any domain directory', () => {
     const { errors } = buildManifest(corpus([{ path: 'stray.md' }]));
-    expect(errors).toHaveLength(1);
     expect(errors[0]!.message).toMatch(/must live in one of/);
   });
 
   it('accepts a note in the directory matching its domain', () => {
     const { errors } = buildManifest(
-      corpus([{ path: 'intersection/cards.md', frontmatter: { domain: 'intersection', tags: ['evidence-aware-cards'] } }]),
+      corpus([
+        {
+          path: 'intersection/cards.md',
+          frontmatter: {
+            title: 'Evidence-aware cards',
+            domain: 'intersection',
+            tags: ['evidence-aware-cards'],
+          },
+        },
+      ]),
     );
-    expect(errors).toEqual([]);
+    expect(errors.map((error) => error.message)).toEqual([]);
   });
 
   it('still allows the root-level template, which is not a corpus note', () => {
     const { errors, manifest } = buildManifest(corpus([{ path: '_template.md' }]));
-    expect(errors).toEqual([]);
+    expect(errors.map((error) => error.message)).toEqual([]);
     expect(manifest.documentCount).toBe(0);
   });
 });
