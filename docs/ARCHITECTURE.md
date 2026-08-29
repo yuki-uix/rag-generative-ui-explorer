@@ -125,6 +125,68 @@ The renderer maps each card discriminator to a reviewed React component. It owns
 - Loading, empty, incomplete, conflicting, and error states.
 - Local expansion and selection state.
 
+### The application shell and its framework risk
+
+The browser application lives in `apps/web` and is built with vinext, a Vite and
+React Server Components framework, deployed to a Cloudflare Worker. That stack
+arrived with a scaffold rather than being chosen on its merits, and it carries a
+real risk worth recording rather than discovering later: **vinext is pinned at
+`1.0.0-beta.5`, a pre-1.0 framework sitting in the render path** of a project
+whose value rests on reproducibility.
+
+It is kept anyway, for one reason that is not convenience. Three metrics in
+`eval/PROTOCOL.md` are classified Human — time to locate a requested fact,
+source-open rate, and follow-up interaction rate. None can be collected without a
+URL that participants can open, so a working deploy target is a prerequisite for
+M4 rather than a nicety.
+
+What keeps the risk bounded is that the application is a thin client. Card
+components take a validated card spec and return elements; the contracts, the
+corpus, the retriever, and the evaluation harness have no dependency on the
+framework in either direction. If vinext has to be replaced, the components move
+and nothing below them changes. That property is worth protecting: framework
+primitives should not leak into component signatures.
+
+The one coupling worth naming is that vinext serves static assets under
+`/_next/static/`, a Next.js convention it keeps even though `next` is not a
+dependency. Nothing should hardcode that prefix, because it is the part of the
+URL space a framework change would move.
+
+**Deployment goes directly to Cloudflare** (`pnpm web:deploy`, which runs
+`wrangler deploy` against the `dist/server/wrangler.json` the build emits), not
+through the hosting product the scaffold arrived with. The distinction matters
+for the reason the deploy exists at all: a URL that is reproducible from the
+build output can later be published by CI, whereas one that exists because a
+separate product published it once cannot be reproduced from this repository.
+Experiment infrastructure should not depend on a gesture the project cannot
+repeat.
+
+`web:deploy` cannot run in CI — it would publish on every pull request and needs
+a Cloudflare token — so `web:deploy:check` runs instead. The dry-run needs no
+credentials and uploads nothing, while still validating the generated
+`wrangler.json`, the asset directory, and the bundle size against the Workers
+limit. The convention that every script is exercised by CI therefore holds; only
+the upload is manual.
+
+Both scripts build first. `wrangler deploy` uploads whatever is in `dist/`
+without checking how old it is, so a deploy script that did not rebuild would
+publish the previous build whenever someone forgot — the same class of defect as
+a generated artefact that is read without a drift check.
+
+**The first deploy, 2026-08-30 (version `4ba729ed`).** This paragraph records one
+historical event and is not a description of what is currently deployed; the
+current state is `wrangler deployments list`, never this file. It is written down
+because what was checked is reusable even after the version id is meaningless.
+
+Verification was not the status code, which is the least
+discriminating signal available here — a Worker whose server rendering fails
+still answers 200 with an empty shell. What was checked instead is that all five
+card types appear in the HTML returned by `curl`, with no JavaScript executed.
+Those names are read at runtime from the discriminated union in
+`@rgux/contracts`, so their presence in the server-rendered output is evidence
+that the contracts package is imported and evaluated inside the Worker — which
+the test suite, running in Node, cannot establish.
+
 ## State
 
 Three states remain separate:
