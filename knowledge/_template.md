@@ -3,8 +3,8 @@ sourceType: paper
 title: Note title as it should appear in a citation
 domain: rag
 tags:
-  - retrieval
-  - chunking
+  - retrieval-strategies
+  - ingestion-chunking
 summary: One sentence on what this note establishes, shown in source listings.
 url: https://example.invalid/papers/replace-me
 author: Author or organization responsible for the source
@@ -45,7 +45,12 @@ or paraphrased by the system.
 
 Every note requires `title`, `domain` (`rag`, `generative-ui`, or
 `intersection`), at least one entry in `tags`, and a `summary` of at most 300
-characters.
+characters. `domain` must match the directory the note lives in.
+
+`tags` come from the controlled vocabulary in
+`packages/corpus/src/topics.ts`, which mirrors the topic lists in
+[knowledge scope](../docs/KNOWLEDGE_SCOPE.md). An invented tag fails validation:
+coverage of the scope has to be computable without reading every note.
 
 Files whose name starts with `_`, and every `README.md`, are validated but are
 not part of the corpus and do not appear in the manifest.

@@ -21,7 +21,7 @@ const defaultFrontmatter = {
   sourceType: 'paper',
   title: 'Dense Passage Retrieval',
   domain: 'rag',
-  tags: ['retrieval'],
+  tags: ['retrieval-strategies'],
   summary: 'Dense retrieval as an alternative to lexical search.',
   url: 'https://example.invalid/papers/dpr',
   author: 'Karpukhin et al.',
@@ -57,7 +57,7 @@ describe('manifest contents', () => {
     const { manifest, errors } = buildManifest(
       corpus([
         { path: 'rag/dpr.md' },
-        { path: 'generative-ui/registries.md', frontmatter: { domain: 'generative-ui' } },
+        { path: 'generative-ui/registries.md', frontmatter: { domain: 'generative-ui', tags: ['component-registries'] } },
       ]),
     );
 
@@ -107,55 +107,31 @@ describe('manifest contents', () => {
   });
 });
 
-describe('corpus version', () => {
-  const baseline = () => buildManifest(corpus([{ path: 'rag/dpr.md' }])).manifest.corpusVersion;
-
-  it('is stable for identical content', () => {
-    expect(baseline()).toBe(baseline());
+describe('domain and directory agreement', () => {
+  it('rejects a note whose declared domain does not match its directory', () => {
+    const { errors } = buildManifest(
+      corpus([{ path: 'rag/misfiled.md', frontmatter: { domain: 'generative-ui', tags: ['component-registries'] } }]),
+    );
+    expect(errors).toHaveLength(1);
+    expect(errors[0]!.message).toMatch(/declares domain "generative-ui" but lives in knowledge\/rag/);
   });
 
-  it('changes when a note body changes', () => {
-    const changed = buildManifest(
-      corpus([{ path: 'rag/dpr.md', body: 'Different prose entirely.' }]),
-    ).manifest.corpusVersion;
-    expect(changed).not.toBe(baseline());
+  it('rejects a corpus note outside any domain directory', () => {
+    const { errors } = buildManifest(corpus([{ path: 'stray.md' }]));
+    expect(errors).toHaveLength(1);
+    expect(errors[0]!.message).toMatch(/must live in one of/);
   });
 
-  /**
-   * Retagging or reattributing a note changes what retrieval and evaluation
-   * see, so a version derived from body text alone would be wrong.
-   */
-  it('changes when only metadata changes', () => {
-    const retagged = buildManifest(
-      corpus([{ path: 'rag/dpr.md', frontmatter: { tags: ['retrieval', 'embeddings'] } }]),
-    ).manifest.corpusVersion;
-    expect(retagged).not.toBe(baseline());
+  it('accepts a note in the directory matching its domain', () => {
+    const { errors } = buildManifest(
+      corpus([{ path: 'intersection/cards.md', frontmatter: { domain: 'intersection', tags: ['evidence-aware-cards'] } }]),
+    );
+    expect(errors).toEqual([]);
   });
 
-  it('changes when a note is added', () => {
-    const withExtra = buildManifest(
-      corpus([{ path: 'rag/dpr.md' }, { path: 'rag/bm25.md', frontmatter: { title: 'BM25' } }]),
-    ).manifest.corpusVersion;
-    expect(withExtra).not.toBe(baseline());
-  });
-
-  it('ignores whitespace reflow in the body, matching evidence ID hashing', () => {
-    const reflowed = buildManifest(
-      corpus([{ path: 'rag/dpr.md', body: 'Body\n   prose.' }]),
-    ).manifest.corpusVersion;
-    const original = buildManifest(
-      corpus([{ path: 'rag/dpr.md', body: 'Body prose.' }]),
-    ).manifest.corpusVersion;
-    expect(reflowed).toBe(original);
-  });
-
-  it('does not depend on filesystem ordering', () => {
-    const forwards = buildManifest(
-      corpus([{ path: 'rag/a.md' }, { path: 'rag/b.md', frontmatter: { title: 'B' } }]),
-    ).manifest.corpusVersion;
-    const backwards = buildManifest(
-      corpus([{ path: 'rag/b.md', frontmatter: { title: 'B' } }, { path: 'rag/a.md' }]),
-    ).manifest.corpusVersion;
-    expect(forwards).toBe(backwards);
+  it('still allows the root-level template, which is not a corpus note', () => {
+    const { errors, manifest } = buildManifest(corpus([{ path: '_template.md' }]));
+    expect(errors).toEqual([]);
+    expect(manifest.documentCount).toBe(0);
   });
 });

@@ -1,8 +1,10 @@
 /**
  * Validates every note under `knowledge/` and regenerates `knowledge/manifest.json`.
  *
- * Offline only. Canonical URL reachability is a separate command
- * (`corpus:check-links`) on its own schedule — see src/link-check.ts.
+ * Offline by default. `--check-urls` additionally requests every canonical URL;
+ * the pull-request gate does not pass that flag, because making a merge depend
+ * on a third party's uptime produces a check people re-run until it goes green.
+ * The scheduled link-check workflow is where reachability is actually watched.
  *
  * Without `--write`, the manifest is compared rather than rewritten, so CI fails
  * when a note changes without the manifest being regenerated.
@@ -11,13 +13,15 @@ import { readFileSync, writeFileSync } from 'node:fs';
 import { dirname, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { buildManifest, serialiseManifest } from '../src/manifest.js';
+import { coverage } from '../src/coverage.js';
+import { checkLinks } from '../src/link-check.js';
 
 const here = dirname(fileURLToPath(import.meta.url));
-const repoRoot = resolve(here, '../../..');
-const knowledgeRoot = resolve(repoRoot, 'knowledge');
+const knowledgeRoot = resolve(here, '../../../knowledge');
 const manifestPath = resolve(knowledgeRoot, 'manifest.json');
 
 const write = process.argv.includes('--write');
+const checkUrls = process.argv.includes('--check-urls');
 
 const { manifest, errors } = buildManifest(knowledgeRoot);
 
@@ -34,7 +38,7 @@ const serialised = serialiseManifest(manifest);
 
 if (write) {
   writeFileSync(manifestPath, serialised, 'utf8');
-  console.log(`wrote knowledge/manifest.json`);
+  console.log('wrote knowledge/manifest.json');
 } else {
   let current: string | undefined;
   try {
@@ -51,3 +55,29 @@ if (write) {
 }
 
 console.log(`${manifest.documentCount} document(s), corpus version ${manifest.corpusVersion}`);
+
+console.log('\ntopic coverage');
+for (const domain of coverage(manifest)) {
+  const total = domain.covered.length + domain.uncovered.length;
+  console.log(
+    `  ${domain.domain.padEnd(15)} ${domain.covered.length}/${total} topics, ${domain.noteCount} note(s)`,
+  );
+  if (domain.uncovered.length > 0) {
+    console.log(`    uncovered: ${domain.uncovered.join(', ')}`);
+  }
+}
+
+if (checkUrls) {
+  console.log('\ncanonical URLs');
+  const results = await checkLinks(manifest);
+  for (const result of results) {
+    console.log(
+      `  ${result.ok ? 'ok  ' : 'FAIL'} ${result.documentId}  ${result.url}  ${result.error ?? result.status}`,
+    );
+  }
+  const unreachable = results.filter((result) => !result.ok);
+  console.log(`  ${results.length} checked, ${unreachable.length} unreachable`);
+  if (unreachable.length > 0) {
+    process.exit(1);
+  }
+}

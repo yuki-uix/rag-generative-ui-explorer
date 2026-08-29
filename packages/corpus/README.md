@@ -6,6 +6,7 @@ Note metadata validation and manifest generation for `knowledge/`.
 pnpm corpus:validate      # validate notes, fail if the manifest is stale
 pnpm corpus:build         # validate and rewrite knowledge/manifest.json
 pnpm corpus:check-links   # request every canonical URL (network)
+pnpm corpus:validate --check-urls   # both, for local use
 ```
 
 ## Frontmatter is a discriminated union, not a bag of optional fields
@@ -24,13 +25,35 @@ The required-field tests are driven off a field list rather than written case by
 case, so a field added to the schema without being added to that list shows up
 as an untested one.
 
-## The corpus version covers metadata, not just prose
+## Topic tags are a controlled vocabulary
 
-`corpusVersion` is a hash over every document's metadata and body. Retagging a
-note or correcting its author changes what retrieval and evaluation see, so a
-version derived from body text alone would report two materially different
-corpora as the same one — and every stored evaluation result keyed on it would
-silently compare across the change.
+`tags` must come from `src/topics.ts`, whose labels mirror the topic bullets in
+`docs/KNOWLEDGE_SCOPE.md`. `topics.test.ts` parses that document and asserts the
+two agree in both directions.
+
+Free-form tags would make the coverage criterion in M0.5–M0.7 ("every Domain A
+topic is covered by at least one note") uncomputable: with forty notes carrying
+ad-hoc tags, coverage could only be established by reading all forty. `pnpm
+corpus:validate` prints per-domain coverage and names the uncovered topics.
+
+## `domain` must match the directory
+
+The directory READMEs said so in prose, which meant nothing checked it. A note
+under `knowledge/rag/` declaring `domain: generative-ui` validated cleanly and
+would have counted towards the wrong domain's coverage.
+
+## The corpus version covers the whole frontmatter, not the manifest projection
+
+`corpusVersion` hashes each document's body plus a `metadataHash` taken over the
+*complete* frontmatter — not over the fields the manifest happens to surface.
+
+The first version of this package hashed the manifest documents, which omitted
+`license`, `published`, `retrieved`, and `summary`. Editing any of those changed
+nothing, so two materially different corpora reported the same version, and any
+evaluation result keyed on it would have compared silently across the change.
+The sensitivity test now iterates `frontmatterFields()` rather than naming
+fields by hand — the earlier test named two, and both happened to be fields the
+manifest projected.
 
 Body hashing normalises whitespace, matching `makeEvidenceId` in
 `@rgux/contracts`, so reflowing a paragraph without changing its words moves

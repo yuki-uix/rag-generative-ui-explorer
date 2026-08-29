@@ -17,9 +17,11 @@ const manifest = (urls: Array<string | undefined>): Manifest => ({
     domain: 'rag',
     sourceType: url === undefined ? 'original' : 'paper',
     author: 'Someone',
+    summary: 'A note.',
     ...(url === undefined ? {} : { url }),
     tags: ['x'],
     contentHash: '0123456789abcdef',
+    metadataHash: 'fedcba9876543210',
   })),
 });
 

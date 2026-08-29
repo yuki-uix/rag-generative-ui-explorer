@@ -1,12 +1,17 @@
 import { describe, expect, it } from 'vitest';
-import { NoteFrontmatter, SOURCE_TYPES, hasCanonicalUrl } from '../src/frontmatter.js';
+import {
+  NoteFrontmatter,
+  SOURCE_TYPES,
+  hasCanonicalUrl,
+  frontmatterFields,
+} from '../src/frontmatter.js';
 import { parseNote } from '../src/note.js';
 
 const externalFields = {
   sourceType: 'paper' as const,
   title: 'Dense Passage Retrieval',
   domain: 'rag' as const,
-  tags: ['retrieval', 'embeddings'],
+  tags: ['retrieval-strategies', 'embeddings-similarity'],
   summary: 'Establishes dense retrieval as a competitive alternative to lexical search.',
   url: 'https://example.invalid/papers/dpr',
   author: 'Karpukhin et al.',
@@ -57,6 +62,24 @@ describe('required metadata', () => {
     expect(NoteFrontmatter.safeParse({ ...externalFields, tags: [] }).success).toBe(false);
   });
 
+  it('rejects a tag outside the controlled vocabulary', () => {
+    expect(
+      NoteFrontmatter.safeParse({ ...externalFields, tags: ['vector-databases'] }).success,
+    ).toBe(false);
+  });
+
+  it('rejects retrieved earlier than published', () => {
+    expect(
+      NoteFrontmatter.safeParse({ ...externalFields, retrieved: '2019-01-01' }).success,
+    ).toBe(false);
+  });
+
+  it('rejects a date in the future', () => {
+    expect(
+      NoteFrontmatter.safeParse({ ...externalFields, retrieved: '2099-01-01' }).success,
+    ).toBe(false);
+  });
+
   it('rejects an unknown domain', () => {
     expect(NoteFrontmatter.safeParse({ ...externalFields, domain: 'security' }).success).toBe(false);
   });
@@ -77,7 +100,7 @@ describe('original notes', () => {
     sourceType: 'original' as const,
     title: 'Why this corpus is deliberately narrow',
     domain: 'intersection' as const,
-    tags: ['scope'],
+    tags: ['ui-from-knowledge-structure'],
     summary: 'Explains the corpus boundary chosen for the MVP.',
     author: 'yuki-uix',
     revised: '2026-08-29',
@@ -104,6 +127,14 @@ describe('original notes', () => {
     const parsed = NoteFrontmatter.parse(original);
     expect(hasCanonicalUrl(parsed)).toBe(false);
     expect(hasCanonicalUrl(NoteFrontmatter.parse(externalFields))).toBe(true);
+  });
+});
+
+describe('frontmatterFields', () => {
+  it('reports the schema field names for each source type', () => {
+    expect([...frontmatterFields('paper')].sort()).toEqual([...REQUIRED_EXTERNAL_FIELDS, 'sourceType'].sort());
+    expect(frontmatterFields('original')).toContain('revised');
+    expect(frontmatterFields('original')).not.toContain('license');
   });
 });
 
