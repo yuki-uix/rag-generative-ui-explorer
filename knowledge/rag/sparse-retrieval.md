@@ -14,6 +14,10 @@ sources:
     published: "2009"
     retrieved: "2026-08-29"
     license: "Foundations and Trends in Information Retrieval 3(4), DOI 10.1561/1500000019, (c) 2009 the authors and Now Publishers. Author-hosted copy; short attributed quotations only."
+    supports:
+      - what-bm25-actually-computes
+      - why-it-survives
+      - where-it-fails
     primary: true
 ---
 

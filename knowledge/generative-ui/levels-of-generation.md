@@ -13,6 +13,9 @@ sources:
     author: A2UI Project contributors
     retrieved: 2026-08-29
     license: Apache-2.0. Short attributed quotations only; no publication date stated.
+    supports:
+      - component
+      - layout
     primary: true
   - sourceType: specification
     title: "SEP-1865: MCP Apps - Interactive User Interfaces for MCP"
@@ -21,6 +24,8 @@ sources:
     published: 2025-11-21
     retrieved: 2026-08-29
     license: Status Final, Extensions Track. Short attributed quotations only; published is the SEP Created date.
+    supports:
+      - whole-application
 ---
 
 # Levels of generation

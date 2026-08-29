@@ -14,6 +14,11 @@ sources:
     published: "2024-09-19"
     retrieved: "2026-08-29"
     license: "Anthropic engineering post. Short attributed quotations only; text not reproduced."
+    supports:
+      - the-chunk-is-the-unit-of-retrieval-and-of-citation
+      - what-a-chunk-loses-when-it-is-extracted
+      - metadata-is-part-of-ingestion
+      - identity-has-to-be-stable
     primary: true
 ---
 

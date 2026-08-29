@@ -14,6 +14,8 @@ sources:
     published: 2022-05-28
     retrieved: 2026-08-29
     license: arXiv preprint, arXiv:2205.14334. Non-exclusive licence to distribute; short attributed quotations only. published is the v1 submission date.
+    supports:
+      - calibrated-words-not-calibrated-numbers
     primary: true
   - sourceType: paper
     title: Evaluating Verifiability in Generative Search Engines
@@ -22,6 +24,8 @@ sources:
     published: 2023-04-19
     retrieved: 2026-08-29
     license: arXiv preprint, arXiv:2304.09848. Non-exclusive licence to distribute; short attributed quotations only. published is the v1 submission date.
+    supports:
+      - the-failure-the-verifiability-work-predicts
 ---
 
 # Not overstating weak evidence

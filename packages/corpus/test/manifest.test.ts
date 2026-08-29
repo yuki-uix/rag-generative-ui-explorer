@@ -1,5 +1,6 @@
 import { afterEach, describe, expect, it } from 'vitest';
-import { buildManifest } from '../src/manifest.js';
+import { resolve } from 'node:path';
+import { buildManifest, UNSOURCED_SECTIONS } from '../src/manifest.js';
 import { corpus, cleanUpCorpora, DEFAULT_SOURCE } from './support/corpus.js';
 
 afterEach(cleanUpCorpora);
@@ -12,6 +13,7 @@ const SECOND_SOURCE = {
   published: '2020-04-27',
   retrieved: '2026-08-28',
   license: 'arXiv non-exclusive licence; short quotations only',
+  supports: ['the-dual-encoder'],
 };
 
 describe('manifest contents', () => {
@@ -210,7 +212,7 @@ describe('claims about verification work', () => {
    */
   it('rejects a note asserting that a test exists', () => {
     const { errors } = buildManifest(
-      corpus([{ path: 'rag/dpr.md', body: 'Showing sources is local and a test asserts it makes no model call.' }]),
+      corpus([{ path: 'rag/dpr.md', body: '## The dual encoder\n\nProse.\n\n## What training is doing\n\nShowing sources is local and a test asserts it makes no model call.' }]),
     );
     expect(errors).toHaveLength(1);
     expect(errors[0]!.message).toMatch(/claims verification work exists/);
@@ -219,7 +221,9 @@ describe('claims about verification work', () => {
   it.each(['tests assert this holds', 'the property is asserted by the suite'])(
     'rejects %s',
     (phrase) => {
-      const { errors } = buildManifest(corpus([{ path: 'rag/dpr.md', body: `Prose. ${phrase}.` }]));
+      const { errors } = buildManifest(
+        corpus([{ path: 'rag/dpr.md', body: `## The dual encoder\n\nProse.\n\n## What training is doing\n\nProse. ${phrase}.` }]),
+      );
       expect(errors).toHaveLength(1);
     },
   );
@@ -227,8 +231,120 @@ describe('claims about verification work', () => {
   /** The gerund describes a specification rather than an existing test. */
   it('allows the gerund form, which describes intent', () => {
     const { errors } = buildManifest(
-      corpus([{ path: 'rag/dpr.md', body: 'The design requires a test asserting it makes no model call.' }]),
+      corpus([{ path: 'rag/dpr.md', body: '## The dual encoder\n\nProse.\n\n## What training is doing\n\nThe design requires a test asserting it makes no model call.' }]),
     );
     expect(errors.map((error) => error.message)).toEqual([]);
+  });
+});
+
+describe('source-to-section support', () => {
+  const withSupports = (supports: string[], extra: Record<string, unknown> = {}) => ({
+    ...DEFAULT_SOURCE,
+    supports,
+    ...extra,
+  });
+  const body = ['## First claim', '', 'Prose.', '', '## Second claim', '', 'More prose.'].join(
+    '\n',
+  );
+
+  /**
+   * Over-citation. Review found a note listing a protocol's documentation as a
+   * source and drawing on it nowhere; nothing recorded the relationship, so
+   * nothing could check it.
+   */
+  it('rejects a source claiming a section that does not exist', () => {
+    const { errors } = buildManifest(
+      corpus([
+        {
+          path: 'rag/n.md',
+          body,
+          frontmatter: { sources: [withSupports(['first-claim', 'second-claim', 'invented-section'])] },
+        },
+      ]),
+    );
+    expect(errors).toHaveLength(1);
+    expect(errors[0]!.message).toMatch(/claims to support section "invented-section"/);
+  });
+
+  /**
+   * Under-citation. Review found a note whose three of six sections covered
+   * papers it never cited.
+   */
+  it('rejects a section no source claims', () => {
+    const { errors } = buildManifest(
+      corpus([{ path: 'rag/n.md', body, frontmatter: { sources: [withSupports(['first-claim'])] } }]),
+    );
+    expect(errors).toHaveLength(1);
+    expect(errors[0]!.message).toMatch(/section "second-claim" is claimed by no source/);
+  });
+
+  it('accepts a note whose sources between them claim every section', () => {
+    const { errors } = buildManifest(
+      corpus([
+        {
+          path: 'rag/n.md',
+          body,
+          frontmatter: { sources: [withSupports(['first-claim', 'second-claim'])] },
+        },
+      ]),
+    );
+    expect(errors.map((error) => error.message)).toEqual([]);
+  });
+
+  it('exempts the closing section, which is never an explication of a source', () => {
+    const { errors } = buildManifest(
+      corpus([
+        {
+          path: 'rag/n.md',
+          body: `${body}\n\n## What this means here\n\nProject analysis.`,
+          frontmatter: { sources: [withSupports(['first-claim', 'second-claim'])] },
+        },
+      ]),
+    );
+    expect(errors.map((error) => error.message)).toEqual([]);
+  });
+
+  it('requires at least one supported section per source', () => {
+    const { errors } = buildManifest(
+      corpus([{ path: 'rag/n.md', body, frontmatter: { sources: [withSupports([])] } }]),
+    );
+    expect(errors).toHaveLength(1);
+  });
+
+  it('leaves a note with no sources alone', () => {
+    const { errors } = buildManifest(
+      corpus([{ path: 'rag/n.md', body, frontmatter: { sources: [] } }]),
+    );
+    expect(errors.map((error) => error.message)).toEqual([]);
+  });
+});
+
+describe('the repository corpus source support', () => {
+  const { manifest, errors } = buildManifest(
+    resolve(import.meta.dirname, '../../../knowledge'),
+  );
+
+  it('has every section either claimed by a source or exempted with a reason', () => {
+    expect(errors.map((error) => error.message)).toEqual([]);
+  });
+
+  /** An exemption nobody needs is a standing permission rather than a judgement. */
+  it('carries no exemption for a section a source claims', () => {
+    const claimed = new Set(
+      manifest.documents.flatMap((document) =>
+        document.sources.flatMap((source) =>
+          source.supports.map((section) => `${document.documentId}#${section}`),
+        ),
+      ),
+    );
+    expect(Object.keys(UNSOURCED_SECTIONS.specific).filter((key) => claimed.has(key))).toEqual([]);
+  });
+
+  it('records every exemption against a note that exists', () => {
+    const documents = new Set(manifest.documents.map((document) => document.documentId));
+    const orphans = Object.keys(UNSOURCED_SECTIONS.specific).filter(
+      (key) => !documents.has(key.split('#')[0]!),
+    );
+    expect(orphans).toEqual([]);
   });
 });

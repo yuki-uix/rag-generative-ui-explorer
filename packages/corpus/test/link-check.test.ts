@@ -15,6 +15,7 @@ const source = (url: string, index: number) => ({
   published: '2020',
   retrieved: '2026-08-28',
   license: 'Short quotations only',
+  supports: ['a-section'],
   primary: index === 0,
 });
 

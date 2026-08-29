@@ -14,6 +14,13 @@ sources:
     published: "2023-12-18"
     retrieved: "2026-08-29"
     license: "arXiv preprint, arXiv:2312.10997. Non-exclusive licence to distribute; short attributed quotations only. published is the v1 submission date; the link serves the latest version."
+    supports:
+      - versioning-is-the-one-that-cannot-be-retrofitted
+      - freshness-and-staleness
+      - latency-and-where-it-is-spent
+      - observability
+      - cache-invalidation
+      - access-control
     primary: true
 ---
 

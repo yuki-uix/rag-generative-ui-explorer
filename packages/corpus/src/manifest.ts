@@ -34,6 +34,8 @@ function isValidatedFile(relativePath: string): boolean {
 
 export const ManifestSource = z.strictObject({
   sourceType: z.string().min(1),
+  /** Section slugs this source supports; see UNSOURCED_SECTIONS. */
+  supports: z.array(z.string()),
   title: z.string().min(1),
   url: z.string().min(1),
   author: z.string().min(1),
@@ -213,6 +215,177 @@ function checkNoVerificationClaims(relativePath: string, body: string): NoteErro
   );
 }
 
+/**
+ * Sections that legitimately rest on no external source: the repository's own
+ * analysis, present in almost every note.
+ *
+ * A named constant rather than a per-note flag, deliberately. A note able to
+ * exempt itself would exempt whatever its author found inconvenient, which is
+ * the failure this check exists to prevent rather than a way of handling it.
+ */
+export const UNSOURCED_SECTIONS = {
+  /** Present in almost every note, and never an explication of a source. */
+  everywhere: ['what-this-means-here', 'what-this-project-defers'] as readonly string[],
+  /**
+   * `documentId#section` -> why it rests on no external source. Keyed per note
+   * rather than per slug: a slug exempted globally would exempt every note that
+   * happens to reuse the heading, which is how a precise judgement decays into
+   * a blanket one.
+   */
+  specific: {
+    "generative-ui/component-registries#what-the-registry-cannot-fix":
+      "the registry's limit, argued from the pattern rather than documented by it",
+    "generative-ui/levels-of-generation#content":
+      "the lowest rung of a taxonomy this repository draws",
+    "generative-ui/levels-of-generation#behaviour":
+      "a rung of the same taxonomy; no cited source names this level",
+    "generative-ui/levels-of-generation#the-levels-are-not-a-ladder":
+      "the taxonomy's own caveat",
+    "generative-ui/predictability-and-user-control#learning-requires-repetition":
+      "a consequence of variation, argued here rather than cited",
+    "generative-ui/predictability-and-user-control#visual-authority-is-a-claim":
+      "this project's central worry about structured presentation",
+    "generative-ui/sandboxed-html-generation#what-no-sandbox-gives-back":
+      "what containment does not confer, argued from what the mechanisms do",
+    "generative-ui/state-continuity#the-problem-in-its-simplest-form":
+      "a worked example of this system, not of any source",
+    "generative-ui/state-continuity#the-distinction-to-hold":
+      "the derived versus authored split this repository draws",
+    "generative-ui/state-continuity#why-it-gets-lost-by-default":
+      "implementation reasoning, not drawn from a source",
+    "generative-ui/streaming-and-incremental-rendering#streaming-status-is-not-streaming-content":
+      "a third option this repository names",
+    "generative-ui/streaming-and-incremental-rendering#retraction-is-the-cost-people-underestimate":
+      "the cost argument, made here",
+    "generative-ui/what-generative-ui-is#what-changes-along-the-spectrum":
+      "the four consequences are this repository's analysis",
+    "generative-ui/what-generative-ui-is#the-distinction-the-term-obscures":
+      "a criticism of the term, made here",
+    "intersection/card-state-across-turns#three-states-and-only-one-is-disposable":
+      "this system's state model",
+    "intersection/card-state-across-turns#evidence-identity-underneath":
+      "follows from this project's identifier rule",
+    "intersection/comparing-presentation-modes#pinning-the-experiment":
+      "experiment discipline, not drawn from a source",
+    "intersection/field-level-citation#the-property-structure-adds":
+      "the argument for structured output, made here",
+    "intersection/field-level-citation#what-it-cannot-do":
+      "the limit of the mechanism, argued here",
+    "intersection/not-overstating-weak-evidence#structure-removes-the-hedge":
+      "the core claim of this note, argued rather than cited",
+    "intersection/not-overstating-weak-evidence#where-the-interface-has-to-be-willing-to-look-worse":
+      "three design rules this repository proposes",
+    "intersection/ui-driven-retrieval#the-division-that-matters":
+      "the local versus agent split this system draws",
+    "intersection/ui-driven-retrieval#a-ui-action-is-a-better-query-than-a-rephrased-question":
+      "the payoff argued here, not reported by a source",
+    "intersection/ui-driven-retrieval#what-a-follow-up-must-not-break":
+      "two implementation failures named here",
+    "rag/advanced-patterns#choosing":
+      "adoption advice over the four patterns above",
+    "rag/context-assembly#what-assembly-has-to-preserve":
+      "what a citing system needs from assembly, argued here",
+    "rag/dense-retrieval#where-it-fails":
+      "failure analysis mirroring the sparse-retrieval note",
+    "rag/failure-modes#distinguishing-them":
+      "diagnostic ordering over modes covered individually",
+    "rag/query-transformation#what-each-one-can-break":
+      "failure analysis of the three transformations",
+    "rag/query-transformation#keeping-the-original":
+      "a mitigation this repository proposes",
+  } as Record<string, string>,
+};
+
+/** `## Heading text` becomes `heading-text`, matching the evidence ID rule. */
+function headingSlugs(body: string): string[] {
+  return [...body.matchAll(/^##\s+(.+)$/gm)].map((match) =>
+    match[1]!
+      .trim()
+      .normalize('NFKD')
+      .toLowerCase()
+      .replace(/[^a-z0-9]+/g, '-')
+      .replace(/^-+|-+$/g, ''),
+  );
+}
+
+/**
+ * Checks the relationship between sources and sections in both directions.
+ *
+ * Over-citation: a source claiming a section that does not exist. Review found
+ * a note citing a protocol's documentation and drawing on it nowhere.
+ *
+ * Under-citation: a section no source claims. Review found a note whose three
+ * of six sections covered papers it never cited.
+ */
+function checkSourceSupport(
+  relativePath: string,
+  frontmatter: NoteFrontmatter,
+  body: string,
+): NoteError[] {
+  if (frontmatter.sources.length === 0) return [];
+
+  const sections = headingSlugs(body);
+  const known = new Set(sections);
+  const errors: NoteError[] = [];
+  const claimed = new Set<string>();
+
+  for (const source of frontmatter.sources) {
+    for (const slug of source.supports) {
+      if (!known.has(slug)) {
+        errors.push(
+          new NoteError(
+            relativePath,
+            `source "${source.title}" claims to support section "${slug}", which does not exist`,
+          ),
+        );
+      }
+      claimed.add(slug);
+    }
+  }
+
+  const documentId = documentIdFor(relativePath);
+
+  /**
+   * Only corpus notes owe every section a source. The template's sections are
+   * authoring instructions rather than knowledge, so it is checked for
+   * over-claiming — a `supports` slug matching no heading — and not for
+   * coverage.
+   */
+  if (!isCorpusNote(relativePath)) return errors;
+
+  for (const slug of sections) {
+    if (claimed.has(slug)) continue;
+    if (UNSOURCED_SECTIONS.everywhere.includes(slug)) continue;
+    if (`${documentId}#${slug}` in UNSOURCED_SECTIONS.specific) continue;
+    errors.push(
+      new NoteError(
+        relativePath,
+        `section "${slug}" is claimed by no source. Cite what it draws on, or ` +
+          `record "${documentId}#${slug}" in UNSOURCED_SECTIONS.specific with a ` +
+          'reason if it rests on no external source.',
+      ),
+    );
+  }
+
+  /**
+   * An exemption for a section that is in fact claimed is a standing permission
+   * rather than a judgement, so it fails rather than being ignored.
+   */
+  for (const key of Object.keys(UNSOURCED_SECTIONS.specific)) {
+    const [doc, slug] = key.split('#') as [string, string];
+    if (doc === documentId && claimed.has(slug)) {
+      errors.push(
+        new NoteError(
+          relativePath,
+          `"${key}" is exempted from needing a source, but a source claims it. Remove the exemption.`,
+        ),
+      );
+    }
+  }
+
+  return errors;
+}
+
 export interface BuildResult {
   manifest: Manifest;
   errors: NoteError[];
@@ -250,6 +423,12 @@ export function buildManifest(knowledgeRoot: string): BuildResult {
       continue;
     }
 
+    const supportProblems = checkSourceSupport(relativePath, frontmatter, body);
+    if (supportProblems.length > 0) {
+      errors.push(...supportProblems);
+      continue;
+    }
+
     if (!isCorpusNote(relativePath)) continue;
 
     const misplaced = checkDomainMatchesDirectory(relativePath, frontmatter);
@@ -280,6 +459,7 @@ export function buildManifest(knowledgeRoot: string): BuildResult {
           ...(source.published === undefined ? {} : { published: source.published }),
           retrieved: source.retrieved,
           license: source.license,
+          supports: [...source.supports].sort(),
           primary: source.primary === true,
         })),
         contentHash,

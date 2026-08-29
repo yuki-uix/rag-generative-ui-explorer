@@ -13,6 +13,10 @@ sources:
     author: Vercel
     retrieved: 2026-08-29
     license: Living documentation; no publication date stated. Short attributed quotations only.
+    supports:
+      - the-shape-of-the-pattern
+      - closed-lookup-not-dynamic-resolution
+      - the-registry-is-a-vocabulary
     primary: true
   - sourceType: documentation
     title: "A2UI: Agent-to-User Interface"
@@ -20,6 +24,8 @@ sources:
     author: A2UI Project contributors
     retrieved: 2026-08-29
     license: Apache-2.0. Short attributed quotations only; no publication date stated.
+    supports:
+      - the-shape-of-the-pattern
 ---
 
 # Component registries and tool-to-component mapping

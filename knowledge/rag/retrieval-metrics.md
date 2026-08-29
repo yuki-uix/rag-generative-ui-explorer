@@ -14,6 +14,11 @@ sources:
     published: "2000-07"
     retrieved: "2026-08-29"
     license: "SIGIR 2000, Athens. Reprinted in ACM SIGIR Forum 51(2), July 2017, from which this copy is taken. Short attributed quotations only."
+    supports:
+      - recall-k
+      - mean-reciprocal-rank
+      - graded-relevance-and-ndcg
+      - choosing-among-them
     primary: true
 ---
 

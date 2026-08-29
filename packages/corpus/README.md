@@ -21,7 +21,7 @@ under that paper's name and link, and a reader following the citation would find
 nothing resembling the text they clicked from. Every mechanical check passed,
 because the misattribution was in the data rather than in the code.
 
-Two gates now hold that line:
+Three gates now hold that line:
 
 - `title` must match the note's top-level heading, checked at build time. The
   original bug is exactly a title/heading divergence, so it cannot recur
@@ -30,6 +30,21 @@ Two gates now hold that line:
   `primary`. A note whose content outruns its citations was the second half of
   the same defect — three notes discussed techniques from papers they never
   cited.
+- Every source lists the section slugs it `supports`, and the relationship is
+  checked in both directions. A slug matching no heading is a source claiming
+  more than it gives; a heading no source claims is a section drawing on
+  something uncited. Both defects reached review before the field existed, in
+  opposite directions, and neither was visible to any check over `sources`
+  alone — the relationship being asserted is between a source and a passage,
+  and nothing recorded it.
+
+Sections that genuinely rest on no external source go in `UNSOURCED_SECTIONS`
+with a reason, keyed per note so exempting one note's heading does not exempt
+every note reusing the wording. An exemption for a section a source does claim
+fails, because an exemption nobody needs is a standing permission.
+
+30 of the corpus's sections are the repository's own analysis and are listed
+there. That figure was invisible before the field existed.
 
 **Downstream this is only half done.** Ingestion must populate
 `Evidence.documentTitle` from the note title and must not copy a source URL onto

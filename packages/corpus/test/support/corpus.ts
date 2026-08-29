@@ -16,6 +16,7 @@ export const DEFAULT_SOURCE = {
   published: '2020-04-10',
   retrieved: '2026-08-28',
   license: 'arXiv non-exclusive licence; short quotations only',
+  supports: ['the-dual-encoder', 'what-training-is-doing'],
   primary: true,
 };
 
@@ -81,7 +82,14 @@ export function corpus(notes: NoteSpec[]): string {
     }
 
     const frontmatter = { ...DEFAULT_NOTE, ...note.frontmatter };
-    const body = note.body ?? 'Body prose.';
+    /**
+     * The default body carries the section DEFAULT_SOURCE claims to support,
+     * so a fixture that does not care about source-to-section support still
+     * satisfies the check. Tests exercising that check pass their own body.
+     */
+    const body =
+      note.body ??
+      '## The dual encoder\n\nProse.\n\n## What training is doing\n\nBody prose.';
     writeFileSync(
       full,
       ['---', frontmatterBlock(frontmatter), '---', '', `# ${frontmatter.title}`, '', body].join(

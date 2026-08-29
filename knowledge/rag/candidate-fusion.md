@@ -15,6 +15,10 @@ sources:
     published: "2009-07"
     retrieved: "2026-08-29"
     license: "SIGIR'09, July 19-23 2009, Boston. Copyright 2009 ACM. Author-hosted copy; short attributed quotations only."
+    supports:
+      - the-problem-with-combining-scores
+      - reciprocal-rank-fusion
+      - fusion-is-not-reranking
     primary: true
 ---
 

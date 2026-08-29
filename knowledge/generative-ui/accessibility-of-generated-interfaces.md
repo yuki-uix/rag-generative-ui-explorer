@@ -14,6 +14,9 @@ sources:
     published: 2023-06-06
     retrieved: 2026-08-29
     license: W3C Recommendation, 06 June 2023. W3C Document Licence; short attributed quotations only.
+    supports:
+      - semantics-are-what-assistive-technology-reads
+      - why-the-level-of-generation-decides-the-outcome
     primary: true
   - sourceType: documentation
     title: ARIA Authoring Practices Guide
@@ -21,6 +24,9 @@ sources:
     author: W3C Web Accessibility Initiative
     retrieved: 2026-08-29
     license: Living documentation; no publication date stated. Short attributed quotations only.
+    supports:
+      - semantics-are-what-assistive-technology-reads
+      - what-generation-still-breaks-in-a-bounded-vocabulary
 ---
 
 # Accessibility of generated interfaces

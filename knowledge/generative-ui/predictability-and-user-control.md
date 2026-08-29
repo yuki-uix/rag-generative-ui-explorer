@@ -14,6 +14,8 @@ sources:
     published: 1999-05
     retrieved: 2026-08-29
     license: CHI 1999, pages 159-166, DOI 10.1145/302979.303030. Author-hosted copy; short attributed quotations only.
+    supports:
+      - control-has-to-be-cheap-and-obvious
     primary: true
   - sourceType: documentation
     title: Malleable Software
@@ -21,6 +23,8 @@ sources:
     author: Ink & Switch
     retrieved: 2026-08-29
     license: Research programme page; no author or publication date stated. Short attributed quotations only.
+    supports:
+      - control-has-to-be-cheap-and-obvious
 ---
 
 # Predictability and user control

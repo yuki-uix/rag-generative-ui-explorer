@@ -79,6 +79,19 @@ export const NoteSource = z.strictObject({
   retrieved: z.iso.date(),
   license: z.string().min(1),
   /**
+   * The section slugs this source supports.
+   *
+   * Two review rounds each found a citation defect, in opposite directions,
+   * and both were caught only by reading. Notes discussed papers they never
+   * cited; notes cited sources they never drew on. Neither is visible to a
+   * check over `sources` alone, because the relationship being asserted is
+   * between a source and a passage, and nothing recorded it.
+   *
+   * Writing it down makes both mechanical: a slug matching no heading is an
+   * over-claim, and a heading no source claims is an under-citation.
+   */
+  supports: z.array(z.string().min(1)).min(1),
+  /**
    * The source the note is principally an explication of. Exactly one source
    * carries this whenever any source is present.
    */
