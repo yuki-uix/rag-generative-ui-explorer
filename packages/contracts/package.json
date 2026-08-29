@@ -1,0 +1,26 @@
+{
+  "name": "@rgux/contracts",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "main": "./src/index.ts",
+  "exports": {
+    ".": "./src/index.ts"
+  },
+  "scripts": {
+    "test": "vitest run",
+    "typecheck": "tsc --noEmit",
+    "schemas:build": "tsx scripts/build-schemas.ts",
+    "schemas:check": "tsx scripts/build-schemas.ts --check"
+  },
+  "dependencies": {
+    "zod": "^4.5.2"
+  },
+  "devDependencies": {
+    "@types/node": "^24.0.0",
+    "ajv": "^8.20.0",
+    "ajv-formats": "^3.0.1",
+    "tsx": "^4.20.0",
+    "vitest": "^4.1.11"
+  }
+}

@@ -1,0 +1,15 @@
+{
+  "name": "rag-generative-ui-explorer",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "test": "pnpm -r test",
+    "typecheck": "pnpm -r typecheck",
+    "schemas:build": "pnpm --filter @rgux/contracts schemas:build",
+    "schemas:check": "pnpm --filter @rgux/contracts schemas:check"
+  },
+  "devDependencies": {
+    "typescript": "^7.0.2"
+  },
+  "packageManager": "pnpm@11.7.0"
+}

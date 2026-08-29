@@ -1,0 +1,188 @@
+{
+  "query": "q",
+  "cards": [
+    {
+      "id": "card-1",
+      "type": "definition",
+      "title": "Reciprocal rank fusion",
+      "definition": {
+        "text": "Reciprocal rank fusion combines ranked candidate lists without needing comparable scores.",
+        "mode": "extractive",
+        "evidenceIds": [
+          "rag/hybrid-retrieval#reciprocal-rank-fusion#0-474a57a9"
+        ]
+      },
+      "keyPoints": [
+        {
+          "text": "Fusion runs before reranking.",
+          "mode": "summarized",
+          "evidenceIds": [
+            "rag/hybrid-retrieval#reciprocal-rank-fusion#1-f18ae3fa"
+          ]
+        },
+        {
+          "text": "It does not require score calibration between retrievers.",
+          "mode": "summarized",
+          "evidenceIds": [
+            "rag/hybrid-retrieval#reciprocal-rank-fusion#0-474a57a9"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "card-2",
+      "type": "definition",
+      "title": "Reciprocal rank fusion",
+      "definition": {
+        "text": "Reciprocal rank fusion combines ranked candidate lists without needing comparable scores.",
+        "mode": "extractive",
+        "evidenceIds": [
+          "rag/hybrid-retrieval#reciprocal-rank-fusion#0-474a57a9"
+        ]
+      },
+      "keyPoints": [
+        {
+          "text": "Fusion runs before reranking.",
+          "mode": "summarized",
+          "evidenceIds": [
+            "rag/hybrid-retrieval#reciprocal-rank-fusion#1-f18ae3fa"
+          ]
+        },
+        {
+          "text": "It does not require score calibration between retrievers.",
+          "mode": "summarized",
+          "evidenceIds": [
+            "rag/hybrid-retrieval#reciprocal-rank-fusion#0-474a57a9"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "card-3",
+      "type": "definition",
+      "title": "Reciprocal rank fusion",
+      "definition": {
+        "text": "Reciprocal rank fusion combines ranked candidate lists without needing comparable scores.",
+        "mode": "extractive",
+        "evidenceIds": [
+          "rag/hybrid-retrieval#reciprocal-rank-fusion#0-474a57a9"
+        ]
+      },
+      "keyPoints": [
+        {
+          "text": "Fusion runs before reranking.",
+          "mode": "summarized",
+          "evidenceIds": [
+            "rag/hybrid-retrieval#reciprocal-rank-fusion#1-f18ae3fa"
+          ]
+        },
+        {
+          "text": "It does not require score calibration between retrievers.",
+          "mode": "summarized",
+          "evidenceIds": [
+            "rag/hybrid-retrieval#reciprocal-rank-fusion#0-474a57a9"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "card-4",
+      "type": "definition",
+      "title": "Reciprocal rank fusion",
+      "definition": {
+        "text": "Reciprocal rank fusion combines ranked candidate lists without needing comparable scores.",
+        "mode": "extractive",
+        "evidenceIds": [
+          "rag/hybrid-retrieval#reciprocal-rank-fusion#0-474a57a9"
+        ]
+      },
+      "keyPoints": [
+        {
+          "text": "Fusion runs before reranking.",
+          "mode": "summarized",
+          "evidenceIds": [
+            "rag/hybrid-retrieval#reciprocal-rank-fusion#1-f18ae3fa"
+          ]
+        },
+        {
+          "text": "It does not require score calibration between retrievers.",
+          "mode": "summarized",
+          "evidenceIds": [
+            "rag/hybrid-retrieval#reciprocal-rank-fusion#0-474a57a9"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "card-5",
+      "type": "definition",
+      "title": "Reciprocal rank fusion",
+      "definition": {
+        "text": "Reciprocal rank fusion combines ranked candidate lists without needing comparable scores.",
+        "mode": "extractive",
+        "evidenceIds": [
+          "rag/hybrid-retrieval#reciprocal-rank-fusion#0-474a57a9"
+        ]
+      },
+      "keyPoints": [
+        {
+          "text": "Fusion runs before reranking.",
+          "mode": "summarized",
+          "evidenceIds": [
+            "rag/hybrid-retrieval#reciprocal-rank-fusion#1-f18ae3fa"
+          ]
+        },
+        {
+          "text": "It does not require score calibration between retrievers.",
+          "mode": "summarized",
+          "evidenceIds": [
+            "rag/hybrid-retrieval#reciprocal-rank-fusion#0-474a57a9"
+          ]
+        }
+      ]
+    }
+  ],
+  "evidence": [
+    {
+      "id": "rag/hybrid-retrieval#reciprocal-rank-fusion#0-474a57a9",
+      "documentId": "rag/hybrid-retrieval",
+      "documentTitle": "Hybrid retrieval",
+      "section": "Reciprocal rank fusion",
+      "text": "Reciprocal rank fusion combines ranked candidate lists without needing comparable scores.",
+      "url": "https://example.invalid/notes/rag/hybrid-retrieval",
+      "retrievalScore": 0.82,
+      "metadata": {
+        "category": "rag"
+      }
+    },
+    {
+      "id": "rag/hybrid-retrieval#reciprocal-rank-fusion#1-f18ae3fa",
+      "documentId": "rag/hybrid-retrieval",
+      "documentTitle": "Hybrid retrieval",
+      "section": "Reciprocal rank fusion",
+      "text": "Fusion is applied before reranking so the reranker sees candidates from both retrievers.",
+      "url": "https://example.invalid/notes/rag/hybrid-retrieval",
+      "retrievalScore": 0.82,
+      "metadata": {
+        "category": "rag"
+      }
+    },
+    {
+      "id": "generative-ui/component-registries#body#0-8b68483e",
+      "documentId": "generative-ui/component-registries",
+      "documentTitle": "Component registries",
+      "text": "A component registry maps tool results to reviewed components rather than to generated markup.",
+      "url": "https://example.invalid/notes/generative-ui/component-registries",
+      "retrievalScore": 0.82,
+      "metadata": {
+        "category": "generative-ui"
+      }
+    }
+  ],
+  "suggestedActions": [],
+  "metadata": {
+    "knowledgeBaseVersion": "corpus-2026-08-29-a1b2c3d4",
+    "generatedAt": "2026-08-29T10:00:00Z",
+    "incomplete": false
+  }
+}

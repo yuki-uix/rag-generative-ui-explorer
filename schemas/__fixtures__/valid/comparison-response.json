@@ -1,0 +1,88 @@
+{
+  "query": "Lexical versus dense retrieval",
+  "cards": [
+    {
+      "id": "card-2",
+      "type": "comparison",
+      "title": "Lexical versus dense retrieval",
+      "entities": [
+        "Lexical (BM25)",
+        "Dense (embeddings)"
+      ],
+      "rows": [
+        {
+          "dimension": "Strength",
+          "values": [
+            {
+              "text": "Exact terminology matching.",
+              "mode": "summarized",
+              "evidenceIds": [
+                "rag/hybrid-retrieval#reciprocal-rank-fusion#0-474a57a9"
+              ]
+            },
+            {
+              "text": "Semantic matching across paraphrase.",
+              "mode": "summarized",
+              "evidenceIds": [
+                "rag/hybrid-retrieval#reciprocal-rank-fusion#0-474a57a9"
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "evidence": [
+    {
+      "id": "rag/hybrid-retrieval#reciprocal-rank-fusion#0-474a57a9",
+      "documentId": "rag/hybrid-retrieval",
+      "documentTitle": "Hybrid retrieval",
+      "section": "Reciprocal rank fusion",
+      "text": "Reciprocal rank fusion combines ranked candidate lists without needing comparable scores.",
+      "url": "https://example.invalid/notes/rag/hybrid-retrieval",
+      "retrievalScore": 0.82,
+      "metadata": {
+        "category": "rag"
+      }
+    },
+    {
+      "id": "rag/hybrid-retrieval#reciprocal-rank-fusion#1-f18ae3fa",
+      "documentId": "rag/hybrid-retrieval",
+      "documentTitle": "Hybrid retrieval",
+      "section": "Reciprocal rank fusion",
+      "text": "Fusion is applied before reranking so the reranker sees candidates from both retrievers.",
+      "url": "https://example.invalid/notes/rag/hybrid-retrieval",
+      "retrievalScore": 0.82,
+      "metadata": {
+        "category": "rag"
+      }
+    },
+    {
+      "id": "generative-ui/component-registries#body#0-8b68483e",
+      "documentId": "generative-ui/component-registries",
+      "documentTitle": "Component registries",
+      "text": "A component registry maps tool results to reviewed components rather than to generated markup.",
+      "url": "https://example.invalid/notes/generative-ui/component-registries",
+      "retrievalScore": 0.82,
+      "metadata": {
+        "category": "generative-ui"
+      }
+    }
+  ],
+  "suggestedActions": [
+    {
+      "id": "a1",
+      "label": "Add GraphRAG",
+      "action": "add_to_comparison",
+      "payload": {
+        "cardId": "card-2",
+        "entity": "GraphRAG"
+      }
+    }
+  ],
+  "metadata": {
+    "knowledgeBaseVersion": "corpus-2026-08-29-a1b2c3d4",
+    "generatedAt": "2026-08-29T10:00:00Z",
+    "incomplete": false
+  }
+}
