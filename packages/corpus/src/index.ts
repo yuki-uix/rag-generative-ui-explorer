@@ -9,3 +9,6 @@ export * from './ingest.js';
 export * from './coverage.js';
 export * from './eval-set.js';
 export * from './link-check.js';
+export * from './tokeniser.js';
+export * from './retriever.js';
+export * from './bm25.js';
