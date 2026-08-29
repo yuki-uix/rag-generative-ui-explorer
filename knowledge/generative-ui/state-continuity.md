@@ -74,6 +74,22 @@ render must be recoverable later.** A decision that lived only in a local
 variable is a defect the moment a conversation is restored, and it is invisible
 until then.
 
+## State as a protocol concern, not an application one
+
+The event-based agent-user protocol treats shared state as a first-class
+building block alongside streaming and tool calls, carried as incremental
+deltas rather than as whole snapshots.
+
+That framing is worth borrowing even without the protocol. A delta says what
+changed; a snapshot says what things are now. Regenerating from a snapshot
+cannot preserve anything the snapshot does not contain, so the user's expansion
+and selection are lost by construction — not by oversight, but because the
+representation has no room for them. Amending from a delta leaves untouched
+state untouched by default.
+
+Where state continuity is hard, it is usually because the interface is being
+rebuilt from snapshots and the durable part was never in the snapshot.
+
 ## Malleability is the same problem, further out
 
 The research programme this note is drawn from argues for software users can

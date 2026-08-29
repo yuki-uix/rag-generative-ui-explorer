@@ -55,9 +55,19 @@ a moment later, and possibly retracting it in front of the reader.
 watches a spinner for the whole generation, and time to first content is the
 full round trip.
 
-Frameworks for streaming component output make the first option easy, and the
-event-based agent protocols carry the same granularity — incremental deltas for
-text and for state. Ease of implementation is not the deciding factor here.
+The web platform has spent years making the first option easy. Server
+Components render on the server and stream their output as it becomes ready, so
+a page can display a finished region while another is still resolving —
+component-level rather than token-level streaming. The SDKs for model-driven
+interfaces build directly on that, streaming a component as its tool result
+arrives, and the event-based agent protocols carry the same granularity as
+incremental deltas for text and for state.
+
+All of that machinery assumes the streamed unit is independently meaningful. A
+region that resolves is a region you can show. A partially-parsed card whose
+citations have not been checked is not, and no amount of streaming
+infrastructure changes that — ease of implementation is not the deciding factor
+here.
 
 ## Streaming status is not streaming content
 
