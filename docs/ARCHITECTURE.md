@@ -86,6 +86,22 @@ The initial retrieval design combines:
 - Reciprocal-rank fusion to combine candidates.
 - An optional reranker before evidence is sent to the card planner.
 
+### Retrieval seam and the pgvector deferral
+
+The first retrieval implementation is in process, not in Postgres. Ingestion
+(`packages/corpus`) turns the corpus into `Evidence[]`, and a lexical
+`Retriever` — BM25 — builds an inverted index from that in memory at startup.
+The `Retriever` interface, `search(query, k) -> Candidate[]`, is the seam at
+which a database-backed implementation substitutes in: callers depend on
+`search`, never on how the index is stored or scored.
+
+pgvector is deferred until the corpus outgrows an in-process index. With a few
+hundred chunks, an in-memory inverted index is cheaper to build and faster to
+query than a round trip to Postgres, and it keeps the test suite and dev server
+running with no database. When the corpus grows to the point where that stops
+being true, the pgvector arm implements the same `Retriever` interface rather
+than a new one, so nothing above the seam changes.
+
 Retrieval and card planning are evaluated independently so attractive UI cannot
 hide poor retrieval.
 

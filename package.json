@@ -14,7 +14,8 @@
     "corpus:ingest": "pnpm --filter @rgux/corpus corpus:ingest",
     "eval:validate": "pnpm --filter @rgux/corpus eval:validate",
     "eval:build": "pnpm --filter @rgux/corpus eval:build",
-    "eval:check": "pnpm --filter @rgux/corpus eval:check"
+    "eval:check": "pnpm --filter @rgux/corpus eval:check",
+    "retriever:search": "pnpm --filter @rgux/corpus retriever:search"
   },
   "devDependencies": {
     "typescript": "^7.0.2"

@@ -17,7 +17,8 @@
     "corpus:ingest": "tsx scripts/ingest.ts",
     "eval:validate": "tsx scripts/validate-eval.ts",
     "eval:build": "tsx scripts/build-eval.ts --write",
-    "eval:check": "tsx scripts/build-eval.ts"
+    "eval:check": "tsx scripts/build-eval.ts",
+    "retriever:search": "tsx scripts/search.ts"
   },
   "dependencies": {
     "@rgux/contracts": "workspace:*",
