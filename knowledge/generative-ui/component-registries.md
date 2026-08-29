@@ -36,13 +36,13 @@ of reviewed components and renders the match, passing the validated payload as
 props.
 
 The pattern that current SDKs document is exactly this: define a tool, define
-the component that renders its result, and let the framework connect them as the
-result streams in. The declarative-intent protocols do the same across a process
-boundary — the agent names a component and supplies data, the client resolves
-the name against its own library.
+the component that renders its result, and let the framework connect them as
+the result streams in. The declarative-intent protocols do the same across a
+process boundary — the agent names a component and supplies data, the client
+resolves the name against its own library.
 
-The property that matters is the same in both: **the model names a component; it
-does not supply one.**
+The property that matters is the same in both: **the model names a component;
+it does not supply one.**
 
 ## Closed lookup, not dynamic resolution
 
@@ -53,8 +53,8 @@ A closed lookup is a table with a known set of keys. An unknown key is an error
 
 Dynamic resolution constructs the component from the model's output: importing
 by path, indexing into a namespace, reading a name off a global. It looks
-similar and it is a different system, because the set of reachable components is
-no longer the set someone reviewed.
+similar and it is a different system, because the set of reachable components
+is no longer the set someone reviewed.
 
 Three habits keep the lookup closed:
 
@@ -77,16 +77,16 @@ things nobody anticipated. A large registry expresses more and stops being
 reviewable in any meaningful sense — nobody audits a hundred components for
 accessibility per release.
 
-The registry also shapes the model's behaviour. Given only a table component,
-a model will render prose as a table. The vocabulary is a set of affordances,
-and affordances get used.
+The registry also shapes the model's behaviour. Given only a table component, a
+model will render prose as a table. The vocabulary is a set of affordances, and
+affordances get used.
 
 ## What the registry cannot fix
 
-Choosing the right component from a correct registry is a judgement the registry
-does not make. A model that renders a definition as a comparison table produces
-a valid, working, well-formed, misleading interface, and no amount of registry
-discipline catches it.
+Choosing the right component from a correct registry is a judgement the
+registry does not make. A model that renders a definition as a comparison table
+produces a valid, working, well-formed, misleading interface, and no amount of
+registry discipline catches it.
 
 That failure is only visible against a human expectation of what the right
 presentation was — which is why card-type selection accuracy needs labelled
@@ -94,11 +94,15 @@ questions and cannot be derived from the output alone.
 
 ## What this means here
 
-The renderer maps each card discriminator to one reviewed React component. The
-discriminator set is derived from the card union at runtime rather than listed
-by hand, and a coverage test iterates that derivation, so a sixth card type
-cannot reach the renderer without a component and a validation path.
+The discriminator set is already derived from the card union at runtime rather
+than listed by hand, and that derivation is exported for downstream gates to
+consume — a literal list would satisfy its type while missing a member, and go
+stale silently.
 
-Nothing constructs a component from model output. The model produces a validated
-card specification, and the renderer owns layout, tokens, accessibility, and
-interaction — the model's authority ends at choosing a name and filling fields.
+The renderer that will map each discriminator to one reviewed React component
+is M2 and not built. The design is that a coverage test iterates the exported
+derivation, so a sixth card type cannot reach the renderer without a component
+and a validation path, and that nothing constructs a component from model
+output. The model produces a validated card specification, and the renderer
+owns layout, tokens, accessibility, and interaction — the model's authority
+ends at choosing a name and filling fields.

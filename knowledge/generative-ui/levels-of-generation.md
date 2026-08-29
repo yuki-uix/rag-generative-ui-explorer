@@ -34,20 +34,20 @@ burden change completely between one level and the next.
 The model produces text that a fixed interface displays. A chat bubble, a
 summary, a caption.
 
-Everything about the interface is decided in advance. The only thing that can go
-wrong is that the text is wrong — which is a large problem, but a familiar one
-with familiar mitigations: citation, grounding, and letting the reader see the
-source.
+Everything about the interface is decided in advance. The only thing that can
+go wrong is that the text is wrong — which is a large problem, but a familiar
+one with familiar mitigations: citation, grounding, and letting the reader see
+the source.
 
 ## Component
 
-The model chooses which reviewed component to render and supplies its data. Show
-a weather card, a flight list, a comparison table.
+The model chooses which reviewed component to render and supplies its data.
+Show a weather card, a flight list, a comparison table.
 
 The output is data validated against a schema. This is the level the current
-generation of agent-UI protocols is built for: an agent sends declarative intent
-and the client renders it with its own component library, so the rendering
-authority stays with the client.
+generation of agent-UI protocols is built for: an agent sends declarative
+intent and the client renders it with its own component library, so the
+rendering authority stays with the client.
 
 New failure: the model picks a component that does not suit the content — a
 table for a single value, a chart for two data points. The interface works and
@@ -86,8 +86,8 @@ communication over an auditable channel rather than a shared global.
 
 ## The levels are not a ladder
 
-They are a choice, and moving up one costs review capacity that is not recovered
-by anything downstream.
+They are a choice, and moving up one costs review capacity that is not
+recovered by anything downstream.
 
 A useful test: what would a person have to look at to be confident this
 rendering is safe and correct? At the content level, the text. At the component
@@ -97,9 +97,11 @@ that level needs a sandbox instead of a review.
 
 ## What this means here
 
-The MVP generates at the component level, with a fixed layout. The model
-chooses among five card types and fills their fields; it does not arrange them,
-define their behaviour, or emit markup.
+The MVP is specified to generate at the component level, with a fixed layout:
+the model choosing among five card types and filling their fields, without
+arranging them, defining their behaviour, or emitting markup. The card grammar
+that bounds this exists today in the contracts package; the generation that
+will use it is M3.
 
 Layout generation is the nearest boundary and the one most likely to be crossed
 next, since arranging cards is a plausible thing to want. It would be a genuine

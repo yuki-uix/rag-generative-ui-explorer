@@ -169,6 +169,41 @@ function checkTitleMatchesHeading(
   return undefined;
 }
 
+/**
+ * Phrases that assert verification work exists.
+ *
+ * The corpus is this system's evidence base, so a note claiming "a test asserts
+ * X" is a claim the system will later retrieve, cite, and present as grounded —
+ * passing every mechanical check while being false, which is precisely the
+ * failure the corpus exists to argue against. Review found thirty-four notes
+ * describing unbuilt milestones in the present tense.
+ *
+ * The gate is deliberately narrow. It catches the indicative form only; the
+ * gerund ("requires a test asserting X") describes a specification and is
+ * allowed. Broader tense checking would need a maintained inventory of what is
+ * built, which would go stale faster than the prose it guards.
+ */
+const ASSERTION_CLAIMS = [
+  /\ba test asserts\b/i,
+  /\btests assert\b/i,
+  /\bis asserted by\b/i,
+  /\bare asserted by\b/i,
+];
+
+function checkNoVerificationClaims(relativePath: string, body: string): NoteError | undefined {
+  const offending = ASSERTION_CLAIMS.map((pattern) => pattern.exec(body)).find(
+    (match) => match !== null,
+  );
+  if (offending == null) return undefined;
+
+  return new NoteError(
+    relativePath,
+    `claims verification work exists ("${offending[0]}"). Corpus notes describe ` +
+      'design intent; implementation status lives in issues and code. Use the ' +
+      'gerund ("a test asserting ...") to describe a specification.',
+  );
+}
+
 export interface BuildResult {
   manifest: Manifest;
   errors: NoteError[];
@@ -197,6 +232,12 @@ export function buildManifest(knowledgeRoot: string): BuildResult {
     const titleMismatch = checkTitleMatchesHeading(relativePath, frontmatter, body);
     if (titleMismatch !== undefined) {
       errors.push(titleMismatch);
+      continue;
+    }
+
+    const overclaim = checkNoVerificationClaims(relativePath, body);
+    if (overclaim !== undefined) {
+      errors.push(overclaim);
       continue;
     }
 

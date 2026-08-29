@@ -28,20 +28,21 @@ of those three is a claim that could be false, and they fail in different ways.
 There are two places a presentation decision could come from.
 
 **The question.** "What is X" wants a definition, "how does X work" wants a
-mechanism, "X versus Y" wants a comparison. Cheap to classify and usually right.
+mechanism, "X versus Y" wants a comparison. Cheap to classify and usually
+right.
 
-**The evidence.** Passages that each describe one entity along shared dimensions
-are comparison-shaped whatever the question was. Passages describing ordered
-stages are mechanism-shaped. A single passage defining a term is
+**The evidence.** Passages that each describe one entity along shared
+dimensions are comparison-shaped whatever the question was. Passages describing
+ordered stages are mechanism-shaped. A single passage defining a term is
 definition-shaped.
 
 Most of the time they agree, and the interesting cases are the disagreements.
 
 A reader asks "what is reranking" — a definition question — and retrieval
-returns four passages that all contrast it with fusion. Answering the question's
-shape gives a definition that discards the contrast the corpus actually
-contains. Answering the evidence's shape gives a comparison to something the
-reader has not asked about.
+returns four passages that all contrast it with fusion. Answering the
+question's shape gives a definition that discards the contrast the corpus
+actually contains. Answering the evidence's shape gives a comparison to
+something the reader has not asked about.
 
 Neither is obviously right, and a system has to pick one. Deciding from the
 evidence is the more defensible default for a corpus-grounded tool: presenting
@@ -53,10 +54,10 @@ would have.
 Retrieval frequently returns four unrelated passages that each touch the topic.
 That is not a structure; it is a pile.
 
-The failure mode to avoid is imposing one anyway. Four unrelated passages can be
-forced into a comparison table with four rows, and the result asserts a
-comparability that nothing supports. The table is not merely unhelpful, it makes
-a claim.
+The failure mode to avoid is imposing one anyway. Four unrelated passages can
+be forced into a comparison table with four rows, and the result asserts a
+comparability that nothing supports. The table is not merely unhelpful, it
+makes a claim.
 
 The correct output is the least structured one — an evidence list, or an
 explicit statement that the corpus does not answer this — and a system that
@@ -65,8 +66,8 @@ cannot produce that will produce a confident-looking table instead.
 ## Structure is not in the text
 
 The evidence carries no explicit shape. A retrieved chunk is prose; whether it
-belongs in a comparison is an inference from its content and its relationship to
-the other chunks.
+belongs in a comparison is an inference from its content and its relationship
+to the other chunks.
 
 That inference is made by the same model that then populates the card, which
 means presentation errors and content errors have a common cause. A model that
@@ -87,10 +88,15 @@ attribution that the four-arm evaluation exists to preserve.
 
 ## What this means here
 
-The planner receives the reranked evidence and the question, and selects among
-five card types. Card-type selection accuracy is measured against expected types
-labelled per question in advance, as a set rather than a single value, because
-several questions legitimately admit more than one good presentation.
+The planner is specified to receive the reranked evidence and the question and
+select among five card types. It is M3 and not built; what exists today is the
+schema that bounds what it may produce.
+
+Card-type selection accuracy is to be measured against expected types labelled
+per question in advance, as a set rather than a single value, because several
+questions legitimately admit more than one good presentation. Those labels are
+M0 and not yet written — and the metric is uncomputable until they are, which
+is why they are scheduled before the planner rather than after it.
 
 The unnecessary-card rate exists for the opposite failure: a card that adds
 nothing still costs the reader the work of discovering that it adds nothing.

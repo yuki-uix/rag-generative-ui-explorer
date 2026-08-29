@@ -35,8 +35,8 @@ sources:
 
 Letting a model emit markup that the host runs is the most expressive form of
 generative UI and the only one where the security model must assume the output
-is hostile. That assumption is not pessimism about models; it is the recognition
-that the output is code from a source nobody reviewed.
+is hostile. That assumption is not pessimism about models; it is the
+recognition that the output is code from a source nobody reviewed.
 
 ## What the browser provides
 
@@ -52,8 +52,8 @@ and each grant is a decision to be justified.
 The trap is a combination that dissolves the boundary. Granting a frame both
 script execution and same-origin treatment together gives the framed content
 access to the embedder's origin — and from there it can remove its own sandbox
-attribute. Two permissions that are each defensible are jointly equivalent to no
-sandbox at all.
+attribute. Two permissions that are each defensible are jointly equivalent to
+no sandbox at all.
 
 **Content Security Policy.** A policy declaring which sources of script, style,
 image, and connection are permitted. It is what stops framed content from
@@ -64,38 +64,38 @@ reach beyond the page. Neither substitutes for the other.
 
 ## What a specification for this looks like
 
-The interactive-UI extension for the tool protocol is a useful reference because
-it commits to specifics rather than advice. Its security model has four parts:
-all UI content runs in sandboxed frames with restricted permissions; templates
-are predeclared so a host can review the HTML before rendering it; every
-message from the UI to the host goes through JSON-RPC and is therefore
+The interactive-UI extension for the tool protocol is a useful reference
+because it commits to specifics rather than advice. Its security model has four
+parts: all UI content runs in sandboxed frames with restricted permissions;
+templates are predeclared so a host can review the HTML before rendering it;
+every message from the UI to the host goes through JSON-RPC and is therefore
 loggable; and hosts can require explicit user approval for UI-initiated tool
 calls.
 
-The predeclaration point is the one most often skipped elsewhere. UI declared in
-advance as a resource can be reviewed once and cached; UI arriving inline with
-each tool result cannot be reviewed at all, and the specification's own rationale
-names the review process as a reason for the choice.
+The predeclaration point is the one most often skipped elsewhere. UI declared
+in advance as a resource can be reviewed once and cached; UI arriving inline
+with each tool result cannot be reviewed at all, and the specification's own
+rationale names the review process as a reason for the choice.
 
 The auditable-channel point matters for the same reason. A shared global object
-injected into the frame is host-specific and invisible; a message channel can be
-logged, and a call that happened can be reconstructed afterwards.
+injected into the frame is host-specific and invisible; a message channel can
+be logged, and a call that happened can be reconstructed afterwards.
 
 ## What no sandbox gives back
 
-A sandbox contains damage. It does not confer any of the properties that make an
-interface good.
+A sandbox contains damage. It does not confer any of the properties that make
+an interface good.
 
-**Accessibility is not contained or granted.** Generated markup is accessible if
-it happened to be generated that way, per instance, with no floor.
+**Accessibility is not contained or granted.** Generated markup is accessible
+if it happened to be generated that way, per instance, with no floor.
 
-**Consistency is not enforced.** Two answers to similar questions look different,
-and the difference carries no meaning, which is a cost paid by every reader who
-tries to learn the interface.
+**Consistency is not enforced.** Two answers to similar questions look
+different, and the difference carries no meaning, which is a cost paid by every
+reader who tries to learn the interface.
 
-**Correctness is unaffected.** A sandboxed page can present wrong information as
-confidently as an unsandboxed one. The sandbox is about what the code can *do*,
-never about what the content *says*.
+**Correctness is unaffected.** A sandboxed page can present wrong information
+as confidently as an unsandboxed one. The sandbox is about what the code can
+*do*, never about what the content *says*.
 
 And one specific to interfaces built on citation: a sandbox cannot prevent the
 generated markup from *looking* like the host's own chrome. Visual authority is
@@ -105,11 +105,11 @@ not a permission the browser mediates.
 
 Out of scope, explicitly: no arbitrary HTML, CSS, or JavaScript generation, and
 zero executable model-generated code rendered in the browser is an exit
-criterion rather than a preference — a binary property that can be tested rather
-than argued.
+criterion rather than a preference — a binary property that can be tested
+rather than argued.
 
-Corpus text is treated as untrusted for the same reason and sanitised before
-rendering, with a fixture note containing script-like text asserting it renders
-inert. The model never authors markup, so the sandbox is not the outer defence
-here; it is the defence that is not needed because the boundary sits further
-back.
+Corpus text is to be treated as untrusted for the same reason and sanitised
+before rendering, with a fixture note containing script-like text asserting it
+renders inert — specified in M2, not yet built. The model never authors markup
+in this design, so the sandbox is not the outer defence here; it is the defence
+that is not needed because the boundary sits further back.

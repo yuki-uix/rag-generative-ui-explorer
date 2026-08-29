@@ -26,8 +26,8 @@ sources:
 # Retrieval driven by UI actions
 
 A card is a starting point for exploration, not a final answer. That only holds
-if acting on a card can fetch more evidence — which turns interface actions into
-retrieval triggers, and requires deciding which actions deserve one.
+if acting on a card can fetch more evidence — which turns interface actions
+into retrieval triggers, and requires deciding which actions deserve one.
 
 ## The division that matters
 
@@ -41,10 +41,10 @@ required, so no model call is justified.
 entity to a comparison.
 
 Routing a local action through the model costs a round trip, spends money,
-introduces variance into something that should be deterministic, and can produce
-a *different answer* to a question the reader already had answered. A reader who
-expands sources twice and sees different excerpts has learned that the interface
-is not stable, which is expensive to unlearn.
+introduces variance into something that should be deterministic, and can
+produce a *different answer* to a question the reader already had answered. A
+reader who expands sources twice and sees different excerpts has learned that
+the interface is not stable, which is expensive to unlearn.
 
 The rule is worth stating as a rule: **a local interaction does not call the
 model unless new reasoning or new retrieval is genuinely required** — and
@@ -53,17 +53,17 @@ model unless new reasoning or new retrieval is genuinely required** — and
 ## A UI action is a better query than a rephrased question
 
 When an agent action does fire, it starts from more than a text query. The
-system knows which card was acted on, what it claimed, which evidence it already
-used, and what kind of card it was.
+system knows which card was acted on, what it claimed, which evidence it
+already used, and what kind of card it was.
 
-"Explain further" on a comparison row is not the original question again. It is:
-this dimension, these two entities, not the evidence already shown. That is a
-narrower and better-specified retrieval than any rephrasing of the original
+"Explain further" on a comparison row is not the original question again. It
+is: this dimension, these two entities, not the evidence already shown. That is
+a narrower and better-specified retrieval than any rephrasing of the original
 question, because the interface state supplies the narrowing.
 
 This is the concrete payoff of the combination. In a prose interface the reader
-must articulate the follow-up; in a card interface the structure articulates it,
-and the reader only has to point.
+must articulate the follow-up; in a card interface the structure articulates
+it, and the reader only has to point.
 
 ## Constrained hops, not an autonomous loop
 
@@ -95,11 +95,17 @@ previous set would let a follow-up cite evidence it never retrieved.
 
 ## What this means here
 
-Three actions, split deliberately. Showing sources is local and a test asserts it
-makes no model call. Explaining further runs a narrower retrieval scoped to the
-selected card and appends cards. Adding to comparison retrieves the new entity
-and extends the comparison card.
+Three actions, split deliberately. The design calls for showing sources to be
+local, with a test asserting it makes no model call; for explaining further to
+run a narrower retrieval scoped to the selected card and append cards; and for
+adding to comparison to retrieve the new entity and extend the comparison card.
+None of the three is built — they are M4.
 
-Every transformation from card state to query is logged with its input and
-output, because "the narrowing was wrong" and "retrieval missed" look identical
-at the output and are entirely different bugs.
+The action payloads are settled, though, and settling them early was the point:
+each of the three carries its own schema rather than a free-form object, so the
+one channel that would otherwise carry unconstrained model output into the
+server is bounded before anything is wired to it.
+
+Every transformation from card state to query is specified to be logged with
+its input and output, because "the narrowing was wrong" and "retrieval missed"
+look identical at the output and are entirely different bugs.

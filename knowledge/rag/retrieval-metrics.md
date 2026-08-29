@@ -28,10 +28,11 @@ presentation quality hide retrieval failure.
 
 The fraction of relevant documents that appear in the top K results.
 
-This is the metric that matters most for a RAG pipeline, because K is set by the
-context budget. If the correct evidence is not in the K chunks handed to the
-model, nothing downstream can recover it — no reranker, no prompt, no larger
-model. Every other stage can only lose information that retrieval already found.
+This is the metric that matters most for a RAG pipeline, because K is set by
+the context budget. If the correct evidence is not in the K chunks handed to
+the model, nothing downstream can recover it — no reranker, no prompt, no
+larger model. Every other stage can only lose information that retrieval
+already found.
 
 Recall@K ignores where in the top K the evidence landed. That is appropriate
 when all K chunks reach the model anyway, and inappropriate as soon as a
@@ -50,14 +51,14 @@ perfectly.
 
 ## Graded relevance and nDCG
 
-Recall and MRR both treat relevance as binary. The paper this note is drawn from
-argues that binary judgements throw away something real: documents are not
-equally relevant, and an evaluation that cannot distinguish a direct answer from
-a passing mention will rank two very different systems the same.
+Recall and MRR both treat relevance as binary. The paper this note is drawn
+from argues that binary judgements throw away something real: documents are not
+equally relevant, and an evaluation that cannot distinguish a direct answer
+from a passing mention will rank two very different systems the same.
 
-Its proposal is cumulated gain — sum the graded relevance of the results in rank
-order — then discount each position logarithmically so that gain arriving later
-counts for less, then normalise against the ideal ordering so scores are
+Its proposal is cumulated gain — sum the graded relevance of the results in
+rank order — then discount each position logarithmically so that gain arriving
+later counts for less, then normalise against the ideal ordering so scores are
 comparable across queries with different numbers of relevant documents. That
 last step is what makes it *normalised* DCG.
 
@@ -82,12 +83,13 @@ suggests retrieval improved when it did not.
 
 ## What this means here
 
-Recall@K on the evaluation set is the gate. If it is low, every generative-UI
-metric measured on top of it is describing how well the system presents evidence
-it never found.
+Recall@K on the evaluation set is the intended gate. If it is low, every
+generative-UI metric measured on top of it is describing how well the system
+presents evidence it never found.
 
-Because the evaluation questions carry golden evidence IDs, Recall@K and MRR are
-computable without further judgement work. nDCG needs graded labels that do not
-exist yet, so it is either a deliberate additional labelling pass or it is not
-reported — reporting an nDCG derived from binary labels would just be Recall@K
-wearing a more impressive name.
+The evaluation questions are specified to carry golden evidence identifiers,
+which would make Recall@K and MRR computable without further judgement work.
+Those questions are M0 and not yet written. nDCG needs graded labels that do
+not exist yet, so it is either a deliberate additional labelling pass or it is
+not reported — reporting an nDCG derived from binary labels would just be
+Recall@K wearing a more impressive name.

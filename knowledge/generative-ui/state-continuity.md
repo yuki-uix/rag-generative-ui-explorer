@@ -30,7 +30,8 @@ which is which is the central design problem of any interface that regenerates.
 ## The problem in its simplest form
 
 A reader opens the sources under a claim, scrolls to the interesting excerpt,
-then asks a follow-up. The system generates a new response. Where is the reader?
+then asks a follow-up. The system generates a new response. Where is the
+reader?
 
 If the answer is "back at the top with everything collapsed", the interface has
 thrown away work the reader did. The follow-up is the reader saying *I am
@@ -46,8 +47,8 @@ The rendering is derived. The user's relationship to it is not.
 Derived, safe to discard: which components were chosen, their arrangement,
 their internal formatting.
 
-Not derived, must survive: which sections the reader opened, which entities they
-added to a comparison, what they typed and did not submit, where they had
+Not derived, must survive: which sections the reader opened, which entities
+they added to a comparison, what they typed and did not submit, where they had
 scrolled to.
 
 The second list is authored by the user. Nothing regenerates it, and no
@@ -55,9 +56,9 @@ subsequent model call can reconstruct it.
 
 ## Why it gets lost by default
 
-The natural implementation regenerates a response object and re-renders from it.
-Expansion state, selections, and drafts live in the components, so replacing the
-components drops them.
+The natural implementation regenerates a response object and re-renders from
+it. Expansion state, selections, and drafts live in the components, so
+replacing the components drops them.
 
 Two related habits prevent it:
 
@@ -98,19 +99,20 @@ prefabricated applications.
 
 Generated UI is one route to that, and it inherits the hardest part. If a user
 can shape their tool, their shaping is the valuable artefact — more valuable
-than any particular tool version, because it is the part they authored. A system
-that regenerates freely while treating user adaptation as ephemeral has the
-value backwards: the durable thing is being discarded and the disposable thing
-is being preserved.
+than any particular tool version, because it is the part they authored. A
+system that regenerates freely while treating user adaptation as ephemeral has
+the value backwards: the durable thing is being discarded and the disposable
+thing is being preserved.
 
 ## What this means here
 
-Three states are kept separate: the conversation, the knowledge (corpus version,
-retrieved evidence, sources), and the UI (expansion, selection, comparison
-membership). UI state is never the source of truth for a citation, and a test
-asserts that mutating it leaves rendered citations unchanged.
+The architecture keeps three states separate: the conversation, the knowledge
+(corpus version, retrieved evidence, sources), and the UI (expansion,
+selection, comparison membership). UI state is never to be the source of truth
+for a citation, and M2 requires a test asserting that mutating it leaves
+rendered citations unchanged. None of it is built.
 
 Card-state preservation across follow-up turns is a named success metric rather
-than a nicety. "Explain further" appends cards and leaves existing ones where
-the reader left them — and if that turns out not to hold, it is a measured
-failure rather than an unnoticed annoyance.
+than a nicety. The design has "explain further" append cards and leave existing
+ones where the reader left them — and if that turns out not to hold, it is a
+measured failure rather than an unnoticed annoyance.

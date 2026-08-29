@@ -31,25 +31,26 @@ sources:
 # Streaming and incremental rendering
 
 Streaming is why chat interfaces feel fast. The first token arrives in a few
-hundred milliseconds and the reader starts reading while the rest is still being
-produced. Applying the same idea to structured output is harder than it looks,
-and the difficulty is not technical.
+hundred milliseconds and the reader starts reading while the rest is still
+being produced. Applying the same idea to structured output is harder than it
+looks, and the difficulty is not technical.
 
 ## Text streams; structure does not
 
-Text has the convenient property that a prefix is meaningful. Half a sentence is
-half a sentence.
+Text has the convenient property that a prefix is meaningful. Half a sentence
+is half a sentence.
 
 Half a JSON object is not half an object. It is a syntax error, and more
 importantly it is *not yet checkable*: whether a card's evidence references
 resolve, whether its rows align with its entities, whether the response marks
-itself incomplete — none of it can be evaluated until the structure is complete.
+itself incomplete — none of it can be evaluated until the structure is
+complete.
 
 So the choice is real:
 
 **Render as it arrives.** Fast to first pixel. But partial structure has to be
-rendered before validation, which means displaying content that may fail a check
-a moment later, and possibly retracting it in front of the reader.
+rendered before validation, which means displaying content that may fail a
+check a moment later, and possibly retracting it in front of the reader.
 
 **Render after validation.** Nothing invalid is ever shown. But the reader
 watches a spinner for the whole generation, and time to first content is the
@@ -76,8 +77,8 @@ There is a third position that is often conflated with the first: stream the
 
 "Searching the corpus", "found nine passages", "building comparison" — each
 arrives as it happens, the reader learns something real about progress, and no
-unvalidated content is displayed. It does not reduce time to first *content*; it
-reduces the interval in which the reader has no idea whether anything is
+unvalidated content is displayed. It does not reduce time to first *content*;
+it reduces the interval in which the reader has no idea whether anything is
 happening, which is the thing that actually feels slow.
 
 This is honest only when the messages describe real stages. Invented progress
@@ -97,11 +98,13 @@ an expensive impression to create for a latency win.
 
 ## What this means here
 
-The MVP streams status and renders cards atomically after validation. Nothing
-unvalidated reaches the screen, and nothing is retracted.
+The MVP is specified to stream status and render cards atomically after
+validation, so that nothing unvalidated reaches the screen and nothing is
+retracted. The rendering is M2 and the validation M3; neither is built.
 
 **This is expected to lose on time to first content**, and the comparison is
 against a Markdown baseline that streams token by token. Stating the prediction
 in advance matters: if dynamic cards come out slower on that metric, it is a
-consequence of the design and not a discovery, and the argument has to be won on
-time to *locate a fact* instead. If it is not won there, the trade was wrong.
+consequence of the design and not a discovery, and the argument has to be won
+on time to *locate a fact* instead. If it is not won there, the trade was
+wrong.

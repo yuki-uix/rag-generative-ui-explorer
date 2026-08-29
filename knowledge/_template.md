@@ -49,6 +49,18 @@ If a section discusses a technique from a different paper, that paper belongs in
 `sources`. A note whose content outruns its citations is the failure this corpus
 exists to avoid.
 
+## Design intent, not implementation status
+
+If the note ends with a section relating its subject to this project, that
+section describes what the design calls for — not what is built. Use "the design
+calls for", "is specified to", or "will", and name the milestone where it helps.
+
+Present tense is for what exists today. Do not claim a given test exists unless
+it does — validation rejects the indicative phrasing outright, so use the gerund
+("a test asserting X") when describing a specification. See `README.md` in this
+directory for the exact rule and why it matters more here than in ordinary
+documentation.
+
 ## Quoting a source
 
 Keep excerpts short and clearly marked:

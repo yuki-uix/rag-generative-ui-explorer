@@ -43,16 +43,16 @@ say different things, and no assignment between them is recoverable.
 
 ## Granularity, and what each level permits
 
-**Document level.** The answer names the sources consulted. A reader cannot tell
-which sentence came from where; a validator can only confirm the documents were
-retrieved. Nearly free, nearly useless.
+**Document level.** The answer names the sources consulted. A reader cannot
+tell which sentence came from where; a validator can only confirm the documents
+were retrieved. Nearly free, nearly useless.
 
 **Sentence level.** Each sentence carries the passages supporting it. This is
 what citation-generation work targets, and it is genuinely checkable: an
 evaluator can ask whether the cited passages entail the sentence.
 
-**Field level.** The unit is a field of a structured object — one key point, one
-table cell, one step of a procedure. Available only when the output is
+**Field level.** The unit is a field of a structured object — one key point,
+one table cell, one step of a procedure. Available only when the output is
 structured, and it is strictly stronger than sentence level for one reason: a
 schema can *require* it.
 
@@ -94,10 +94,15 @@ exist is measuring the wrong thing.
 ## What this means here
 
 Every factual field is an object carrying its text, its grounding mode, and at
-least one evidence identifier — grounding is part of the grammar rather than an
-annotation on top of it. Identifiers are resolved server-side against the
-current generation's retrieval set, and unknown ones are rejected outright.
+least one evidence identifier. That much is in force today: grounding is part
+of the grammar rather than an annotation on top of it, and a field without a
+reference fails validation.
 
-Citation completeness is measured at field level, and the exit criterion is that
-100% of rendered factual fields reference valid retrieved evidence identifiers.
-That is a determinate property, which is why it can be an exit criterion at all.
+Resolving those identifiers server-side against the current generation's
+retrieval set, and rejecting unknown ones outright, is the half that makes the
+references mean anything. It is M3 and not built.
+
+Citation completeness is to be measured at field level, and the exit criterion
+is that 100% of rendered factual fields reference valid retrieved evidence
+identifiers. That is a determinate property, which is why it can be an exit
+criterion at all rather than an aspiration.

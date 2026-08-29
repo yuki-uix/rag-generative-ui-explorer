@@ -37,8 +37,8 @@ A wrong RAG answer looks the same regardless of which stage produced it. The
 value of naming the modes is that each has a different fix, and a system that
 cannot distinguish them will fix the wrong stage.
 
-The work this note is drawn from separates the abilities a RAG system needs into
-distinct testable capacities rather than a single accuracy figure — noise
+The work this note is drawn from separates the abilities a RAG system needs
+into distinct testable capacities rather than a single accuracy figure — noise
 robustness, rejecting the unanswerable, integrating multiple documents, and
 handling counterfactual sources. The four modes below follow that split.
 
@@ -46,8 +46,8 @@ handling counterfactual sources. The four modes below follow that split.
 
 The evidence was never retrieved. Nothing downstream can recover it.
 
-Detected by comparing the retrieval set against golden evidence: Recall@K on the
-evaluation questions. This is the only mode visible without looking at the
+Detected by comparing the retrieval set against golden evidence: Recall@K on
+the evaluation questions. This is the only mode visible without looking at the
 answer at all, and it is why retrieval is measured on its own.
 
 Fixes belong to retrieval: hybrid rather than single-strategy, query rewriting,
@@ -60,8 +60,8 @@ the answer is still wrong.
 
 Three common causes. The passage sat in the middle of a long context, where
 models attend least. It was crowded out by topically related but unhelpful
-passages. Or it was retrieved as a fragment that no longer made sense outside its
-document.
+passages. Or it was retrieved as a fragment that no longer made sense outside
+its document.
 
 Detected by the gap between retrieval metrics and answer metrics: high
 Recall@10, low faithfulness. The oracle arm makes this sharp — feed
@@ -72,8 +72,8 @@ does, retrieval was the problem; if it does not, the problem is downstream.
 
 Two retrieved passages disagree, and the model silently picks one.
 
-This is the most dangerous mode because the output is confident, well-cited, and
-possibly wrong — the citation points at a real passage that really does say
+This is the most dangerous mode because the output is confident, well-cited,
+and possibly wrong — the citation points at a real passage that really does say
 that, while another retrieved passage says the opposite. Every mechanical check
 passes.
 
@@ -82,7 +82,8 @@ retrieved passage contradicts what the model knows, and the question is whether
 the system notices at all.
 
 Detection needs the system to look for it. Nothing about ordinary generation
-surfaces disagreement; a pipeline that never checks will never report a conflict.
+surfaces disagreement; a pipeline that never checks will never report a
+conflict.
 
 ## Unsupported synthesis
 
@@ -91,24 +92,29 @@ component is grounded; the conclusion is not. Two passages say technique A
 reduces latency and technique B reduces cost, and the answer says A and B
 together give the best of both.
 
-This is the mode that field-level citation exists to catch. At answer level, the
-claim appears cited because its parts are. At claim level, the synthesised
+This is the mode that field-level citation exists to catch. At answer level,
+the claim appears cited because its parts are. At claim level, the synthesised
 sentence has no passage to point at, and the absence becomes visible.
 
 ## Distinguishing them
 
 The modes are ordered by how early they occur, and diagnosis follows the same
 order: check recall first, then whether the model used what it received, then
-whether the sources agreed, then whether the conclusion exceeds them. Skipping to
-the last is how a retrieval bug gets addressed with prompt changes.
+whether the sources agreed, then whether the conclusion exceeds them. Skipping
+to the last is how a retrieval bug gets addressed with prompt changes.
 
 ## What this means here
 
-Retrieval miss is measured by Recall@10 against golden evidence. Lost context is
-isolated by the oracle evaluation arm. Conflicting sources is an explicit
-response state rather than something the model resolves quietly — a response can
-mark itself incomplete with a reason of `conflicting`. Unsupported synthesis is
-what field-level evidence references and the `inferred` label are for.
+The design assigns each mode its own detection route. Retrieval miss is to be
+measured by Recall@10 against golden evidence; lost context isolated by the
+oracle evaluation arm; unsupported synthesis caught by field-level evidence
+references and the `inferred` label. Those routes are M1 and M4 and are not
+built.
+
+Conflicting sources is the one already settled in the contract: the response
+schema requires an incomplete response to state whether the reason is `missing`
+or `conflicting`, so a system that quietly picks a side fails validation rather
+than merely being impolite.
 
 Saying "the corpus does not answer this" is correct behaviour, not a failure. A
 system that always produces an answer has no way to express the difference

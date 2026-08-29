@@ -26,9 +26,9 @@ sources:
 
 # Query rewriting, decomposition, and expansion
 
-The question a person asks and the text that answers it are written by different
-people for different purposes. Query transformation is the set of techniques
-that close that gap before retrieval runs.
+The question a person asks and the text that answers it are written by
+different people for different purposes. Query transformation is the set of
+techniques that close that gap before retrieval runs.
 
 ## Why the raw question underperforms
 
@@ -47,15 +47,15 @@ results without touching either.
 
 **Rewriting** produces one better query from one query. Resolving pronouns
 against the conversation, dropping conversational framing, substituting the
-corpus's terminology for the asker's. This is the cheapest and the most reliably
-useful.
+corpus's terminology for the asker's. This is the cheapest and the most
+reliably useful.
 
 **Decomposition** produces several queries from one. "How does hybrid retrieval
-differ from reranking, and which should I add first?" contains two questions with
-different evidence needs; retrieving once for the concatenation tends to return
-material that is mediocre for both. Decomposition matters most for comparison
-questions, which for this project is not an edge case — comparison is one of the
-five card types.
+differ from reranking, and which should I add first?" contains two questions
+with different evidence needs; retrieving once for the concatenation tends to
+return material that is mediocre for both. Decomposition matters most for
+comparison questions, which for this project is not an edge case — comparison
+is one of the five card types.
 
 **Expansion** adds terms rather than replacing them: synonyms, spelled-out
 acronyms, related terminology. A variant generates a hypothetical answer and
@@ -88,17 +88,18 @@ query as well as the transformed ones and fuse the results. A rewrite that
 helped contributes; a rewrite that destroyed the question is outvoted by the
 original.
 
-This composes with hybrid retrieval, since both end at the same fusion step, and
-it means a bad rewrite degrades results rather than replacing them.
+This composes with hybrid retrieval, since both end at the same fusion step,
+and it means a bad rewrite degrades results rather than replacing them.
 
 ## What this means here
 
-Rewriting and decomposition are in scope; the pipeline classifies or decomposes
-a question into retrieval intents before retrieving. Expansion is not, because
-this corpus's vocabulary is small and controlled, and dilution is the more
-likely outcome.
+Rewriting and decomposition are in scope for the planned pipeline, which is
+specified to classify or decompose a question into retrieval intents before
+retrieving. Expansion is not, because this corpus's vocabulary is small and
+controlled, and dilution is the more likely outcome. None of it is built; the
+pipeline is M1.
 
-Every transformation is logged with its input and output. A retrieval failure
-has to be attributable to the stage that caused it, and "the rewrite changed the
-question" and "the retriever missed" are indistinguishable at the output while
-being entirely different bugs.
+Every transformation is specified to be logged with its input and output. A
+retrieval failure has to be attributable to the stage that caused it, and "the
+rewrite changed the question" and "the retriever missed" are indistinguishable
+at the output while being entirely different bugs.

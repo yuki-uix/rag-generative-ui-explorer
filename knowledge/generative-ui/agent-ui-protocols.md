@@ -38,14 +38,15 @@ sources:
 # Agent-UI protocols
 
 Three efforts are usually mentioned together and they are not alternatives.
-Placing them correctly is the difference between choosing one and stacking them.
+Placing them correctly is the difference between choosing one and stacking
+them.
 
 ## The layers
 
-The agent-user protocol's own documentation draws the map, and it is the clearest
-statement of the division: one protocol connects an agent to tools and data,
-another connects agents to each other, and a third connects an agent to the
-person using it. They compose rather than compete.
+The agent-user protocol's own documentation draws the map, and it is the
+clearest statement of the division: one protocol connects an agent to tools and
+data, another connects agents to each other, and a third connects an agent to
+the person using it. They compose rather than compete.
 
 **Agent to tools and data.** The tool protocol standardises how a model reaches
 external capabilities and context. It says nothing about presentation.
@@ -91,24 +92,24 @@ can review and an auditable message channel.
 Treating the agent-user connection as a stream of typed events rather than a
 response has a consequence beyond streaming.
 
-An event stream can carry things a response cannot: an interrupt, a state delta,
-a request for input mid-task, a step the user can steer. Those are the
+An event stream can carry things a response cannot: an interrupt, a state
+delta, a request for input mid-task, a step the user can steer. Those are the
 mechanics of mixed-initiative interaction, and a request/response shape cannot
-express them — by the time there is a response, the opportunity to intervene has
-passed.
+express them — by the time there is a response, the opportunity to intervene
+has passed.
 
 ## What this means here
 
 None of these are adopted in the MVP, and it is worth being explicit that this
 is a scope decision rather than a judgement about them.
 
-This project is a single application with its own retrieval, its own renderer,
-and no remote agent to interoperate with. The protocols solve a problem it does
-not have: crossing a trust or process boundary between whoever decides the
-interface and whoever draws it. Adopting one would mean carrying its vocabulary
-without needing its interoperability.
+This project is designed as a single application with its own retrieval and its
+own renderer, and no remote agent to interoperate with. The protocols solve a
+problem it does not have: crossing a trust or process boundary between whoever
+decides the interface and whoever draws it. Adopting one would mean carrying
+its vocabulary without needing its interoperability.
 
 The design does borrow the position all three share. The model emits validated
-structured intent; the renderer owns presentation. That is the same architecture
-the protocols encode, applied within one process — which is also why adopting
-one later would be a substitution rather than a redesign.
+structured intent; the renderer owns presentation. That is the same
+architecture the protocols encode, applied within one process — which is also
+why adopting one later would be a substitution rather than a redesign.

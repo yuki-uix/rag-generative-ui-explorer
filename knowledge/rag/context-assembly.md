@@ -41,14 +41,14 @@ answer.
 ## Position is not neutral
 
 The finding this note is drawn from is that a model's ability to use a piece of
-evidence depends on where that evidence sits in the context. Accuracy is highest
-when the relevant passage is at the beginning or the end, and drops when it sits
-in the middle — a U-shaped curve rather than a flat one.
+evidence depends on where that evidence sits in the context. Accuracy is
+highest when the relevant passage is at the beginning or the end, and drops
+when it sits in the middle — a U-shaped curve rather than a flat one.
 
 The practical consequence is uncomfortable for a naive pipeline. Concatenating
-the top ten chunks in rank order puts ranks four through seven exactly where the
-model attends least. Retrieval did its job, the evidence is present, and the
-model still misses it.
+the top ten chunks in rank order puts ranks four through seven exactly where
+the model attends least. Retrieval did its job, the evidence is present, and
+the model still misses it.
 
 Two mitigations follow directly:
 
@@ -79,8 +79,8 @@ question is how much evidence the answer needs, not how much fits.
 
 For a system that cites, assembly is not just concatenation. The prompt has to
 carry, for each chunk, an identifier the model can reference — otherwise the
-model has no way to say which passage supports which claim, and citations become
-something bolted on afterwards by guesswork.
+model has no way to say which passage supports which claim, and citations
+become something bolted on afterwards by guesswork.
 
 The identifier also has to survive into validation. If the model cites a chunk,
 the server needs to resolve that reference back to the retrieval set for the
@@ -88,9 +88,10 @@ current generation and reject anything that does not resolve.
 
 ## What this means here
 
-Chunk count is a parameter worth measuring rather than defaulting. The
-evaluation harness varies it and reports the effect, because the right value
-depends on the corpus and the model, and both change.
+Chunk count is a parameter worth measuring rather than defaulting. The planned
+evaluation harness is specified to vary it and report the effect, because the
+right value depends on the corpus and the model, and both change. That harness
+is M1 and does not exist yet.
 
 Assembly is also where corpus text enters the prompt, which makes it a trust
 boundary: retrieved text is data, never instruction. It has to be delimited so

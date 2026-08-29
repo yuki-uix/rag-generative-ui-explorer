@@ -40,10 +40,10 @@ metadata. Replaced per retrieval, and the replacement is the point of the turn.
 **UI state** — which sections are expanded, which entities are selected, where
 the reader is. Authored by the reader; nothing regenerates it.
 
-The rule that follows: UI state must never be the source of truth for knowledge.
-If a citation is read out of what the reader has expanded, then collapsing a
-section changes what the system claims — which is absurd, and easy to build by
-accident when both live in the same component tree.
+The rule that follows: UI state must never be the source of truth for
+knowledge. If a citation is read out of what the reader has expanded, then
+collapsing a section changes what the system claims — which is absurd, and easy
+to build by accident when both live in the same component tree.
 
 ## Identity has to survive the turn
 
@@ -54,8 +54,9 @@ the same card as before. Two ways to decide, and only one works.
 ordering changes — the reader's state reattaches to a card they never opened,
 which is worse than losing it, because it looks deliberate.
 
-**Stable identity.** A card carries an identifier derived from what it is about,
-so a comparison of the same entities is recognisably the same card across turns.
+**Stable identity.** A card carries an identifier derived from what it is
+about, so a comparison of the same entities is recognisably the same card
+across turns.
 
 The second is more work and it is the only one that degrades gracefully. When
 identity genuinely changes, state is legitimately lost; when it does not, state
@@ -93,12 +94,13 @@ treating adaptation as ephemeral has the value backwards.
 
 ## What this means here
 
-Card-state preservation across follow-up turns is a named success metric.
-Explaining further appends cards; it does not regenerate the response.
-Interaction state lives outside the rendered tree, keyed to card identity rather
-than position, and a test asserts that mutating UI state leaves rendered
-citations unchanged.
+Card-state preservation across follow-up turns is a named success metric. The
+design has explaining further append cards rather than regenerate the response,
+keeps interaction state outside the rendered tree keyed to card identity rather
+than position, and requires a test asserting that mutating UI state leaves
+rendered citations unchanged. Those are M2 and M4, and none of them is built.
 
-The evidence identifier rule — derived from document, section, position, and
-content hash, and tested for stability across re-ingestion — is load-bearing for
-this, not only for reproducible evaluation.
+The one piece already in place is underneath: the evidence identifier rule —
+derived from document, section, position, and content hash — is implemented and
+its stability is tested. It is load-bearing for card state, not only for
+reproducible evaluation, which is why it was settled first.

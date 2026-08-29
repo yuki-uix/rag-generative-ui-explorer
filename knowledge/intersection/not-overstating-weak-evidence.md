@@ -44,8 +44,8 @@ guesses have been laundered by the layout.
 
 This is a genuine regression against the Markdown baseline, and it has to be
 counted honestly. The structured presentation is *less* able to express partial
-knowledge than the prose it replaces, unless the structure is given somewhere to
-put uncertainty.
+knowledge than the prose it replaces, unless the structure is given somewhere
+to put uncertainty.
 
 ## Calibrated words, not calibrated numbers
 
@@ -63,9 +63,9 @@ relevant" implies a calibration that does not exist, and a number is the most
 authoritative-looking way to be wrong.
 
 What can be stated honestly is **provenance**: this field is quoted, this field
-is summarised across passages, this field is inferred and the sources do not say
-it outright. That is a property of the relationship between the field and the
-evidence, not an estimate of anything.
+is summarised across passages, this field is inferred and the sources do not
+say it outright. That is a property of the relationship between the field and
+the evidence, not an estimate of anything.
 
 ## Where the interface has to be willing to look worse
 
@@ -93,20 +93,23 @@ synthesis of a well-understood area.
 If the underlying evidence is two thin passages, the interface has manufactured
 authority. Nothing in the rendering is false, and the impression is.
 
-That is the risk this project takes on by rendering evidence as cards, and it is
-the reason the evaluation has to measure unsupported-claim rate and
+That is the risk this project takes on by rendering evidence as cards, and it
+is the reason the evaluation has to measure unsupported-claim rate and
 insufficient-evidence detection rather than only whether readers liked the
 result. Readers reliably prefer interfaces that look considered, including when
 those interfaces are misleading them.
 
 ## What this means here
 
-Every factual field carries a grounding mode — extracted, summarised, or
-inferred — and inferred content is rendered visibly differently while still
-citing the evidence it was drawn from. Responses can mark themselves incomplete
-with a reason distinguishing missing from conflicting.
+Two of these are already in the contract. Every factual field carries a
+grounding mode — extracted, summarised, or inferred — and a response can mark
+itself incomplete with a reason distinguishing missing from conflicting. Both
+are schema requirements today, so an output that omits them does not validate.
 
-Similarity scores are used for ordering and never displayed as confidence.
+The rest is design intent awaiting implementation: rendering inferred content
+visibly differently is M2, and using similarity scores for ordering while never
+displaying them as confidence is M1.
+
 Unnecessary-card rate and unsupported-claim rate are named metrics, and the
 findings are required to document cases where dynamic cards perform worse — a
 comparison that only reports wins is not a comparison.

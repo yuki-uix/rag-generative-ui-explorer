@@ -21,19 +21,19 @@ sources:
 
 Most generative interfaces show a card built from retrieved data and then
 discard the retrieval. The card is a rendering of an answer. An evidence-aware
-card keeps the link: each field knows which passages produced it, and the reader
-can traverse from any claim back to its source.
+card keeps the link: each field knows which passages produced it, and the
+reader can traverse from any claim back to its source.
 
 ## Verifiability is not the presence of citations
 
 The work this note is drawn from studied generative search engines — systems
-that answer with prose plus citations — and found the surface reassuring and the
-substance uneven. Responses were fluent and citation-bearing, and a substantial
-share of individual statements were not supported by the sources cited next to
-them.
+that answer with prose plus citations — and found the surface reassuring and
+the substance uneven. Responses were fluent and citation-bearing, and a
+substantial share of individual statements were not supported by the sources
+cited next to them.
 
-The lesson generalises beyond search. **A citation is a claim about support, and
-claims can be false.** An interface that displays citations has not thereby
+The lesson generalises beyond search. **A citation is a claim about support,
+and claims can be false.** An interface that displays citations has not thereby
 become verifiable; it has become one that asserts verifiability. If nothing
 checks the assertion, the visible citations make the output more persuasive
 without making it more correct — the worst possible combination.
@@ -76,12 +76,14 @@ that regenerates on every interaction.
 
 ## What this means here
 
-Cards are validated against their evidence before rendering; a card referencing
-an identifier absent from the current retrieval set never reaches the browser.
-Excerpts in the source drawer are stored corpus text, kept separate from
-generated summaries.
+The design validates cards against their evidence before rendering, so that a
+card referencing an identifier absent from the current retrieval set never
+reaches the browser, and shows excerpts in the source drawer as stored corpus
+text kept separate from generated summaries. The validation is M3 and the
+drawer M2; neither is built. What exists today is the schema that makes every
+field's evidence references explicit enough to check.
 
-The renderer never converts unverified model output into a card. That is a
-grounding rule rather than an implementation preference, because the alternative
-— rendering first and checking later — produces exactly the interface the
-verifiability study describes: convincing, cited, and unchecked.
+The renderer is never to convert unverified model output into a card. That is a
+grounding rule rather than an implementation preference, because the
+alternative — rendering first and checking later — produces exactly the
+interface the verifiability study describes: convincing, cited, and unchecked.

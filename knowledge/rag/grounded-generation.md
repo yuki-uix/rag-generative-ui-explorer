@@ -29,10 +29,10 @@ A standard pipeline retrieves on every query. Some questions do not need it —
 they are conversational, or the answer is a restatement of something already in
 the exchange — and retrieving anyway injects passages that can only distract.
 
-The approach this note is drawn from makes retrieval a decision the model emits,
-along with judgements about whether a generated segment is supported by the
-passages it received. Grounding becomes an explicit output rather than a property
-someone hopes holds.
+The approach this note is drawn from makes retrieval a decision the model
+emits, along with judgements about whether a generated segment is supported by
+the passages it received. Grounding becomes an explicit output rather than a
+property someone hopes holds.
 
 The interesting move is not the specific training recipe. It is treating "is
 this supported?" as something the system states rather than something a reader
@@ -60,14 +60,15 @@ can be checked rather than requested.
 
 Where a citation attaches determines what it can be checked against.
 
-**Document-level** citations are nearly free and nearly useless: a reader cannot
-tell which sentence the source supports, and a validator can only confirm the
-document was retrieved.
+**Document-level** citations are nearly free and nearly useless: a reader
+cannot tell which sentence the source supports, and a validator can only
+confirm the document was retrieved.
 
-**Claim-level** or **field-level** citations attach to the individual assertion.
-They cost more to produce and are strictly more checkable — the validator can
-require that every factual field carries at least one reference, and the absence
-of one becomes a structural failure rather than a stylistic lapse.
+**Claim-level** or **field-level** citations attach to the individual
+assertion. They cost more to produce and are strictly more checkable — the
+validator can require that every factual field carries at least one reference,
+and the absence of one becomes a structural failure rather than a stylistic
+lapse.
 
 The finer granularity also makes partial grounding visible. An answer with four
 supported claims and one unsupported one is not "mostly cited"; it contains one
@@ -86,11 +87,13 @@ pretending the source said it outright.
 
 ## What this means here
 
-Every factual field carries at least one evidence identifier, identifiers are
-resolved server-side against the current retrieval set, and each field is
-labelled with how it relates to its sources.
+The response schema already requires every factual field to carry at least one
+evidence identifier and to be labelled with how it relates to its sources; both
+are enforced today by the contracts package.
 
-The validator rejects rather than repairs an unresolvable reference. Repairing
-one by picking a nearby identifier would produce a response that passes every
-check and cites the wrong passage — the worst possible outcome for a system whose
-entire proposition is that its claims can be traced.
+Resolving those identifiers against the current generation's retrieval set is
+the other half, and it is M3 and not built. The design is that the validator
+rejects rather than repairs an unresolvable reference. Repairing one by picking
+a nearby identifier would produce a response that passes every check and cites
+the wrong passage — the worst possible outcome for a system whose entire
+proposition is that its claims can be traced.

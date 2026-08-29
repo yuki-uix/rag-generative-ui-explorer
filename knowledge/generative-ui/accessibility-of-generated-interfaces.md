@@ -42,15 +42,15 @@ pattern owes the user, which states must be kept in sync.
 
 The essential point for generated interfaces: **these semantics are not implied
 by appearance**. A grid of divs that looks like a table conveys nothing to a
-screen reader. Two interfaces that render identically can be entirely usable and
-entirely unusable.
+screen reader. Two interfaces that render identically can be entirely usable
+and entirely unusable.
 
 ## Why the level of generation decides the outcome
 
 At the component level, accessibility is a property of the component library. A
 reviewed table component is a table every time it renders — for the first
-response and the ten-thousandth — because it was built once, tested once, and is
-reused. The audit is finite and it holds.
+response and the ten-thousandth — because it was built once, tested once, and
+is reused. The audit is finite and it holds.
 
 At the markup-generation level, accessibility is a property of each output.
 There is no floor: the same prompt can produce a well-labelled form and an
@@ -73,8 +73,8 @@ follow-up needs a live region, or a screen-reader user does not learn it
 arrived. The components are fine; the composition is not.
 
 **Focus loss on regeneration.** If focus sits inside a card that is replaced,
-focus falls back to the document body and the reader's position is gone. This is
-the accessibility face of state continuity, and it is more damaging here — a
+focus falls back to the document body and the reader's position is gone. This
+is the accessibility face of state continuity, and it is more damaging here — a
 sighted reader loses their place, a keyboard user loses their ability to
 continue.
 
@@ -83,11 +83,11 @@ sit side by side, that relationship exists visually and nowhere else.
 
 ## What this means here
 
-The renderer owns keyboard and screen-reader behaviour, and it owns them for the
-whole vocabulary rather than per response. Comparison cards use real table
-semantics with headers associated to cells; every interaction is reachable by
-keyboard alone, including the source drawer; focus is managed when the drawer
-opens and closes.
+The renderer is specified to own keyboard and screen-reader behaviour for the
+whole vocabulary rather than per response: comparison cards using real table
+semantics with headers associated to cells, every interaction reachable by
+keyboard alone including the source drawer, and focus managed when the drawer
+opens and closes. The renderer is M2 and is not built.
 
 Accessibility is a named success metric for the comparative evaluation, not a
 checklist item. The point of measuring it is the possibility of finding that
