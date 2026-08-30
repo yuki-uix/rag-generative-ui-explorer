@@ -17,6 +17,9 @@ importers:
       '@rgux/contracts':
         specifier: workspace:*
         version: link:../../packages/contracts
+      '@rgux/generation':
+        specifier: workspace:*
+        version: link:../../packages/generation
       react:
         specifier: 19.2.6
         version: 19.2.6

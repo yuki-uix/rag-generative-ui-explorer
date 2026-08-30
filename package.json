@@ -28,7 +28,8 @@
     "answer:check": "pnpm --filter @rgux/generation answer:ask --dry-run",
     "metrics:run": "pnpm --filter @rgux/generation metrics:run",
     "corpus:embed": "pnpm --filter @rgux/corpus corpus:embed",
-    "metrics:arms": "pnpm --filter @rgux/generation metrics:arms"
+    "metrics:arms": "pnpm --filter @rgux/generation metrics:arms",
+    "corpus:bundle": "pnpm --filter @rgux/corpus corpus:bundle"
   },
   "devDependencies": {
     "typescript": "^7.0.2"

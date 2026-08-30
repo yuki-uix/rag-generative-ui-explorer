@@ -62,6 +62,15 @@ export interface GenerateOptions {
   question: string;
   evidence: readonly Evidence[];
   maxTokens?: number;
+  /**
+   * The key, when the caller has it.
+   *
+   * Falls back to `process.env[profile.apiKeyEnv]`, which is how the scripts
+   * run. A Worker has no `process.env`: its secrets arrive as bindings, so the
+   * route handler reads one and passes it here rather than this module
+   * pretending an environment exists.
+   */
+  apiKey?: string;
   /** Called with each text delta, so a caller can stream to a reader. */
   onDelta?: (text: string) => void;
 }
@@ -73,14 +82,9 @@ export interface GenerateOptions {
  * time to first content in `eval/PROTOCOL.md`, so the baseline has to actually
  * stream or the comparison measures the wrong thing.
  */
-export async function generateAnswer({
-  profile,
-  question,
-  evidence,
-  maxTokens = 4096,
-  onDelta,
-}: GenerateOptions): Promise<GenerationRecord> {
-  const apiKey = process.env[profile.apiKeyEnv];
+export async function generateAnswer(options: GenerateOptions): Promise<GenerationRecord> {
+  const { profile, question, evidence, maxTokens = 4096, onDelta } = options;
+  const apiKey = options.apiKey ?? process.env[profile.apiKeyEnv];
   if (!apiKey) {
     throw new Error(`${profile.apiKeyEnv} is not set; profile ${profile.id} cannot run.`);
   }

@@ -5,7 +5,9 @@
   "type": "module",
   "main": "./src/index.ts",
   "exports": {
-    ".": "./src/index.ts"
+    ".": "./src/index.ts",
+    "./bm25": "./src/bm25.ts",
+    "./retriever": "./src/retriever.ts"
   },
   "scripts": {
     "test": "vitest run",
@@ -19,7 +21,8 @@
     "eval:build": "tsx scripts/build-eval.ts --write",
     "eval:check": "tsx scripts/build-eval.ts",
     "retriever:search": "tsx scripts/search.ts",
-    "corpus:embed": "tsx scripts/embed.ts"
+    "corpus:embed": "tsx scripts/embed.ts",
+    "corpus:bundle": "tsx scripts/bundle.ts"
   },
   "dependencies": {
     "@rgux/contracts": "workspace:*",
