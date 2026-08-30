@@ -8,3 +8,4 @@ export * from './metrics/harness.js';
 export * from './planner/prompt.js';
 export * from './planner/plan.js';
 export * from './planner/handles.js';
+export * from './planner/validate.js';
