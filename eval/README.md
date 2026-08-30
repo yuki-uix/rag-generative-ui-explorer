@@ -52,7 +52,7 @@ quantity a reviewer skims.
 | | Count |
 | --- | --- |
 | Questions | 60 |
-| Golden evidence references | 141 |
+| Golden evidence references | 156 |
 | RAG / Generative UI / Intersection | 25 / 23 / 12 |
 | Deliberately unanswerable | 6 |
 
@@ -71,7 +71,7 @@ neither is a stale exemption: an exemption naming a section that turns out to be
 measured fails validation, because an exemption nobody needs is a standing
 permission rather than a judgement. Three of the first ten were stale.
 
-Currently 74 sections are deliberately unmeasured, almost all of them structural
+Currently 78 sections are deliberately unmeasured, almost all of them structural
 — every note's preamble and its closing `What this means here`, neither of which
 answers a knowledge question about the note's subject.
 

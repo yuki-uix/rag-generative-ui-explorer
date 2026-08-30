@@ -1,12 +1,78 @@
 {
-  "corpusVersion": "corpus-7990d878dcdd",
+  "corpusVersion": "corpus-3e4863076378",
   "chunking": {
     "boundary": "h2-section",
     "maxChunkChars": 1200
   },
-  "documentCount": 36,
-  "sourceCount": 68,
+  "documentCount": 38,
+  "sourceCount": 74,
   "documents": [
+    {
+      "documentId": "generative-ui/a2ui-protocol-model",
+      "path": "knowledge/generative-ui/a2ui-protocol-model.md",
+      "title": "The A2UI protocol model",
+      "domain": "generative-ui",
+      "author": "yuki-uix",
+      "revised": "2026-08-30",
+      "summary": "A2UI separates a streamed surface definition, its data model, and user actions while the client keeps rendering authority through a negotiated component catalog.",
+      "tags": [
+        "agent-ui-protocols",
+        "component-registries",
+        "declarative-ui-schemas",
+        "state-continuity",
+        "streaming-rendering"
+      ],
+      "sources": [
+        {
+          "sourceType": "specification",
+          "supports": [
+            "a-surface-has-a-lifecycle",
+            "flat-components-are-a-streaming-choice",
+            "generation-needs-a-validation-loop",
+            "structure-state-and-actions-are-separate",
+            "the-catalog-is-a-trust-contract",
+            "the-version-line-matters",
+            "transport-is-not-the-protocol",
+            "what-a2ui-standardises"
+          ],
+          "title": "A2UI Protocol v0.9.1",
+          "url": "https://a2ui.org/specification/v0.9.1-a2ui/",
+          "author": "A2UI Project contributors",
+          "published": "2025-12-03",
+          "retrieved": "2026-08-30",
+          "license": "Apache-2.0 project specification. Original explanatory prose only; published is the specification's Last Updated date.",
+          "primary": true
+        },
+        {
+          "sourceType": "documentation",
+          "supports": [
+            "generation-needs-a-validation-loop",
+            "the-catalog-is-a-trust-contract"
+          ],
+          "title": "A2UI Catalogs",
+          "url": "https://a2ui.org/concepts/catalogs/",
+          "author": "A2UI Project contributors",
+          "retrieved": "2026-08-30",
+          "license": "Apache-2.0 project documentation. Original explanatory prose only; no publication date stated.",
+          "primary": false
+        },
+        {
+          "sourceType": "documentation",
+          "supports": [
+            "a-surface-has-a-lifecycle",
+            "structure-state-and-actions-are-separate"
+          ],
+          "title": "A2UI Message Types",
+          "url": "https://a2ui.org/reference/messages/",
+          "author": "A2UI Project contributors",
+          "retrieved": "2026-08-30",
+          "license": "Apache-2.0 project documentation. Original explanatory prose only; no publication date stated.",
+          "primary": false
+        }
+      ],
+      "contentHash": "9fb11ddef76c88f2",
+      "metadataHash": "1cd5da38b831e7da"
+    },
     {
       "documentId": "generative-ui/accessibility-of-generated-interfaces",
       "path": "knowledge/generative-ui/accessibility-of-generated-interfaces.md",
@@ -649,6 +715,70 @@
       ],
       "contentHash": "eaac450e9f17d471",
       "metadataHash": "161fd6ff9402d7ad"
+    },
+    {
+      "documentId": "intersection/a2ui-as-an-output-boundary-for-rag",
+      "path": "knowledge/intersection/a2ui-as-an-output-boundary-for-rag.md",
+      "title": "A2UI as an output boundary for RAG",
+      "domain": "intersection",
+      "author": "yuki-uix",
+      "revised": "2026-08-30",
+      "summary": "RAG can supply evidence and state to an A2UI surface, but retrieval, grounding, presentation planning, and UI transport remain separate contracts.",
+      "tags": [
+        "card-state-continuity",
+        "evidence-aware-cards",
+        "field-level-citation",
+        "ui-driven-retrieval",
+        "ui-from-knowledge-structure"
+      ],
+      "sources": [
+        {
+          "sourceType": "specification",
+          "supports": [
+            "actions-can-start-another-retrieval-turn",
+            "evidence-lineage-needs-an-application-contract",
+            "four-contracts-not-one-pipeline",
+            "preserve-state-by-addressing-it",
+            "retrieved-content-belongs-in-state"
+          ],
+          "title": "A2UI Protocol v0.9.1",
+          "url": "https://a2ui.org/specification/v0.9.1-a2ui/",
+          "author": "A2UI Project contributors",
+          "published": "2025-12-03",
+          "retrieved": "2026-08-30",
+          "license": "Apache-2.0 project specification. Original explanatory prose only; published is the specification's Last Updated date.",
+          "primary": true
+        },
+        {
+          "sourceType": "documentation",
+          "supports": [
+            "control-what-reenters-model-context",
+            "mcp-is-a-delivery-path-not-the-retriever"
+          ],
+          "title": "A2UI over Model Context Protocol",
+          "url": "https://a2ui.org/guides/a2ui_over_mcp/",
+          "author": "A2UI Project contributors",
+          "retrieved": "2026-08-30",
+          "license": "Apache-2.0 project documentation. Original explanatory prose only; no publication date stated.",
+          "primary": false
+        },
+        {
+          "sourceType": "documentation",
+          "supports": [
+            "control-what-reenters-model-context",
+            "mcp-is-a-delivery-path-not-the-retriever"
+          ],
+          "title": "A2UI + MCP Apps: Combining the best of declarative and custom agentic UIs",
+          "url": "https://developers.googleblog.com/en/a2ui-and-mcp-apps/",
+          "author": "Google A2UI Team, Ido Salomon, and Liad Yosef",
+          "published": "2026-06-17",
+          "retrieved": "2026-08-30",
+          "license": "Google Developers Blog. Original explanatory prose only; short attributed quotations if needed.",
+          "primary": false
+        }
+      ],
+      "contentHash": "7da9eb2580ccf43d",
+      "metadataHash": "6f23dc1218092e6a"
     },
     {
       "documentId": "intersection/card-state-across-turns",
