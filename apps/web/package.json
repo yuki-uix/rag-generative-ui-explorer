@@ -11,6 +11,8 @@
     "build": "vinext build",
     "start": "wrangler dev --config dist/server/wrangler.json",
     "deploy": "pnpm build && wrangler deploy --config dist/server/wrangler.json",
+    "secret": "wrangler secret put --name rgux-web",
+    "secret:list": "wrangler secret list --name rgux-web",
     "test": "vitest run",
     "typecheck": "tsc --noEmit",
     "lint": "oxlint",
