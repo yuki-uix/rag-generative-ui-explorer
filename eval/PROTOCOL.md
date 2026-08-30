@@ -240,6 +240,15 @@ recorded payload, never from a return code.
    looks like a result.
 4. **Changing a pinned variable starts a new baseline.** Prior results are not
    carried forward across a model change, a prompt edit, or a re-chunk.
+
+   **This has happened once.** On 2026-08-30 two A2UI notes were added and eight
+   existing questions gained golden evidence. The question set is a pinned
+   variable, and widening it widens the denominator of every recall figure:
+   measured on the same corpus and retrievers, every arm moved by one to three
+   points. Nothing about retrieval had changed. Numbers from before that date
+   are not carried forward, and `docs/ARCHITECTURE.md` reports only the current
+   set — a table carrying two vintages would invite the trend line this rule
+   exists to prevent.
 5. **Report negative results.** Where an arm loses, that is the finding. A
    comparison that only reports where the new thing won has not tested anything.
 

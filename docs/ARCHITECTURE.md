@@ -127,27 +127,54 @@ third secret. A downloaded revision also pins more exactly than a served name.
 
 Measured on the 60-question set, same corpus and same questions, `metrics:arms`:
 
+**These numbers are against the question set as it stands after 2026-08-30**, when
+A2UI labels were added and eight existing questions gained golden evidence. The
+question set is a pinned variable, so that widened the denominator and moved
+every arm by one to three points: **no retrieval number measured before that date
+is comparable to one measured after it.** The earlier figures are not reproduced
+here, because a table of two vintages invites exactly the trend line the
+protocol forbids.
+
 | arm | Recall@10 | any-hit | MRR | nDCG@10 | zero-hit |
 | --- | --- | --- | --- | --- | --- |
-| lexical (BM25) | 48.9% | 72.2% | 0.502 | 0.415 | 15 |
-| dense (MiniLM-L6-v2) | **65.9%** | 88.9% | 0.592 | 0.527 | 6 |
-| fused (BM25 + MiniLM) | 65.7% | 87.0% | 0.570 | 0.526 | 7 |
-| dense (bge-small-en-v1.5) | 63.1% | **90.7%** | **0.624** | **0.548** | **5** |
-| fused (BM25 + bge-small) | 64.6% | 88.9% | 0.577 | 0.521 | 6 |
+| lexical (BM25) | 47.6% | 72.2% | 0.514 | 0.415 | 15 |
+| dense (MiniLM-L6-v2) | **63.7%** | **88.9%** | 0.590 | 0.516 | **6** |
+| fused (BM25 + MiniLM) | 63.2% | 85.2% | 0.565 | 0.512 | 8 |
+| dense (bge-small-en-v1.5) | 60.5% | 87.0% | **0.633** | **0.538** | 7 |
+| fused (BM25 + bge-small) | 61.8% | 87.0% | 0.586 | 0.514 | 7 |
 
 Dense retrieval is worth its cost: seventeen points of recall, and the zero-hit
 questions fall from fifteen to five or six. That was the predicted direction —
 the corpus is full of paraphrase between how a note is written and how a question
 is asked, which is lexical retrieval's weakest case.
 
-**Fusion is not.** `knowledge/rag/sparse-retrieval.md` set the test in advance:
-"If the hybrid system cannot beat BM25 alone on this corpus, that is a finding
-about the corpus or the embedding model." The stronger version of that test is
-whether fusion beats the better *single* arm, and it does not — 65.7% against
-65.9%, and 64.6% against 63.1%, which is a wash in both directions. RRF is kept
-behind the same `Retriever` interface and reported, because a negative result
-that is deleted stops being a result, but nothing should be built on the
-assumption that fusing helps here until a number says it does.
+**Fusion never produces the best system, but the reason is narrower than it
+first looked.** `knowledge/rag/sparse-retrieval.md` set the test in advance: "If
+the hybrid system cannot beat BM25 alone on this corpus, that is a finding about
+the corpus or the embedding model." The stronger version asks whether fusion
+beats the better *single* arm, and the answer depends on which dense arm it is
+fused with. Sweeping five pool sizes against two RRF constants:
+
+| dense arm | alone | fusion beat it in | range |
+| --- | --- | --- | --- |
+| MiniLM-L6-v2 | 63.7% | **0 of 10** configurations | −0.5 to −6.7 pt |
+| bge-small-en-v1.5 | 60.5% | **6 of 10** configurations | +2.2 to −2.5 pt |
+
+Fusion helps the weaker dense arm and hurts the stronger one, which is the shape
+one would expect if it were mostly recovering what a weaker embedding missed.
+**It still never produces the best system**: the best configuration tried — bge
+fused at pool 50, RRF 10, 62.8% — remains below plain MiniLM dense at 63.7%.
+
+An earlier version of this section claimed fusion lost in both directions,
+citing 64.6% against 63.1% as a wash. That pair was fusion *winning* by 1.5
+points, and the sweep behind the claim had only covered MiniLM. Stating a
+general result from one model's sweep was the error; the table above is what
+the measurement actually supports.
+
+The sweep is sensitivity analysis, not tuning: no default was changed on the
+strength of it, because these questions exist to produce the number that would
+judge such a change. RRF is kept behind the same `Retriever` interface and
+reported, because a negative result that is deleted stops being a result.
 
 Its parameters — `RRF_K = 60`, `FUSION_POOL = 50` — are unmeasured defaults.
 They must not be tuned against these questions: the questions exist to produce
