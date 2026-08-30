@@ -40,6 +40,12 @@ jobs:
       # against a real query, so a break in argument handling or the
       # ingest-to-index wiring is caught rather than assumed.
       - run: pnpm retriever:search --query "nDCG" > /dev/null
+      # The generation module is covered by tests, which never call a model.
+      # This runs the script itself in dry-run: it needs no key and spends
+      # nothing, while exercising argument handling, retrieval, and prompt
+      # construction. `answer:ask` without the flag calls a model and cannot
+      # run here — it would spend money on every pull request.
+      - run: pnpm answer:check > /dev/null
       - run: pnpm eval:check
       - run: pnpm eval:validate
       # The app is typechecked and tested by the recursive runs above. This runs

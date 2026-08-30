@@ -23,7 +23,9 @@
     "web:bundle:check": "pnpm --filter @rgux/web bundle:check",
     "workspace:check": "node scripts/check-workspace-coverage.mjs",
     "web:deploy": "pnpm --filter @rgux/web deploy",
-    "web:deploy:check": "pnpm --filter @rgux/web deploy:check"
+    "web:deploy:check": "pnpm --filter @rgux/web deploy:check",
+    "answer:ask": "pnpm --filter @rgux/generation answer:ask",
+    "answer:check": "pnpm --filter @rgux/generation answer:ask --dry-run"
   },
   "devDependencies": {
     "typescript": "^7.0.2"
