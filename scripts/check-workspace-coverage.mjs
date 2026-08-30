@@ -48,8 +48,29 @@ for (const dir of packages) {
   if (missing.length) failures.push(`${dir} (${manifest.name}) is missing: ${missing.join(', ')}`);
 }
 
+/**
+ * Root passthroughs must say `run`.
+ *
+ * `pnpm --filter <pkg> deploy` does not invoke the package's `deploy` script —
+ * `deploy` is one of pnpm's own commands, so it is intercepted and the script
+ * never runs. `web:deploy` was written, documented in ARCHITECTURE, described in
+ * a pull request, and never once executed; it failed the first time anyone tried
+ * to deploy with it. Any script name can collide this way as pnpm grows its own,
+ * so the rule is `run` everywhere rather than a list of reserved words.
+ */
+const passthrough = /^pnpm\s+--filter\s+\S+\s+(?!run\b)/;
+const manifest = JSON.parse(readFileSync(join(root, 'package.json'), 'utf8'));
+for (const [name, command] of Object.entries(manifest.scripts ?? {})) {
+  if (passthrough.test(command)) {
+    failures.push(
+      `root script "${name}" filters without \`run\`: \`${command}\`. ` +
+        'pnpm may intercept the name as its own command and never invoke the script.',
+    );
+  }
+}
+
 if (failures.length) {
-  console.error('Workspace packages not covered by the recursive runs:');
+  console.error('Workspace script problems:');
   for (const failure of failures) console.error(`  ${failure}`);
   process.exit(1);
 }

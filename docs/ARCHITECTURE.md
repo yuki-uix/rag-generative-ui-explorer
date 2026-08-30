@@ -220,6 +220,28 @@ separate product published it once cannot be reproduced from this repository.
 Experiment infrastructure should not depend on a gesture the project cannot
 repeat.
 
+Every root script that delegates to a package says `run`, and
+`workspace:check` fails when one does not. `pnpm --filter <pkg> deploy` does not
+invoke that package's `deploy` script: `deploy` is one of pnpm's own commands, so
+it is intercepted and the script never runs. `web:deploy` was written, recorded
+here, described in a pull request, and executed for the first time months of work
+later — where it failed immediately. Eleven other passthroughs had the same shape
+and worked only because their names had not yet collided.
+
+Everything wrangler needs lives in `dist/server/`, which is gitignored and
+rebuilt, so a bare wrangler command run from `apps/web` finds no configuration
+and no worker name. That surfaced three times — a local secrets file in the wrong
+directory, a `--config` that had to point into `dist/`, and a missing worker name
+— before being fixed rather than remembered: `web:deploy`, `web:secret`, and
+`web:secret:list` carry what wrangler needs, so the commands are runnable from
+where a person actually stands.
+
+The production key is set with `pnpm web:secret DEEPSEEK_API_KEY`, which prompts
+for the value rather than taking it as an argument, keeping it out of shell
+history. `pnpm web:secret:list` shows which secrets exist without showing any
+value. Until the key is set, `/api/ask` answers 503 saying so — a configured
+absence rather than an opaque failure.
+
 `web:deploy` cannot run in CI — it would publish on every pull request and needs
 a Cloudflare token — so `web:deploy:check` runs instead. The dry-run needs no
 credentials and uploads nothing, while still validating the generated
