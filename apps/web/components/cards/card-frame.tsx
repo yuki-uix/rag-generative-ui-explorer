@@ -9,15 +9,19 @@ export function CardFrame({
   title,
   children,
   footer,
+  presentation,
 }: {
   type: string;
   title: string;
   children: ReactNode;
   footer?: ReactNode;
+  /** Which rendering was chosen, surfaced so it is visible to tests and review. */
+  presentation?: string;
 }) {
   return (
     <article
       data-card-type={type}
+      data-presentation={presentation}
       className="overflow-hidden rounded-md border border-neutral-300 bg-white dark:border-neutral-700 dark:bg-neutral-900"
     >
       <header className="flex flex-wrap items-center gap-2 border-b border-neutral-200 bg-neutral-50 px-3 py-2 dark:border-neutral-800 dark:bg-neutral-800/60">
