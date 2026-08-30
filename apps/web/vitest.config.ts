@@ -6,5 +6,5 @@ import { defineConfig } from 'vitest/config';
  * and must not depend on the deploy target being configurable.
  */
 export default defineConfig({
-  test: { include: ['test/**/*.test.ts'], environment: 'node' },
+  test: { include: ['test/**/*.test.ts', 'test/**/*.test.tsx'], environment: 'node' },
 });
