@@ -152,6 +152,14 @@ The one coupling worth naming is that vinext serves static assets under
 dependency. Nothing should hardcode that prefix, because it is the part of the
 URL space a framework change would move.
 
+The scaffold's other Next leftovers are removed as they surface rather than
+worked around: `next.config.ts` and the `Metadata` import went with the shell.
+One rule of the `nextjs` lint plugin, `no-html-link-for-pages`, is switched off
+for the same reason — it advises importing `next/link`, a package that is not
+installed here, so the advice cannot be followed. The rest of the plugin stays
+on; disabling a whole plugin to silence one inapplicable rule discards checks
+that still apply.
+
 **Deployment goes directly to Cloudflare** (`pnpm web:deploy`, which runs
 `wrangler deploy` against the `dist/server/wrangler.json` the build emits), not
 through the hosting product the scaffold arrived with. The distinction matters

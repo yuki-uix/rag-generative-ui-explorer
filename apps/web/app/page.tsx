@@ -34,6 +34,9 @@ export default function Home() {
           </li>
         ))}
       </ul>
+      <p>
+        <a href="/cards">See the rendered card components</a>
+      </p>
     </main>
   );
 }
