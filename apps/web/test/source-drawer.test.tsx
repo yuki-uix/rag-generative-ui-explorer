@@ -164,6 +164,14 @@ describe('the source drawer', () => {
     link.focus();
     fireEvent.keyDown(dialog, { key: 'Tab' });
     expect(document.activeElement).toBe(closeButton);
+
+    // Backwards too. The trap has a `shiftKey` branch, and a branch with no
+    // test is a branch that can be deleted without anything going red — which
+    // would leave Shift+Tab escaping the dialog while the forward case, the one
+    // people demonstrate, kept working.
+    closeButton.focus();
+    fireEvent.keyDown(dialog, { key: 'Tab', shiftKey: true });
+    expect(document.activeElement).toBe(link);
   });
 });
 
