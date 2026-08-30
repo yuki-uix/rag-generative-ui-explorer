@@ -46,6 +46,12 @@ jobs:
       # construction. `answer:ask` without the flag calls a model and cannot
       # run here — it would spend money on every pull request.
       - run: pnpm answer:check > /dev/null
+      # Retrieval metrics are mechanical while no model sits in the pipeline, so
+      # the whole 60-question set scores here for free. This is not a threshold
+      # gate — no number has been argued for — it runs so the harness cannot
+      # break silently, and so a corpus or retriever change shows up as a moved
+      # number in the log rather than as nothing at all.
+      - run: pnpm metrics:run
       - run: pnpm eval:check
       - run: pnpm eval:validate
       # The app is typechecked and tested by the recursive runs above. This runs
