@@ -54,6 +54,13 @@ jobs:
       - run: git diff --exit-code apps/web/fixtures/evidence.json
       - run: pnpm web:lint
       - run: pnpm web:build
+      # The gate from #54: `@rgux/corpus` reads `knowledge/` with `node:fs`,
+      # which neither the browser nor workerd has. A client component importing
+      # it ships the reader silently — the build exits 0 — so this reads the
+      # built bundles and fails on the package's string-literal markers, which
+      # survive minification where identifiers and the `node:fs` specifier do
+      # not. It runs after `web:build` because it scans `dist/`.
+      - run: pnpm web:bundle:check
       # `web:deploy` cannot run here — it would publish on every pull request and
       # needs a Cloudflare token. Its dry-run can: it needs no credentials, uploads
       # nothing, and still validates the generated wrangler.json, the asset
