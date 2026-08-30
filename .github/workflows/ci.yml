@@ -77,6 +77,11 @@ jobs:
       # built bundles and fails on the package's string-literal markers, which
       # survive minification where identifiers and the `node:fs` specifier do
       # not. It runs after `web:build` because it scans `dist/`.
+      # The bundle the deployment serves from is generated; running the
+      # generator and requiring no diff exercises it and re-checks the artifact
+      # through the real entry point, the same shape as `web:evidence:build`.
+      - run: pnpm corpus:bundle
+      - run: git diff --exit-code apps/web/fixtures/retrieval-bundle.json
       - run: pnpm web:bundle:check
       # `web:deploy` cannot run here — it would publish on every pull request and
       # needs a Cloudflare token. Its dry-run can: it needs no credentials, uploads
