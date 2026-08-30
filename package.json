@@ -15,7 +15,13 @@
     "eval:validate": "pnpm --filter @rgux/corpus eval:validate",
     "eval:build": "pnpm --filter @rgux/corpus eval:build",
     "eval:check": "pnpm --filter @rgux/corpus eval:check",
-    "retriever:search": "pnpm --filter @rgux/corpus retriever:search"
+    "retriever:search": "pnpm --filter @rgux/corpus retriever:search",
+    "web:build": "pnpm --filter @rgux/web build",
+    "web:dev": "pnpm --filter @rgux/web dev",
+    "web:lint": "pnpm --filter @rgux/web lint",
+    "workspace:check": "node scripts/check-workspace-coverage.mjs",
+    "web:deploy": "pnpm --filter @rgux/web deploy",
+    "web:deploy:check": "pnpm --filter @rgux/web deploy:check"
   },
   "devDependencies": {
     "typescript": "^7.0.2"

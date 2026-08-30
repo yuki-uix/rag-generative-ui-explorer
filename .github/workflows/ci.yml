@@ -16,6 +16,11 @@ jobs:
           node-version: 22
           cache: pnpm
       - run: pnpm install --frozen-lockfile
+      # Neither `pnpm -r <script>` nor `pnpm --filter <pkg> <script>` fails when a
+      # package does not declare the script — both exit 0, and Scope counts the
+      # packages the filter selected rather than the ones that ran. Without this,
+      # a package can silently drop out of typecheck and test while CI stays green.
+      - run: pnpm workspace:check
       - run: pnpm typecheck
       - run: pnpm test
       # The JSON Schemas are generated artifacts. This fails when they drift
@@ -37,3 +42,14 @@ jobs:
       - run: pnpm retriever:search --query "nDCG" > /dev/null
       - run: pnpm eval:check
       - run: pnpm eval:validate
+      # The app is typechecked and tested by the recursive runs above. This runs
+      # the production build, which they do not: an app that compiles under tsc
+      # can still fail to bundle for the Worker target, and that failure would
+      # otherwise only appear at deploy time.
+      - run: pnpm web:lint
+      - run: pnpm web:build
+      # `web:deploy` cannot run here — it would publish on every pull request and
+      # needs a Cloudflare token. Its dry-run can: it needs no credentials, uploads
+      # nothing, and still validates the generated wrangler.json, the asset
+      # directory, and the bundle size against the Workers limit.
+      - run: pnpm web:deploy:check
