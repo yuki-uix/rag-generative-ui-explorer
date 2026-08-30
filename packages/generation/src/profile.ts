@@ -25,6 +25,22 @@ export interface ModelProfile {
   readonly supportsThinking: boolean;
   /** Anthropic's `output_config.effort`. Not universal. */
   readonly supportsEffort: boolean;
+  /**
+   * Whether the endpoint **enforces** a requested output schema.
+   *
+   * Not whether it accepts one. Measured on DeepSeek by putting the prompt and
+   * the schema in conflict — a system prompt demanding plain prose against a
+   * schema demanding an object — and seeing which won. The prompt won, and the
+   * request had raised no error: `output_config.format` is accepted and
+   * silently dropped. A probe that only checks the request succeeds would have
+   * reported structured output working.
+   *
+   * This has to be recorded per profile because it changes what a metric means.
+   * "Invalid card specs before repair" measures the model's compliance where
+   * the schema is unenforced, and measures almost nothing where it is enforced;
+   * comparing the two without saying which is comparing different quantities.
+   */
+  readonly enforcesOutputSchema: boolean;
 }
 
 /**
@@ -41,6 +57,8 @@ export const DEEPSEEK: ModelProfile = {
   apiKeyEnv: 'DEEPSEEK_API_KEY',
   supportsThinking: false,
   supportsEffort: false,
+  // Measured 2026-08-30 with a conflicting prompt and schema; the prompt won.
+  enforcesOutputSchema: false,
 };
 
 /**
@@ -56,6 +74,12 @@ export const CLAUDE_OPUS_5: ModelProfile = {
   apiKeyEnv: 'ANTHROPIC_API_KEY',
   supportsThinking: true,
   supportsEffort: true,
+  /**
+   * Documented, not measured here. No run against this profile has been made,
+   * so this is a claim about Anthropic's documented surface rather than a
+   * result — check it before reporting a number produced under it.
+   */
+  enforcesOutputSchema: true,
 };
 
 export const PROFILES: readonly ModelProfile[] = [DEEPSEEK, CLAUDE_OPUS_5];

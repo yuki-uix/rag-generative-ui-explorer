@@ -46,6 +46,9 @@ jobs:
       # construction. `answer:ask` without the flag calls a model and cannot
       # run here — it would spend money on every pull request.
       - run: pnpm answer:check > /dev/null
+      # Same shape: the planner's prompt construction and schema slice run here
+      # without a key or a model. `plan:run` without the flag calls a model.
+      - run: pnpm plan:check > /dev/null
       # Retrieval metrics are mechanical while no model sits in the pipeline, so
       # the whole 60-question set scores here for free. This is not a threshold
       # gate — no number has been argued for — it runs so the harness cannot
