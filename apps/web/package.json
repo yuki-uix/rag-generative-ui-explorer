@@ -15,6 +15,7 @@
     "typecheck": "tsc --noEmit",
     "lint": "oxlint",
     "evidence:build": "tsx scripts/generate-evidence.ts",
+    "bundle:check": "tsx scripts/check-bundle.ts",
     "format": "oxfmt",
     "deploy:check": "pnpm build && wrangler deploy --dry-run --config dist/server/wrangler.json"
   },
