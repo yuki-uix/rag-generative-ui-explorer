@@ -40,7 +40,7 @@ export interface QuestionSpec {
 }
 
 export const LABELLED_BY = 'yuki-uix';
-export const LABELLED_ON = '2026-08-29';
+export const LABELLED_ON = '2026-08-30';
 
 export const QUESTIONS: QuestionSpec[] = [
   {
@@ -394,6 +394,7 @@ export const QUESTIONS: QuestionSpec[] = [
     goldenEvidence: [
       { documentId: "generative-ui/declarative-ui-schemas", section: "what-a-schema-can-enforce" },
       { documentId: "generative-ui/declarative-ui-schemas", section: "grammar-size" },
+      { documentId: "generative-ui/a2ui-protocol-model", section: "generation-needs-a-validation-loop" },
     ],
   },
   {
@@ -415,6 +416,8 @@ export const QUESTIONS: QuestionSpec[] = [
     goldenEvidence: [
       { documentId: "generative-ui/streaming-and-incremental-rendering", section: "text-streams-structure-does-not" },
       { documentId: "generative-ui/streaming-and-incremental-rendering", section: "retraction-is-the-cost-people-underestimate" },
+      { documentId: "generative-ui/a2ui-protocol-model", section: "a-surface-has-a-lifecycle" },
+      { documentId: "generative-ui/a2ui-protocol-model", section: "flat-components-are-a-streaming-choice" },
     ],
   },
   {
@@ -439,6 +442,7 @@ export const QUESTIONS: QuestionSpec[] = [
       { documentId: "generative-ui/state-continuity", section: "why-it-gets-lost-by-default" },
       { documentId: "generative-ui/state-continuity", section: "the-problem-in-its-simplest-form" },
       { documentId: "generative-ui/state-continuity", section: "state-as-a-protocol-concern-not-an-application-one" },
+      { documentId: "generative-ui/a2ui-protocol-model", section: "structure-state-and-actions-are-separate" },
     ],
   },
   {
@@ -464,6 +468,11 @@ export const QUESTIONS: QuestionSpec[] = [
       { documentId: "generative-ui/agent-ui-protocols", section: "the-layers", chunkIndex: 1 },
       { documentId: "generative-ui/agent-ui-protocols", section: "the-bet-each-one-makes" },
       { documentId: "generative-ui/agent-ui-protocols", section: "why-the-event-model-matters" },
+      { documentId: "generative-ui/a2ui-protocol-model", section: "what-a2ui-standardises" },
+      { documentId: "generative-ui/a2ui-protocol-model", section: "the-catalog-is-a-trust-contract" },
+      { documentId: "generative-ui/a2ui-protocol-model", section: "transport-is-not-the-protocol" },
+      { documentId: "generative-ui/a2ui-protocol-model", section: "the-version-line-matters" },
+      { documentId: "intersection/a2ui-as-an-output-boundary-for-rag", section: "mcp-is-a-delivery-path-not-the-retriever" },
     ],
   },
   {
@@ -556,6 +565,7 @@ export const QUESTIONS: QuestionSpec[] = [
       { documentId: "intersection/choosing-a-ui-from-knowledge-structure", section: "when-the-evidence-has-no-usable-shape" },
       { documentId: "intersection/choosing-a-ui-from-knowledge-structure", section: "structure-is-not-in-the-text" },
       { documentId: "intersection/choosing-a-ui-from-knowledge-structure", section: "what-the-citation-work-suggests-about-the-harder-version" },
+      { documentId: "intersection/a2ui-as-an-output-boundary-for-rag", section: "four-contracts-not-one-pipeline" },
     ],
   },
   {
@@ -578,6 +588,7 @@ export const QUESTIONS: QuestionSpec[] = [
     goldenEvidence: [
       { documentId: "intersection/evidence-aware-cards", section: "what-evidence-aware-has-to-mean-to-be-worth-anything" },
       { documentId: "intersection/evidence-aware-cards", section: "cheap-traversal-is-the-point" },
+      { documentId: "intersection/a2ui-as-an-output-boundary-for-rag", section: "evidence-lineage-needs-an-application-contract" },
     ],
   },
   {
@@ -624,6 +635,7 @@ export const QUESTIONS: QuestionSpec[] = [
       { documentId: "intersection/ui-driven-retrieval", section: "a-ui-action-is-a-better-query-than-a-rephrased-question" },
       { documentId: "intersection/ui-driven-retrieval", section: "constrained-hops-not-an-autonomous-loop" },
       { documentId: "intersection/ui-driven-retrieval", section: "what-a-follow-up-must-not-break" },
+      { documentId: "intersection/a2ui-as-an-output-boundary-for-rag", section: "actions-can-start-another-retrieval-turn" },
     ],
   },
   {
@@ -636,6 +648,9 @@ export const QUESTIONS: QuestionSpec[] = [
       { documentId: "intersection/card-state-across-turns", section: "identity-has-to-survive-the-turn" },
       { documentId: "intersection/card-state-across-turns", section: "evidence-identity-underneath" },
       { documentId: "intersection/card-state-across-turns", section: "three-states-and-only-one-is-disposable" },
+      { documentId: "intersection/a2ui-as-an-output-boundary-for-rag", section: "retrieved-content-belongs-in-state" },
+      { documentId: "intersection/a2ui-as-an-output-boundary-for-rag", section: "preserve-state-by-addressing-it" },
+      { documentId: "intersection/a2ui-as-an-output-boundary-for-rag", section: "control-what-reenters-model-context" },
     ],
   },
   {
