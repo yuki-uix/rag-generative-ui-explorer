@@ -19,6 +19,7 @@
     "web:build": "pnpm --filter @rgux/web build",
     "web:dev": "pnpm --filter @rgux/web dev",
     "web:lint": "pnpm --filter @rgux/web lint",
+    "web:evidence:build": "pnpm --filter @rgux/web evidence:build",
     "workspace:check": "node scripts/check-workspace-coverage.mjs",
     "web:deploy": "pnpm --filter @rgux/web deploy",
     "web:deploy:check": "pnpm --filter @rgux/web deploy:check"

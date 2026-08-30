@@ -11,27 +11,11 @@ import { resolve } from 'node:path';
 import { describe, expect, it } from 'vitest';
 import { CARD_TYPES, KnowledgeCard } from '@rgux/contracts';
 import { ingest } from '@rgux/corpus';
-import { CARD_FIXTURES } from '../fixtures/cards.js';
+import { CARD_FIXTURES, citedEvidenceIds } from '../fixtures/cards.js';
 
 const knowledgeRoot = resolve(import.meta.dirname, '../../../knowledge');
 const { evidence, errors } = ingest(knowledgeRoot);
 const corpusIds = new Set(evidence.map((item) => item.id));
-
-/** Every evidence identifier a fixture cites, wherever it appears in the card. */
-function citedIds(card: (typeof CARD_FIXTURES)[number]): string[] {
-  switch (card.type) {
-    case 'definition':
-      return [card.definition, ...card.keyPoints].flatMap((field) => field.evidenceIds);
-    case 'comparison':
-      return card.rows.flatMap((row) => row.values.flatMap((value) => value.evidenceIds));
-    case 'mechanism':
-      return card.stages.flatMap((stage) => stage.description.evidenceIds);
-    case 'procedure':
-      return card.steps.flatMap((step) => step.instruction.evidenceIds);
-    case 'evidence':
-      return [...card.evidenceIds];
-  }
-}
 
 /**
  * Whitespace and markdown emphasis are normalised away: the corpus is Markdown
@@ -72,7 +56,7 @@ describe('card fixtures', () => {
 
   it('cites only evidence that exists in the corpus', () => {
     const missing = CARD_FIXTURES.flatMap((card) =>
-      citedIds(card)
+      citedEvidenceIds(card)
         .filter((id) => !corpusIds.has(id))
         .map((id) => `${card.id} cites ${id}`),
     );
