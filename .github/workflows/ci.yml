@@ -46,6 +46,12 @@ jobs:
       # the production build, which they do not: an app that compiles under tsc
       # can still fail to bundle for the Worker target, and that failure would
       # otherwise only appear at deploy time.
+      # `test/evidence-fixture.test.ts` checks the artefact by re-ingesting, so
+      # the generator that writes it is never executed. Running it here and
+      # requiring no diff exercises the real entry point and re-checks the
+      # artefact through it, rather than only through a reimplementation.
+      - run: pnpm web:evidence:build
+      - run: git diff --exit-code apps/web/fixtures/evidence.json
       - run: pnpm web:lint
       - run: pnpm web:build
       # `web:deploy` cannot run here — it would publish on every pull request and

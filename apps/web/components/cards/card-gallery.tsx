@@ -35,6 +35,13 @@ export function CardGallery({ evidence }: { evidence: readonly Evidence[] }) {
             The text is quoted from the corpus and every citation resolves; the marks after a
             field carry its evidence identifiers and open the source drawer.
           </p>
+          <p className="mt-2 max-w-prose text-[0.95rem] text-neutral-600 dark:text-neutral-400">
+            The mechanism card below is drawn as a flow and the procedure card as a list, from
+            the same rule and without either card saying which it wanted. A flow is used only
+            when its nodes are short enough to scan; three of the procedure card&rsquo;s four
+            step titles run past the limit, so that card falls back to the list rather than
+            becoming a chain of paragraphs.
+          </p>
         </header>
 
         <div className="space-y-5">
