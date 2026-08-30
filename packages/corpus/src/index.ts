@@ -12,3 +12,6 @@ export * from './link-check.js';
 export * from './tokeniser.js';
 export * from './retriever.js';
 export * from './bm25.js';
+export * from './embedding.js';
+export * from './dense.js';
+export * from './fusion.js';

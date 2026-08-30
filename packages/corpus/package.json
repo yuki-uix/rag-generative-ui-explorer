@@ -18,7 +18,8 @@
     "eval:validate": "tsx scripts/validate-eval.ts",
     "eval:build": "tsx scripts/build-eval.ts --write",
     "eval:check": "tsx scripts/build-eval.ts",
-    "retriever:search": "tsx scripts/search.ts"
+    "retriever:search": "tsx scripts/search.ts",
+    "corpus:embed": "tsx scripts/embed.ts"
   },
   "dependencies": {
     "@rgux/contracts": "workspace:*",
@@ -26,6 +27,7 @@
     "zod": "^4.5.2"
   },
   "devDependencies": {
+    "@huggingface/transformers": "^3.8.1",
     "@types/node": "^24.0.0",
     "tsx": "^4.20.0",
     "vitest": "^4.1.11"

@@ -11,7 +11,8 @@
     "test": "vitest run",
     "typecheck": "tsc --noEmit",
     "answer:ask": "tsx scripts/ask.ts",
-    "metrics:run": "tsx scripts/metrics.ts"
+    "metrics:run": "tsx scripts/metrics.ts",
+    "metrics:arms": "tsx scripts/arms.ts"
   },
   "dependencies": {
     "@anthropic-ai/sdk": "^0.72.0",

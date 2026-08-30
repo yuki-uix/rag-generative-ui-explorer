@@ -43,7 +43,7 @@ if (errors.length > 0) {
 const byId = new Map(evidence.map((entry) => [entry.id, entry]));
 const retriever = new BM25Retriever(evidence);
 
-for (const [rank, candidate] of retriever.search(query, k).entries()) {
+for (const [rank, candidate] of (await retriever.search(query, k)).entries()) {
   const entry = byId.get(candidate.evidenceId)!;
   console.log(
     `${rank + 1}\t${candidate.score.toFixed(4)}\t${candidate.evidenceId}\t${entry.text.replace(/\s+/g, ' ').slice(0, 120)}`,

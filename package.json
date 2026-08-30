@@ -26,7 +26,9 @@
     "web:deploy:check": "pnpm --filter @rgux/web deploy:check",
     "answer:ask": "pnpm --filter @rgux/generation answer:ask",
     "answer:check": "pnpm --filter @rgux/generation answer:ask --dry-run",
-    "metrics:run": "pnpm --filter @rgux/generation metrics:run"
+    "metrics:run": "pnpm --filter @rgux/generation metrics:run",
+    "corpus:embed": "pnpm --filter @rgux/corpus corpus:embed",
+    "metrics:arms": "pnpm --filter @rgux/generation metrics:arms"
   },
   "devDependencies": {
     "typescript": "^7.0.2"

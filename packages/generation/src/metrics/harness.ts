@@ -71,7 +71,7 @@ export interface RunOptions {
 export async function runMetrics(options: RunOptions): Promise<MetricsReport> {
   const { retriever, evidenceById, questions, header, repetitions, profile, maxTokens } = options;
 
-  const retrieval = retrievalMetrics(retriever, questions, header.k);
+  const retrieval = await retrievalMetrics(retriever, questions, header.k);
   const startedAt = new Date().toISOString();
   const fullHeader: RunHeader = { ...header, promptVersion: PROMPT_VERSION, startedAt };
 
@@ -87,8 +87,7 @@ export async function runMetrics(options: RunOptions): Promise<MetricsReport> {
     const attempts: Attempt[] = [];
 
     for (const question of questions) {
-      const retrieved = retriever
-        .search(question.question, header.k)
+      const retrieved = (await retriever.search(question.question, header.k))
         .map((candidate) => evidenceById.get(candidate.evidenceId))
         .filter((item): item is Evidence => item !== undefined);
 
