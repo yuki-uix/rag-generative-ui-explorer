@@ -1,0 +1,120 @@
+[
+  {
+    "id": "rag/dense-retrieval#body#0-9e7f8fbc",
+    "documentId": "rag/dense-retrieval",
+    "documentTitle": "Dense retrieval",
+    "text": "Dense retrieval represents queries and passages as vectors in a learned space\nand retrieves by proximity. Where lexical retrieval asks which documents\ncontain these words, dense retrieval asks which passages mean something close\nto this.",
+    "retrievalScore": 0,
+    "metadata": {
+      "author": "yuki-uix",
+      "category": "rag"
+    }
+  },
+  {
+    "id": "rag/dense-retrieval#where-it-fails#0-cd5a43de",
+    "documentId": "rag/dense-retrieval",
+    "documentTitle": "Dense retrieval",
+    "section": "Where it fails",
+    "text": "The failures are the mirror image of BM25's.\n\n**Rare and out-of-vocabulary terms.** An exact identifier, a version number, a\nnewly coined term — the model has no useful representation, so it retrieves\nthings that are topically nearby and lexically unrelated.\n\n**Negation and small distinguishing words.** \"Retrieval with reranking\" and\n\"retrieval without reranking\" embed close together. The difference that matters\nmost to the reader is the one the representation compresses away.\n\n**Opacity.** When lexical retrieval misses, you can see which term failed to\nmatch. When dense retrieval misses, the answer is that the vectors were not\nclose, which is not a diagnosis.",
+    "retrievalScore": 0,
+    "metadata": {
+      "author": "yuki-uix",
+      "category": "rag"
+    }
+  },
+  {
+    "id": "rag/query-transformation#the-three-transformations#0-80c928cf",
+    "documentId": "rag/query-transformation",
+    "documentTitle": "Query rewriting, decomposition, and expansion",
+    "section": "The three transformations",
+    "text": "**Rewriting** produces one better query from one query. Resolving pronouns\nagainst the conversation, dropping conversational framing, substituting the\ncorpus's terminology for the asker's. This is the cheapest and the most\nreliably useful.\n\n**Decomposition** produces several queries from one. \"How does hybrid retrieval\ndiffer from reranking, and which should I add first?\" contains two questions\nwith different evidence needs; retrieving once for the concatenation tends to\nreturn material that is mediocre for both. Decomposition matters most for\ncomparison questions, which for this project is not an edge case — comparison\nis one of the five card types.\n\n**Expansion** adds terms rather than replacing them: synonyms, spelled-out\nacronyms, related terminology. A variant generates a hypothetical answer and\nretrieves against *that*, on the argument that an answer resembles the passages\nthat contain it more than a question does.",
+    "retrievalScore": 0,
+    "metadata": {
+      "author": "yuki-uix",
+      "category": "rag"
+    }
+  },
+  {
+    "id": "rag/rag-motivation#the-architecture#0-974b7d0e",
+    "documentId": "rag/rag-motivation",
+    "documentTitle": "RAG motivation and core architecture",
+    "section": "The architecture",
+    "text": "The original pipeline is short:\n\n1. Encode the query. 2. Retrieve passages from a dense index. 3. Condition\ngeneration on the query together with the retrieved passages.\n\nEverything since has been elaboration on the middle step — hybrid retrieval,\nreranking, query decomposition, iterative retrieval — plus scrutiny of what the\ngenerator does with what it receives.\n\nThe paper also studied whether to marginalise over retrieved documents per\ntoken or per sequence. That particular choice has not carried over into most\npractical systems, which simply concatenate the retrieved passages into the\nprompt. It is worth knowing the original design was more careful about it than\nthe systems that followed.",
+    "retrievalScore": 0,
+    "metadata": {
+      "author": "yuki-uix",
+      "category": "rag"
+    }
+  },
+  {
+    "id": "rag/reranking#reranking-cannot-raise-recall#0-8f587090",
+    "documentId": "rag/reranking",
+    "documentTitle": "Reranking",
+    "section": "Reranking cannot raise recall",
+    "text": "This is the property most often stated wrongly, and it has consequences for how\nresults get reported.\n\nA reranker reorders the candidates it was given. If the correct passage is not\nin that set, no amount of reranking will produce it. Recall@K after reranking,\nwhere K is the candidate count, is exactly Recall@K before it.\n\nWhat does change is precision at small cutoffs. If ten chunks reach the model\nout of a hundred candidates, reranking decides *which* ten, and nDCG improves\nwhile recall over the full candidate set stays flat. Reporting only nDCG after\nadding a reranker therefore suggests retrieval improved when retrieval did not\nchange at all.\n\nThe useful framing: retrieval determines what is *possible*, reranking\ndetermines what is *sent*.",
+    "retrievalScore": 0,
+    "metadata": {
+      "author": "yuki-uix",
+      "category": "rag"
+    }
+  },
+  {
+    "id": "rag/reranking#deciding-whether-it-is-worth-it#0-f1766e2b",
+    "documentId": "rag/reranking",
+    "documentTitle": "Reranking",
+    "section": "Deciding whether it is worth it",
+    "text": "Reranking adds latency linear in candidates, and it sits on the critical path\nbefore generation can start. Three things decide whether it pays:\n\n**How large the candidate set is.** Reranking 100 candidates to pick 10 has\nroom to work. Reranking 12 to pick 10 mostly reorders noise.\n\n**How good the first stage already is.** A well-fused hybrid retriever leaves\nless for a reranker to fix.\n\n**Whether the downstream consumer is position-sensitive.** If all candidates go\ninto the prompt anyway, ordering still matters — evidence in the middle of a\nlong context is used least — but the effect is smaller than when a hard cutoff\ndiscards everything below rank ten.",
+    "retrievalScore": 0,
+    "metadata": {
+      "author": "yuki-uix",
+      "category": "rag"
+    }
+  },
+  {
+    "id": "rag/retrieval-metrics#recall-k#0-49dcb28d",
+    "documentId": "rag/retrieval-metrics",
+    "documentTitle": "Retrieval metrics",
+    "section": "Recall@K",
+    "text": "The fraction of relevant documents that appear in the top K results.\n\nThis is the metric that matters most for a RAG pipeline, because K is set by\nthe context budget. If the correct evidence is not in the K chunks handed to\nthe model, nothing downstream can recover it — no reranker, no prompt, no\nlarger model. Every other stage can only lose information that retrieval\nalready found.\n\nRecall@K ignores where in the top K the evidence landed. That is appropriate\nwhen all K chunks reach the model anyway, and inappropriate as soon as a\nreranker or a context budget truncates the list.",
+    "retrievalScore": 0,
+    "metadata": {
+      "author": "yuki-uix",
+      "category": "rag"
+    }
+  },
+  {
+    "id": "rag/sparse-retrieval#body#0-d441a718",
+    "documentId": "rag/sparse-retrieval",
+    "documentTitle": "Sparse retrieval",
+    "text": "Sparse retrieval scores a document by the query terms it literally contains.\nThe representation is a vector over the vocabulary, almost all of whose entries\nare zero — hence \"sparse\" — and matching is a lookup in an inverted index\nrather than a distance computation in a learned space.\n\nBM25 is the scoring function most systems mean when they say \"keyword search\".\nIt is forty years old, has no learned parameters beyond two constants, and\nremains a serious baseline that dense retrievers are still measured against.",
+    "retrievalScore": 0,
+    "metadata": {
+      "author": "yuki-uix",
+      "category": "rag"
+    }
+  },
+  {
+    "id": "rag/sparse-retrieval#what-bm25-actually-computes#0-b5dccaa4",
+    "documentId": "rag/sparse-retrieval",
+    "documentTitle": "Sparse retrieval",
+    "section": "What BM25 actually computes",
+    "text": "For each query term, BM25 combines three quantities:\n\n**Inverse document frequency.** A term appearing in few documents discriminates\nbetter than one appearing everywhere. Terms that occur in most of the\ncollection contribute almost nothing.\n\n**Term frequency, saturated.** A document containing a query term ten times is\nmore relevant than one containing it once, but not ten times more relevant.\nBM25 passes term frequency through a saturating function controlled by `k1`, so\nadditional occurrences yield diminishing returns. This is the part naive tf-idf\ngets wrong, and it matters: without saturation, a page that repeats a word two\nhundred times outranks a page that discusses it properly.\n\n**Document length normalisation.** A long document contains more terms by\naccident. BM25 divides by a length ratio, damped by `b`, so a long document\nmust contain proportionally more query terms to score as highly as a short one.\n\nThe two constants have conventional defaults that work well enough across\ncollections that most systems never tune them.",
+    "retrievalScore": 0,
+    "metadata": {
+      "author": "yuki-uix",
+      "category": "rag"
+    }
+  },
+  {
+    "id": "rag/sparse-retrieval#where-it-fails#0-e2e9969a",
+    "documentId": "rag/sparse-retrieval",
+    "documentTitle": "Sparse retrieval",
+    "section": "Where it fails",
+    "text": "It cannot match paraphrase. A note explaining \"chunk boundaries should follow\ndocument structure\" will not be retrieved by a query asking \"how should I split\nmy documents\", because the two share almost no terms. Vocabulary mismatch\nbetween what an author wrote and what a reader asks is the classic failure of\nlexical retrieval, and it is exactly what dense retrieval was built to fix.\n\nIt also has no notion of a term's importance beyond corpus statistics. A term\nthat is rare in the collection is treated as discriminative even when it is\nrare because it is incidental.",
+    "retrievalScore": 0,
+    "metadata": {
+      "author": "yuki-uix",
+      "category": "rag"
+    }
+  }
+]

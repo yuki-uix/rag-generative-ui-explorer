@@ -191,3 +191,27 @@ export const CARD_FIXTURES: readonly KnowledgeCard[] = [
     ],
   },
 ];
+
+/**
+ * Every evidence identifier a fixture cites, wherever it appears in the card.
+ *
+ * This is the one enumeration of "which identifiers do the fixtures cite". The
+ * evidence-fixture generator and its drift test both use it, so the two cannot
+ * disagree with the card fixtures — and neither can drift from them when a card
+ * gains a field. A second copy of this switch would be a second place for the
+ * two to fall out of step.
+ */
+export function citedEvidenceIds(card: KnowledgeCard): string[] {
+  switch (card.type) {
+    case 'definition':
+      return [card.definition, ...card.keyPoints].flatMap((field) => field.evidenceIds);
+    case 'comparison':
+      return card.rows.flatMap((row) => row.values.flatMap((value) => value.evidenceIds));
+    case 'mechanism':
+      return card.stages.flatMap((stage) => stage.description.evidenceIds);
+    case 'procedure':
+      return card.steps.flatMap((step) => step.instruction.evidenceIds);
+    case 'evidence':
+      return [...card.evidenceIds];
+  }
+}
