@@ -52,6 +52,11 @@ jobs:
       # break silently, and so a corpus or retriever change shows up as a moved
       # number in the log rather than as nothing at all.
       - run: pnpm metrics:run
+      # Every arm on the same corpus and the same questions, in one process, so
+      # they cannot silently differ on the variables that make them comparable.
+      # It also fails when a committed embedding index is stale against the
+      # corpus, which would otherwise score cleanly and mean nothing.
+      - run: pnpm metrics:arms
       - run: pnpm eval:check
       - run: pnpm eval:validate
       # The app is typechecked and tested by the recursive runs above. This runs

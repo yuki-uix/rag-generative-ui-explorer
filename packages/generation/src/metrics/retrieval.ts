@@ -40,11 +40,11 @@ function dcg(hits: readonly boolean[]): number {
  * `expectInsufficient` has no correct passage to find, so including it would
  * drag recall toward zero for behaving correctly.
  */
-export function retrievalMetrics(
+export async function retrievalMetrics(
   retriever: Retriever,
   questions: readonly EvalQuestion[],
   k: number,
-): RetrievalMetrics {
+): Promise<RetrievalMetrics> {
   const answerable = questions.filter((question) => question.goldenEvidenceIds.length > 0);
 
   let recallSum = 0;
@@ -55,7 +55,7 @@ export function retrievalMetrics(
 
   for (const question of answerable) {
     const golden = new Set(question.goldenEvidenceIds);
-    const ranked = retriever.search(question.question, k);
+    const ranked = await retriever.search(question.question, k);
     const hits = ranked.map((candidate) => golden.has(candidate.evidenceId));
 
     const found = hits.filter(Boolean).length;

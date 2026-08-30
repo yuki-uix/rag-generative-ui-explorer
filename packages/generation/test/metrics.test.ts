@@ -29,7 +29,7 @@ describe('retrieval metrics', () => {
    * nDCG = 0.6509.
    */
   const fixed: Retriever = {
-    search: () => [
+    search: async () => [
       { evidenceId: 'X', score: 4 },
       { evidenceId: 'A', score: 3 },
       { evidenceId: 'Y', score: 2 },
@@ -46,8 +46,8 @@ describe('retrieval metrics', () => {
     expectInsufficient: false,
   } as unknown as EvalQuestion;
 
-  it('computes recall, MRR, and nDCG to a hand-worked example', () => {
-    const metrics = retrievalMetrics(fixed, [question], 4);
+  it('computes recall, MRR, and nDCG to a hand-worked example', async () => {
+    const metrics = await retrievalMetrics(fixed, [question], 4);
 
     expect(metrics.meanRecall).toBe(1);
     expect(metrics.anyHitRate).toBe(1);
@@ -56,9 +56,9 @@ describe('retrieval metrics', () => {
     expect(metrics.zeroHitQuestionIds).toEqual([]);
   });
 
-  it('names the questions that found nothing rather than only counting them', () => {
+  it('names the questions that found nothing rather than only counting them', async () => {
     const missing = { ...question, id: 'q2', goldenEvidenceIds: ['Z'] } as unknown as EvalQuestion;
-    const metrics = retrievalMetrics(fixed, [missing], 4);
+    const metrics = await retrievalMetrics(fixed, [missing], 4);
 
     expect(metrics.zeroHitQuestionIds).toEqual(['q2']);
     expect(metrics.mrr).toBe(0);
@@ -66,7 +66,7 @@ describe('retrieval metrics', () => {
 
   // An unanswerable question has no passage to find, so scoring it would drag
   // recall down for behaving correctly.
-  it('excludes questions that have no golden evidence', () => {
+  it('excludes questions that have no golden evidence', async () => {
     const insufficient = {
       ...question,
       id: 'ins',
@@ -74,12 +74,12 @@ describe('retrieval metrics', () => {
       expectInsufficient: true,
     } as unknown as EvalQuestion;
 
-    expect(retrievalMetrics(fixed, [question, insufficient], 4).questions).toBe(1);
+    expect((await retrievalMetrics(fixed, [question, insufficient], 4)).questions).toBe(1);
   });
 
-  it('scores the real corpus and eval set without error', () => {
+  it('scores the real corpus and eval set without error', async () => {
     expect(problems).toEqual([]);
-    const metrics = retrievalMetrics(new BM25Retriever(evidence), set!.questions, 10);
+    const metrics = await retrievalMetrics(new BM25Retriever(evidence), set!.questions, 10);
 
     expect(metrics.questions).toBeGreaterThan(0);
     expect(metrics.meanRecall).toBeGreaterThan(0);

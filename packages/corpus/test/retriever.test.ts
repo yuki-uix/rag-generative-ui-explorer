@@ -27,7 +27,7 @@ function doc(documentId: string, text: string): Evidence {
 }
 
 describe('BM25Retriever', () => {
-  it('saturates term frequency: ten occurrences outrank one, but not by ten times', () => {
+  it('saturates term frequency: ten occurrences outrank one, but not by ten times', async () => {
     // Same length (10 tokens each), so length normalisation does not interfere:
     // the only difference between the first two chunks is how often "apple"
     // occurs. The third chunk is a distractor that never contains it.
@@ -37,7 +37,7 @@ describe('BM25Retriever', () => {
       doc('doc-other', 'banana'),
     ]);
 
-    const [top, second] = retriever.search('apple', 3);
+    const [top, second] = await retriever.search('apple', 3);
 
     expect(top!.evidenceId).toBe('doc-many#body#0-abcdef01');
     expect(second!.evidenceId).toBe('doc-once#body#0-abcdef01');
@@ -49,7 +49,7 @@ describe('BM25Retriever', () => {
     expect(top!.score).toBeLessThan(second!.score * 10);
   });
 
-  it('normalises document length: the same term count ranks shorter chunks higher', () => {
+  it('normalises document length: the same term count ranks shorter chunks higher', async () => {
     // One "apple" each; the only difference is total length (2 vs 9 tokens). A
     // long chunk contains more terms by accident, so with equal evidence it
     // must rank lower.
@@ -58,13 +58,13 @@ describe('BM25Retriever', () => {
       doc('doc-long', 'apple banana cherry date elder fig grape honey'),
     ]);
 
-    expect(retriever.search('apple', 2).map((candidate) => candidate.evidenceId)).toEqual([
+    expect((await retriever.search('apple', 2)).map((candidate) => candidate.evidenceId)).toEqual([
       'doc-short#body#0-abcdef01',
       'doc-long#body#0-abcdef01',
     ]);
   });
 
-  it('weights inverse document frequency: a rare term discriminates far more', () => {
+  it('weights inverse document frequency: a rare term discriminates far more', async () => {
     // Four one-token chunks, so length and tf are identical across the board;
     // the only thing that differs is how many chunks share each term.
     const retriever = new BM25Retriever([
@@ -74,8 +74,8 @@ describe('BM25Retriever', () => {
       doc('doc-common-3', 'common'),
     ]);
 
-    const rare = retriever.search('rare', 4);
-    const common = retriever.search('common', 4);
+    const rare = await retriever.search('rare', 4);
+    const common = await retriever.search('common', 4);
 
     expect(rare.map((candidate) => candidate.evidenceId)).toEqual(['doc-rare#body#0-abcdef01']);
     expect(common).toHaveLength(3);
@@ -86,10 +86,10 @@ describe('BM25Retriever', () => {
     expect(rare[0]!.score).toBeGreaterThan(common[0]!.score * 2);
   });
 
-  it('scores a single exact match by the smoothed IDF', () => {
+  it('scores a single exact match by the smoothed IDF', async () => {
     const retriever = new BM25Retriever([doc('doc-single', 'apple')]);
 
-    const [result] = retriever.search('apple', 1);
+    const [result] = await retriever.search('apple', 1);
 
     // N=1, df=1: idf = ln(1 + (1 - 1 + 0.5)/(1 + 0.5)) = ln(4/3).
     // tf=1, len=1, avgdl=1: norm = k1 * (1 - b + b) = 1.2, and the term
@@ -97,26 +97,26 @@ describe('BM25Retriever', () => {
     expect(result!.score).toBeCloseTo(0.287682, 6);
   });
 
-  it('returns nothing from an empty index (empty or failed ingestion)', () => {
-    expect(new BM25Retriever([]).search('apple', 10)).toEqual([]);
+  it('returns nothing from an empty index (empty or failed ingestion)', async () => {
+    expect(await new BM25Retriever([]).search('apple', 10)).toEqual([]);
   });
 
-  it('returns nothing for a tokenless query or a non-positive k', () => {
+  it('returns nothing for a tokenless query or a non-positive k', async () => {
     const retriever = new BM25Retriever([doc('doc-single', 'apple')]);
 
-    expect(retriever.search('', 10)).toEqual([]);
-    expect(retriever.search('?!.;=', 10)).toEqual([]);
-    expect(retriever.search('apple', 0)).toEqual([]);
-    expect(retriever.search('apple', -1)).toEqual([]);
+    expect(await retriever.search('', 10)).toEqual([]);
+    expect(await retriever.search('?!.;=', 10)).toEqual([]);
+    expect(await retriever.search('apple', 0)).toEqual([]);
+    expect(await retriever.search('apple', -1)).toEqual([]);
   });
 
-  it('serves nothing when ingestion failed, rather than a partial index', () => {
+  it('serves nothing when ingestion failed, rather than a partial index', async () => {
     const broken = corpus([{ path: 'rag/broken.md', raw: '# No frontmatter at all\n' }]);
     const { evidence, errors } = ingest(broken);
 
     expect(errors.length).toBeGreaterThan(0);
     expect(evidence).toEqual([]);
-    expect(new BM25Retriever(evidence).search('anything', 10)).toEqual([]);
+    expect(await new BM25Retriever(evidence).search('anything', 10)).toEqual([]);
   });
 });
 
@@ -125,22 +125,26 @@ describe('the Retriever seam', () => {
   class StubRetriever implements Retriever {
     constructor(private readonly fixed: Candidate[]) {}
 
-    search(_query: string, _k: number): Candidate[] {
+    async search(_query: string, _k: number): Promise<Candidate[]> {
       return this.fixed;
     }
   }
 
   /** Depends on the interface alone, so any implementation stands in. */
-  function topEvidenceId(retriever: Retriever, query: string, k: number): string | undefined {
-    return retriever.search(query, k)[0]?.evidenceId;
+  async function topEvidenceId(
+    retriever: Retriever,
+    query: string,
+    k: number,
+  ): Promise<string | undefined> {
+    return (await retriever.search(query, k))[0]?.evidenceId;
   }
 
-  it('lets any implementation substitute with no change above the interface', () => {
+  it('lets any implementation substitute with no change above the interface', async () => {
     const stub = new StubRetriever([{ evidenceId: 'stub#body#0-abcdef01', score: 1 }]);
     const real = new BM25Retriever([doc('doc-single', 'apple')]);
 
-    expect(topEvidenceId(stub, 'anything', 3)).toBe('stub#body#0-abcdef01');
-    expect(topEvidenceId(real, 'apple', 3)).toBe('doc-single#body#0-abcdef01');
+    expect(await topEvidenceId(stub, 'anything', 3)).toBe('stub#body#0-abcdef01');
+    expect(await topEvidenceId(real, 'apple', 3)).toBe('doc-single#body#0-abcdef01');
   });
 });
 
@@ -150,17 +154,17 @@ describe('against the real corpus', () => {
   const retriever = new BM25Retriever(evidence);
   const byId = new Map(evidence.map((entry) => [entry.id, entry]));
 
-  it('returns the chunk containing an exact term the corpus is dense with', () => {
+  it('returns the chunk containing an exact term the corpus is dense with', async () => {
     // Each of these is a term the tokeniser must keep whole (see
     // tokeniser.test.ts). The load-bearing property is literal: the top result
     // for a term must be a chunk whose text actually contains that term.
     for (const term of ['nDCG', 'Recall@10', 'pgvector', 'AG-UI']) {
-      const top = retriever.search(term, 5)[0]!;
+      const top = (await retriever.search(term, 5))[0]!;
       expect(byId.get(top.evidenceId)!.text.toLowerCase()).toContain(term.toLowerCase());
     }
   });
 
-  it('retrieves the one chunk that names pgvector, and checks that premise', () => {
+  it('retrieves the one chunk that names pgvector, and checks that premise', async () => {
     // The assertion below is only meaningful while exactly one chunk contains
     // the term, so the premise is checked rather than assumed: a later note
     // mentioning pgvector should fail here as a stale premise, not silently
@@ -170,7 +174,7 @@ describe('against the real corpus', () => {
     );
     expect(containing).toHaveLength(1);
 
-    const top = retriever.search('pgvector', 3)[0]!;
+    const top = (await retriever.search('pgvector', 3))[0]!;
     expect(top.evidenceId).toBe(containing[0]!.id);
   });
 
@@ -180,9 +184,9 @@ describe('against the real corpus', () => {
    * are built in document order and Array.prototype.sort is stable — a property
    * worth a test rather than a comment.
    */
-  it('returns identical results for repeated identical queries', () => {
+  it('returns identical results for repeated identical queries', async () => {
     for (const query of ['nDCG', 'reciprocal rank fusion', 'how does chunking work']) {
-      expect(retriever.search(query, 10)).toEqual(retriever.search(query, 10));
+      expect(await retriever.search(query, 10)).toEqual(await retriever.search(query, 10));
     }
   });
 });

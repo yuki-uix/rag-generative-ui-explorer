@@ -41,7 +41,7 @@ export class BM25Retriever implements Retriever {
     this.postings = buildPostings(evidence);
   }
 
-  search(query: string, k: number): Candidate[] {
+  async search(query: string, k: number): Promise<Candidate[]> {
     // An empty or failed ingestion builds an empty index; searching it returns
     // nothing rather than a partial result that would look complete downstream.
     if (this.documentCount === 0 || k <= 0) return [];

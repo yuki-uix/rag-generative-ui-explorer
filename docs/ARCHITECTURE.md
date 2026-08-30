@@ -102,6 +102,57 @@ running with no database. When the corpus grows to the point where that stops
 being true, the pgvector arm implements the same `Retriever` interface rather
 than a new one, so nothing above the seam changes.
 
+**One correction to that seam, made when the second implementation arrived.**
+`search` was synchronous, alongside a claim that a database-backed retriever
+could substitute in without changing anything above it. That claim was false: a
+database call is asynchronous, and so is embedding a query. Dense retrieval is
+what surfaced it, and the signature now returns a promise. The lesson is not
+about async — it is that a seam is a hypothesis until a second implementation
+tests it, and this one was believed for two milestones before anything did.
+
+### Dense retrieval, and a fusion that did not earn its place
+
+Chunk vectors are computed offline by `corpus:embed` and committed under
+`knowledge/embeddings/`, so neither retrieval nor evaluation depends on a model
+download at request time. The model and its pinned revision are recorded in the
+artifact and folded into an `indexVersion` distinct from `corpusVersion`: the
+evaluation labels name chunks rather than vectors, so re-embedding does not
+invalidate them, but a result produced under one model cannot be compared to one
+produced under another.
+
+The model runs locally. Neither key this project holds can produce embeddings —
+Anthropic's API has no embeddings endpoint, and DeepSeek is reached through its
+Anthropic-compatible one — so a hosted model would mean a third provider and a
+third secret. A downloaded revision also pins more exactly than a served name.
+
+Measured on the 60-question set, same corpus and same questions, `metrics:arms`:
+
+| arm | Recall@10 | any-hit | MRR | nDCG@10 | zero-hit |
+| --- | --- | --- | --- | --- | --- |
+| lexical (BM25) | 48.9% | 72.2% | 0.502 | 0.415 | 15 |
+| dense (MiniLM-L6-v2) | **65.9%** | 88.9% | 0.592 | 0.527 | 6 |
+| fused (BM25 + MiniLM) | 65.7% | 87.0% | 0.570 | 0.526 | 7 |
+| dense (bge-small-en-v1.5) | 63.1% | **90.7%** | **0.624** | **0.548** | **5** |
+| fused (BM25 + bge-small) | 64.6% | 88.9% | 0.577 | 0.521 | 6 |
+
+Dense retrieval is worth its cost: seventeen points of recall, and the zero-hit
+questions fall from fifteen to five or six. That was the predicted direction —
+the corpus is full of paraphrase between how a note is written and how a question
+is asked, which is lexical retrieval's weakest case.
+
+**Fusion is not.** `knowledge/rag/sparse-retrieval.md` set the test in advance:
+"If the hybrid system cannot beat BM25 alone on this corpus, that is a finding
+about the corpus or the embedding model." The stronger version of that test is
+whether fusion beats the better *single* arm, and it does not — 65.7% against
+65.9%, and 64.6% against 63.1%, which is a wash in both directions. RRF is kept
+behind the same `Retriever` interface and reported, because a negative result
+that is deleted stops being a result, but nothing should be built on the
+assumption that fusing helps here until a number says it does.
+
+Its parameters — `RRF_K = 60`, `FUSION_POOL = 50` — are unmeasured defaults.
+They must not be tuned against these questions: the questions exist to produce
+the number that would judge the tuning.
+
 Retrieval and card planning are evaluated independently so attractive UI cannot
 hide poor retrieval.
 

@@ -42,8 +42,7 @@ if (errors.length > 0) {
 
 const retriever = new BM25Retriever(evidence);
 const byId = new Map(evidence.map((item) => [item.id, item]));
-const retrieved = retriever
-  .search(question, k)
+const retrieved = (await retriever.search(question, k))
   .map((candidate) => byId.get(candidate.evidenceId))
   .filter((item): item is NonNullable<typeof item> => item !== undefined);
 

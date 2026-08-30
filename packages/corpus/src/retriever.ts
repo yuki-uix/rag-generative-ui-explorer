@@ -17,6 +17,16 @@ export interface Candidate {
 }
 
 export interface Retriever {
-  /** Returns up to `k` candidates ranked by descending score. */
-  search(query: string, k: number): Candidate[];
+  /**
+   * Returns up to `k` candidates ranked by descending score.
+   *
+   * Asynchronous because retrieval that is not in-process cannot be anything
+   * else. The synchronous version of this signature was written when BM25 was
+   * the only implementation, alongside a claim that a database-backed retriever
+   * could substitute in without changing anything above the seam. That claim
+   * was false: a database call is async, and so is embedding a query. Dense
+   * retrieval is what surfaced it, which is the argument for building the
+   * second implementation before trusting a seam rather than after.
+   */
+  search(query: string, k: number): Promise<Candidate[]>;
 }
