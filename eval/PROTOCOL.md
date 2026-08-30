@@ -1,6 +1,6 @@
 # Evaluation protocol
 
-**Version 1, written 2026-08-29.** The API facts below were checked against
+**Version 2, 2026-08-30** (see “The model is a variable” below; version 1 was written 2026-08-29). The API facts below were checked against
 Anthropic's model documentation on that date. They are properties of a specific
 model at a specific time and will go stale without warning — the sampling
 parameters this protocol reports as absent existed on earlier models. Re-check
@@ -19,9 +19,11 @@ is not a comparison, and the harness refuses to run rather than reporting one.
 
 | Variable | Value | Recorded from |
 | --- | --- | --- |
-| Model ID | `claude-opus-5` | request |
-| Effort | `output_config.effort` — see below | request |
-| Thinking | `{ type: "adaptive" }` | request |
+| Model profile | a named profile — see below | run config |
+| Model ID | the profile's exact string | request |
+| Endpoint | the profile's base URL | request |
+| Effort | `output_config.effort`, where the profile supports it | request |
+| Thinking | `{ type: "adaptive" }`, where the profile supports it | request |
 | `max_tokens` | pinned per arm, streamed | request |
 | Prompt version | a string bumped on any prompt edit | application |
 | Corpus version | `corpus-<hash>` from the manifest | `knowledge/manifest.json` |
@@ -30,6 +32,34 @@ is not a comparison, and the harness refuses to run rather than reporting one.
 | Repetitions | 3 per question per arm | run config |
 
 Model IDs are exact strings and carry no date suffix.
+
+## The model is a variable, not a constant
+
+**Version 2, 2026-08-30.** Version 1 pinned `claude-opus-5` as though it were a
+property of the protocol. It is a choice, and writing it into every request made
+the choice expensive to revisit later while nothing yet depended on it.
+
+A run names a **model profile**: an endpoint, a model ID, and which optional
+request parameters that endpoint accepts. The parameters below are not universal
+— `output_config.effort` and `thinking` belong to Anthropic's API, and a profile
+pointing at another endpoint omits them rather than sending fields it will
+reject. The profile is a pinned variable like any other: recorded with every
+result, and a comparison whose arms disagree on it is not a comparison.
+
+**The first profile used is not `claude-opus-5`.** M1 runs against DeepSeek
+through its Anthropic-compatible endpoint, because the pipeline can be built and
+its grounding gates exercised on any model, and doing so costs nothing to switch
+away from later. The rule from the comparability section applies with full force
+here: **changing the profile starts a new baseline.** No result produced under
+one profile is carried forward to another, and the M4 comparison in particular
+must be produced entirely under a single profile.
+
+What this does not license is comparing a card arm on one profile against a
+Markdown arm on another. The profile is pinned per *run*, not per arm.
+
+The sampling facts in the next section were checked against `claude-opus-5` and
+are properties of that profile. Another profile has its own, which have to be
+checked rather than assumed to match.
 
 ## There is no temperature to pin
 
@@ -131,6 +161,17 @@ Report token spend as four separate figures, never one total:
 | Cache writes | `usage.cache_creation_input_tokens` | ~1.25× |
 | Cache reads | `usage.cache_read_input_tokens` | ~0.1× |
 | Output | `usage.output_tokens` | ~5× input |
+
+**`output_tokens` may include reasoning the reader never sees.** Measured on the
+DeepSeek profile: a response whose visible text was two lines reported 720 output
+tokens, and the message carried a `thinking` block alongside the text. Two
+consequences. Output spend cannot be attributed to answer length. And time to
+first content means time to the first *visible* token — a model that reasons
+before it writes has already spent seconds by then, so the streaming advantage
+this protocol predicts for the Markdown arm is smaller than a token-by-token
+mental model suggests. How much smaller is a measurement nobody has made: the
+observations so far are n=3 with a range of 4.0 to 13.8 seconds, which is a
+reason to measure rather than a result.
 
 A single "total prompt tokens" figure conflates a cache read with an uncached
 token that costs roughly ten times as much. It then usually gets reused as a
