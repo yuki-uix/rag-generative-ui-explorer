@@ -31,7 +31,9 @@
     "metrics:arms": "pnpm --filter @rgux/generation run metrics:arms",
     "corpus:bundle": "pnpm --filter @rgux/corpus run corpus:bundle",
     "web:secret": "pnpm --filter @rgux/web run secret",
-    "web:secret:list": "pnpm --filter @rgux/web run secret:list"
+    "web:secret:list": "pnpm --filter @rgux/web run secret:list",
+    "plan:run": "pnpm --filter @rgux/generation run plan:run",
+    "plan:check": "pnpm --filter @rgux/generation run plan:run --dry-run"
   },
   "devDependencies": {
     "typescript": "^7.0.2"
