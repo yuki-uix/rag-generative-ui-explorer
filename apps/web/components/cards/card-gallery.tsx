@@ -1,8 +1,7 @@
 'use client';
 
 import { useMemo } from 'react';
-import type { Evidence } from '@rgux/contracts';
-import { CARD_FIXTURES } from '../../fixtures/cards.js';
+import type { Evidence, GatedCard } from '@rgux/contracts';
 import { KnowledgeCard } from './knowledge-card.js';
 import { SourceDrawerProvider } from './source-drawer.js';
 import { CardEmpty, CardError, CardIncomplete, CardLoading } from './states.js';
@@ -14,7 +13,13 @@ import { CardEmpty, CardError, CardIncomplete, CardLoading } from './states.js';
  * once, so the evidence card and the drawer share the same lookup rather than
  * two that could drift.
  */
-export function CardGallery({ evidence }: { evidence: readonly Evidence[] }) {
+export function CardGallery({
+  cards,
+  evidence,
+}: {
+  cards: readonly GatedCard[];
+  evidence: readonly Evidence[];
+}) {
   const resolve = useMemo(() => {
     const byId = new Map(evidence.map((item) => [item.id, item]));
     return (evidenceId: string): Evidence | undefined => byId.get(evidenceId);
@@ -45,7 +50,7 @@ export function CardGallery({ evidence }: { evidence: readonly Evidence[] }) {
         </header>
 
         <div className="space-y-5">
-          {CARD_FIXTURES.map((card) => (
+          {cards.map((card) => (
             <KnowledgeCard key={card.id} card={card} resolveEvidence={resolve} />
           ))}
         </div>

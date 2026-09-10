@@ -1,5 +1,6 @@
 import type { Evidence } from '@rgux/contracts';
 import { CardGallery } from '@/components/cards/card-gallery';
+import { gatedFixtures } from '@/fixtures/cards';
 import evidenceJson from '@/fixtures/evidence.json';
 
 /**
@@ -19,5 +20,7 @@ import evidenceJson from '@/fixtures/evidence.json';
 const evidence = evidenceJson as readonly Evidence[];
 
 export default function CardGalleryPage() {
-  return <CardGallery evidence={evidence} />;
+  // Even the fixtures go through the gate: the gallery has no privileged path
+  // to the renderer that a live answer would not also take.
+  return <CardGallery cards={gatedFixtures(evidence)} evidence={evidence} />;
 }

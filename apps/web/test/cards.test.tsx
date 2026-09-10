@@ -9,7 +9,7 @@ import { afterEach, describe, expect, it } from 'vitest';
 import { CARD_TYPES } from '@rgux/contracts';
 import { KnowledgeCard } from '../components/cards/knowledge-card.js';
 import { CardEmpty, CardError, CardIncomplete, CardLoading } from '../components/cards/states.js';
-import { CARD_FIXTURES } from '../fixtures/cards.js';
+import { GATED_FIXTURES } from './gated.js';
 
 afterEach(cleanup);
 
@@ -17,7 +17,7 @@ describe('the card dispatcher', () => {
   // Derived from the union, so a sixth card type fails here automatically
   // instead of needing someone to remember this file.
   it.each(CARD_TYPES)('renders a component for %s', (type) => {
-    const card = CARD_FIXTURES.find((fixture) => fixture.type === type);
+    const card = GATED_FIXTURES.find((fixture) => fixture.type === type);
     expect(card, `no fixture for ${type}`).toBeDefined();
 
     const { container } = render(<KnowledgeCard card={card!} />);
@@ -25,13 +25,13 @@ describe('the card dispatcher', () => {
   });
 
   it('renders the card title as a heading', () => {
-    render(<KnowledgeCard card={CARD_FIXTURES[0]!} />);
+    render(<KnowledgeCard card={GATED_FIXTURES[0]!} />);
     expect(screen.getByRole('heading', { name: 'Sparse retrieval' })).toBeDefined();
   });
 });
 
 describe('grounding mode is perceivable, not just coloured', () => {
-  const procedure = CARD_FIXTURES.find((card) => card.type === 'procedure')!;
+  const procedure = GATED_FIXTURES.find((card) => card.type === 'procedure')!;
 
   it('marks inferred text differently from extractive text', () => {
     const { container } = render(<KnowledgeCard card={procedure} />);
@@ -60,7 +60,7 @@ describe('grounding mode is perceivable, not just coloured', () => {
 });
 
 describe('the comparison card', () => {
-  const comparison = CARD_FIXTURES.find((card) => card.type === 'comparison')!;
+  const comparison = GATED_FIXTURES.find((card) => card.type === 'comparison')!;
 
   it('uses real table semantics with headers associated to cells', () => {
     render(<KnowledgeCard card={comparison} />);
@@ -78,7 +78,7 @@ describe('the comparison card', () => {
 });
 
 describe('the evidence card', () => {
-  const evidence = CARD_FIXTURES.find((card) => card.type === 'evidence')!;
+  const evidence = GATED_FIXTURES.find((card) => card.type === 'evidence')!;
 
   it('shows the identifier and no passage text when nothing resolves it', () => {
     render(<KnowledgeCard card={evidence} />);

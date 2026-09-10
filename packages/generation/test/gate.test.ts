@@ -6,8 +6,8 @@
 import { resolve } from 'node:path';
 import { describe, expect, it } from 'vitest';
 import type { Evidence } from '@rgux/contracts';
+import { gate } from '@rgux/contracts';
 import { ingest } from '@rgux/corpus';
-import { validateCards } from '../src/index.js';
 
 const { evidence } = ingest(resolve(import.meta.dirname, '../../../knowledge'));
 const retrieved = evidence.slice(0, 4);
@@ -32,13 +32,13 @@ const definition = (over: Record<string, unknown> = {}) => ({
 
 describe('stage 1: schema', () => {
   it('accepts a sound card', () => {
-    const { cards, failures } = validateCards([definition()], retrieved);
+    const { cards, failures } = gate([definition()], retrieved);
     expect(failures).toEqual([]);
     expect(cards).toHaveLength(1);
   });
 
   it('names the stage and the path when a card is malformed', () => {
-    const { cards, failures } = validateCards([definition({ keyPoints: [] })], retrieved);
+    const { cards, failures } = gate([definition({ keyPoints: [] })], retrieved);
 
     expect(cards).toEqual([]);
     expect(failures[0]!.stage).toBe('schema');
@@ -46,14 +46,14 @@ describe('stage 1: schema', () => {
   });
 
   it('refuses a card type the contract does not have', () => {
-    const { failures } = validateCards([definition({ type: 'timeline' })], retrieved);
+    const { failures } = gate([definition({ type: 'timeline' })], retrieved);
     expect(failures[0]!.stage).toBe('schema');
   });
 
   // One bad card must not discard its siblings: the planner is asked for the
   // smallest useful set, and silently narrowing an answer is invisible.
   it('keeps the sound cards alongside a failing one', () => {
-    const { cards, failures } = validateCards(
+    const { cards, failures } = gate(
       [definition(), definition({ id: 'card-2', title: '' }), definition({ id: 'card-3' })],
       retrieved,
     );
@@ -74,7 +74,7 @@ describe('stage 2: evidence reference', () => {
     const absent = evidence[120]!;
     expect(retrieved.some((item) => item.id === absent.id)).toBe(false);
 
-    const { cards, failures } = validateCards(
+    const { cards, failures } = gate(
       [definition({ definition: sound({ evidenceIds: [absent.id] }) })],
       retrieved,
     );
@@ -86,7 +86,7 @@ describe('stage 2: evidence reference', () => {
   });
 
   it('rejects an invented identifier that never existed', () => {
-    const { failures } = validateCards(
+    const { failures } = gate(
       [definition({ definition: sound({ evidenceIds: ['rag/invented#body#0-deadbeef'] }) })],
       retrieved,
     );
@@ -94,7 +94,7 @@ describe('stage 2: evidence reference', () => {
   });
 
   it('checks every grounded field, not only the first', () => {
-    const { failures } = validateCards(
+    const { failures } = gate(
       [definition({ keyPoints: [sound({ evidenceIds: ['rag/invented#body#0-deadbeef'] })] })],
       retrieved,
     );
@@ -114,7 +114,7 @@ describe('stage 2: evidence reference', () => {
     ];
 
     for (const shape of shapes) {
-      const { failures } = validateCards([shape], retrieved);
+      const { failures } = gate([shape], retrieved);
       expect(failures[0]?.stage, shape.type).toBe('evidence-reference');
     }
   });
@@ -128,7 +128,7 @@ describe('stage 3: policy', () => {
    * stage 3, and a policy stage that restated them could not fail.
    */
   it('leaves the rules Zod already enforces to stage 1', () => {
-    const { failures } = validateCards(
+    const { failures } = gate(
       [definition({ definition: sound({ evidenceIds: [] }) })],
       retrieved,
     );
@@ -136,7 +136,7 @@ describe('stage 3: policy', () => {
   });
 
   it('allows inferred content that cites evidence', () => {
-    const { cards } = validateCards(
+    const { cards } = gate(
       [definition({ definition: sound({ text: 'A claim the passage supports without stating.', mode: 'inferred' }) })],
       retrieved,
     );
@@ -149,7 +149,7 @@ describe('stage 3: policy', () => {
    * already caught once, a sentence attributed to the wrong note.
    */
   it('rejects text marked extractive whose words are not in the passage it cites', () => {
-    const { cards, failures } = validateCards(
+    const { cards, failures } = gate(
       [definition({ definition: sound({ text: 'A sentence that appears in no passage whatsoever.' }) })],
       retrieved,
     );
@@ -160,7 +160,7 @@ describe('stage 3: policy', () => {
   });
 
   it('does not hold summarized text to the verbatim rule', () => {
-    const { cards } = validateCards(
+    const { cards } = gate(
       [definition({ definition: sound({ text: 'A compressed retelling of the passage.', mode: 'summarized' }) })],
       retrieved,
     );
@@ -176,7 +176,7 @@ describe('stage 3: policy', () => {
     // Every field must cite the one retrieved passage, or stage 2 refuses the
     // card before stage 3 is reached — which is the pipeline working, and would
     // have made this a test of the wrong stage.
-    const { cards } = validateCards(
+    const { cards } = gate(
       [definition({ definition: quoting, keyPoints: [quoting] })],
       [emphasised!] as Evidence[],
     );
@@ -187,7 +187,7 @@ describe('stage 3: policy', () => {
 describe('the pipeline as a whole', () => {
   it('reports one failure per card, at the first stage that refused it', () => {
     // Malformed *and* citing nothing real: schema is first, so schema reports.
-    const { failures } = validateCards(
+    const { failures } = gate(
       [definition({ title: '', definition: sound({ evidenceIds: ['rag/x#body#0-deadbeef'] }) })],
       retrieved,
     );
@@ -203,7 +203,7 @@ describe('the pipeline as a whole', () => {
    */
   it('reports every offending field within a stage, not only the first', () => {
     const bad = ['rag/invented#body#0-deadbeef'];
-    const { failures } = validateCards(
+    const { failures } = gate(
       [definition({ definition: sound({ evidenceIds: bad }), keyPoints: [sound({ evidenceIds: bad })] })],
       retrieved,
     );
@@ -214,11 +214,11 @@ describe('the pipeline as a whole', () => {
   });
 
   it('accepts an empty plan without inventing a failure', () => {
-    expect(validateCards([], retrieved)).toEqual({ cards: [], failures: [] });
+    expect(gate([], retrieved)).toEqual({ cards: [], failures: [] });
   });
 
   it('rejects everything when nothing was retrieved', () => {
-    const { cards, failures } = validateCards([definition()], []);
+    const { cards, failures } = gate([definition()], []);
     expect(cards).toEqual([]);
     expect(failures[0]!.stage).toBe('evidence-reference');
   });

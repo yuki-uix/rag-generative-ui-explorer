@@ -1,4 +1,5 @@
-import type { KnowledgeCard } from '@rgux/contracts';
+import type { Evidence, GatedCard, KnowledgeCard } from '@rgux/contracts';
+import { gate } from '@rgux/contracts';
 
 /**
  * Fixtures for the card gallery and the component tests.
@@ -191,6 +192,31 @@ export const CARD_FIXTURES: readonly KnowledgeCard[] = [
     ],
   },
 ];
+
+/**
+ * The fixtures as the renderer must receive them: through the gate.
+ *
+ * `CARD_FIXTURES` stays raw because `scripts/generate-evidence.ts` reads it to
+ * decide which passages to cut, and gating at module load would make that
+ * circular — the fixtures would need `evidence.json` to exist before the script
+ * that writes `evidence.json` could run.
+ *
+ * Throwing rather than dropping. Elsewhere a failed card is reported and its
+ * siblings still render, because a live answer narrowed by one bad card is
+ * better than no answer. A *fixture* that fails is a defect in this file, and
+ * silently rendering four of five cards would leave the gallery looking
+ * plausible while a card type had quietly vanished from it.
+ */
+export function gatedFixtures(evidence: readonly Evidence[]): readonly GatedCard[] {
+  const { cards, failures } = gate(CARD_FIXTURES, evidence);
+  if (failures.length > 0) {
+    const detail = failures
+      .map((f) => `#${f.cardIndex} ${f.stage}${f.path ? ` at ${f.path}` : ''}: ${f.message}`)
+      .join('; ');
+    throw new Error(`card fixtures do not pass the output gate — ${detail}`);
+  }
+  return cards;
+}
 
 /**
  * Every evidence identifier a fixture cites, wherever it appears in the card.
