@@ -22,5 +22,12 @@ const evidence = evidenceJson as readonly Evidence[];
 export default function CardGalleryPage() {
   // Even the fixtures go through the gate: the gallery has no privileged path
   // to the renderer that a live answer would not also take.
+  //
+  // The brand is a compile-time claim and does not survive serialisation. It
+  // holds here because the gate runs on this side of the RSC boundary and the
+  // server is what serialises the props. Anything that arrives already
+  // serialised — a fetch body, a stored run result (M5) — has no brand on it
+  // and must be put back through `gate` before it reaches a component, not
+  // asserted into the type.
   return <CardGallery cards={gatedFixtures(evidence)} evidence={evidence} />;
 }

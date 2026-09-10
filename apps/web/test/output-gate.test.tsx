@@ -14,7 +14,7 @@
  * 3. **Nothing executable.** No model-derived string may become markup or
  *    select a component.
  */
-import { readdirSync, readFileSync } from 'node:fs';
+import { existsSync, readdirSync, readFileSync } from 'node:fs';
 import { join, resolve } from 'node:path';
 import { cleanup, render } from '@testing-library/react';
 import { afterEach, describe, expect, it } from 'vitest';
@@ -36,10 +36,26 @@ function listSourceFiles(dir: string): string[] {
   });
 }
 
-/** Every first-party source file in the workspace, tests and scripts included. */
+/**
+ * Every first-party source file in the workspace — package tests and scripts
+ * included, not only `src`.
+ *
+ * Review found the first version scanning only each package's `src`, which
+ * left a cast written under a package's `test` directory invisible to the very
+ * check that exists to find it. The rule the repository applies to gates
+ * applies to this one: a new gate must cover the paths that already exist.
+ */
 function workspaceSources(): string[] {
-  return ['apps/web', 'packages/contracts/src', 'packages/generation/src', 'packages/corpus/src']
-    .flatMap((rel) => listSourceFiles(resolve(repoRoot, rel)))
+  const roots = ['apps/web', 'scripts', ...['contracts', 'corpus', 'generation'].flatMap((pkg) => [
+    `packages/${pkg}/src`,
+    `packages/${pkg}/test`,
+    `packages/${pkg}/scripts`,
+  ])];
+
+  return roots
+    .map((rel) => resolve(repoRoot, rel))
+    .filter((dir) => existsSync(dir))
+    .flatMap((dir) => listSourceFiles(dir))
     .map((path) => path.slice(repoRoot.length + 1));
 }
 
@@ -120,19 +136,67 @@ describe('no executable model output reaches the browser', () => {
   const componentsDir = resolve(import.meta.dirname, '../components');
 
   /**
-   * Component selection must be a closed switch on the discriminator. These are
-   * the constructs that would reopen it: building an element from a value,
-   * indexing a component table with a string, or loading a module by name.
+   * Component selection must stay a closed switch on the discriminator. These
+   * are the constructs that would reopen it, each with the bypasses it must
+   * catch and the legitimate code it must not.
+   *
+   * The probes are the point. A scan of this kind is only worth having if it
+   * catches what a contributor would actually write, and the first version of
+   * this test did not: its `createElement` pattern required a lowercase first
+   * character while components are conventionally capitalised, its dynamic
+   * `import` pattern excluded the backtick that a template literal needs, and
+   * its lookup pattern matched only the literal text `card.`. Six of seven
+   * realistic bypasses walked through it. A gate that looks like coverage and
+   * is not is worse than no gate, so its reach is now asserted rather than
+   * assumed.
+   *
    * `dangerouslySetInnerHTML` has its own test — it is the markup half of the
-   * same rule, and is left there so its long explanation stays next to it.
+   * same rule, kept there so its explanation stays beside it.
    */
-  const BANNED: readonly (readonly [string, RegExp])[] = [
-    ['createElement from a value', /createElement\s*\(\s*[a-z_$]/],
-    ['dynamic import', /\bimport\s*\(\s*[^'"`)]/],
-    ['component looked up by card field', /\[\s*card\.[A-Za-z]+\s*\]/],
-  ];
+  const BANNED = [
+    {
+      label: 'createElement',
+      // No legitimate use under components/: JSX compiles to the automatic
+      // runtime's `jsx()`, so any `createElement` is hand-written.
+      pattern: /\bcreateElement\s*\(/,
+      catches: [
+        'return createElement(Component, props);',
+        'return React.createElement(Chosen);',
+        'const C = REGISTRY[card.type]; return createElement(C, props);',
+      ],
+      allows: ['return <DefinitionCard card={card} />;', '// creates an element for each stage'],
+    },
+    {
+      label: 'dynamic import',
+      // Anything but a literal string specifier: a template literal or a
+      // variable can name a module the model chose.
+      pattern: /\bimport\s*\(\s*(?!['"])/,
+      catches: [
+        'const mod = await import(`./cards/${card.type}.js`);',
+        'const mod = await import(specifier);',
+      ],
+      allows: ["const mod = await import('./flow.js');", 'import type { Evidence } from "@rgux/contracts";'],
+    },
+    {
+      label: 'component looked up by a type string',
+      pattern: /\[\s*(?:[A-Za-z_$][\w$]*(?:\.[A-Za-z_$][\w$]*)*\.)?(?:type|kind|cardType)\s*\]/,
+      catches: [
+        'return REGISTRY[card.type];',
+        'return REGISTRY[spec.type];',
+        'return COMPONENTS[props.card.type];',
+        'const { type } = card; return REGISTRY[type];',
+      ],
+      allows: ['return stages[index];', 'return byId[evidenceId];', 'return rows[r].values[v];'],
+    },
+  ] as const;
 
-  it.each(BANNED)('components use no %s', (_label, pattern) => {
+  // The scan's reach, measured. Without this the patterns are a claim.
+  it.each(BANNED)('the $label pattern catches what it is for', ({ pattern, catches, allows }) => {
+    expect(catches.filter((probe) => !pattern.test(probe))).toEqual([]);
+    expect(allows.filter((probe) => pattern.test(probe))).toEqual([]);
+  });
+
+  it.each(BANNED)('no component uses $label', ({ pattern }) => {
     const offenders = listSourceFiles(componentsDir).filter((file) =>
       pattern.test(readFileSync(file, 'utf8')),
     );
