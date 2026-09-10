@@ -29,7 +29,8 @@ The first release supports:
 - Explicit insufficient-evidence responses.
 
 See [MVP](docs/MVP.md), [architecture](docs/ARCHITECTURE.md), and
-[knowledge scope](docs/KNOWLEDGE_SCOPE.md).
+[knowledge scope](docs/KNOWLEDGE_SCOPE.md). The proposed post-MVP runtime
+evolution is described in [Backend evolution path](docs/BACKEND-EVOLUTION.md).
 
 ## Core principles
 
@@ -61,7 +62,8 @@ Contract design. `packages/contracts` holds the Zod schemas that define
 Schemas under `schemas/` are generated from them. Corpus authoring and the
 retrieval baseline are the next milestones.
 
-Work is tracked as GitHub issues grouped by milestone (M0–M4).
+Work is tracked as GitHub issues grouped by milestone (M0–M4). M5–M8 are a
+future runtime evolution path, not part of the current MVP acceptance criteria.
 
 ## License
 

@@ -25,6 +25,19 @@ The MVP should answer one question:
 9. Agent interactions repeat retrieval; presentation-only interactions stay in
    the browser.
 
+## Execution boundary
+
+The MVP query path is request-scoped: the web route retrieves, generates,
+validates, and streams one response. It does not promise durable background
+runs, cross-device recovery, or execution after the initiating request ends.
+This keeps the experiment focused on grounded knowledge-card selection rather
+than on the reliability of a general-purpose Agent runtime.
+
+The post-MVP path is documented in
+[Backend evolution path](./BACKEND-EVOLUTION.md). It describes how to add an
+explicit run state machine, persistence, a queue, checkpoints, retries, and a
+separate worker without changing the evidence and card contracts.
+
 ## Card types
 
 ### Definition
@@ -83,6 +96,7 @@ the corpus rather than being rewritten by the model.
 - A general-purpose agent platform.
 - More than the five approved card types.
 - Persistent cross-device conversations.
+- Durable background runs, worker recovery, and queue-backed execution.
 
 ## Grounding rules
 
@@ -181,3 +195,9 @@ argue about.
 - Add the three supported actions.
 - Run comparative usability and correctness tests.
 - Publish the findings and decide whether to expand the card vocabulary.
+
+## Post-MVP evolution
+
+The next milestone should be a durable run contract rather than an immediate
+infrastructure rewrite. See [Backend evolution path](./BACKEND-EVOLUTION.md)
+for the proposed M5–M8 sequence and the invariants each stage must prove.

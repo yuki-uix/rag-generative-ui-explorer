@@ -30,6 +30,33 @@ Deterministic React card renderer
    +-> agent interaction -> new query analysis and retrieval
 ```
 
+## Runtime boundary and future evolution
+
+The current `/api/ask` flow is intentionally synchronous and request-scoped.
+It can stream a validated answer, but it does not own a durable task, a worker
+lease, or a cross-device session. That is an MVP boundary, not an assumption
+that long-running Agent work is safe to keep inside a request handler.
+
+If the product later needs recoverable runs, the API and worker should be
+separate roles:
+
+```text
+POST /api/runs
+   |
+   +-> transaction: run row + outbox event
+             |
+             v
+           queue -> worker -> retrieve -> checkpoint -> generate -> validate
+                                      |                               |
+                                      +---------- durable state --------+
+```
+
+The runtime must own run state, retries, leases, deadlines, and shutdown
+draining. The generation and corpus packages should remain usable without that
+runtime, and the renderer should receive only validated contracts. The complete
+proposal, including state transitions, invariants, and M5–M8 milestones, is in
+[Backend evolution path](./BACKEND-EVOLUTION.md).
+
 ## Data contracts
 
 ### Evidence
