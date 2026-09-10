@@ -14,7 +14,7 @@
  * 3. **Nothing executable.** No model-derived string may become markup or
  *    select a component.
  */
-import { existsSync, readdirSync, readFileSync } from 'node:fs';
+import { readdirSync, readFileSync } from 'node:fs';
 import { join, resolve } from 'node:path';
 import { cleanup, render } from '@testing-library/react';
 import { afterEach, describe, expect, it } from 'vitest';
@@ -30,34 +30,33 @@ const repoRoot = resolve(import.meta.dirname, '../../..');
 function listSourceFiles(dir: string): string[] {
   return readdirSync(dir, { withFileTypes: true }).flatMap((entry) => {
     const path = join(dir, entry.name);
+    // Dependencies, build output, and tooling state (`.git`, `.wrangler`, and
+    // a worktree's `.claude`) hold no first-party source and walking them is
+    // at best wasted and at worst recursive.
     if (entry.name === 'node_modules' || entry.name === 'dist') return [];
+    if (entry.name.startsWith('.')) return [];
     if (entry.isDirectory()) return listSourceFiles(path);
     return /\.(ts|tsx)$/.test(entry.name) ? [path] : [];
   });
 }
 
 /**
- * Every first-party source file in the workspace.
+ * Every first-party source file in the repository.
  *
- * Three top-level directories, scanned whole. Not a list of packages and not a
- * list of the directories inside them: `listSourceFiles` already recurses and
- * already skips `node_modules` and `dist`, so nothing here needs updating when
- * a package, an app, or a new directory inside one appears.
+ * The whole tree, not a list of the directories source is expected to live in.
+ * This went through three rounds of the staleness AC1 bans for card types: the
+ * first version scanned only each package's `src`, hiding a cast written under
+ * a package's `test`; the second derived the packages but named `apps/web`
+ * outright; the third named three top-level directories and missed `eval/`,
+ * which holds the evaluation question set in TypeScript. Each correction was
+ * one entry short of the next.
  *
- * This went through two rounds of exactly the staleness AC1 bans for card
- * types. The first version scanned only each package's `src`, hiding a cast
- * written under a package's `test`. The second derived the packages but still
- * named `apps/web` outright, which would have hidden a cast in the worker app
- * the backend evolution path introduces. A literal satisfies the type while
- * being one entry short, which is the whole failure mode — so the enumeration
- * is gone rather than corrected again.
+ * Scanning from the root inverts the default. A directory added later is
+ * checked because it exists, not because someone remembered to list it — which
+ * is the behaviour a gate should have, and the opposite of what a list gives.
  */
 function workspaceSources(): string[] {
-  return ['packages', 'apps', 'scripts']
-    .map((rel) => resolve(repoRoot, rel))
-    .filter((dir) => existsSync(dir))
-    .flatMap((dir) => listSourceFiles(dir))
-    .map((path) => path.slice(repoRoot.length + 1));
+  return listSourceFiles(repoRoot).map((path) => path.slice(repoRoot.length + 1));
 }
 
 describe('coverage is derived from the contract, not written out', () => {
