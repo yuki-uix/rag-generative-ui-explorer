@@ -27,7 +27,6 @@ const bundle = {
   corpusVersion,
   /** What the served system can actually do, not what the harness measures. */
   retrieval: 'lexical-bm25',
-  builtAt: new Date().toISOString().slice(0, 10),
   evidence,
 };
 
