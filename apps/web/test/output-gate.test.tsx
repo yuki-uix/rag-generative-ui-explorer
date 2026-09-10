@@ -37,29 +37,23 @@ function listSourceFiles(dir: string): string[] {
 }
 
 /**
- * Every first-party source file in the workspace — package tests and scripts
- * included, not only `src`.
+ * Every first-party source file in the workspace.
  *
- * Review found the first version scanning only each package's `src`, which
- * left a cast written under a package's `test` directory invisible to the very
- * check that exists to find it. The rule the repository applies to gates
- * applies to this one: a new gate must cover the paths that already exist.
+ * Three top-level directories, scanned whole. Not a list of packages and not a
+ * list of the directories inside them: `listSourceFiles` already recurses and
+ * already skips `node_modules` and `dist`, so nothing here needs updating when
+ * a package, an app, or a new directory inside one appears.
+ *
+ * This went through two rounds of exactly the staleness AC1 bans for card
+ * types. The first version scanned only each package's `src`, hiding a cast
+ * written under a package's `test`. The second derived the packages but still
+ * named `apps/web` outright, which would have hidden a cast in the worker app
+ * the backend evolution path introduces. A literal satisfies the type while
+ * being one entry short, which is the whole failure mode — so the enumeration
+ * is gone rather than corrected again.
  */
 function workspaceSources(): string[] {
-  // Read from the filesystem, not from a list written here. A literal
-  // ['contracts', 'corpus', 'generation'] satisfies the type while being one
-  // package short, which is the same staleness AC1 bans for card types — and
-  // the backend evolution path adds a worker package at M5, so it would go
-  // stale within a milestone rather than in theory.
-  const packageDirs = readdirSync(resolve(repoRoot, 'packages'), { withFileTypes: true })
-    .filter((entry) => entry.isDirectory())
-    .flatMap((entry) => [
-      `packages/${entry.name}/src`,
-      `packages/${entry.name}/test`,
-      `packages/${entry.name}/scripts`,
-    ]);
-
-  return ['apps/web', 'scripts', ...packageDirs]
+  return ['packages', 'apps', 'scripts']
     .map((rel) => resolve(repoRoot, rel))
     .filter((dir) => existsSync(dir))
     .flatMap((dir) => listSourceFiles(dir))
