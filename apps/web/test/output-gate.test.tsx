@@ -46,13 +46,20 @@ function listSourceFiles(dir: string): string[] {
  * applies to this one: a new gate must cover the paths that already exist.
  */
 function workspaceSources(): string[] {
-  const roots = ['apps/web', 'scripts', ...['contracts', 'corpus', 'generation'].flatMap((pkg) => [
-    `packages/${pkg}/src`,
-    `packages/${pkg}/test`,
-    `packages/${pkg}/scripts`,
-  ])];
+  // Read from the filesystem, not from a list written here. A literal
+  // ['contracts', 'corpus', 'generation'] satisfies the type while being one
+  // package short, which is the same staleness AC1 bans for card types — and
+  // the backend evolution path adds a worker package at M5, so it would go
+  // stale within a milestone rather than in theory.
+  const packageDirs = readdirSync(resolve(repoRoot, 'packages'), { withFileTypes: true })
+    .filter((entry) => entry.isDirectory())
+    .flatMap((entry) => [
+      `packages/${entry.name}/src`,
+      `packages/${entry.name}/test`,
+      `packages/${entry.name}/scripts`,
+    ]);
 
-  return roots
+  return ['apps/web', 'scripts', ...packageDirs]
     .map((rel) => resolve(repoRoot, rel))
     .filter((dir) => existsSync(dir))
     .flatMap((dir) => listSourceFiles(dir))
@@ -196,11 +203,18 @@ describe('no executable model output reaches the browser', () => {
     expect(allows.filter((probe) => pattern.test(probe))).toEqual([]);
   });
 
-  it.each(BANNED)('no component uses $label', ({ pattern }) => {
-    const offenders = listSourceFiles(componentsDir).filter((file) =>
-      pattern.test(readFileSync(file, 'utf8')),
-    );
+  it.each(BANNED)('no component uses $label', ({ label, pattern }) => {
+    const offenders = listSourceFiles(componentsDir)
+      .filter((file) => pattern.test(readFileSync(file, 'utf8')))
+      .map((file) => file.slice(repoRoot.length + 1));
 
-    expect(offenders).toEqual([]);
+    // Named remedy rather than a bare file list. A contributor who reaches for
+    // a table keyed by card type — icons, labels — will trip this legitimately,
+    // and the cheapest wrong response to an unexplained failure is to widen the
+    // pattern, which reopens exactly what it guards.
+    expect(
+      offenders,
+      `${label} is banned in card components: selecting anything by a card's own type must stay a closed switch on the discriminator, as in knowledge-card.tsx, so an unhandled type is a build error rather than a runtime lookup. Replace the table with a switch.`,
+    ).toEqual([]);
   });
 });
