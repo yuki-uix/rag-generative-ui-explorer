@@ -2,6 +2,42 @@
 
 F1 of the [framework practice route (#84)](https://github.com/yuki-uix/rag-generative-ui-explorer/issues/84).
 The runnable baseline addresses [#79](https://github.com/yuki-uix/rag-generative-ui-explorer/issues/79).
+F2 adds a LangChain adapter and paired comparison for
+[#80](https://github.com/yuki-uix/rag-generative-ui-explorer/issues/80).
+
+## Run the paired comparison
+
+```bash
+pnpm framework:compare                    # both real adapters, synthetic transport
+pnpm framework:smoke --implementation langchain
+pnpm framework:compare --scenario invalid-reference  # intentionally exits 1
+pnpm framework:compare --live             # explicit live run; needs DEEPSEEK_API_KEY
+```
+
+The comparison config budgets **six requests total**, across three questions and
+two arms, with no network retries or format repair. It retrieves once and saves
+the fixed questions and ordered evidence to `inputs.json` before either model
+call. Both arms receive that snapshot, the same original schema and prompts,
+profile, token cap and common `gate`. `summary.json` includes paired outcomes,
+usage, generation timings and actual serialized request-body differences;
+prompt text, evidence and model settings must agree or the comparison fails.
+Request records omit HTTP headers, URL credentials and query strings.
+
+For an ignored `.env.local` file, load it explicitly without copying its values
+into a command or another checkout:
+
+```bash
+pnpm --filter @rgux/generation exec node --env-file=/absolute/path/.env.local \
+  --import tsx scripts/experiment.ts --config eval/framework/comparison.json --live
+```
+
+`--implementation native` and `--implementation langchain` select single arms.
+`--implementation both` requires enough budget in the selected config (the F1
+default budgets three calls, so it refuses both arms). Only the compare config
+budgets six by default. The native SDK is retained as the application default;
+LangChain lives only in the experiment adapter. See [F2-LANGCHAIN.md](F2-LANGCHAIN.md)
+for locked versions, schema/parser distinctions, an actual compatibility failure
+and real endpoint observations.
 
 ## Run the native baseline
 
@@ -15,7 +51,7 @@ pnpm framework:smoke --implementation native
 No key, HTTP request, embedding download, or database is needed. The CLI ingests
 the actual corpus, builds the existing BM25 retriever, selects three questions
 from `eval/questions.jsonl`, calls `planCards` through the **real Anthropic SDK**,
-resolves handles, and calls `validateCards` and `KnowledgeUIResponse.safeParse`.
+resolves handles, and calls `gate` and `KnowledgeUIResponse.safeParse`.
 Only the provider's SSE response is synthetic. Even if a key is present, smoke
 mode uses a dummy key and an injected fetch implementation with no network path.
 
@@ -52,6 +88,7 @@ to choose a parent directory. Previous runs are never overwritten.
 | File | Contents |
 | --- | --- |
 | `run.json` | Mode, scenario, config, planned requests, code commit and working-tree fingerprint, Node/SDK/lock versions, corpus/index and question hashes, retrieval parameters, profile/endpoint/request extras, prompt version and schema hash |
+| `inputs.json` | Fixed questions and evidence shared by both arms; SHA-256 is in `run.json` |
 | `records.jsonl` | One record per completed question: input and labels, retrieved evidence with IDs/text/scores, raw completion, attempts and usage, original/final validity, failures, validated result, stop reason, outcome, per-stage timing |
 | `summary.json` | Completion time, actual requests, failed count, and per-question outcome |
 
@@ -98,10 +135,10 @@ flowchart LR
   Q["已有：固定问题与语料"] --> R["已有：Retriever"]
   R --> A["F1 已实现：实验适配接口"]
   A --> N["已有：原生 planCards"]
-  A -. "F2 待实现" .-> L["LangChain"]
+  A --> L["F2 已实现：LangChain"]
   A -. "F3 待实现" .-> G["LangGraph 有界补查"]
   N --> V["已有：契约与证据校验"]
-  L -.-> V
+  L --> V
   G -.-> V
   V --> O["F1 已实现：执行记录"]
 ```
@@ -109,16 +146,16 @@ flowchart LR
 [`ExperimentAdapter`](../../packages/generation/src/experiment/run.ts) has only
 an ID and a `plan(PlanOptions)` method. The native adapter calls the existing
 [`planCards`](../../packages/generation/src/planner/plan.ts); retrieval and
-validation stay outside it. The CLI currently accepts only `native`. This is a
+validation stay outside it. The CLI accepts `native`, `langchain`, or `both`. This is a
 small seam, not a plugin registry, and introduces no framework dependency into
-Evidence, card contracts, or React components. It uses main's validator; the
-separate output-gate PR [#71](https://github.com/yuki-uix/rag-generative-ui-explorer/pull/71)
-can replace that validation entry after merge without changing the experiment
-contract. CLI results do not enter the web renderer.
+Evidence, card contracts, or React components. It uses the shared `gate` from
+`@rgux/contracts`, following the merged output-gate PR
+[#71](https://github.com/yuki-uix/rag-generative-ui-explorer/pull/71).
+CLI results do not enter the web renderer.
 
 Native SDK remains the default until a comparison justifies changing it. It
 currently needs one generation call and ordinary TypeScript control flow;
-adding a framework to F1 would change the baseline before it had been recorded.
+the LangChain adapter is an alternative implementation for experiments.
 
 ## Next tasks and comparison plan
 

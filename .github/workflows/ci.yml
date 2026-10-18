@@ -52,6 +52,8 @@ jobs:
       # Real ingestion, retrieval, SDK request/stream parsing and validation;
       # only the provider response is synthetic. No key or network required.
       - run: pnpm framework:smoke
+      # Same frozen retrieval set, real LangChain adapter, synthetic transport.
+      - run: pnpm framework:compare
       # Retrieval metrics are mechanical while no model sits in the pipeline, so
       # the whole 60-question set scores here for free. This is not a threshold
       # gate — no number has been argued for — it runs so the harness cannot

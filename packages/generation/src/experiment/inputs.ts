@@ -1,7 +1,8 @@
 import { createHash } from 'node:crypto';
 import { execFileSync } from 'node:child_process';
-import { readFileSync } from 'node:fs';
-import { resolve } from 'node:path';
+import { createRequire } from 'node:module';
+import { existsSync, readFileSync } from 'node:fs';
+import { dirname, resolve } from 'node:path';
 import { z } from 'zod';
 import { BM25_B, BM25_K1, BM25Retriever, ingest, parseEvalSet } from '@rgux/corpus';
 import { plannerSchema } from '../planner/plan.js';
@@ -11,7 +12,7 @@ import { requestExtras } from '../generate.js';
 
 export const ExperimentConfig = z.strictObject({
   version: z.string().min(1),
-  implementation: z.literal('native'),
+  implementation: z.enum(['native', 'langchain', 'both']),
   questionIds: z.array(z.string()).min(1).refine((ids) => new Set(ids).size === ids.length),
   profileId: z.string().min(1),
   k: z.number().int().positive(),
@@ -29,8 +30,9 @@ export function sha256(value: string | Buffer): string {
   return createHash('sha256').update(value).digest('hex');
 }
 
-export function loadExperiment(repoRoot: string, configPath: string) {
-  const config = ExperimentConfig.parse(JSON.parse(readFileSync(configPath, 'utf8')));
+export function loadExperiment(repoRoot: string, configPath: string, implementation?: string) {
+  const source = JSON.parse(readFileSync(configPath, 'utf8')) as Record<string, unknown>;
+  const config = ExperimentConfig.parse({ ...source, ...(implementation === undefined ? {} : { implementation }) });
   const profile = profileByIdOrThrow(config.profileId);
   const corpus = ingest(resolve(repoRoot, 'knowledge'));
   if (corpus.errors.length) throw new Error(corpus.errors.map((error) => error.message).join('\n'));
@@ -56,9 +58,21 @@ export function loadExperiment(repoRoot: string, configPath: string) {
   for (const path of paths) {
     tree.update(path).update('\0').update(sha256(readFileSync(resolve(repoRoot, path)))).update('\0');
   }
-  const sdk = JSON.parse(readFileSync(
-    resolve(repoRoot, 'packages/generation/node_modules/@anthropic-ai/sdk/package.json'), 'utf8',
-  )) as { version: string };
+  const require = createRequire(resolve(repoRoot, 'packages/generation/package.json'));
+  const version = (resolver: typeof require, name: string, entry = name): string => {
+    let dir = dirname(resolver.resolve(entry));
+    for (;;) {
+      const path = resolve(dir, 'package.json');
+      if (existsSync(path)) {
+        const metadata = JSON.parse(readFileSync(path, 'utf8')) as { name: string; version: string };
+        if (metadata.name === name) return metadata.version;
+      }
+      const parent = dirname(dir);
+      if (parent === dir) throw new Error(`Cannot locate installed version of ${name}`);
+      dir = parent;
+    }
+  };
+  const langchainRequire = createRequire(require.resolve('@langchain/anthropic'));
   const lock = readFileSync(resolve(repoRoot, 'pnpm-lock.yaml'));
 
   return {
@@ -72,7 +86,15 @@ export function loadExperiment(repoRoot: string, configPath: string) {
         dirty: git('status', '--porcelain').trim().length > 0,
         treeSha256: tree.digest('hex'),
       },
-      runtime: { node: process.version, sdk: { name: '@anthropic-ai/sdk', version: sdk.version }, lockSha256: sha256(lock) },
+      runtime: {
+        node: process.version,
+        sdk: { name: '@anthropic-ai/sdk', version: version(require, '@anthropic-ai/sdk') },
+        langchain: {
+          anthropic: version(require, '@langchain/anthropic'), core: version(require, '@langchain/core', '@langchain/core/messages'),
+          sdk: version(langchainRequire, '@anthropic-ai/sdk'),
+        },
+        lockSha256: sha256(lock),
+      },
       corpus: {
         version: corpus.corpusVersion, chunking: set.header.chunking,
         indexSha256: sha256(JSON.stringify(corpus.evidence)),
