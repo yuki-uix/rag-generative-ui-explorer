@@ -9,3 +9,4 @@ dist/
 *.log
 .verify-ok
 .claude-worktrees/
+eval/framework/runs/

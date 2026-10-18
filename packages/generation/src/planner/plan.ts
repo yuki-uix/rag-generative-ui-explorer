@@ -118,10 +118,10 @@ export interface PlanRecord {
   readonly raw: string;
   readonly stopReason: string | null;
   readonly usage: {
-    readonly inputTokens: number;
-    readonly outputTokens: number;
-    readonly cacheCreationInputTokens: number;
-    readonly cacheReadInputTokens: number;
+    readonly inputTokens: number | null;
+    readonly outputTokens: number | null;
+    readonly cacheCreationInputTokens: number | null;
+    readonly cacheReadInputTokens: number | null;
   };
   readonly latencyMs: number;
 }
@@ -134,6 +134,12 @@ export interface PlanOptions {
   schema: unknown;
   apiKey?: string;
   maxTokens?: number;
+  /** Experiments pin retries and timeout rather than inheriting SDK defaults. */
+  maxRetries?: number;
+  timeoutMs?: number;
+  /** Replace only the wire response in offline experiments; use the real SDK. */
+  fetch?: typeof globalThis.fetch;
+  onDelta?: (text: string) => void;
 }
 
 /**
@@ -153,7 +159,13 @@ export async function planCards(options: PlanOptions): Promise<PlanRecord> {
     throw new Error(`${profile.apiKeyEnv} is not set; profile ${profile.id} cannot run.`);
   }
 
-  const client = new Anthropic({ apiKey, baseURL: profile.baseURL });
+  const client = new Anthropic({
+    apiKey,
+    baseURL: profile.baseURL,
+    ...(options.maxRetries === undefined ? {} : { maxRetries: options.maxRetries }),
+    ...(options.timeoutMs === undefined ? {} : { timeout: options.timeoutMs }),
+    ...(options.fetch === undefined ? {} : { fetch: options.fetch }),
+  });
 
   // The schema is sent where the profile declares it is enforced, and omitted
   // where it is not. Sending it anyway would be harmless on the wire and
@@ -164,14 +176,21 @@ export async function planCards(options: PlanOptions): Promise<PlanRecord> {
     : {};
 
   const startedAt = Date.now();
+  const extras = requestExtras(profile);
   const stream = client.messages.stream({
     model: profile.model,
     max_tokens: maxTokens,
     system: plannerSystemPrompt(schemaBelongsInPrompt(profile) ? schema : undefined),
     messages: [{ role: 'user', content: plannerUserPrompt(question, evidence) }],
-    ...requestExtras(profile),
+    ...extras,
     ...structured,
+    // Both schema enforcement and effort live under output_config.
+    ...(profile.enforcesOutputSchema && profile.supportsEffort
+      ? { output_config: { ...(extras['output_config'] as object), ...structured.output_config } }
+      : {}),
   } as never);
+
+  stream.on('text', (text) => options.onDelta?.(text));
 
   const message = await stream.finalMessage();
 
@@ -186,10 +205,10 @@ export async function planCards(options: PlanOptions): Promise<PlanRecord> {
       .join(''),
     stopReason: message.stop_reason,
     usage: {
-      inputTokens: message.usage.input_tokens,
-      outputTokens: message.usage.output_tokens,
-      cacheCreationInputTokens: message.usage.cache_creation_input_tokens ?? 0,
-      cacheReadInputTokens: message.usage.cache_read_input_tokens ?? 0,
+      inputTokens: message.usage.input_tokens ?? null,
+      outputTokens: message.usage.output_tokens ?? null,
+      cacheCreationInputTokens: message.usage.cache_creation_input_tokens ?? null,
+      cacheReadInputTokens: message.usage.cache_read_input_tokens ?? null,
     },
     latencyMs: Date.now() - startedAt,
   };

@@ -57,13 +57,25 @@ contracts and evaluation plan.
 
 ## Repository status
 
-Contract design. `packages/contracts` holds the Zod schemas that define
-`Evidence`, the five knowledge cards, and the response envelope; the JSON
-Schemas under `schemas/` are generated from them. Corpus authoring and the
-retrieval baseline are the next milestones.
+The repository includes the contracts, curated corpus, retrieval and Markdown
+baseline, fixed card components, and the native card planner with validation.
+Remaining integration and evaluation work is tracked in GitHub issues.
 
 Work is tracked as GitHub issues grouped by milestone (M0–M4). M5–M8 are a
 future runtime evolution path, not part of the current MVP acceptance criteria.
+
+The [framework practice route](https://github.com/yuki-uix/rag-generative-ui-explorer/issues/84)
+starts with a native baseline before adding LangChain and LangGraph adapters.
+Run it without credentials:
+
+```bash
+pnpm install --frozen-lockfile
+pnpm framework:smoke
+```
+
+This exercises real retrieval, the SDK planner, and citation validation with
+synthetic model responses. For the explicit live command, artifacts, failure
+cases, and comparison plan, see [framework experiments](eval/framework/README.md).
 
 ## License
 

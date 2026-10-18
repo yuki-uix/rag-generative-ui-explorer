@@ -33,7 +33,9 @@
     "web:secret": "pnpm --filter @rgux/web run secret",
     "web:secret:list": "pnpm --filter @rgux/web run secret:list",
     "plan:run": "pnpm --filter @rgux/generation run plan:run",
-    "plan:check": "pnpm --filter @rgux/generation run plan:run --dry-run"
+    "plan:check": "pnpm --filter @rgux/generation run plan:run --dry-run",
+    "framework:smoke": "pnpm --filter @rgux/generation run framework:run",
+    "framework:live": "pnpm --filter @rgux/generation run framework:run --live"
   },
   "devDependencies": {
     "typescript": "^7.0.2"
