@@ -9,14 +9,34 @@
  */
 import { cleanup, render, screen, within } from '@testing-library/react';
 import { afterEach, describe, expect, it } from 'vitest';
-import type { MechanismCard as MechanismCardSpec } from '@rgux/contracts';
+import type { GatedCard, MechanismCard as MechanismCardSpec } from '@rgux/contracts';
+import { gate } from '@rgux/contracts';
 import { KnowledgeCard } from '../components/cards/knowledge-card.js';
 import { FLOW, presentationFor } from '../components/cards/presentation.js';
-import { CARD_FIXTURES } from '../fixtures/cards.js';
+import { FIXTURE_EVIDENCE, GATED_FIXTURES } from './gated.js';
 
 afterEach(cleanup);
 
-const mechanism = CARD_FIXTURES.find((card) => card.type === 'mechanism') as MechanismCardSpec;
+const isMechanism = (card: GatedCard): card is GatedCard & MechanismCardSpec =>
+  card.type === 'mechanism';
+
+/** Narrowed, not asserted: an assertion would strip the brand off the fixture. */
+const mechanism = GATED_FIXTURES.find(isMechanism)!;
+
+/**
+ * A card built by editing a fixture has not passed the gate, and the renderer
+ * will not take it — correctly, since that is the whole point of #26. These
+ * variants change only presentation-relevant fields (labels, stage count), so
+ * they still pass every stage; putting them back through the gate proves that
+ * rather than asserting it with a cast.
+ */
+function regate(card: MechanismCardSpec): GatedCard {
+  const { cards, failures } = gate([card], FIXTURE_EVIDENCE);
+  if (failures.length > 0) {
+    throw new Error(`variant did not pass the gate: ${failures[0]!.message}`);
+  }
+  return cards[0]!;
+}
 
 /** The same spec with one label lengthened past the scannable limit. */
 function withLongLabel(card: MechanismCardSpec): MechanismCardSpec {
@@ -55,7 +75,7 @@ describe('the presentation choice', () => {
   });
 
   it('never offers a flow for card types that are not sequences', () => {
-    for (const card of CARD_FIXTURES) {
+    for (const card of GATED_FIXTURES) {
       if (card.type === 'mechanism' || card.type === 'procedure') continue;
       expect(presentationFor(card), card.type).toBe('list');
     }
@@ -69,7 +89,7 @@ describe('the flow rendering', () => {
     const flowText = flow.textContent ?? '';
     unmount();
 
-    const { container: list } = render(<KnowledgeCard card={withLongLabel(mechanism)} />);
+    const { container: list } = render(<KnowledgeCard card={regate(withLongLabel(mechanism))} />);
     expect(list.querySelector('[data-presentation="list"]')).not.toBeNull();
 
     // Same stages, same order, in both renderings.

@@ -4,3 +4,4 @@ export * from './grounded-text.js';
 export * from './cards.js';
 export * from './actions.js';
 export * from './response.js';
+export * from './gate.js';

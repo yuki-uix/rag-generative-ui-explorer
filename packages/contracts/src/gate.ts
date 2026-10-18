@@ -1,5 +1,32 @@
-import type { Evidence, KnowledgeCard as Card } from '@rgux/contracts';
-import { KnowledgeCard } from '@rgux/contracts';
+import type { Evidence } from './evidence.js';
+import { KnowledgeCard } from './cards.js';
+
+type Card = KnowledgeCard;
+
+/**
+ * The brand, and the reason this module exists.
+ *
+ * `GATE` is declared but never exported, so no module outside this file can
+ * write the type `{ [GATE]: true }` — and therefore cannot produce a
+ * `GatedCard` by any means except calling `gate`. The renderer accepts only
+ * `GatedCard`, so "did this card pass the gate" stops being a convention the
+ * next contributor has to remember and becomes a condition the compiler
+ * refuses to let them break.
+ *
+ * `declare const` rather than a real symbol: the brand is a compile-time claim
+ * about where a value came from, and it must not add a property that
+ * `JSON.stringify` would carry over the wire and back as data an attacker
+ * controls. The single cast that creates one lives at the bottom of `gate`,
+ * after every stage has passed.
+ *
+ * The remaining hole is `as GatedCard` written by hand.
+ * `apps/web/test/output-gate.test.ts` scans for that, because a cast is the one
+ * thing the type system cannot refuse.
+ */
+declare const GATE: unique symbol;
+
+/** A card that has passed every stage of {@link gate}. Only `gate` makes one. */
+export type GatedCard = Card & { readonly [GATE]: true };
 
 export type ValidationStage = 'schema' | 'evidence-reference' | 'policy';
 
@@ -13,9 +40,9 @@ export interface ValidationFailure {
   readonly path?: string;
 }
 
-export interface ValidationResult {
+export interface GateResult {
   /** Cards that passed every stage. Only these may render. */
-  readonly cards: readonly Card[];
+  readonly cards: readonly GatedCard[];
   readonly failures: readonly ValidationFailure[];
 }
 
@@ -33,14 +60,14 @@ export interface ValidationResult {
  * because a sibling was malformed would silently narrow an answer the reader
  * would have no way to notice was narrowed.
  */
-export function validateCards(
+export function gate(
   raw: readonly unknown[],
   retrieved: readonly Evidence[],
-): ValidationResult {
+): GateResult {
   const retrievedIds = new Set(retrieved.map((item) => item.id));
   const byId = new Map(retrieved.map((item) => [item.id, item]));
 
-  const cards: Card[] = [];
+  const cards: GatedCard[] = [];
   const failures: ValidationFailure[] = [];
 
   raw.forEach((candidate, cardIndex) => {
@@ -118,7 +145,9 @@ export function validateCards(
       return;
     }
 
-    cards.push(card);
+    // The only place a `GatedCard` is created, and it is unreachable until
+    // every stage above has returned without a failure.
+    cards.push(card as GatedCard);
   });
 
   return { cards, failures };

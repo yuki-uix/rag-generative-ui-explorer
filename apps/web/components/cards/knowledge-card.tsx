@@ -1,4 +1,4 @@
-import type { Evidence, KnowledgeCard as Card } from '@rgux/contracts';
+import type { Evidence, GatedCard } from '@rgux/contracts';
 import { ComparisonCard } from './comparison-card.js';
 import { DefinitionCard } from './definition-card.js';
 import { EvidenceCard } from './evidence-card.js';
@@ -18,12 +18,18 @@ import { ProcedureCard } from './procedure-card.js';
  * Presentation is a pure function of the card. When #51 adds an alternate
  * rendering it is selected from the card's own shape here; the model never
  * names one.
+ *
+ * The prop is `GatedCard`, not `KnowledgeCard` (#26). Only `gate` in
+ * `@rgux/contracts` produces that type, so a caller holding unvalidated model
+ * output cannot reach this component at all — the failure is a type error at
+ * the call site rather than a rule someone has to remember. Every other render
+ * path inherits the same constraint by passing through here.
  */
 export function KnowledgeCard({
   card,
   resolveEvidence,
 }: {
-  card: Card;
+  card: GatedCard;
   resolveEvidence?: (evidenceId: string) => Evidence | undefined;
 }) {
   switch (card.type) {

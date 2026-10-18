@@ -17,7 +17,7 @@ import type { Evidence } from '@rgux/contracts';
 import { ingest } from '@rgux/corpus';
 import { CardGallery } from '../components/cards/card-gallery.js';
 import { SourceDrawerProvider, useSourceDrawer } from '../components/cards/source-drawer.js';
-import { CARD_FIXTURES } from '../fixtures/cards.js';
+import { GATED_FIXTURES } from './gated.js';
 import { HOSTILE_EVIDENCE } from '../fixtures/hostile-evidence.js';
 
 afterEach(cleanup);
@@ -77,12 +77,12 @@ describe('the source drawer', () => {
   });
 
   it('renders the excerpt verbatim from Evidence.text, which is the corpus chunk, not the card field', () => {
-    const definition = CARD_FIXTURES.find((card) => card.type === 'definition')!;
+    const definition = GATED_FIXTURES.find((card) => card.type === 'definition')!;
     if (definition.type !== 'definition') throw new Error('unreachable');
     const id = definition.definition.evidenceIds[0]!;
     const passage = byId.get(id)!;
 
-    render(<CardGallery evidence={corpusEvidence} />);
+    render(<CardGallery cards={GATED_FIXTURES} evidence={corpusEvidence} />);
 
     const marker = screen.getAllByRole('button', {
       name: (name) => name.includes(id),
@@ -177,7 +177,7 @@ describe('the source drawer', () => {
 
 describe('the grounded-field markers', () => {
   it('are real buttons whose accessible name exposes the evidence identifiers', () => {
-    render(<CardGallery evidence={corpusEvidence} />);
+    render(<CardGallery cards={GATED_FIXTURES} evidence={corpusEvidence} />);
 
     const marker = screen.getAllByRole('button', {
       name: (name) => name.includes('rag/reranking#reranking-cannot-raise-recall#0-8f587090'),
@@ -189,7 +189,7 @@ describe('the grounded-field markers', () => {
   });
 
   it('opens the drawer listing exactly the evidence the field carries', () => {
-    render(<CardGallery evidence={corpusEvidence} />);
+    render(<CardGallery cards={GATED_FIXTURES} evidence={corpusEvidence} />);
 
     // The procedure card's final step cites two identifiers and is the only
     // field carrying this pair.
