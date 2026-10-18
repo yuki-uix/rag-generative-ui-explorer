@@ -1,0 +1,99 @@
+{
+  "version": "framework-run-2",
+  "runId": "2026-10-18T10-01-00-994Z-975a454f-0500-47f9-a687-9ae36b804cce",
+  "startedAt": "2026-10-18T10:01:00.994Z",
+  "mode": "live",
+  "scenario": "valid",
+  "implementations": [
+    "native",
+    "langchain"
+  ],
+  "purpose": "Integration smoke test; not an effectiveness evaluation.",
+  "pins": {
+    "config": {
+      "version": "framework-comparison-1",
+      "implementation": "both",
+      "questionIds": [
+        "rag-001",
+        "rag-003",
+        "ins-001"
+      ],
+      "profileId": "deepseek-v4-pro",
+      "k": 8,
+      "maxTokens": 4096,
+      "maxModelCalls": 6,
+      "sdkMaxRetries": 0,
+      "timeoutMs": 60000,
+      "repetitions": 1,
+      "repair": "disabled"
+    },
+    "code": {
+      "commit": "b1709872e1bb07a046f2236fae1fc0fe894e9274",
+      "dirty": true,
+      "treeSha256": "f6ad655a50ee33d7d48dc6e055910110b0fe42e69c745c7843aaf8e23d961439"
+    },
+    "runtime": {
+      "node": "v23.7.0",
+      "sdk": {
+        "name": "@anthropic-ai/sdk",
+        "version": "0.72.1"
+      },
+      "langchain": {
+        "anthropic": "1.5.12",
+        "core": "1.2.18",
+        "sdk": "0.122.0"
+      },
+      "lockSha256": "e9d94a34fe46769da1d328577d834a983b6c9921003494c98b21ceeb1a6817c9"
+    },
+    "corpus": {
+      "version": "corpus-3e4863076378",
+      "chunking": {
+        "boundary": "h2-section",
+        "maxChunkChars": 1200
+      },
+      "indexSha256": "28d213e2b389831ec9124ae0929015cbdcd2224373c013120db7d7491dd25cf3"
+    },
+    "retrieval": {
+      "implementation": "BM25Retriever",
+      "k": 8,
+      "k1": 1.2,
+      "b": 0.75,
+      "reranking": false
+    },
+    "questionSet": {
+      "sha256": "64b1e9a8d17a263f706c2783282157098c59bbf84ef03bb5168dbe19e6d41cc4",
+      "header": {
+        "corpusVersion": "corpus-3e4863076378",
+        "chunking": {
+          "boundary": "h2-section",
+          "maxChunkChars": 1200
+        },
+        "questionCount": 60,
+        "labelledBy": "yuki-uix",
+        "labelledOn": "2026-08-30"
+      },
+      "selectedIds": [
+        "rag-001",
+        "rag-003",
+        "ins-001"
+      ]
+    },
+    "model": {
+      "id": "deepseek-v4-pro",
+      "model": "deepseek-v4-pro",
+      "baseURL": "https://api.deepseek.com/anthropic",
+      "apiKeyEnv": "DEEPSEEK_API_KEY",
+      "supportsThinking": false,
+      "supportsEffort": false,
+      "enforcesOutputSchema": false,
+      "endpoint": "https://api.deepseek.com/anthropic",
+      "requestExtras": {}
+    },
+    "promptVersion": "card-planner-1",
+    "schemaSha256": "81d854da0c7d942238a64aecac6805ce9e64c69b2323083aee4e4b180bb7f13a"
+  },
+  "fixtureVersion": null,
+  "fixedInputsSha256": "d1a4381e8c28ca8bb810845513943308a52387103b6e162b8ad8e59e0a14ceaa",
+  "plannedModelRequests": 6,
+  "usageNote": "null means unavailable; no price estimate."
+}

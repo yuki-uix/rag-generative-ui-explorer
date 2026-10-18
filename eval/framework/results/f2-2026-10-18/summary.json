@@ -1,0 +1,128 @@
+{
+  "completedAt": "2026-10-18T10:03:22.960Z",
+  "samples": 6,
+  "failed": 1,
+  "actualModelRequests": 6,
+  "adapterRequests": 6,
+  "outcomes": [
+    {
+      "implementation": "native",
+      "id": "rag-001",
+      "outcome": "valid"
+    },
+    {
+      "implementation": "native",
+      "id": "rag-003",
+      "outcome": "truncated"
+    },
+    {
+      "implementation": "native",
+      "id": "ins-001",
+      "outcome": "incomplete"
+    },
+    {
+      "implementation": "langchain",
+      "id": "rag-001",
+      "outcome": "valid"
+    },
+    {
+      "implementation": "langchain",
+      "id": "rag-003",
+      "outcome": "valid"
+    },
+    {
+      "implementation": "langchain",
+      "id": "ins-001",
+      "outcome": "incomplete"
+    }
+  ],
+  "comparison": [
+    {
+      "questionId": "rag-001",
+      "sameEvidence": true,
+      "samePrompt": true,
+      "sameModelSettings": true,
+      "requestBodyDifferences": [
+        "output_config"
+      ],
+      "native": {
+        "outcome": "valid",
+        "latencyMs": 25525.157791999998,
+        "usage": {
+          "inputTokens": 2781,
+          "outputTokens": 2153,
+          "cacheCreationInputTokens": 0,
+          "cacheReadInputTokens": 0
+        }
+      },
+      "langchain": {
+        "outcome": "valid",
+        "latencyMs": 28814.553084,
+        "usage": {
+          "inputTokens": 93,
+          "outputTokens": 2682,
+          "cacheCreationInputTokens": 0,
+          "cacheReadInputTokens": 2688
+        }
+      }
+    },
+    {
+      "questionId": "rag-003",
+      "sameEvidence": true,
+      "samePrompt": true,
+      "sameModelSettings": true,
+      "requestBodyDifferences": [
+        "output_config"
+      ],
+      "native": {
+        "outcome": "truncated",
+        "latencyMs": 43207.35183299999,
+        "usage": {
+          "inputTokens": 2500,
+          "outputTokens": 4096,
+          "cacheCreationInputTokens": 0,
+          "cacheReadInputTokens": 0
+        }
+      },
+      "langchain": {
+        "outcome": "valid",
+        "latencyMs": 38378.41291700001,
+        "usage": {
+          "inputTokens": 68,
+          "outputTokens": 3725,
+          "cacheCreationInputTokens": 0,
+          "cacheReadInputTokens": 2432
+        }
+      }
+    },
+    {
+      "questionId": "ins-001",
+      "sameEvidence": true,
+      "samePrompt": true,
+      "sameModelSettings": true,
+      "requestBodyDifferences": [
+        "output_config"
+      ],
+      "native": {
+        "outcome": "incomplete",
+        "latencyMs": 3673.5235010000033,
+        "usage": {
+          "inputTokens": 1433,
+          "outputTokens": 116,
+          "cacheCreationInputTokens": 0,
+          "cacheReadInputTokens": 1408
+        }
+      },
+      "langchain": {
+        "outcome": "incomplete",
+        "latencyMs": 2352.8998740000243,
+        "usage": {
+          "inputTokens": 25,
+          "outputTokens": 137,
+          "cacheCreationInputTokens": 0,
+          "cacheReadInputTokens": 2816
+        }
+      }
+    }
+  ]
+}

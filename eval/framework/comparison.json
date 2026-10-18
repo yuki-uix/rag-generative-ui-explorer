@@ -1,0 +1,13 @@
+{
+  "version": "framework-comparison-1",
+  "implementation": "both",
+  "questionIds": ["rag-001", "rag-003", "ins-001"],
+  "profileId": "deepseek-v4-pro",
+  "k": 8,
+  "maxTokens": 4096,
+  "maxModelCalls": 6,
+  "sdkMaxRetries": 0,
+  "timeoutMs": 60000,
+  "repetitions": 1,
+  "repair": "disabled"
+}

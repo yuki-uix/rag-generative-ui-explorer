@@ -124,6 +124,15 @@ export interface PlanRecord {
     readonly cacheReadInputTokens: number | null;
   };
   readonly latencyMs: number;
+  /** Framework parser observations; the common gate always rechecks raw text. */
+  readonly framework?: {
+    readonly name: 'langchain';
+    readonly method: 'jsonSchema';
+    readonly parser: 'JsonOutputParser';
+    readonly schemaValidated: false;
+    readonly parserSucceeded: boolean;
+    readonly parsed: unknown;
+  };
 }
 
 export interface PlanOptions {

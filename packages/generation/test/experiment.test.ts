@@ -169,7 +169,7 @@ describe('framework native baseline', () => {
     const unknown = join(output, 'bad-config.json');
     writeFileSync(unknown, JSON.stringify({ ...inputs.config, questionIds: ['unknown'] }));
     expect(launch(['--config', unknown]).status).toBe(1);
-    expect(launch(['--implementation', 'langchain']).status).toBe(1);
+    expect(launch(['--implementation', 'unknown']).status).toBe(1);
     expect(launch(['--scenario', 'unknown']).status).toBe(1);
     expect(launch(['--live', '--scenario', 'provider-error']).status).toBe(1);
   }, 20000);
