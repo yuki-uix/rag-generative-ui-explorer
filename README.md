@@ -72,6 +72,7 @@ Run it without credentials:
 pnpm install --frozen-lockfile
 pnpm framework:smoke
 pnpm framework:compare  # native + LangChain, identical fixed evidence, no key
+pnpm framework:graph    # LangGraph: check coverage, supplement at most once, no key
 ```
 
 This exercises real retrieval, SDK request construction and citation validation
@@ -79,6 +80,8 @@ with synthetic model responses. `framework:compare` adds LangChain's message and
 structured-output API, with actual request differences recorded. For the live
 command and artifacts, see [framework experiments](eval/framework/README.md);
 for the observed live run and framework tradeoffs, see [F2 notes](eval/framework/F2-LANGCHAIN.md).
+The graph's three offline paths, complete traces, failure case and limits are
+documented in [F3 notes](eval/framework/F3-LANGGRAPH.md).
 
 ## License
 

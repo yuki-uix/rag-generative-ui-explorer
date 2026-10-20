@@ -136,17 +136,19 @@ flowchart LR
   R --> A["F1 已实现：实验适配接口"]
   A --> N["已有：原生 planCards"]
   A --> L["F2 已实现：LangChain"]
-  A -. "F3 待实现" .-> G["LangGraph 有界补查"]
+  R --> G["F3 已实现：LangGraph 有界补查"]
   N --> V["已有：契约与证据校验"]
   L --> V
-  G -.-> V
+  G --> L
   V --> O["F1 已实现：执行记录"]
 ```
 
 [`ExperimentAdapter`](../../packages/generation/src/experiment/run.ts) has only
 an ID and a `plan(PlanOptions)` method. The native adapter calls the existing
 [`planCards`](../../packages/generation/src/planner/plan.ts); retrieval and
-validation stay outside it. The CLI accepts `native`, `langchain`, or `both`. This is a
+validation stay outside it. The CLI accepts `native`, `langchain`, `both`, or
+`langgraph`. The graph owns its adaptive retrieval and delegates final generation
+to the shared LangChain runner; it is not a single-plan adapter. This is a
 small seam, not a plugin registry, and introduces no framework dependency into
 Evidence, card contracts, or React components. It uses the shared `gate` from
 `@rgux/contracts`, following the merged output-gate PR
@@ -157,14 +159,35 @@ Native SDK remains the default until a comparison justifies changing it. It
 currently needs one generation call and ordinary TypeScript control flow;
 the LangChain adapter is an alternative implementation for experiments.
 
-## Next tasks and comparison plan
+## Run the bounded graph
 
-GitHub issues are the task source of truth. The next steps are:
+```bash
+pnpm framework:graph
+pnpm framework:graph --live  # explicit provider calls; maximum 12 attempts
+```
+
+F3 adds a separate strategy experiment: initial retrieval, structured coverage
+check, at most one query rewrite and supplemental retrieval, then generation
+or an explicit incomplete/error result. The offline command exercises three
+paths with controlled omissions and synthetic model replies. It requires no
+key or network. See [F3-LANGGRAPH.md](F3-LANGGRAPH.md) for implemented boundaries,
+complete execution and failure traces, budgets, and limitations.
+
+Graph `inputs.json` contains the selected questions, with adaptive evidence
+saved in each record's snapshots; `fixedInputsSha256` is `null`. Graph records
+contain all control and generation calls, offered evidence IDs, tool/model
+counts, node timings and stop reasons. No F2 paired-comparison score is emitted.
+A graph error returns no result; insufficient or conflicting evidence uses the
+existing incomplete response contract.
+
+## Task status and comparison plan
+
+GitHub issues are the task source of truth. F1–F3 integration is implemented; full effectiveness evaluation remains open:
 
 | Order | Task | What to hold fixed / inspect |
 | --- | --- | --- |
-| F2 | [#80 LangChain](https://github.com/yuki-uix/rag-generative-ui-explorer/issues/80) | Same questions, evidence order, prompt, schema, model, endpoint, budget and validator; record actual request differences |
-| F3 | [#81 LangGraph](https://github.com/yuki-uix/rag-generative-ui-explorer/issues/81) | Separate strategy experiment: at most one additional retrieval, visible branch and stopping reason; account for the additional calls |
+| F2 implemented | [#80 LangChain](https://github.com/yuki-uix/rag-generative-ui-explorer/issues/80) | Same questions, evidence order, prompt, schema, model, endpoint, budget and validator; record actual request differences |
+| F3 implemented | [#81 LangGraph](https://github.com/yuki-uix/rag-generative-ui-explorer/issues/81) | Separate strategy experiment: at most one additional retrieval, visible branch and stopping reason; account for the additional calls |
 | F5 | [#83 Findings](https://github.com/yuki-uix/rag-generative-ui-explorer/issues/83) | Follow PROTOCOL, include failures, costs, negative results and framework-specific maintenance work |
 | Optional F4 | [#82 Checkpoints](https://github.com/yuki-uix/rag-generative-ui-explorer/issues/82) | Resume after restart; explain the boundary with business RunStore, not a prerequisite for F5 |
 

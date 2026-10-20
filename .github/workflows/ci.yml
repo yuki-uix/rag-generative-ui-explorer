@@ -54,6 +54,8 @@ jobs:
       - run: pnpm framework:smoke
       # Same frozen retrieval set, real LangChain adapter, synthetic transport.
       - run: pnpm framework:compare
+      # Bounded graph: sufficient, one supplement, and still missing. Offline.
+      - run: pnpm framework:graph
       # Retrieval metrics are mechanical while no model sits in the pipeline, so
       # the whole 60-question set scores here for free. This is not a threshold
       # gate — no number has been argued for — it runs so the harness cannot

@@ -1,0 +1,25 @@
+{
+  "completedAt": "2026-10-20T07:06:44.494Z",
+  "samples": 3,
+  "failed": 3,
+  "actualModelRequests": 0,
+  "adapterRequests": 6,
+  "outcomes": [
+    {
+      "implementation": "langgraph",
+      "id": "rag-001",
+      "outcome": "error"
+    },
+    {
+      "implementation": "langgraph",
+      "id": "rag-003",
+      "outcome": "error"
+    },
+    {
+      "implementation": "langgraph",
+      "id": "ins-001",
+      "outcome": "error"
+    }
+  ],
+  "comparison": null
+}

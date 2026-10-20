@@ -7,6 +7,8 @@ import { resolveHandles } from '../planner/handles.js';
 import { planWithLangChain } from './langchain.js';
 import { fixtureCompletion, fixtureFetch, type Scenario } from './fixtures.js';
 import type { ExperimentInputs } from './inputs.js';
+import { recordingTransport, safeError, type RequestRecord } from './transport.js';
+export type { RequestRecord } from './transport.js';
 
 /** F2 replaces the adapter, keeping retrieval and validation outside it. */
 export interface ExperimentAdapter {
@@ -43,13 +45,6 @@ export async function prepareSamples(inputs: ExperimentInputs): Promise<Prepared
   return samples;
 }
 
-export interface RequestRecord {
-  url: string;
-  method: string;
-  body: unknown;
-  status: number | null;
-}
-
 const PlannerEnvelope = z.discriminatedUnion('incomplete', [
   z.strictObject({ cards: z.array(z.unknown()).min(1).max(4), incomplete: z.literal(false) }),
   z.strictObject({ cards: z.array(z.unknown()).max(4), incomplete: z.literal(true), incompleteReason: z.enum(['missing', 'conflicting']) }),
@@ -81,6 +76,7 @@ export async function runExperiment(
     mode: 'smoke' | 'live'; scenario: Scenario; adapter?: ExperimentAdapter;
     samples?: readonly PreparedSample[];
     budget?: { used: number; limit: number };
+    transport?: typeof globalThis.fetch;
   },
   onRecord?: (record: ExperimentRecord) => void,
 ): Promise<ExperimentRecord[]> {
@@ -105,35 +101,16 @@ export async function runExperiment(
       result: null, outcome: 'provider-error', error: null,
       timingMs: { retrieval: sample.retrievalMs, generation: 0, validation: 0, total: 0 },
     };
-    const transport = options.mode === 'smoke'
+    const transport = options.transport ?? (options.mode === 'smoke'
       ? fixtureFetch(fixtureCompletion(question, evidence, options.scenario), options.scenario)
-      : globalThis.fetch;
-    let budgetExceeded = false;
-    const fetch: typeof globalThis.fetch = async (url, init) => {
-      if (budget.used >= budget.limit) {
-        budgetExceeded = true;
-        throw Object.assign(new Error('Model call budget exhausted at transport boundary.'), { name: 'BudgetExceededError' });
-      }
-      budget.used++;
-      const endpoint = new URL(url instanceof Request ? url.url : String(url));
-      // Deliberately omit headers, URL credentials/query, and provider error messages.
-      endpoint.username = ''; endpoint.password = ''; endpoint.search = ''; endpoint.hash = '';
-      const body = typeof init?.body === 'string' ? init.body : url instanceof Request ? await url.clone().text() : null;
-      const request: RequestRecord = {
-        url: endpoint.toString(), method: init?.method ?? (url instanceof Request ? url.method : 'POST'),
-        body: body === null ? null : JSON.parse(body), status: null,
-      };
-      record.requests.push(request);
-      const response = await transport(url, init);
-      request.status = response.status;
-      return response;
-    };
+      : globalThis.fetch);
+    const wire = recordingTransport(budget, record.requests, transport);
     try {
       const plan = await adapter.plan({
         profile: inputs.profile, question: question.question, evidence, schema: inputs.schema,
         maxTokens: inputs.config.maxTokens, maxRetries: inputs.config.sdkMaxRetries, timeoutMs: inputs.config.timeoutMs,
         onDelta: (text) => { record.raw = (record.raw ?? '') + text; },
-        fetch,
+        fetch: wire.fetch,
         ...(options.mode === 'smoke' ? {
           apiKey: 'offline-fixture-key',
         } : {}),
@@ -151,11 +128,8 @@ export async function runExperiment(
     } catch (error) {
       // Provider messages can echo credentials or headers. Keep a stable type and HTTP
       // status, never serialise the Error or the SDK request object into an artifact.
-      record.error = {
-        name: error instanceof Error ? error.name : 'UnknownError',
-        status: error !== null && typeof error === 'object' && 'status' in error && typeof error.status === 'number' ? error.status : null,
-      };
-      record.outcome = budgetExceeded ? 'budget-exceeded'
+      record.error = safeError(error);
+      record.outcome = wire.exceeded() ? 'budget-exceeded'
         : record.requests.length > 0 || record.error.status !== null ? 'provider-error' : 'adapter-error';
     }
     record.timingMs.total = performance.now() - start + record.timingMs.retrieval;

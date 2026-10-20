@@ -12,7 +12,7 @@ import { requestExtras } from '../generate.js';
 
 export const ExperimentConfig = z.strictObject({
   version: z.string().min(1),
-  implementation: z.enum(['native', 'langchain', 'both']),
+  implementation: z.enum(['native', 'langchain', 'both', 'langgraph']),
   questionIds: z.array(z.string()).min(1).refine((ids) => new Set(ids).size === ids.length),
   profileId: z.string().min(1),
   k: z.number().int().positive(),
@@ -23,6 +23,18 @@ export const ExperimentConfig = z.strictObject({
   timeoutMs: z.number().int().positive(),
   repetitions: z.literal(1),
   repair: z.literal('disabled'),
+  graph: z.strictObject({
+    version: z.literal('bounded-retrieval-1'),
+    maxSupplementalRetrievals: z.literal(1),
+    maxModelCallsPerQuestion: z.number().int().min(1).max(4),
+    controlMaxTokens: z.number().int().positive(),
+    maxEvidence: z.number().int().positive(),
+    maxContextChars: z.number().int().positive(),
+  }).optional(),
+}).superRefine((config, ctx) => {
+  if (config.implementation === 'langgraph' && !config.graph) {
+    ctx.addIssue({ code: 'custom', message: 'langgraph requires a graph policy', path: ['graph'] });
+  }
 });
 export type ExperimentConfig = z.infer<typeof ExperimentConfig>;
 
@@ -92,6 +104,7 @@ export function loadExperiment(repoRoot: string, configPath: string, implementat
         langchain: {
           anthropic: version(require, '@langchain/anthropic'), core: version(require, '@langchain/core', '@langchain/core/messages'),
           sdk: version(langchainRequire, '@anthropic-ai/sdk'),
+          langgraph: version(require, '@langchain/langgraph'),
         },
         lockSha256: sha256(lock),
       },
