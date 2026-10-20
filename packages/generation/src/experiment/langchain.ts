@@ -17,8 +17,14 @@ export function explicitEnumTypes(node: unknown): unknown {
 }
 
 /** Only the invocation layer changes; parsing here never substitutes for gate(). */
-export async function planWithLangChain(options: PlanOptions): Promise<PlanRecord> {
-  const { profile, evidence, question, schema } = options;
+export interface LangChainJSONOptions extends PlanOptions {
+  system: string;
+  user: string;
+  promptVersion: string;
+}
+
+export async function invokeLangChainJSON(options: LangChainJSONOptions): Promise<PlanRecord> {
+  const { profile, schema } = options;
   const apiKey = options.apiKey ?? process.env[profile.apiKeyEnv];
   if (!apiKey) throw new Error(`${profile.apiKeyEnv} is not set; profile ${profile.id} cannot run.`);
   const model = new ChatAnthropic({
@@ -40,8 +46,8 @@ export async function planWithLangChain(options: PlanOptions): Promise<PlanRecor
   });
   const started = performance.now();
   const response = await structured.invoke([
-    new SystemMessage(plannerSystemPrompt(schemaBelongsInPrompt(profile) ? schema : undefined)),
-    new HumanMessage(plannerUserPrompt(question, evidence)),
+    new SystemMessage(options.system),
+    new HumanMessage(options.user),
   ], {
     ...(options.timeoutMs === undefined ? {} : { signal: AbortSignal.timeout(options.timeoutMs) }),
     callbacks: [{ handleLLMNewToken: (text: string) => { options.onDelta?.(text); } }],
@@ -63,7 +69,7 @@ export async function planWithLangChain(options: PlanOptions): Promise<PlanRecor
   const actualModel = additional['model'] ?? metadata['model'];
   return {
     profileId: profile.id, model: typeof actualModel === 'string' ? actualModel : profile.model,
-    promptVersion: PLANNER_PROMPT_VERSION,
+    promptVersion: options.promptVersion,
     // Requesting JSON Schema is not evidence that this endpoint enforces it.
     schemaEnforced: profile.enforcesOutputSchema,
     raw: raw.text,
@@ -79,4 +85,12 @@ export async function planWithLangChain(options: PlanOptions): Promise<PlanRecor
       parserSucceeded: response.parsed !== null, parsed: response.parsed,
     },
   };
+}
+
+export function planWithLangChain(options: PlanOptions): Promise<PlanRecord> {
+  return invokeLangChainJSON({
+    ...options, promptVersion: PLANNER_PROMPT_VERSION,
+    system: plannerSystemPrompt(schemaBelongsInPrompt(options.profile) ? options.schema : undefined),
+    user: plannerUserPrompt(options.question, options.evidence),
+  });
 }

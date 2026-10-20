@@ -1,0 +1,21 @@
+{
+  "version": "framework-graph-1",
+  "implementation": "langgraph",
+  "questionIds": ["rag-001", "rag-003", "ins-001"],
+  "profileId": "deepseek-v4-pro",
+  "k": 4,
+  "maxTokens": 4096,
+  "maxModelCalls": 12,
+  "sdkMaxRetries": 0,
+  "timeoutMs": 60000,
+  "repetitions": 1,
+  "repair": "disabled",
+  "graph": {
+    "version": "bounded-retrieval-1",
+    "maxSupplementalRetrievals": 1,
+    "maxModelCallsPerQuestion": 4,
+    "controlMaxTokens": 2048,
+    "maxEvidence": 12,
+    "maxContextChars": 12000
+  }
+}

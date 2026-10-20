@@ -1,0 +1,114 @@
+{
+  "version": "framework-run-2",
+  "runId": "2026-10-20T07-07-43-341Z-d5224ec1-e71f-4fd9-85d7-b034fa6687b0",
+  "startedAt": "2026-10-20T07:07:43.341Z",
+  "mode": "smoke",
+  "scenario": "demo",
+  "implementations": [
+    "langgraph"
+  ],
+  "purpose": "Integration smoke test; not an effectiveness evaluation.",
+  "pins": {
+    "config": {
+      "version": "framework-graph-1",
+      "implementation": "langgraph",
+      "questionIds": [
+        "rag-001",
+        "rag-003",
+        "ins-001"
+      ],
+      "profileId": "deepseek-v4-pro",
+      "k": 4,
+      "maxTokens": 4096,
+      "maxModelCalls": 12,
+      "sdkMaxRetries": 0,
+      "timeoutMs": 60000,
+      "repetitions": 1,
+      "repair": "disabled",
+      "graph": {
+        "version": "bounded-retrieval-1",
+        "maxSupplementalRetrievals": 1,
+        "maxModelCallsPerQuestion": 4,
+        "controlMaxTokens": 2048,
+        "maxEvidence": 12,
+        "maxContextChars": 12000
+      }
+    },
+    "code": {
+      "commit": "53da7a7c3b8d6663818c87a372846af9ba8b6290",
+      "dirty": true,
+      "treeSha256": "24eda2399a2a6c0caa28d415c77dc71739e26c9fe8d89ee0247b43113c1e44c0"
+    },
+    "runtime": {
+      "node": "v23.7.0",
+      "sdk": {
+        "name": "@anthropic-ai/sdk",
+        "version": "0.72.1"
+      },
+      "langchain": {
+        "anthropic": "1.5.12",
+        "core": "1.2.18",
+        "sdk": "0.122.0",
+        "langgraph": "1.5.1"
+      },
+      "lockSha256": "13581f4d959e1baeda6ee6344f3af840c87317ee1d7622291bb3799923c411d7"
+    },
+    "corpus": {
+      "version": "corpus-3e4863076378",
+      "chunking": {
+        "boundary": "h2-section",
+        "maxChunkChars": 1200
+      },
+      "indexSha256": "28d213e2b389831ec9124ae0929015cbdcd2224373c013120db7d7491dd25cf3"
+    },
+    "retrieval": {
+      "implementation": "BM25Retriever",
+      "k": 4,
+      "k1": 1.2,
+      "b": 0.75,
+      "reranking": false
+    },
+    "questionSet": {
+      "sha256": "64b1e9a8d17a263f706c2783282157098c59bbf84ef03bb5168dbe19e6d41cc4",
+      "header": {
+        "corpusVersion": "corpus-3e4863076378",
+        "chunking": {
+          "boundary": "h2-section",
+          "maxChunkChars": 1200
+        },
+        "questionCount": 60,
+        "labelledBy": "yuki-uix",
+        "labelledOn": "2026-08-30"
+      },
+      "selectedIds": [
+        "rag-001",
+        "rag-003",
+        "ins-001"
+      ]
+    },
+    "model": {
+      "id": "deepseek-v4-pro",
+      "model": "deepseek-v4-pro",
+      "baseURL": "https://api.deepseek.com/anthropic",
+      "apiKeyEnv": "DEEPSEEK_API_KEY",
+      "supportsThinking": false,
+      "supportsEffort": false,
+      "enforcesOutputSchema": false,
+      "endpoint": "https://api.deepseek.com/anthropic",
+      "requestExtras": {}
+    },
+    "promptVersion": "card-planner-1",
+    "schemaSha256": "81d854da0c7d942238a64aecac6805ce9e64c69b2323083aee4e4b180bb7f13a"
+  },
+  "fixtureVersion": "bounded-graph-fixture-1",
+  "graph": {
+    "coverageVersion": "evidence-coverage-1",
+    "rewriteVersion": "evidence-rewrite-1",
+    "coverageSchemaSha256": "4d3728c95afbcbe48c9ea93a36ffa77adb394b8eb88af4361f43a27228f36ba6",
+    "rewriteSchemaSha256": "6ed8ac47ea402df387045b14b9d7bb50352caf31e9f8805feb758073775a13da",
+    "evidencePolicy": "append in retrieval rank order, deduplicate by ID, keep within pinned count and user-context caps"
+  },
+  "fixedInputsSha256": null,
+  "plannedModelRequests": 0,
+  "usageNote": "Synthetic token counts; latency measures local plumbing only."
+}
