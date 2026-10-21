@@ -24,3 +24,9 @@ observations. The final freeze binds the corrected code.
 
 These are setup failures, not retrieval failure cases. Retrieval failures and
 no-gain cases are reported separately from complete original rankings.
+
+Post-run Linux replay verification found one-ULP BM25 differences between
+Linux x64/Node 22 and macOS arm64/Node 23.7 (0.7846298054163152 versus
+0.7846298054163151). The test now requires exact ranking IDs and metrics and
+checks scores within `1e-12 * max(1, abs(original))`. Frozen scoring code, input
+bytes and original observations remain unchanged; model runs were not repeated.

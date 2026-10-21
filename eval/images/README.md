@@ -22,7 +22,10 @@ checks frozen inputs/code and the sealed observation hashes, recomputes rankings
 and writes `records.jsonl`, `summary.json`, `report.md`. It needs no model,
 Apple Vision, API key or network. Search and index timings are measured afresh
 by each replay; saved OCR/CLIP timings belong to the original extraction/encoding
-run. Compare rankings and metric values, not byte-identical wall-clock timings.
+run. Image-ID order and metric values must match exactly. BM25 score last bits can
+differ between Linux x64 and macOS arm64 math runtimes; tests require scores
+within `1e-12 * max(1, abs(original))`, while rejecting any ranking/metric drift.
+Wall-clock timings are not byte-identical.
 CI performs this replay on Linux. Original observations are never overwritten.
 
 ## Make new local observations explicitly

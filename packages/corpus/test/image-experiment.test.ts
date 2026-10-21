@@ -70,7 +70,15 @@ it('replays every original ranking/metric offline with the sealed observations',
     expect(run.status,run.stderr).toBe(0);
     const rows=(path:string)=>readFileSync(path,'utf8').trim().split('\n').map(line=>{const {searchMs,...row}=JSON.parse(line);return row;});
     const original=rows(join(root,'results/2026-10-21/records.jsonl'));
-    expect(rows(join(output,'records.jsonl'))).toEqual(original);
+    const replayed=rows(join(output,'records.jsonl'));
+    // libm/V8 on Linux x64 vs macOS arm64 can differ by one ULP in BM25.
+    // IDs, order, metrics and all other observations must still match exactly.
+    const withoutScores=(records:typeof original)=>records.map(row=>({...row,ranking:row.ranking.map((item:{evidenceId:string})=>item.evidenceId)}));
+    expect(withoutScores(replayed)).toEqual(withoutScores(original));
+    for(const [index,row] of replayed.entries()) for(const [rank,item] of row.ranking.entries()) {
+      const expected=original[index].ranking[rank].score;
+      expect(Math.abs(item.score-expected)).toBeLessThanOrEqual(1e-12*Math.max(1,Math.abs(expected)));
+    }
     expect(original).toHaveLength(468);
   } finally {rmSync(output,{recursive:true,force:true});}
 },20000);

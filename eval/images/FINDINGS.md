@@ -178,7 +178,11 @@ Replay verifies frozen source/image/query/code hashes, observation-file hashes,
 the exact published q8 weight identities, complete OCR/embedding coverage and
 unit-vector dimensions, then recomputes all rankings and metrics. It downloads
 nothing and needs neither macOS OCR nor credentials. Replayed search timings are
-new observations; original timing files stay immutable. See the [README](README.md)
+new observations; original timing files stay immutable. Linux CI exposed one-ULP differences in
+BM25 scores (for example 0.7846298054163152 versus 0.7846298054163151). Replay
+tests require exact image-ID order and exact metrics, with a `1e-12` relative
+score tolerance and absolute floor of `1e-12`. No scoring algorithm or original
+observation was changed to accommodate this runtime difference. See the [README](README.md)
 for explicit commands that create fresh local OCR/encoding observations.
 
 Retain both paired text and OCR for further experiments. OCR was better at exact
