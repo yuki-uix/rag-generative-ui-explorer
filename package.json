@@ -38,7 +38,8 @@
     "framework:live": "pnpm --filter @rgux/generation run framework:run --live",
     "framework:compare": "pnpm --filter @rgux/generation run framework:run --config eval/framework/comparison.json",
     "framework:graph": "pnpm --filter @rgux/generation run framework:run --config eval/framework/graph.json",
-    "framework:study": "pnpm --filter @rgux/generation run framework:study"
+    "framework:study": "pnpm --filter @rgux/generation run framework:study",
+    "framework:audit": "pnpm --filter @rgux/generation run framework:audit"
   },
   "devDependencies": {
     "typescript": "^7.0.2"

@@ -15,7 +15,8 @@
     "metrics:arms": "tsx scripts/arms.ts",
     "plan:run": "tsx scripts/plan.ts",
     "framework:run": "node --import tsx scripts/experiment.ts",
-    "framework:study": "node --import tsx scripts/study.ts"
+    "framework:study": "node --import tsx scripts/study.ts",
+    "framework:audit": "node --import tsx scripts/review-study.ts"
   },
   "dependencies": {
     "@anthropic-ai/sdk": "^0.72.0",

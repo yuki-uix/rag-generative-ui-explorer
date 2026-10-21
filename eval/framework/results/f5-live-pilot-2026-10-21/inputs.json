@@ -1,0 +1,41 @@
+[
+  {
+    "id": "rag-001",
+    "question": "What is retrieval-augmented generation?",
+    "domain": "rag",
+    "expectedCardTypes": [
+      "definition"
+    ],
+    "goldenEvidenceIds": [
+      "rag/rag-motivation#body#0-a74c2bc6",
+      "rag/rag-motivation#the-distinction-the-paper-draws#0-8850bcf8",
+      "rag/rag-motivation#the-architecture#0-974b7d0e"
+    ],
+    "expectInsufficient": false
+  },
+  {
+    "id": "rag-003",
+    "question": "How does sparse retrieval differ from dense retrieval?",
+    "domain": "rag",
+    "expectedCardTypes": [
+      "comparison"
+    ],
+    "goldenEvidenceIds": [
+      "rag/sparse-retrieval#why-it-survives#0-ab8549d1",
+      "rag/sparse-retrieval#where-it-fails#0-e2e9969a",
+      "rag/dense-retrieval#where-it-fails#0-cd5a43de",
+      "rag/dense-retrieval#the-dual-encoder#0-37fa4383"
+    ],
+    "expectInsufficient": false
+  },
+  {
+    "id": "ins-001",
+    "question": "Which vector database should I use in production, and what does each cost?",
+    "domain": "rag",
+    "expectedCardTypes": [
+      "evidence"
+    ],
+    "goldenEvidenceIds": [],
+    "expectInsufficient": true
+  }
+]

@@ -1,9 +1,10 @@
 # F5: framework comparison pilot
 
 First deliverable for [#83](https://github.com/yuki-uix/rag-generative-ui-explorer/issues/83),
-2026-10-21. **This is an offline integration report. F5 remains open.**
-No F5 live model calls, semantic support review, monetary-cost measurement,
-or adoption-effectiveness evaluation have been performed.
+2026-10-21. The original offline integration report is retained below.
+The subsequent [repeated live pilot](F5-LIVE-PILOT.md) adds 44 real requests,
+field-level AI semantic judgments and observed billing. **F5 remains open**
+for the full 60-question effectiveness evaluation.
 
 ## Reproduce and inspect
 
@@ -118,7 +119,9 @@ does not equate this with browser render latency or TTFC. Token usage comes
 from all actual control/generation responses and retains uncached input, cache
 writes, cache reads and output separately. A missing usage value, including a
 failed request with no usage, makes that total unknown; it is never replaced by
-zero. Monetary cost is `null` until published rates and their version are pinned.
+zero. The original runtime summary leaves monetary cost `null`. The live extension
+pins published rates and adds a separate, offline-reproducible audit without
+rewriting that original summary.
 
 ## Observed pilot and failures
 
@@ -161,5 +164,6 @@ common message/structured-output interface; LangGraph makes the bounded branch
 and state visible. Corpus trust, context selection, budgets, safe diagnostics,
 business validation and reporting still require repository code. Keep the
 frameworks as experiments until repeated live runs and semantic review justify
-adoption. The full live run, reviewed support judgments, pinned pricing and
-final effectiveness decision remain open under #83.
+adoption. The [small repeated live pilot](F5-LIVE-PILOT.md) now provides exploratory AI
+support judgments and pinned pricing. The full 60-question run, independent
+semantic assessment and final effectiveness decision remain open under #83.

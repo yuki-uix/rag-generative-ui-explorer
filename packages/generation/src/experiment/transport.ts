@@ -1,5 +1,9 @@
 export interface CallBudget { used: number; limit: number }
-export interface RequestRecord { url: string; method: string; body: unknown; status: number | null }
+export interface RequestRecord {
+  url: string; method: string; body: unknown; status: number | null;
+  /** Optional for historical records. Used to identify the applicable billing window. */
+  startedAt?: string | undefined; completedAt?: string | undefined;
+}
 
 /** Count every actual HTTP attempt; never retain authentication headers. */
 export function recordingTransport(budget: CallBudget, requests: RequestRecord[], transport: typeof globalThis.fetch) {
@@ -15,12 +19,18 @@ export function recordingTransport(budget: CallBudget, requests: RequestRecord[]
     const body = typeof init?.body === 'string' ? init.body : url instanceof Request ? await url.clone().text() : null;
     const request: RequestRecord = {
       url: endpoint.toString(), method: init?.method ?? (url instanceof Request ? url.method : 'POST'),
-      body: body === null ? null : JSON.parse(body), status: null,
+      body: body === null ? null : JSON.parse(body), status: null, startedAt: new Date().toISOString(),
     };
     requests.push(request);
-    const response = await transport(url, init);
-    request.status = response.status;
-    return response;
+    try {
+      const response = await transport(url, init);
+      request.status = response.status;
+      return response;
+    } finally {
+      // fetch returns at response headers; stream completion is recorded on the
+      // surrounding model call. This is not the end of token generation.
+      request.completedAt = new Date().toISOString();
+    }
   };
   return { fetch, exceeded: () => exceeded };
 }

@@ -1,0 +1,1187 @@
+{
+  "version": "framework-study-report-1",
+  "mode": "live",
+  "purpose": "pilot",
+  "evidenceLevel": "live-pilot-only",
+  "questionCount": 3,
+  "repetitions": 3,
+  "questionSetIsBlind": false,
+  "finalK": 4,
+  "maxUserContextChars": 12000,
+  "semanticSupport": {
+    "method": "not-reviewed",
+    "citationPrecision": null,
+    "unsupportedClaimRate": null
+  },
+  "pricing": {
+    "status": "not-configured",
+    "monetaryCost": null
+  },
+  "failed": 4,
+  "arms": [
+    {
+      "arm": "native",
+      "n": 9,
+      "repetitions": [
+        {
+          "repetition": 1,
+          "n": 3,
+          "usableResultRate": 0.6666666666666666,
+          "firstAttemptCardValidity": 1,
+          "generatedN": 3,
+          "completedGenerationN": 2,
+          "evidenceReferenceFailureN": 0,
+          "executionMs": {
+            "n": 3,
+            "median": 23912.587084,
+            "min": 2393.209957999992,
+            "max": 41231.285082999995
+          },
+          "usage": {
+            "inputTokens": 1472,
+            "outputTokens": 6416,
+            "cacheCreationInputTokens": 0,
+            "cacheReadInputTokens": 4864
+          },
+          "missingEvidenceAccuracy": 0.6666666666666666,
+          "finalContextRecallAtK": 0.16666666666666666,
+          "recallN": 2
+        },
+        {
+          "repetition": 2,
+          "n": 3,
+          "usableResultRate": 1,
+          "firstAttemptCardValidity": 1,
+          "generatedN": 3,
+          "completedGenerationN": 3,
+          "evidenceReferenceFailureN": 0,
+          "executionMs": {
+            "n": 3,
+            "median": 27262.540791999956,
+            "min": 1681.2979160000104,
+            "max": 29067.09858400002
+          },
+          "usage": {
+            "inputTokens": 192,
+            "outputTokens": 5321,
+            "cacheCreationInputTokens": 0,
+            "cacheReadInputTokens": 6144
+          },
+          "missingEvidenceAccuracy": 1,
+          "finalContextRecallAtK": 0.16666666666666666,
+          "recallN": 2
+        },
+        {
+          "repetition": 3,
+          "n": 3,
+          "usableResultRate": 1,
+          "firstAttemptCardValidity": 1,
+          "generatedN": 3,
+          "completedGenerationN": 3,
+          "evidenceReferenceFailureN": 0,
+          "executionMs": {
+            "n": 3,
+            "median": 20936.195000000007,
+            "min": 2042.4132499999832,
+            "max": 37145.41287500004
+          },
+          "usage": {
+            "inputTokens": 192,
+            "outputTokens": 5719,
+            "cacheCreationInputTokens": 0,
+            "cacheReadInputTokens": 6144
+          },
+          "missingEvidenceAccuracy": 1,
+          "finalContextRecallAtK": 0.16666666666666666,
+          "recallN": 2
+        }
+      ],
+      "dispersion": {
+        "usableResultRate": {
+          "n": 3,
+          "median": 1,
+          "min": 0.6666666666666666,
+          "max": 1
+        },
+        "firstAttemptCardValidity": {
+          "n": 3,
+          "median": 1,
+          "min": 1,
+          "max": 1
+        },
+        "missingEvidenceAccuracy": {
+          "n": 3,
+          "median": 1,
+          "min": 0.6666666666666666,
+          "max": 1
+        },
+        "finalContextRecallAtK": {
+          "n": 3,
+          "median": 0.16666666666666666,
+          "min": 0.16666666666666666,
+          "max": 0.16666666666666666
+        }
+      },
+      "executionMs": {
+        "n": 9,
+        "median": 23912.587084,
+        "min": 1681.2979160000104,
+        "max": 41231.285082999995
+      },
+      "requests": 9,
+      "usage": {
+        "inputTokens": 1856,
+        "outputTokens": 17456,
+        "cacheCreationInputTokens": 0,
+        "cacheReadInputTokens": 17152
+      },
+      "monetaryCost": null,
+      "outcomes": {
+        "valid": 5,
+        "truncated": 1,
+        "incomplete": 3
+      },
+      "cells": [
+        {
+          "cell": "rag/definition",
+          "n": 3,
+          "repetitions": [
+            {
+              "repetition": 1,
+              "n": 1,
+              "usableResultRate": 1
+            },
+            {
+              "repetition": 2,
+              "n": 1,
+              "usableResultRate": 1
+            },
+            {
+              "repetition": 3,
+              "n": 1,
+              "usableResultRate": 1
+            }
+          ],
+          "usableResultRate": {
+            "n": 3,
+            "median": 1,
+            "min": 1,
+            "max": 1
+          }
+        },
+        {
+          "cell": "rag/comparison",
+          "n": 3,
+          "repetitions": [
+            {
+              "repetition": 1,
+              "n": 1,
+              "usableResultRate": 0
+            },
+            {
+              "repetition": 2,
+              "n": 1,
+              "usableResultRate": 1
+            },
+            {
+              "repetition": 3,
+              "n": 1,
+              "usableResultRate": 1
+            }
+          ],
+          "usableResultRate": {
+            "n": 3,
+            "median": 1,
+            "min": 0,
+            "max": 1
+          }
+        },
+        {
+          "cell": "rag/evidence",
+          "n": 3,
+          "repetitions": [
+            {
+              "repetition": 1,
+              "n": 1,
+              "usableResultRate": 1
+            },
+            {
+              "repetition": 2,
+              "n": 1,
+              "usableResultRate": 1
+            },
+            {
+              "repetition": 3,
+              "n": 1,
+              "usableResultRate": 1
+            }
+          ],
+          "usableResultRate": {
+            "n": 3,
+            "median": 1,
+            "min": 1,
+            "max": 1
+          }
+        }
+      ]
+    },
+    {
+      "arm": "langchain",
+      "n": 9,
+      "repetitions": [
+        {
+          "repetition": 1,
+          "n": 3,
+          "usableResultRate": 0.6666666666666666,
+          "firstAttemptCardValidity": 1,
+          "generatedN": 3,
+          "completedGenerationN": 2,
+          "evidenceReferenceFailureN": 0,
+          "executionMs": {
+            "n": 3,
+            "median": 19641.646042,
+            "min": 2262.2618749999965,
+            "max": 41880.78924999999
+          },
+          "usage": {
+            "inputTokens": 832,
+            "outputTokens": 5971,
+            "cacheCreationInputTokens": 0,
+            "cacheReadInputTokens": 5504
+          },
+          "missingEvidenceAccuracy": 0.6666666666666666,
+          "finalContextRecallAtK": 0.16666666666666666,
+          "recallN": 2
+        },
+        {
+          "repetition": 2,
+          "n": 3,
+          "usableResultRate": 1,
+          "firstAttemptCardValidity": 1,
+          "generatedN": 3,
+          "completedGenerationN": 3,
+          "evidenceReferenceFailureN": 0,
+          "executionMs": {
+            "n": 3,
+            "median": 23393.447625,
+            "min": 2087.9094589999877,
+            "max": 39384.72525000002
+          },
+          "usage": {
+            "inputTokens": 192,
+            "outputTokens": 6298,
+            "cacheCreationInputTokens": 0,
+            "cacheReadInputTokens": 6144
+          },
+          "missingEvidenceAccuracy": 1,
+          "finalContextRecallAtK": 0.16666666666666666,
+          "recallN": 2
+        },
+        {
+          "repetition": 3,
+          "n": 3,
+          "usableResultRate": 1,
+          "firstAttemptCardValidity": 1,
+          "generatedN": 3,
+          "completedGenerationN": 3,
+          "evidenceReferenceFailureN": 0,
+          "executionMs": {
+            "n": 3,
+            "median": 15715.989416000026,
+            "min": 2394.9790000000503,
+            "max": 31818.82829199999
+          },
+          "usage": {
+            "inputTokens": 192,
+            "outputTokens": 4683,
+            "cacheCreationInputTokens": 0,
+            "cacheReadInputTokens": 6144
+          },
+          "missingEvidenceAccuracy": 1,
+          "finalContextRecallAtK": 0.16666666666666666,
+          "recallN": 2
+        }
+      ],
+      "dispersion": {
+        "usableResultRate": {
+          "n": 3,
+          "median": 1,
+          "min": 0.6666666666666666,
+          "max": 1
+        },
+        "firstAttemptCardValidity": {
+          "n": 3,
+          "median": 1,
+          "min": 1,
+          "max": 1
+        },
+        "missingEvidenceAccuracy": {
+          "n": 3,
+          "median": 1,
+          "min": 0.6666666666666666,
+          "max": 1
+        },
+        "finalContextRecallAtK": {
+          "n": 3,
+          "median": 0.16666666666666666,
+          "min": 0.16666666666666666,
+          "max": 0.16666666666666666
+        }
+      },
+      "executionMs": {
+        "n": 9,
+        "median": 19641.646042,
+        "min": 2087.9094589999877,
+        "max": 41880.78924999999
+      },
+      "requests": 9,
+      "usage": {
+        "inputTokens": 1216,
+        "outputTokens": 16952,
+        "cacheCreationInputTokens": 0,
+        "cacheReadInputTokens": 17792
+      },
+      "monetaryCost": null,
+      "outcomes": {
+        "valid": 5,
+        "truncated": 1,
+        "incomplete": 3
+      },
+      "cells": [
+        {
+          "cell": "rag/definition",
+          "n": 3,
+          "repetitions": [
+            {
+              "repetition": 1,
+              "n": 1,
+              "usableResultRate": 1
+            },
+            {
+              "repetition": 2,
+              "n": 1,
+              "usableResultRate": 1
+            },
+            {
+              "repetition": 3,
+              "n": 1,
+              "usableResultRate": 1
+            }
+          ],
+          "usableResultRate": {
+            "n": 3,
+            "median": 1,
+            "min": 1,
+            "max": 1
+          }
+        },
+        {
+          "cell": "rag/comparison",
+          "n": 3,
+          "repetitions": [
+            {
+              "repetition": 1,
+              "n": 1,
+              "usableResultRate": 0
+            },
+            {
+              "repetition": 2,
+              "n": 1,
+              "usableResultRate": 1
+            },
+            {
+              "repetition": 3,
+              "n": 1,
+              "usableResultRate": 1
+            }
+          ],
+          "usableResultRate": {
+            "n": 3,
+            "median": 1,
+            "min": 0,
+            "max": 1
+          }
+        },
+        {
+          "cell": "rag/evidence",
+          "n": 3,
+          "repetitions": [
+            {
+              "repetition": 1,
+              "n": 1,
+              "usableResultRate": 1
+            },
+            {
+              "repetition": 2,
+              "n": 1,
+              "usableResultRate": 1
+            },
+            {
+              "repetition": 3,
+              "n": 1,
+              "usableResultRate": 1
+            }
+          ],
+          "usableResultRate": {
+            "n": 3,
+            "median": 1,
+            "min": 1,
+            "max": 1
+          }
+        }
+      ]
+    },
+    {
+      "arm": "langgraph",
+      "n": 9,
+      "repetitions": [
+        {
+          "repetition": 1,
+          "n": 3,
+          "usableResultRate": 1,
+          "firstAttemptCardValidity": 1,
+          "generatedN": 1,
+          "completedGenerationN": 1,
+          "evidenceReferenceFailureN": 0,
+          "executionMs": {
+            "n": 3,
+            "median": 34984.39937500001,
+            "min": 25562.617874999996,
+            "max": 35447.239875
+          },
+          "usage": {
+            "inputTokens": 5828,
+            "outputTokens": 8335,
+            "cacheCreationInputTokens": 0,
+            "cacheReadInputTokens": 2816
+          },
+          "missingEvidenceAccuracy": 0.6666666666666666,
+          "finalContextRecallAtK": 0.29166666666666663,
+          "recallN": 2
+        },
+        {
+          "repetition": 2,
+          "n": 3,
+          "usableResultRate": 1,
+          "firstAttemptCardValidity": 1,
+          "generatedN": 2,
+          "completedGenerationN": 2,
+          "evidenceReferenceFailureN": 0,
+          "executionMs": {
+            "n": 3,
+            "median": 21709.999083000002,
+            "min": 18612.129583,
+            "max": 72046.10058299999
+          },
+          "usage": {
+            "inputTokens": 3231,
+            "outputTokens": 10122,
+            "cacheCreationInputTokens": 0,
+            "cacheReadInputTokens": 7808
+          },
+          "missingEvidenceAccuracy": 1,
+          "finalContextRecallAtK": 0.29166666666666663,
+          "recallN": 2
+        },
+        {
+          "repetition": 3,
+          "n": 3,
+          "usableResultRate": 0.3333333333333333,
+          "firstAttemptCardValidity": 0,
+          "generatedN": 2,
+          "completedGenerationN": 2,
+          "evidenceReferenceFailureN": 0,
+          "executionMs": {
+            "n": 3,
+            "median": 36099.673291000014,
+            "min": 19607.443333999952,
+            "max": 67428.92970900005
+          },
+          "usage": {
+            "inputTokens": 1745,
+            "outputTokens": 11486,
+            "cacheCreationInputTokens": 0,
+            "cacheReadInputTokens": 8832
+          },
+          "missingEvidenceAccuracy": 0.3333333333333333,
+          "finalContextRecallAtK": 0.29166666666666663,
+          "recallN": 2
+        }
+      ],
+      "dispersion": {
+        "usableResultRate": {
+          "n": 3,
+          "median": 1,
+          "min": 0.3333333333333333,
+          "max": 1
+        },
+        "firstAttemptCardValidity": {
+          "n": 3,
+          "median": 1,
+          "min": 0,
+          "max": 1
+        },
+        "missingEvidenceAccuracy": {
+          "n": 3,
+          "median": 0.6666666666666666,
+          "min": 0.3333333333333333,
+          "max": 1
+        },
+        "finalContextRecallAtK": {
+          "n": 3,
+          "median": 0.29166666666666663,
+          "min": 0.29166666666666663,
+          "max": 0.29166666666666663
+        }
+      },
+      "executionMs": {
+        "n": 9,
+        "median": 34984.39937500001,
+        "min": 18612.129583,
+        "max": 72046.10058299999
+      },
+      "requests": 26,
+      "usage": {
+        "inputTokens": 10804,
+        "outputTokens": 29943,
+        "cacheCreationInputTokens": 0,
+        "cacheReadInputTokens": 19456
+      },
+      "monetaryCost": null,
+      "outcomes": {
+        "valid": 3,
+        "incomplete": 4,
+        "error": 2
+      },
+      "cells": [
+        {
+          "cell": "rag/definition",
+          "n": 3,
+          "repetitions": [
+            {
+              "repetition": 1,
+              "n": 1,
+              "usableResultRate": 1
+            },
+            {
+              "repetition": 2,
+              "n": 1,
+              "usableResultRate": 1
+            },
+            {
+              "repetition": 3,
+              "n": 1,
+              "usableResultRate": 0
+            }
+          ],
+          "usableResultRate": {
+            "n": 3,
+            "median": 1,
+            "min": 0,
+            "max": 1
+          }
+        },
+        {
+          "cell": "rag/comparison",
+          "n": 3,
+          "repetitions": [
+            {
+              "repetition": 1,
+              "n": 1,
+              "usableResultRate": 1
+            },
+            {
+              "repetition": 2,
+              "n": 1,
+              "usableResultRate": 1
+            },
+            {
+              "repetition": 3,
+              "n": 1,
+              "usableResultRate": 0
+            }
+          ],
+          "usableResultRate": {
+            "n": 3,
+            "median": 1,
+            "min": 0,
+            "max": 1
+          }
+        },
+        {
+          "cell": "rag/evidence",
+          "n": 3,
+          "repetitions": [
+            {
+              "repetition": 1,
+              "n": 1,
+              "usableResultRate": 1
+            },
+            {
+              "repetition": 2,
+              "n": 1,
+              "usableResultRate": 1
+            },
+            {
+              "repetition": 3,
+              "n": 1,
+              "usableResultRate": 1
+            }
+          ],
+          "usableResultRate": {
+            "n": 3,
+            "median": 1,
+            "min": 1,
+            "max": 1
+          }
+        }
+      ]
+    }
+  ],
+  "paired": [
+    {
+      "repetition": 1,
+      "pairs": [
+        {
+          "questionId": "rag-001",
+          "sameEvidence": true,
+          "samePrompt": true,
+          "sameModelSettings": true,
+          "requestBodyDifferences": [
+            "output_config"
+          ],
+          "native": {
+            "outcome": "valid",
+            "latencyMs": 23907.504582999998,
+            "usage": {
+              "inputTokens": 654,
+              "outputTokens": 2204,
+              "cacheCreationInputTokens": 0,
+              "cacheReadInputTokens": 1408
+            }
+          },
+          "langchain": {
+            "outcome": "valid",
+            "latencyMs": 19640.52654199999,
+            "usage": {
+              "inputTokens": 14,
+              "outputTokens": 1759,
+              "cacheCreationInputTokens": 0,
+              "cacheReadInputTokens": 2048
+            }
+          }
+        },
+        {
+          "questionId": "rag-003",
+          "sameEvidence": true,
+          "samePrompt": true,
+          "sameModelSettings": true,
+          "requestBodyDifferences": [
+            "output_config"
+          ],
+          "native": {
+            "outcome": "truncated",
+            "latencyMs": 41230.58374999999,
+            "usage": {
+              "inputTokens": 50,
+              "outputTokens": 4096,
+              "cacheCreationInputTokens": 0,
+              "cacheReadInputTokens": 2048
+            }
+          },
+          "langchain": {
+            "outcome": "truncated",
+            "latencyMs": 41880.560625,
+            "usage": {
+              "inputTokens": 690,
+              "outputTokens": 4096,
+              "cacheCreationInputTokens": 0,
+              "cacheReadInputTokens": 1408
+            }
+          }
+        },
+        {
+          "questionId": "ins-001",
+          "sameEvidence": true,
+          "samePrompt": true,
+          "sameModelSettings": true,
+          "requestBodyDifferences": [
+            "output_config"
+          ],
+          "native": {
+            "outcome": "incomplete",
+            "latencyMs": 2391.5907510000106,
+            "usage": {
+              "inputTokens": 768,
+              "outputTokens": 116,
+              "cacheCreationInputTokens": 0,
+              "cacheReadInputTokens": 1408
+            }
+          },
+          "langchain": {
+            "outcome": "incomplete",
+            "latencyMs": 2261.220083000022,
+            "usage": {
+              "inputTokens": 128,
+              "outputTokens": 116,
+              "cacheCreationInputTokens": 0,
+              "cacheReadInputTokens": 2048
+            }
+          }
+        }
+      ]
+    },
+    {
+      "repetition": 2,
+      "pairs": [
+        {
+          "questionId": "rag-001",
+          "sameEvidence": true,
+          "samePrompt": true,
+          "sameModelSettings": true,
+          "requestBodyDifferences": [
+            "output_config"
+          ],
+          "native": {
+            "outcome": "valid",
+            "latencyMs": 27261.297374000074,
+            "usage": {
+              "inputTokens": 14,
+              "outputTokens": 2468,
+              "cacheCreationInputTokens": 0,
+              "cacheReadInputTokens": 2048
+            }
+          },
+          "langchain": {
+            "outcome": "valid",
+            "latencyMs": 23392.195126000006,
+            "usage": {
+              "inputTokens": 14,
+              "outputTokens": 2284,
+              "cacheCreationInputTokens": 0,
+              "cacheReadInputTokens": 2048
+            }
+          }
+        },
+        {
+          "questionId": "rag-003",
+          "sameEvidence": true,
+          "samePrompt": true,
+          "sameModelSettings": true,
+          "requestBodyDifferences": [
+            "output_config"
+          ],
+          "native": {
+            "outcome": "valid",
+            "latencyMs": 29065.87395800004,
+            "usage": {
+              "inputTokens": 50,
+              "outputTokens": 2754,
+              "cacheCreationInputTokens": 0,
+              "cacheReadInputTokens": 2048
+            }
+          },
+          "langchain": {
+            "outcome": "valid",
+            "latencyMs": 39382.81237599999,
+            "usage": {
+              "inputTokens": 50,
+              "outputTokens": 3907,
+              "cacheCreationInputTokens": 0,
+              "cacheReadInputTokens": 2048
+            }
+          }
+        },
+        {
+          "questionId": "ins-001",
+          "sameEvidence": true,
+          "samePrompt": true,
+          "sameModelSettings": true,
+          "requestBodyDifferences": [
+            "output_config"
+          ],
+          "native": {
+            "outcome": "incomplete",
+            "latencyMs": 1680.1952509999974,
+            "usage": {
+              "inputTokens": 128,
+              "outputTokens": 99,
+              "cacheCreationInputTokens": 0,
+              "cacheReadInputTokens": 2048
+            }
+          },
+          "langchain": {
+            "outcome": "incomplete",
+            "latencyMs": 2087.161165999947,
+            "usage": {
+              "inputTokens": 128,
+              "outputTokens": 107,
+              "cacheCreationInputTokens": 0,
+              "cacheReadInputTokens": 2048
+            }
+          }
+        }
+      ]
+    },
+    {
+      "repetition": 3,
+      "pairs": [
+        {
+          "questionId": "rag-001",
+          "sameEvidence": true,
+          "samePrompt": true,
+          "sameModelSettings": true,
+          "requestBodyDifferences": [
+            "output_config"
+          ],
+          "native": {
+            "outcome": "valid",
+            "latencyMs": 20935.55229199998,
+            "usage": {
+              "inputTokens": 14,
+              "outputTokens": 2040,
+              "cacheCreationInputTokens": 0,
+              "cacheReadInputTokens": 2048
+            }
+          },
+          "langchain": {
+            "outcome": "valid",
+            "latencyMs": 15715.085915999894,
+            "usage": {
+              "inputTokens": 14,
+              "outputTokens": 1523,
+              "cacheCreationInputTokens": 0,
+              "cacheReadInputTokens": 2048
+            }
+          }
+        },
+        {
+          "questionId": "rag-003",
+          "sameEvidence": true,
+          "samePrompt": true,
+          "sameModelSettings": true,
+          "requestBodyDifferences": [
+            "output_config"
+          ],
+          "native": {
+            "outcome": "valid",
+            "latencyMs": 37144.72475000017,
+            "usage": {
+              "inputTokens": 50,
+              "outputTokens": 3569,
+              "cacheCreationInputTokens": 0,
+              "cacheReadInputTokens": 2048
+            }
+          },
+          "langchain": {
+            "outcome": "valid",
+            "latencyMs": 31817.91304100002,
+            "usage": {
+              "inputTokens": 50,
+              "outputTokens": 3057,
+              "cacheCreationInputTokens": 0,
+              "cacheReadInputTokens": 2048
+            }
+          }
+        },
+        {
+          "questionId": "ins-001",
+          "sameEvidence": true,
+          "samePrompt": true,
+          "sameModelSettings": true,
+          "requestBodyDifferences": [
+            "output_config"
+          ],
+          "native": {
+            "outcome": "incomplete",
+            "latencyMs": 2041.4994989999104,
+            "usage": {
+              "inputTokens": 128,
+              "outputTokens": 110,
+              "cacheCreationInputTokens": 0,
+              "cacheReadInputTokens": 2048
+            }
+          },
+          "langchain": {
+            "outcome": "incomplete",
+            "latencyMs": 2393.5863329999847,
+            "usage": {
+              "inputTokens": 128,
+              "outputTokens": 103,
+              "cacheCreationInputTokens": 0,
+              "cacheReadInputTokens": 2048
+            }
+          }
+        }
+      ]
+    }
+  ],
+  "strategyPairs": [
+    {
+      "questionId": "rag-001",
+      "repetition": 1,
+      "baselineOutcome": "valid",
+      "graphOutcome": "valid",
+      "stopReason": "generation-valid",
+      "baselineFinalIds": [
+        "rag/rag-motivation#body#0-a74c2bc6",
+        "generative-ui/design-time-and-runtime-generation#what-partial-runtime-generation-buys#0-d4d9fa5f",
+        "generative-ui/design-time-and-runtime-generation#design-time-versus-runtime#0-3b6b66b7",
+        "intersection/ui-driven-retrieval#what-a-follow-up-must-not-break#0-5a9e41d8"
+      ],
+      "graphFinalIds": [
+        "rag/rag-motivation#body#0-a74c2bc6",
+        "generative-ui/design-time-and-runtime-generation#what-partial-runtime-generation-buys#0-d4d9fa5f",
+        "generative-ui/design-time-and-runtime-generation#design-time-versus-runtime#0-3b6b66b7",
+        "intersection/ui-driven-retrieval#what-a-follow-up-must-not-break#0-5a9e41d8"
+      ],
+      "cumulativeFound": 4,
+      "cumulativeRecall": 0.3333333333333333,
+      "baselineRecallAtK": 0.3333333333333333,
+      "graphRecallAtK": 0.3333333333333333,
+      "recallDelta": 0,
+      "additionalRequests": 1,
+      "semanticSupport": null
+    },
+    {
+      "questionId": "rag-003",
+      "repetition": 1,
+      "baselineOutcome": "truncated",
+      "graphOutcome": "incomplete",
+      "stopReason": "supplement-limit",
+      "baselineFinalIds": [
+        "rag/sparse-retrieval#body#0-d441a718",
+        "rag/dense-retrieval#what-this-means-here#0-22bc9fbf",
+        "rag/sparse-retrieval#what-this-means-here#0-179d75b3",
+        "rag/query-transformation#the-three-transformations#0-80c928cf"
+      ],
+      "graphFinalIds": [
+        "rag/sparse-retrieval#body#0-d441a718",
+        "rag/dense-retrieval#what-this-means-here#0-22bc9fbf",
+        "rag/sparse-retrieval#why-it-survives#0-ab8549d1",
+        "rag/candidate-fusion#the-problem-with-combining-scores#0-3595452c"
+      ],
+      "cumulativeFound": 6,
+      "cumulativeRecall": 0.25,
+      "baselineRecallAtK": 0,
+      "graphRecallAtK": 0.25,
+      "recallDelta": 0.25,
+      "additionalRequests": 2,
+      "semanticSupport": null
+    },
+    {
+      "questionId": "ins-001",
+      "repetition": 1,
+      "baselineOutcome": "incomplete",
+      "graphOutcome": "incomplete",
+      "stopReason": "supplement-limit",
+      "baselineFinalIds": [
+        "rag/query-transformation#why-the-raw-question-underperforms#0-6171afd8",
+        "generative-ui/a2ui-protocol-model#the-version-line-matters#0-47b95abe",
+        "generative-ui/predictability-and-user-control#learning-requires-repetition#0-ffd57023",
+        "rag/sparse-retrieval#where-it-fails#0-e2e9969a"
+      ],
+      "graphFinalIds": [
+        "rag/query-transformation#why-the-raw-question-underperforms#0-6171afd8",
+        "generative-ui/a2ui-protocol-model#the-version-line-matters#0-47b95abe",
+        "rag/embeddings-and-similarity#body#0-ff7b58d6",
+        "generative-ui/a2ui-protocol-model#a-surface-has-a-lifecycle#0-16c87d96"
+      ],
+      "cumulativeFound": 7,
+      "cumulativeRecall": null,
+      "baselineRecallAtK": null,
+      "graphRecallAtK": null,
+      "recallDelta": null,
+      "additionalRequests": 2,
+      "semanticSupport": null
+    },
+    {
+      "questionId": "rag-001",
+      "repetition": 2,
+      "baselineOutcome": "valid",
+      "graphOutcome": "valid",
+      "stopReason": "generation-valid",
+      "baselineFinalIds": [
+        "rag/rag-motivation#body#0-a74c2bc6",
+        "generative-ui/design-time-and-runtime-generation#what-partial-runtime-generation-buys#0-d4d9fa5f",
+        "generative-ui/design-time-and-runtime-generation#design-time-versus-runtime#0-3b6b66b7",
+        "intersection/ui-driven-retrieval#what-a-follow-up-must-not-break#0-5a9e41d8"
+      ],
+      "graphFinalIds": [
+        "rag/rag-motivation#body#0-a74c2bc6",
+        "generative-ui/design-time-and-runtime-generation#what-partial-runtime-generation-buys#0-d4d9fa5f",
+        "generative-ui/design-time-and-runtime-generation#design-time-versus-runtime#0-3b6b66b7",
+        "intersection/ui-driven-retrieval#what-a-follow-up-must-not-break#0-5a9e41d8"
+      ],
+      "cumulativeFound": 4,
+      "cumulativeRecall": 0.3333333333333333,
+      "baselineRecallAtK": 0.3333333333333333,
+      "graphRecallAtK": 0.3333333333333333,
+      "recallDelta": 0,
+      "additionalRequests": 1,
+      "semanticSupport": null
+    },
+    {
+      "questionId": "rag-003",
+      "repetition": 2,
+      "baselineOutcome": "valid",
+      "graphOutcome": "valid",
+      "stopReason": "generation-valid",
+      "baselineFinalIds": [
+        "rag/sparse-retrieval#body#0-d441a718",
+        "rag/dense-retrieval#what-this-means-here#0-22bc9fbf",
+        "rag/sparse-retrieval#what-this-means-here#0-179d75b3",
+        "rag/query-transformation#the-three-transformations#0-80c928cf"
+      ],
+      "graphFinalIds": [
+        "rag/sparse-retrieval#body#0-d441a718",
+        "rag/dense-retrieval#what-this-means-here#0-22bc9fbf",
+        "rag/dense-retrieval#the-dual-encoder#0-37fa4383",
+        "intersection/choosing-a-ui-from-knowledge-structure#two-signals-and-they-disagree#0-9828b5a5"
+      ],
+      "cumulativeFound": 6,
+      "cumulativeRecall": 0.25,
+      "baselineRecallAtK": 0,
+      "graphRecallAtK": 0.25,
+      "recallDelta": 0.25,
+      "additionalRequests": 3,
+      "semanticSupport": null
+    },
+    {
+      "questionId": "ins-001",
+      "repetition": 2,
+      "baselineOutcome": "incomplete",
+      "graphOutcome": "incomplete",
+      "stopReason": "supplement-limit",
+      "baselineFinalIds": [
+        "rag/query-transformation#why-the-raw-question-underperforms#0-6171afd8",
+        "generative-ui/a2ui-protocol-model#the-version-line-matters#0-47b95abe",
+        "generative-ui/predictability-and-user-control#learning-requires-repetition#0-ffd57023",
+        "rag/sparse-retrieval#where-it-fails#0-e2e9969a"
+      ],
+      "graphFinalIds": [
+        "rag/query-transformation#why-the-raw-question-underperforms#0-6171afd8",
+        "generative-ui/a2ui-protocol-model#the-version-line-matters#0-47b95abe",
+        "generative-ui/a2ui-protocol-model#a-surface-has-a-lifecycle#0-16c87d96",
+        "rag/embeddings-and-similarity#body#0-ff7b58d6"
+      ],
+      "cumulativeFound": 8,
+      "cumulativeRecall": null,
+      "baselineRecallAtK": null,
+      "graphRecallAtK": null,
+      "recallDelta": null,
+      "additionalRequests": 2,
+      "semanticSupport": null
+    },
+    {
+      "questionId": "rag-001",
+      "repetition": 3,
+      "baselineOutcome": "valid",
+      "graphOutcome": "error",
+      "stopReason": "generation-invalid",
+      "baselineFinalIds": [
+        "rag/rag-motivation#body#0-a74c2bc6",
+        "generative-ui/design-time-and-runtime-generation#what-partial-runtime-generation-buys#0-d4d9fa5f",
+        "generative-ui/design-time-and-runtime-generation#design-time-versus-runtime#0-3b6b66b7",
+        "intersection/ui-driven-retrieval#what-a-follow-up-must-not-break#0-5a9e41d8"
+      ],
+      "graphFinalIds": [
+        "rag/rag-motivation#body#0-a74c2bc6",
+        "generative-ui/design-time-and-runtime-generation#what-partial-runtime-generation-buys#0-d4d9fa5f",
+        "generative-ui/design-time-and-runtime-generation#design-time-versus-runtime#0-3b6b66b7",
+        "intersection/ui-driven-retrieval#what-a-follow-up-must-not-break#0-5a9e41d8"
+      ],
+      "cumulativeFound": 4,
+      "cumulativeRecall": 0.3333333333333333,
+      "baselineRecallAtK": 0.3333333333333333,
+      "graphRecallAtK": 0.3333333333333333,
+      "recallDelta": 0,
+      "additionalRequests": 1,
+      "semanticSupport": null
+    },
+    {
+      "questionId": "rag-003",
+      "repetition": 3,
+      "baselineOutcome": "valid",
+      "graphOutcome": "error",
+      "stopReason": "generation-invalid",
+      "baselineFinalIds": [
+        "rag/sparse-retrieval#body#0-d441a718",
+        "rag/dense-retrieval#what-this-means-here#0-22bc9fbf",
+        "rag/sparse-retrieval#what-this-means-here#0-179d75b3",
+        "rag/query-transformation#the-three-transformations#0-80c928cf"
+      ],
+      "graphFinalIds": [
+        "rag/sparse-retrieval#body#0-d441a718",
+        "rag/dense-retrieval#what-this-means-here#0-22bc9fbf",
+        "rag/dense-retrieval#body#0-9e7f8fbc",
+        "rag/sparse-retrieval#why-it-survives#0-ab8549d1"
+      ],
+      "cumulativeFound": 7,
+      "cumulativeRecall": 0.5,
+      "baselineRecallAtK": 0,
+      "graphRecallAtK": 0.25,
+      "recallDelta": 0.25,
+      "additionalRequests": 3,
+      "semanticSupport": null
+    },
+    {
+      "questionId": "ins-001",
+      "repetition": 3,
+      "baselineOutcome": "incomplete",
+      "graphOutcome": "incomplete",
+      "stopReason": "supplement-limit",
+      "baselineFinalIds": [
+        "rag/query-transformation#why-the-raw-question-underperforms#0-6171afd8",
+        "generative-ui/a2ui-protocol-model#the-version-line-matters#0-47b95abe",
+        "generative-ui/predictability-and-user-control#learning-requires-repetition#0-ffd57023",
+        "rag/sparse-retrieval#where-it-fails#0-e2e9969a"
+      ],
+      "graphFinalIds": [
+        "rag/query-transformation#why-the-raw-question-underperforms#0-6171afd8",
+        "generative-ui/a2ui-protocol-model#the-version-line-matters#0-47b95abe",
+        "generative-ui/a2ui-protocol-model#a-surface-has-a-lifecycle#0-16c87d96",
+        "rag/embeddings-and-similarity#body#0-ff7b58d6"
+      ],
+      "cumulativeFound": 7,
+      "cumulativeRecall": null,
+      "baselineRecallAtK": null,
+      "graphRecallAtK": null,
+      "recallDelta": null,
+      "additionalRequests": 2,
+      "semanticSupport": null
+    }
+  ],
+  "examples": {
+    "success": [
+      "1/rag-001/native",
+      "1/rag-001/langchain",
+      "1/rag-001/langgraph",
+      "2/rag-001/langchain",
+      "2/rag-001/langgraph",
+      "2/rag-001/native",
+      "2/rag-003/langgraph",
+      "2/rag-003/native",
+      "2/rag-003/langchain",
+      "3/rag-001/native",
+      "3/rag-001/langchain",
+      "3/rag-003/native",
+      "3/rag-003/langchain"
+    ],
+    "failure": [
+      "1/rag-003/langchain",
+      "1/rag-003/native",
+      "3/rag-001/langgraph",
+      "3/rag-003/langgraph"
+    ],
+    "noRetrievalGain": [
+      "1/rag-001",
+      "2/rag-001",
+      "3/rag-001"
+    ]
+  },
+  "decision": "Retain as experiment; adoption requires semantic review and repeated live evaluation.",
+  "adapterRequests": 44,
+  "actualModelRequests": 44,
+  "completedAt": "2026-10-21T04:51:02.279Z"
+}

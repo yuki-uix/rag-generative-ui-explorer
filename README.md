@@ -83,7 +83,9 @@ command and artifacts, see [framework experiments](eval/framework/README.md);
 for the observed live run and framework tradeoffs, see [F2 notes](eval/framework/F2-LANGCHAIN.md).
 The graph's three offline paths, complete traces, failure case and limits are
 documented in [F3 notes](eval/framework/F3-LANGGRAPH.md). The [F5 pilot findings](eval/framework/F5-FINDINGS.md)
-compare both implementation and retrieval strategy, with explicit unmeasured items.
+compare both implementation and retrieval strategy. The [live pilot](eval/framework/F5-LIVE-PILOT.md)
+adds real responses, field-level semantic judgments, and a reconciled account
+deduction of approximately CNY 0.94.
 
 ## License
 

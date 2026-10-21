@@ -195,6 +195,13 @@ responses; it is integration evidence. See [F5-FINDINGS.md](F5-FINDINGS.md) for
 the frozen strategy protocol, representative reports, failure/no-gain examples,
 full repeated-run command, and remaining live/semantic/cost work. F5 remains open.
 
+The [repeated live pilot](F5-LIVE-PILOT.md) has 27 sample records, 44 paid
+requests, explicit single-AI semantic judgments and an observed CNY 0.94 account
+deduction. Its config is `study-live-pilot.json` (three exposed questions, three
+repetitions, at most 54 requests). `pnpm framework:audit` recomputes the saved
+semantic and cost audit offline; use the complete command in the live report.
+The full 60-question study and independent semantic assessment remain pending.
+
 ## Task status and comparison plan
 
 GitHub issues are the task source of truth. F1–F3 integration is implemented; full effectiveness evaluation remains open:

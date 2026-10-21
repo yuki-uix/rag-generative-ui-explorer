@@ -1,0 +1,26 @@
+{
+  "version": "deepseek-v4-pro-2026-10-21",
+  "model": "deepseek-v4-pro",
+  "publishedModelVersion": "DeepSeek-V4-Pro-0813",
+  "verifiedOn": "2026-10-21",
+  "sources": {
+    "USD": "https://api-docs.deepseek.com/quick_start/pricing/",
+    "CNY": "https://api-docs.deepseek.com/zh-cn/quick_start/pricing/"
+  },
+  "unit": "currency per 1000000 tokens",
+  "peakWindowsUTC": [["01:00", "04:00"], ["06:00", "10:00"]],
+  "peakWeekdaysUTC": [1, 2, 3, 4, 5],
+  "verifiedChinesePublicHolidayDates": { "2026-10-21": false },
+  "rates": {
+    "CNY": {
+      "offPeak": { "cacheMiss": "4.5", "cacheHit": "0.15", "output": "13.5" },
+      "peak": { "cacheMiss": "9.0", "cacheHit": "0.30", "output": "27.0" }
+    },
+    "USD": {
+      "offPeak": { "cacheMiss": "0.66", "cacheHit": "0.022", "output": "1.98" },
+      "peak": { "cacheMiss": "1.32", "cacheHit": "0.044", "output": "3.96" }
+    }
+  },
+  "cacheCreationPolicy": "Only an explicitly reported zero is priced; a nonzero or unknown cache-creation category is unresolved.",
+  "boundaryPolicy": "All request-start and arm-completion times must remain within one verified tariff window; otherwise the fee is unresolved."
+}

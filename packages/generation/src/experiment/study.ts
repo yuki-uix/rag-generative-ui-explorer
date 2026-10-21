@@ -38,6 +38,8 @@ export interface StudyRecord {
   repetition: number;
   order: StudyArm[];
   executionMs: number;
+  startedAt?: string;
+  completedAt?: string;
   observed: ExperimentRecord | GraphRun;
 }
 
@@ -77,6 +79,7 @@ export async function runStudy(
       const rotation = (index + repetition - 1) % ARMS.length;
       const order = [...ARMS.slice(rotation), ...ARMS.slice(0, rotation)];
       for (const arm of order) {
+        const startedAt = new Date().toISOString();
         const start = performance.now();
         let measuredSample = sample;
         if (arm !== 'langgraph') {
@@ -94,7 +97,10 @@ export async function runStudy(
               mode: options.mode, scenario: options.scenario === 'demo' ? 'valid' : 'invalid-reference',
               samples: [measuredSample], budget,
             }))[0]!;
-        const record: StudyRecord = { arm, repetition, order, executionMs: performance.now() - start, observed };
+        const record: StudyRecord = {
+          arm, repetition, order, executionMs: performance.now() - start, observed,
+          startedAt, completedAt: new Date().toISOString(),
+        };
         records.push(record);
         onRecord?.(record);
       }
