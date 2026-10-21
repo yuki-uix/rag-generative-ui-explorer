@@ -56,6 +56,8 @@ jobs:
       - run: pnpm framework:compare
       # Bounded graph: sufficient, one supplement, and still missing. Offline.
       - run: pnpm framework:graph
+      # Three-arm pilot with matched final context, offline generated report.
+      - run: pnpm framework:study
       # Retrieval metrics are mechanical while no model sits in the pipeline, so
       # the whole 60-question set scores here for free. This is not a threshold
       # gate — no number has been argued for — it runs so the harness cannot

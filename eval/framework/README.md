@@ -180,6 +180,21 @@ counts, node timings and stop reasons. No F2 paired-comparison score is emitted.
 A graph error returns no result; insufficient or conflicting evidence uses the
 existing incomplete response contract.
 
+## Three-arm pilot report
+
+```bash
+pnpm framework:study
+pnpm framework:study --live  # explicit pilot; maximum 18 model attempts
+```
+
+The F5 runner executes native, LangChain and bounded LangGraph with frozen
+questions and a matched final context cap, preserving fixed-input pairs and
+separate strategy comparisons. Each unique run saves raw records, a JSON summary
+and a readable report. The default uses real retrieval and synthetic model
+responses; it is integration evidence. See [F5-FINDINGS.md](F5-FINDINGS.md) for
+the frozen strategy protocol, representative reports, failure/no-gain examples,
+full repeated-run command, and remaining live/semantic/cost work. F5 remains open.
+
 ## Task status and comparison plan
 
 GitHub issues are the task source of truth. F1–F3 integration is implemented; full effectiveness evaluation remains open:
@@ -188,7 +203,7 @@ GitHub issues are the task source of truth. F1–F3 integration is implemented; 
 | --- | --- | --- |
 | F2 implemented | [#80 LangChain](https://github.com/yuki-uix/rag-generative-ui-explorer/issues/80) | Same questions, evidence order, prompt, schema, model, endpoint, budget and validator; record actual request differences |
 | F3 implemented | [#81 LangGraph](https://github.com/yuki-uix/rag-generative-ui-explorer/issues/81) | Separate strategy experiment: at most one additional retrieval, visible branch and stopping reason; account for the additional calls |
-| F5 | [#83 Findings](https://github.com/yuki-uix/rag-generative-ui-explorer/issues/83) | Follow PROTOCOL, include failures, costs, negative results and framework-specific maintenance work |
+| F5 pilot implemented | [#83 Findings](https://github.com/yuki-uix/rag-generative-ui-explorer/issues/83) | Follow PROTOCOL, include failures, costs, negative results and framework-specific maintenance work |
 | Optional F4 | [#82 Checkpoints](https://github.com/yuki-uix/rag-generative-ui-explorer/issues/82) | Resume after restart; explain the boundary with business RunStore, not a prerequisite for F5 |
 
 Before running the full comparison, freeze the arms and follow

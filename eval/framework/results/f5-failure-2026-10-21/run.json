@@ -1,0 +1,145 @@
+{
+  "version": "framework-study-run-1",
+  "id": "2026-10-21T04-24-30-499Z-f912561a-9289-41ec-91b1-d0c7a8afe71c",
+  "startedAt": "2026-10-21T04:24:30.499Z",
+  "mode": "smoke",
+  "scenario": "invalid-reference",
+  "config": {
+    "version": "framework-study-1",
+    "purpose": "pilot",
+    "repetitions": 1,
+    "questionSetIsBlind": false,
+    "expected": {
+      "questionSetSha256": "64b1e9a8d17a263f706c2783282157098c59bbf84ef03bb5168dbe19e6d41cc4",
+      "schemaSha256": "81d854da0c7d942238a64aecac6805ce9e64c69b2323083aee4e4b180bb7f13a",
+      "corpusVersion": "corpus-3e4863076378",
+      "promptVersion": "card-planner-1"
+    },
+    "experiment": {
+      "version": "framework-study-strategy-1",
+      "implementation": "langgraph",
+      "questionIds": [
+        "rag-001",
+        "rag-003",
+        "ins-001"
+      ],
+      "profileId": "deepseek-v4-pro",
+      "k": 4,
+      "maxTokens": 4096,
+      "maxModelCalls": 18,
+      "sdkMaxRetries": 0,
+      "timeoutMs": 60000,
+      "repetitions": 1,
+      "repair": "disabled",
+      "graph": {
+        "version": "bounded-retrieval-2",
+        "evidenceSelection": "balanced",
+        "maxSupplementalRetrievals": 1,
+        "maxModelCallsPerQuestion": 4,
+        "controlMaxTokens": 2048,
+        "maxEvidence": 4,
+        "maxContextChars": 12000
+      }
+    }
+  },
+  "configSha256": "740679e3f247b4b2f26373a4866513533ac17126fe18f9b9767d45c8c35f4708",
+  "pins": {
+    "config": {
+      "version": "framework-study-strategy-1",
+      "implementation": "langgraph",
+      "questionIds": [
+        "rag-001",
+        "rag-003",
+        "ins-001"
+      ],
+      "profileId": "deepseek-v4-pro",
+      "k": 4,
+      "maxTokens": 4096,
+      "maxModelCalls": 18,
+      "sdkMaxRetries": 0,
+      "timeoutMs": 60000,
+      "repetitions": 1,
+      "repair": "disabled",
+      "graph": {
+        "version": "bounded-retrieval-2",
+        "evidenceSelection": "balanced",
+        "maxSupplementalRetrievals": 1,
+        "maxModelCallsPerQuestion": 4,
+        "controlMaxTokens": 2048,
+        "maxEvidence": 4,
+        "maxContextChars": 12000
+      }
+    },
+    "code": {
+      "commit": "37813a283f9f0a2f1adc7daa373e973b3a7a0332",
+      "dirty": true,
+      "treeSha256": "0eeadc5107e1c6860b63ed2118c2853784c7e3d7eab6a5431c5a5d522ccc3e3c"
+    },
+    "runtime": {
+      "node": "v23.7.0",
+      "sdk": {
+        "name": "@anthropic-ai/sdk",
+        "version": "0.72.1"
+      },
+      "langchain": {
+        "anthropic": "1.5.12",
+        "core": "1.2.18",
+        "sdk": "0.122.0",
+        "langgraph": "1.5.1"
+      },
+      "lockSha256": "13581f4d959e1baeda6ee6344f3af840c87317ee1d7622291bb3799923c411d7"
+    },
+    "corpus": {
+      "version": "corpus-3e4863076378",
+      "chunking": {
+        "boundary": "h2-section",
+        "maxChunkChars": 1200
+      },
+      "indexSha256": "28d213e2b389831ec9124ae0929015cbdcd2224373c013120db7d7491dd25cf3"
+    },
+    "retrieval": {
+      "implementation": "BM25Retriever",
+      "k": 4,
+      "k1": 1.2,
+      "b": 0.75,
+      "reranking": false
+    },
+    "questionSet": {
+      "sha256": "64b1e9a8d17a263f706c2783282157098c59bbf84ef03bb5168dbe19e6d41cc4",
+      "header": {
+        "corpusVersion": "corpus-3e4863076378",
+        "chunking": {
+          "boundary": "h2-section",
+          "maxChunkChars": 1200
+        },
+        "questionCount": 60,
+        "labelledBy": "yuki-uix",
+        "labelledOn": "2026-08-30"
+      },
+      "selectedIds": [
+        "rag-001",
+        "rag-003",
+        "ins-001"
+      ]
+    },
+    "model": {
+      "id": "deepseek-v4-pro",
+      "model": "deepseek-v4-pro",
+      "baseURL": "https://api.deepseek.com/anthropic",
+      "apiKeyEnv": "DEEPSEEK_API_KEY",
+      "supportsThinking": false,
+      "supportsEffort": false,
+      "enforcesOutputSchema": false,
+      "endpoint": "https://api.deepseek.com/anthropic",
+      "requestExtras": {}
+    },
+    "promptVersion": "card-planner-1",
+    "schemaSha256": "81d854da0c7d942238a64aecac6805ce9e64c69b2323083aee4e4b180bb7f13a"
+  },
+  "coverageVersion": "evidence-coverage-1",
+  "rewriteVersion": "evidence-rewrite-1",
+  "orderPolicy": "rotate native/langchain/langgraph by question index and repetition",
+  "timingNote": "executionMs excludes shared baseline retrieval preparation; each raw baseline also records that measured retrieval time.",
+  "fixtureVersion": "study-real-retrieval-synthetic-model-1",
+  "maximumExternalModelRequests": 0
+}

@@ -24,7 +24,8 @@ export const ExperimentConfig = z.strictObject({
   repetitions: z.literal(1),
   repair: z.literal('disabled'),
   graph: z.strictObject({
-    version: z.literal('bounded-retrieval-1'),
+    version: z.enum(['bounded-retrieval-1', 'bounded-retrieval-2']),
+    evidenceSelection: z.literal('balanced').optional(),
     maxSupplementalRetrievals: z.literal(1),
     maxModelCallsPerQuestion: z.number().int().min(1).max(4),
     controlMaxTokens: z.number().int().positive(),
@@ -35,6 +36,9 @@ export const ExperimentConfig = z.strictObject({
   if (config.implementation === 'langgraph' && !config.graph) {
     ctx.addIssue({ code: 'custom', message: 'langgraph requires a graph policy', path: ['graph'] });
   }
+  if (config.graph && ((config.graph.version === 'bounded-retrieval-2') !== (config.graph.evidenceSelection === 'balanced'))) {
+    ctx.addIssue({ code: 'custom', message: 'Balanced selection requires graph policy version 2, and vice versa.' });
+  }
 });
 export type ExperimentConfig = z.infer<typeof ExperimentConfig>;
 
@@ -44,7 +48,12 @@ export function sha256(value: string | Buffer): string {
 
 export function loadExperiment(repoRoot: string, configPath: string, implementation?: string) {
   const source = JSON.parse(readFileSync(configPath, 'utf8')) as Record<string, unknown>;
-  const config = ExperimentConfig.parse({ ...source, ...(implementation === undefined ? {} : { implementation }) });
+  return loadExperimentConfig(repoRoot, source, implementation);
+}
+
+export function loadExperimentConfig(repoRoot: string, source: unknown, implementation?: string) {
+  const original = ExperimentConfig.parse(source);
+  const config = ExperimentConfig.parse({ ...original, ...(implementation === undefined ? {} : { implementation }) });
   const profile = profileByIdOrThrow(config.profileId);
   const corpus = ingest(resolve(repoRoot, 'knowledge'));
   if (corpus.errors.length) throw new Error(corpus.errors.map((error) => error.message).join('\n'));
