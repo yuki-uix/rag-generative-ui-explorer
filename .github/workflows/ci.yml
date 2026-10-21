@@ -56,6 +56,9 @@ jobs:
       - run: pnpm framework:compare
       # Bounded graph: sufficient, one supplement, and still missing. Offline.
       - run: pnpm framework:graph
+      # Replay measured image/OCR/CLIP outputs; no model download or Vision dependency.
+      - run: pnpm images:budget
+      - run: pnpm images:replay --out ../../eval/images/runs/ci
       # Retrieval metrics are mechanical while no model sits in the pipeline, so
       # the whole 60-question set scores here for free. This is not a threshold
       # gate — no number has been argued for — it runs so the harness cannot

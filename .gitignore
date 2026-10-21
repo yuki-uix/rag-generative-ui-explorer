@@ -10,3 +10,6 @@ dist/
 .verify-ok
 .claude-worktrees/
 eval/framework/runs/
+# Image experiment model weights and temporary observations; never part of F5.
+eval/images/.cache/
+eval/images/runs/

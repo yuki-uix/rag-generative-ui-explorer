@@ -83,6 +83,15 @@ for the observed live run and framework tradeoffs, see [F2 notes](eval/framework
 The graph's three offline paths, complete traces, failure case and limits are
 documented in [F3 notes](eval/framework/F3-LANGGRAPH.md).
 
+## Independent image retrieval experiment
+
+The [image-retrieval pilot](eval/images/README.md) compares the existing BM25
+implementation on paired source text, real OCR text, and real CLIP image/text
+embeddings on the same 24-image corpus. It has its own [task breakdown](eval/images/TASKS.md),
+[frozen protocol](eval/images/PROTOCOL.md), input hashes and saved observations.
+`pnpm images:replay --out /absolute/path/to/fresh/output` recomputes the comparison
+offline. This experiment does not add LLaVA or alter the F5 baseline.
+
 ## License
 
 [MIT](LICENSE)
