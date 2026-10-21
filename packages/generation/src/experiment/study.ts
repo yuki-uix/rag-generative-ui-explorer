@@ -78,6 +78,12 @@ export async function runStudy(
       const order = [...ARMS.slice(rotation), ...ARMS.slice(0, rotation)];
       for (const arm of order) {
         const start = performance.now();
+        let measuredSample = sample;
+        if (arm !== 'langgraph') {
+          const [fresh] = await prepareSamples({ ...inputs, questions: [sample.question] });
+          measuredSample = { ...fresh!, evidence: selectContext(sample.question.question, [], fresh!.evidence, policy) };
+          if (JSON.stringify(measuredSample.evidence) !== JSON.stringify(sample.evidence)) throw new Error('Measured retrieval differs from the frozen snapshot.');
+        }
         const observed = arm === 'langgraph'
           ? await runGraphExperiment(inputs, sample.question, {
               ...options, budget,
@@ -86,7 +92,7 @@ export async function runStudy(
             })
           : (await runExperiment({ ...inputs, config: { ...inputs.config, implementation: arm }, questions: [sample.question] }, {
               mode: options.mode, scenario: options.scenario === 'demo' ? 'valid' : 'invalid-reference',
-              samples: [sample], budget,
+              samples: [measuredSample], budget,
             }))[0]!;
         const record: StudyRecord = { arm, repetition, order, executionMs: performance.now() - start, observed };
         records.push(record);

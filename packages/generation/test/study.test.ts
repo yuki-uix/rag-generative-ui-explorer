@@ -13,17 +13,20 @@ const root = resolve(import.meta.dirname, '../../..');
 const config = StudyConfig.parse(JSON.parse(readFileSync(resolve(root, 'eval/framework/study-pilot.json'), 'utf8')));
 const inputs = loadExperimentConfig(root, config.experiment);
 const temporary: string[] = [];
-afterEach(() => { vi.unstubAllGlobals(); for (const path of temporary.splice(0)) rmSync(path, { recursive: true, force: true }); });
+afterEach(() => { vi.unstubAllGlobals(); vi.restoreAllMocks(); for (const path of temporary.splice(0)) rmSync(path, { recursive: true, force: true }); });
 
 describe('F5 controlled study', () => {
   it('runs all three arms offline, preserves fixed-evidence pairs, and keeps cumulative recall separate', async () => {
     const network = vi.fn(() => { throw new Error('No network'); });
     vi.stubGlobal('fetch', network);
+    const search = vi.spyOn(inputs.retriever, 'search');
     let prepared = false;
     const { records, budget } = await runStudy(config, inputs, { mode: 'smoke', scenario: 'demo' }, () => {
       expect(prepared).toBe(true);
     }, (samples) => { expect(samples).toHaveLength(3); prepared = true; });
     expect(network).not.toHaveBeenCalled();
+    // 3 frozen snapshots, 6 actual baseline lookups and 5 graph tool lookups.
+    expect(search).toHaveBeenCalledTimes(14);
     expect(records).toHaveLength(9);
     expect(budget.used).toBe(15);
     expect(records.slice(0, 3).map((record) => record.arm)).toEqual([...ARMS]);

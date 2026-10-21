@@ -1,7 +1,7 @@
 {
   "version": "framework-study-run-1",
-  "id": "2026-10-21T04-24-30-499Z-f912561a-9289-41ec-91b1-d0c7a8afe71c",
-  "startedAt": "2026-10-21T04:24:30.499Z",
+  "id": "2026-10-21T04-30-22-704Z-0ddb29a5-def9-4c60-beac-95c9e79af77a",
+  "startedAt": "2026-10-21T04:30:22.704Z",
   "mode": "smoke",
   "scenario": "invalid-reference",
   "config": {
@@ -71,9 +71,9 @@
       }
     },
     "code": {
-      "commit": "37813a283f9f0a2f1adc7daa373e973b3a7a0332",
+      "commit": "0865045edc2706763a733fe6d6d95efe03184003",
       "dirty": true,
-      "treeSha256": "0eeadc5107e1c6860b63ed2118c2853784c7e3d7eab6a5431c5a5d522ccc3e3c"
+      "treeSha256": "612bc6de528f17c7a2a51b784ed38f5f6d58fdd3a8c3dd0f0927c77621996fa1"
     },
     "runtime": {
       "node": "v23.7.0",
@@ -139,7 +139,7 @@
   "coverageVersion": "evidence-coverage-1",
   "rewriteVersion": "evidence-rewrite-1",
   "orderPolicy": "rotate native/langchain/langgraph by question index and repetition",
-  "timingNote": "executionMs excludes shared baseline retrieval preparation; each raw baseline also records that measured retrieval time.",
+  "timingNote": "executionMs includes a fresh retrieval and orchestration per arm/sample; initial snapshot freezing is excluded for every arm.",
   "fixtureVersion": "study-real-retrieval-synthetic-model-1",
   "maximumExternalModelRequests": 0
 }

@@ -109,9 +109,11 @@ errors, refusal and truncation remain separate outcomes. Coverage-only incomplet
 responses cannot inflate card-generation validity. Semantic citation precision
 and unsupported-claim rate remain `null` until a documented human/judge review.
 
-`executionMs` measures each arm invocation and excludes the baseline's shared
-retrieval preparation. The raw baseline retains that separately measured
-retrieval duration; graph node timings include its own searches. The report
+`executionMs` measures each arm invocation, including fresh retrieval and
+orchestration. Each baseline reruns BM25 for every question/repetition, verifies
+the selected evidence still matches the frozen snapshot, and records that
+lookup's actual duration; graph node timings include its own searches. Initial
+snapshot freezing is excluded from every arm's time. The report
 does not equate this with browser render latency or TTFC. Token usage comes
 from all actual control/generation responses and retains uncached input, cache
 writes, cache reads and output separately. A missing usage value, including a

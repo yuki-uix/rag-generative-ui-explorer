@@ -33,9 +33,9 @@
           "evidenceReferenceFailureN": 0,
           "executionMs": {
             "n": 3,
-            "median": 0.9095419999999876,
-            "min": 0.7387079999999742,
-            "max": 11.965583000000038
+            "median": 1.1932910000000447,
+            "min": 0.8907500000000255,
+            "max": 12.068416000000013
           },
           "usage": {
             "inputTokens": 300,
@@ -76,9 +76,9 @@
       },
       "executionMs": {
         "n": 3,
-        "median": 0.9095419999999876,
-        "min": 0.7387079999999742,
-        "max": 11.965583000000038
+        "median": 1.1932910000000447,
+        "min": 0.8907500000000255,
+        "max": 12.068416000000013
       },
       "requests": 3,
       "usage": {
@@ -160,9 +160,9 @@
           "evidenceReferenceFailureN": 0,
           "executionMs": {
             "n": 3,
-            "median": 2.0183750000001055,
-            "min": 1.113207999999986,
-            "max": 11.008042000000046
+            "median": 2.106249999999932,
+            "min": 1.1833329999999478,
+            "max": 9.547333999999978
           },
           "usage": {
             "inputTokens": 300,
@@ -203,9 +203,9 @@
       },
       "executionMs": {
         "n": 3,
-        "median": 2.0183750000001055,
-        "min": 1.113207999999986,
-        "max": 11.008042000000046
+        "median": 2.106249999999932,
+        "min": 1.1833329999999478,
+        "max": 9.547333999999978
       },
       "requests": 3,
       "usage": {
@@ -287,9 +287,9 @@
           "evidenceReferenceFailureN": 0,
           "executionMs": {
             "n": 3,
-            "median": 12.371541999999977,
-            "min": 10.28920800000003,
-            "max": 17.839666999999963
+            "median": 11.00533299999995,
+            "min": 9.038458999999989,
+            "max": 17.440583000000004
           },
           "usage": {
             "inputTokens": 900,
@@ -330,9 +330,9 @@
       },
       "executionMs": {
         "n": 3,
-        "median": 12.371541999999977,
-        "min": 10.28920800000003,
-        "max": 17.839666999999963
+        "median": 11.00533299999995,
+        "min": 9.038458999999989,
+        "max": 17.440583000000004
       },
       "requests": 9,
       "usage": {
@@ -415,7 +415,7 @@
           ],
           "native": {
             "outcome": "valid",
-            "latencyMs": 10.40400000000011,
+            "latencyMs": 10.513666999999998,
             "usage": {
               "inputTokens": 100,
               "outputTokens": 50,
@@ -425,7 +425,7 @@
           },
           "langchain": {
             "outcome": "valid",
-            "latencyMs": 10.70533399999988,
+            "latencyMs": 9.15866699999998,
             "usage": {
               "inputTokens": 100,
               "outputTokens": 50,
@@ -444,7 +444,7 @@
           ],
           "native": {
             "outcome": "valid",
-            "latencyMs": 0.73700000000008,
+            "latencyMs": 0.922040999999922,
             "usage": {
               "inputTokens": 100,
               "outputTokens": 50,
@@ -454,7 +454,7 @@
           },
           "langchain": {
             "outcome": "valid",
-            "latencyMs": 1.6524580000001379,
+            "latencyMs": 1.6442089999999325,
             "usage": {
               "inputTokens": 100,
               "outputTokens": 50,
@@ -473,7 +473,7 @@
           ],
           "native": {
             "outcome": "incomplete",
-            "latencyMs": 0.5565000000000282,
+            "latencyMs": 0.5570830000000342,
             "usage": {
               "inputTokens": 100,
               "outputTokens": 50,
@@ -483,7 +483,7 @@
           },
           "langchain": {
             "outcome": "incomplete",
-            "latencyMs": 0.9741250000000719,
+            "latencyMs": 0.9064990000000535,
             "usage": {
               "inputTokens": 100,
               "outputTokens": 50,
@@ -592,5 +592,5 @@
   "decision": "Retain as experiment; adoption requires semantic review and repeated live evaluation.",
   "adapterRequests": 15,
   "actualModelRequests": 0,
-  "completedAt": "2026-10-21T04:24:30.573Z"
+  "completedAt": "2026-10-21T04:30:47.698Z"
 }

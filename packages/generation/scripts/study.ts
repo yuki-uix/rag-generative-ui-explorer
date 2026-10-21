@@ -38,7 +38,7 @@ async function main() {
     config, configSha256: sha256(source), pins: inputs.pins,
     coverageVersion: COVERAGE_VERSION, rewriteVersion: REWRITE_VERSION,
     orderPolicy: 'rotate native/langchain/langgraph by question index and repetition',
-    timingNote: 'executionMs excludes shared baseline retrieval preparation; each raw baseline also records that measured retrieval time.',
+    timingNote: 'executionMs includes a fresh retrieval and orchestration per arm/sample; initial snapshot freezing is excluded for every arm.',
     fixtureVersion: live ? null : 'study-real-retrieval-synthetic-model-1',
     maximumExternalModelRequests: live ? maximum : 0,
   }, null, 2) + '\n', { flag: 'wx' });
