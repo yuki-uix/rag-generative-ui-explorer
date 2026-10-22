@@ -240,6 +240,25 @@ describe('live knowledge cards API', () => {
     expect(body.usage?.outputTokens).toBe(50);
   });
 
+  it.each([
+    ['missing', '检索到的片段不足以回答这个问题，未生成知识卡。'],
+    ['conflicting', '检索来源存在分歧，未生成可展示知识卡。'],
+  ])('explains model-declared %s without claiming partial cards when no cards exist', async (reason, message) => {
+    const { response, body } = await invoke(JSON.stringify({ cards: [], incomplete: true, incompleteReason: reason }));
+    expect(response.status).toBe(200);
+    expect(body).toMatchObject({ status: 'incomplete', incompleteReason: reason, cards: [], message });
+    expect(body.evidence.length).toBeGreaterThan(0);
+    expect(body.usage?.outputTokens).toBe(50);
+  });
+
+  it.each(['missing', 'conflicting'])('keeps supported cards visible when the model declares a partial %s answer', async (reason) => {
+    const { body } = await invoke(JSON.stringify({ ...(await validPlan()), incomplete: true, incompleteReason: reason }));
+    expect(body.status).toBe('incomplete');
+    expect(body.cards).toHaveLength(1);
+    expect('message' in body && body.message).toContain('知识卡仅展示可支持的部分');
+    expect(gate(body.cards, body.evidence).failures).toEqual([]);
+  });
+
   it('does not call a model if BM25 finds no candidate, even without a key', async () => {
     const fetch = modelWire('unreachable');
     const response = await handleCardsRequest(request({ question: 'zzzzunmatchablelexemezzzz' }), { fetch });
@@ -373,6 +392,81 @@ describe('live knowledge cards API', () => {
     const response = await handleCardsRequest(request(), { apiKey: 'offline-test-key', fetch, timeoutMs: 20 });
     expect(response.status).toBe(504);
     expect(await response.json()).toMatchObject({ status: 'error', code: 'model-timeout', cards: [] });
+    expect(fetch).toHaveBeenCalledTimes(1);
+  });
+
+  it('does not declare a whitespace-only factual field a complete visible answer', async () => {
+    const plan = await validPlan();
+    plan.cards[0]!.definition.text = ' \n\t ';
+    const { response, body } = await invoke(JSON.stringify(plan));
+    expect(response.status).toBe(422);
+    expect(body).toMatchObject({ status: 'invalid', code: 'invalid-model-output', cards: [] });
+  });
+
+  it('returns a readable invalid result for deeply nested untrusted model cards', async () => {
+    const nested = '['.repeat(5000) + 'null' + ']'.repeat(5000);
+    const { response, body } = await invoke(`{"cards":[${nested}],"incomplete":false}`);
+    expect(response.status).toBe(422);
+    expect(body).toMatchObject({ status: 'invalid', code: 'invalid-model-output', cards: [] });
+  });
+
+  it('rejects oversized model JSON trees before recursive handle resolution', async () => {
+    const { response, body } = await invoke(JSON.stringify({
+      cards: [{ extra: Array.from({ length: LIVE_CARDS_LIMITS.modelJsonNodes + 1 }, () => null) }],
+      incomplete: false,
+    }));
+    expect(response.status).toBe(422);
+    expect(body).toMatchObject({ status: 'invalid', cards: [] });
+    expect('message' in body && body.message).toContain('结构过于复杂');
+  });
+
+  it('accepts the largest contract card shape within the model JSON traversal budget', async () => {
+    const field = { text: 'A synthetic summary used to test shape limits.', mode: 'summarized', evidenceIds: ['E1', 'E2', 'E3', 'E4', 'E5', 'E6', 'E7', 'E8'] };
+    const cards = Array.from({ length: 4 }, (_, card) => ({
+      id: `max-comparison-${card}`, type: 'comparison', title: 'Shape boundary test',
+      entities: ['A', 'B', 'C', 'D'],
+      rows: Array.from({ length: 8 }, (_, row) => ({ dimension: `Row ${row}`, values: [field, field, field, field] })),
+    }));
+    const { response, body } = await invoke(JSON.stringify({ cards, incomplete: false }));
+    expect(response.status).toBe(200);
+    expect(body.status).toBe('complete');
+    expect(body.cards).toHaveLength(4);
+  });
+
+  it('cancels an unread request body when invalid UTF-8 is detected', async () => {
+    const cancel = vi.fn();
+    const body = new ReadableStream<Uint8Array>({
+      start(controller) { controller.enqueue(new Uint8Array([0xff])); },
+      cancel,
+    });
+    const bad = new Request('https://rgux.example/api/cards', {
+      method: 'POST', headers: { 'content-type': 'application/json' }, body, duplex: 'half',
+    } as RequestInit);
+    const fetch = modelWire('unreachable');
+    const response = await handleCardsRequest(bad, { apiKey: 'offline-test-key', fetch });
+    expect(response.status).toBe(400);
+    expect(cancel).toHaveBeenCalledTimes(1);
+    expect(fetch).not.toHaveBeenCalled();
+  });
+
+  it('cancels generation after the model has returned streaming headers', async () => {
+    const controller = new AbortController();
+    let started!: () => void;
+    const ready = new Promise<void>((resolve) => { started = resolve; });
+    const fetch = vi.fn<typeof globalThis.fetch>(async () => {
+      started();
+      return new Response(new ReadableStream<Uint8Array>(), { headers: { 'content-type': 'text/event-stream' } });
+    });
+    const live = new Request('https://rgux.example/api/cards', {
+      method: 'POST', headers: { 'content-type': 'application/json' }, body: JSON.stringify({ question }), signal: controller.signal,
+    });
+    const pending = handleCardsRequest(live, { apiKey: 'offline-test-key', fetch });
+    await ready;
+    controller.abort();
+    const response = await pending;
+    expect(response.status).toBe(408);
+    expect(await response.json()).toMatchObject({ status: 'error', code: 'request-cancelled', cards: [] });
+    expect(fetch.mock.calls[0]![1]?.signal?.aborted).toBe(true);
     expect(fetch).toHaveBeenCalledTimes(1);
   });
 

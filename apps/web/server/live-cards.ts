@@ -18,6 +18,8 @@ export const LIVE_CARDS_LIMITS = {
   bodyTimeoutMs: 5000,
   retrievedChunks: 8,
   outputTokens: 4096,
+  modelJsonDepth: 32,
+  modelJsonNodes: 4096,
   timeoutMs: 60_000,
 } as const;
 
@@ -122,6 +124,9 @@ async function readQuestion(request: Request, bodyTimeoutMs: number): Promise<st
     }
     text += decoder.decode();
   } catch (error) {
+    // A decoding/read failure can happen while the client is still streaming.
+    // Release the unread body without waiting for an uncooperative cancel hook.
+    void reader.cancel().catch(() => {});
     if (error instanceof RequestFailure) throw error;
     throw new RequestFailure('invalid-request', 400, '无法读取问题，请重新提交。');
   } finally {
@@ -173,11 +178,27 @@ export function plannerSchemaForHandles(evidence: readonly Evidence[]): Record<s
   return schema;
 }
 
-function hasGeneratedExtraction(value: unknown): boolean {
-  if (Array.isArray(value)) return value.some(hasGeneratedExtraction);
-  if (value === null || typeof value !== 'object') return false;
-  const object = value as Record<string, unknown>;
-  return object.mode === 'extractive' || Object.values(object).some(hasGeneratedExtraction);
+function generatedCardPolicy(value: unknown): 'extractive' | 'complexity' | 'blank' | null {
+  // Inspect untrusted model JSON without recursion. The later handle resolver
+  // is recursive, so refuse excessive depth before it can receive the value.
+  const pending = [{ value, depth: 0 }];
+  let visited = 0;
+  while (pending.length > 0) {
+    const item = pending.pop()!;
+    if (++visited > LIVE_CARDS_LIMITS.modelJsonNodes || item.depth > LIVE_CARDS_LIMITS.modelJsonDepth) {
+      return 'complexity';
+    }
+    if (typeof item.value === 'string' && item.value.trim().length === 0) return 'blank';
+    if (item.value === null || typeof item.value !== 'object') continue;
+    const object = item.value as Record<string, unknown>;
+    if (!Array.isArray(item.value) && object.mode === 'extractive') return 'extractive';
+    const children = Array.isArray(item.value) ? item.value : Object.values(object);
+    if (visited + pending.length + children.length > LIVE_CARDS_LIMITS.modelJsonNodes) {
+      return 'complexity';
+    }
+    for (const child of children) pending.push({ value: child, depth: item.depth + 1 });
+  }
+  return null;
 }
 
 /**
@@ -316,7 +337,10 @@ export async function handleCardsRequest(request: Request, options: LiveCardsOpt
   catch { return invalid('模型未返回有效的知识卡 JSON，本次输出未展示。请重试。'); }
   const envelope = plannerEnvelope(parsed);
   if (!envelope) return invalid('模型返回的知识卡结构不符合约定，本次输出未展示。请重试。');
-  if (hasGeneratedExtraction(envelope.cards)) return invalid('网页生成卡仅接受摘要或推断，原文请从来源查看。本次模型标注不符合约定，未展示知识卡。');
+  const policy = generatedCardPolicy(envelope.cards);
+  if (policy === 'complexity') return invalid('模型返回的知识卡嵌套过深或结构过于复杂，本次输出未展示。请重试。');
+  if (policy === 'blank') return invalid('模型返回的知识卡含有空白内容，本次输出未展示。请重试。');
+  if (policy === 'extractive') return invalid('网页生成卡仅接受摘要或推断，原文请从来源查看。本次模型标注不符合约定，未展示知识卡。');
   const resolved = resolveHandles(envelope, evidence);
   if (resolved.invented.length > 0) return invalid('模型引用了本次检索未提供的来源，本次知识卡未展示。请重试。');
   const plan = resolved.plan as PlannerEnvelope;
@@ -340,7 +364,13 @@ export async function handleCardsRequest(request: Request, options: LiveCardsOpt
     status: plan.incomplete ? 'incomplete' : 'complete', cards: validated.cards,
     ...(plan.incomplete ? {
       incompleteReason: plan.incompleteReason,
-      message: plan.incompleteReason === 'conflicting' ? '检索来源存在分歧，知识卡仅展示可支持的部分。' : '当前检索证据不足，知识卡仅展示可支持的部分。',
+      message: validated.cards.length === 0
+        ? (plan.incompleteReason === 'conflicting'
+            ? '检索来源存在分歧，未生成可展示知识卡。'
+            : '检索到的片段不足以回答这个问题，未生成知识卡。')
+        : (plan.incompleteReason === 'conflicting'
+            ? '检索来源存在分歧，知识卡仅展示可支持的部分。'
+            : '当前检索证据不足，知识卡仅展示可支持的部分。'),
     } : {}),
   });
 }

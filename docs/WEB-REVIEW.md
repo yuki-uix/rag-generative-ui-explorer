@@ -137,3 +137,6 @@ UI tests exercise real gates, failure states, cancellation and source display.
 Live smoke observations, including rejected attempts and timing limits, are
 recorded in [the live check report](LIVE-CARDS-CHECK.md). They are integration
 checks, not a controlled effectiveness evaluation.
+
+The [follow-up live review](LIVE-CARDS-REVIEW.md) records cross-question guards,
+full HTTP-failure records, client waiting limits and no-answer behavior.

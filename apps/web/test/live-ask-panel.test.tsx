@@ -39,10 +39,10 @@ const CARD: KnowledgeCard = {
     },
   ],
 };
-function answer(): LiveCardsResponse {
+function answer(question = '为什么重排不能提高召回率？'): LiveCardsResponse {
   return {
     status: 'complete',
-    question: '为什么重排不能提高召回率？',
+    question,
     cards: [CARD],
     evidence: [SOURCE],
     provenance: {
@@ -90,6 +90,7 @@ function submit(question = '为什么重排不能提高召回率？') {
 afterEach(() => {
   cleanup();
   vi.unstubAllGlobals();
+  vi.useRealTimers();
 });
 
 describe('live retrieval and card delivery', () => {
@@ -139,7 +140,11 @@ describe('live retrieval and card delivery', () => {
     fireEvent.click(screen.getByText('本次运行与检索来源'));
     expect(screen.getByText('reranking recall')).toBeDefined();
     expect(screen.getByText('live-cards-4 · 思考模式关闭')).toBeDefined();
-    expect(screen.getByText('输入 120 tokens · 输出 85 tokens')).toBeDefined();
+    expect(
+      screen.getByText(
+        /未缓存输入 120 tokens · 输出 85 tokens · 缓存读取 0 tokens · 缓存写入 0 tokens/,
+      ),
+    ).toBeDefined();
   });
 
   it('gates serialized cards independently and refuses unknown types, invented references and false extracts', async () => {
@@ -203,11 +208,17 @@ describe('live retrieval and card delivery', () => {
           message: '生成结果未通过服务端检查。',
         }),
       )
-      .mockResolvedValueOnce(response({ ...answer(), evidence: [] }));
+      .mockResolvedValueOnce(
+        response({
+          ...answer('reranking recall'),
+          evidence: [],
+          provenance: { ...answer().provenance, retrievedCount: 0 },
+        }),
+      );
     vi.stubGlobal('fetch', fetcher);
     const { container } = render(<LiveAskPanel />);
     submit();
-    await screen.findByText('生成结果未通过服务端检查。');
+    await screen.findByText(/模型输出未通过结构或来源检查/);
     expect(container.querySelector('[data-card-type]')).toBeNull();
     submit('reranking recall');
     await screen.findByText(/1 张卡片未通过/);
@@ -232,12 +243,13 @@ describe('live retrieval and card delivery', () => {
     render(<LiveAskPanel />);
     submit();
     expect((await screen.findByRole('alert')).textContent).toBe(
-      '请求较多，请稍后重试。',
+      '提问过于频繁，请稍后重试。（HTTP 429）',
     );
     submit('try again');
-    expect(
-      (await screen.findByText('网络暂时不可用。')).getAttribute('role'),
-    ).toBe('alert');
+    expect((await screen.findByRole('alert')).textContent).toContain(
+      '网络连接或响应读取失败',
+    );
+    expect(screen.queryByText('网络暂时不可用。')).toBeNull();
     expect(fetcher).toHaveBeenCalledTimes(2);
     expect(screen.queryByText('重排与召回')).toBeNull();
   });
@@ -247,11 +259,19 @@ describe('live retrieval and card delivery', () => {
       'fetch',
       vi.fn<typeof fetch>().mockResolvedValue(
         response({
-          ...answer(),
+          ...answer('今天深圳天气怎样？'),
           status: 'incomplete',
           incompleteReason: 'missing',
           cards: [],
           evidence: [],
+          provenance: { ...answer().provenance, retrievedCount: 0 },
+          usage: null,
+          timing: {
+            retrievalMs: 12,
+            generationMs: 0,
+            validationMs: 0,
+            totalMs: 12,
+          },
           message: '知识库没有支持这个问题的段落。',
         }),
       ),
@@ -259,7 +279,11 @@ describe('live retrieval and card delivery', () => {
     const { container } = render(<LiveAskPanel />);
     submit('今天深圳天气怎样？');
     await screen.findByText('语料依据不足');
-    expect(screen.getByText('知识库没有支持这个问题的段落。')).toBeDefined();
+    expect(
+      screen.getByText(/当前语料没有检索到匹配片段，未调用模型/),
+    ).toBeDefined();
+    fireEvent.click(screen.getByText('本次运行与检索来源'));
+    expect(screen.getByText('本次未调用模型，无本次模型用量。')).toBeDefined();
     expect(container.querySelector('[data-card-type]')).toBeNull();
   });
 
@@ -275,7 +299,7 @@ describe('live retrieval and card delivery', () => {
       .mockReturnValueOnce(waiting)
       .mockResolvedValueOnce(
         response({
-          ...answer(),
+          ...answer('different question'),
           cards: [{ ...CARD, title: '新的回答' }],
         }),
       );
@@ -296,5 +320,196 @@ describe('live retrieval and card delivery', () => {
     expect(screen.queryByText('重排与召回')).toBeNull();
     expect(screen.getByText('新的回答')).toBeDefined();
     unmount();
+  });
+
+  it('rejects a response for another question rather than attaching it to the current question', async () => {
+    vi.stubGlobal(
+      'fetch',
+      vi
+        .fn<typeof fetch>()
+        .mockResolvedValue(response(answer('a different question'))),
+    );
+    const { container } = render(<LiveAskPanel />);
+    submit();
+    expect((await screen.findByRole('alert')).textContent).toContain(
+      '与本次提问不一致',
+    );
+    expect(container.querySelector('[data-card-type]')).toBeNull();
+  });
+
+  it('keeps sources, time and all token counters from a failed generation without showing raw error text', async () => {
+    vi.stubGlobal(
+      'fetch',
+      vi.fn<typeof fetch>().mockResolvedValue(
+        response(
+          {
+            ...answer(),
+            status: 'invalid',
+            code: 'invalid-model-output',
+            cards: [],
+            message: '<html>provider-private-error</html>',
+            usage: {
+              inputTokens: 120,
+              outputTokens: 85,
+              cacheCreationInputTokens: 11,
+              cacheReadInputTokens: 30,
+            },
+          },
+          422,
+        ),
+      ),
+    );
+    const { container } = render(<LiveAskPanel />);
+    submit();
+    expect((await screen.findByRole('alert')).textContent).toContain(
+      'HTTP 422',
+    );
+    expect(screen.queryByText(/provider-private-error/)).toBeNull();
+    expect(container.querySelector('[data-card-type]')).toBeNull();
+    expect(screen.getByText(/服务耗时 1.82 s/)).toBeDefined();
+    fireEvent.click(screen.getByText('本次运行与检索来源'));
+    expect(
+      screen.getByText(/缓存读取 30 tokens · 缓存写入 11 tokens/),
+    ).toBeDefined();
+    expect(screen.getByText(SOURCE.text)).toBeDefined();
+  });
+
+  it('bounds a hanging response body even when the transport ignores AbortSignal', async () => {
+    vi.useFakeTimers();
+    const hanging = new Response(
+      new ReadableStream<Uint8Array>({ start() {} }),
+      { headers: { 'content-type': 'application/json' } },
+    );
+    const fetcher = vi.fn<typeof fetch>().mockResolvedValue(hanging);
+    vi.stubGlobal('fetch', fetcher);
+    render(<LiveAskPanel />);
+    submit();
+    await act(async () => {
+      await vi.advanceTimersByTimeAsync(75_000);
+    });
+    expect(screen.getByRole('alert').textContent).toContain('等待超过 75 秒');
+    expect(fetcher.mock.calls[0]![1]?.signal?.aborted).toBe(true);
+    expect(screen.queryByText('正在检索语料并生成知识卡')).toBeNull();
+    expect(
+      screen
+        .getByRole('button', { name: /生成知识卡/ })
+        .hasAttribute('disabled'),
+    ).toBe(false);
+  });
+
+  it('rejects a provenance source count that disagrees with the passages actually returned', async () => {
+    vi.stubGlobal(
+      'fetch',
+      vi.fn<typeof fetch>().mockResolvedValue(
+        response({
+          ...answer(),
+          provenance: { ...answer().provenance, retrievedCount: 8 },
+        }),
+      ),
+    );
+    const { container } = render(<LiveAskPanel />);
+    submit();
+    expect((await screen.findByRole('alert')).textContent).toContain(
+      '召回段落数量与来源记录不一致',
+    );
+    expect(container.querySelector('[data-card-type]')).toBeNull();
+  });
+
+  it('keeps unknown provider usage distinct from a skipped model and hides an HTML error response', async () => {
+    vi.stubGlobal(
+      'fetch',
+      vi
+        .fn<typeof fetch>()
+        .mockResolvedValueOnce(
+          response(
+            {
+              ...answer(),
+              status: 'error',
+              code: 'provider-error',
+              cards: [],
+              usage: null,
+            },
+            502,
+          ),
+        )
+        .mockResolvedValueOnce(
+          new Response('<html>proxy-debug-secret</html>', { status: 502 }),
+        ),
+    );
+    render(<LiveAskPanel />);
+    submit();
+    expect((await screen.findByRole('alert')).textContent).toContain(
+      'HTTP 502',
+    );
+    fireEvent.click(screen.getByText('本次运行与检索来源'));
+    expect(
+      screen.getByText('服务未返回用量，不能据此判断为零消耗。'),
+    ).toBeDefined();
+    expect(screen.getByText(SOURCE.text)).toBeDefined();
+    submit();
+    expect((await screen.findByRole('alert')).textContent).toContain(
+      'HTTP 502',
+    );
+    expect(screen.queryByText(/proxy-debug-secret/)).toBeNull();
+  });
+
+  it.each([
+    ['missing', '当前检索证据不足，本次未生成知识卡。'],
+    ['conflicting', '检索来源存在分歧，本次未生成知识卡。'],
+  ])(
+    'describes an empty %s answer without claiming partial cards are shown',
+    async (reason, message) => {
+      vi.stubGlobal(
+        'fetch',
+        vi.fn<typeof fetch>().mockResolvedValue(
+          response({
+            ...answer(),
+            status: 'incomplete',
+            incompleteReason: reason,
+            cards: [],
+            message:
+              'An arbitrary server message must not override the empty state.',
+          }),
+        ),
+      );
+      const { container } = render(<LiveAskPanel />);
+      submit();
+      expect(await screen.findByText(message)).toBeDefined();
+      expect(screen.queryByText(/知识卡仅展示可支持的部分/)).toBeNull();
+      expect(screen.queryByText(/未调用模型/)).toBeNull();
+      expect(container.querySelector('[data-card-type]')).toBeNull();
+      fireEvent.click(screen.getByText('本次运行与检索来源'));
+      expect(screen.getByText(SOURCE.text)).toBeDefined();
+    },
+  );
+
+  it('clears the client deadline after cancellation and unmounting pending requests', async () => {
+    vi.useFakeTimers();
+    vi.stubGlobal(
+      'fetch',
+      vi
+        .fn<typeof fetch>()
+        .mockImplementation(() => new Promise<Response>(() => {})),
+    );
+    const { unmount } = render(<LiveAskPanel />);
+    submit();
+    expect(vi.getTimerCount()).toBe(1);
+    fireEvent.click(screen.getByRole('button', { name: '取消等待' }));
+    await act(async () => {
+      await Promise.resolve();
+    });
+    expect(vi.getTimerCount()).toBe(0);
+    await act(async () => {
+      await vi.advanceTimersByTimeAsync(75_000);
+    });
+    expect(screen.getByRole('alert').textContent).toContain('已取消等待');
+    expect(screen.getByRole('alert').textContent).not.toContain('超过 75 秒');
+    submit();
+    expect(vi.getTimerCount()).toBe(1);
+    unmount();
+    await act(async () => {
+      await Promise.resolve();
+    });
+    expect(vi.getTimerCount()).toBe(0);
   });
 });

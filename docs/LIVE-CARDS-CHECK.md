@@ -109,3 +109,7 @@ CORS headers and the retired `/api/ask` returns 410 without generation. Local
 validation passes 503 tests, workspace typechecks, web lint, schema freshness,
 static and Worker bundle scans. GitHub CI and Pages publication are separate
 checks linked from PR #92.
+
+A later [targeted PR #92 review](LIVE-CARDS-REVIEW.md) adds custom cutoff and
+missing-data questions, checks failure-state sources/usage, and records web-only
+response-handling corrections after this initial publication.

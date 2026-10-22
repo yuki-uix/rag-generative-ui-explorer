@@ -26,6 +26,66 @@ interface Run {
   timing: LiveCardsTiming;
   usage: LiveCardsUsage | null;
   message: string | undefined;
+  failureCode: string | undefined;
+}
+
+const CLIENT_DEADLINE_MS = 75_000;
+
+/** Only messages created by this client may reach its request-error notice. */
+class ResponseProblem extends Error {}
+
+function failureMessage(code: unknown, httpStatus: number): string {
+  let message: string;
+  switch (code) {
+    case 'rate-limited':
+      message = '提问过于频繁，请稍后重试。';
+      break;
+    case 'service-busy':
+      message = '当前服务繁忙，请稍后重试。';
+      break;
+    case 'model-unavailable':
+      message = '实时生成服务暂不可用，可查看本次已召回的来源。';
+      break;
+    case 'model-timeout':
+      message = '模型生成超时，请稍后重试。';
+      break;
+    case 'provider-error':
+      message = '模型服务暂时未能完成请求，请稍后重试。';
+      break;
+    case 'generation-truncated':
+      message = '模型输出超过长度限制，本次未展示不完整卡片。请缩小问题范围。';
+      break;
+    case 'generation-refused':
+      message = '模型未生成可展示的知识卡，请调整问题。';
+      break;
+    case 'invalid-model-output':
+      message = '模型输出未通过结构或来源检查，本次未展示知识卡。';
+      break;
+    case 'question-too-long':
+      message = '问题最多 1000 个字符，请缩短问题。';
+      break;
+    case 'request-too-large':
+      message = '提交内容过大，请缩短问题。';
+      break;
+    case 'request-timeout':
+      message = '读取问题超时，请重新提交。';
+      break;
+    case 'request-cancelled':
+      message = '本次请求已取消。';
+      break;
+    case 'unsupported-content-type':
+    case 'invalid-request':
+      message = '服务无法读取本次问题，请重新提交。';
+      break;
+    default:
+      message =
+        httpStatus === 429
+          ? '提问过于频繁，请稍后重试。'
+          : httpStatus === 403
+            ? '当前页面无法调用问答服务，请从项目网页重试。'
+            : '问答服务暂时无法完成请求，请稍后重试。';
+  }
+  return `${message}（HTTP ${httpStatus}）`;
 }
 
 function isObject(value: unknown): value is Record<string, unknown> {
@@ -34,20 +94,26 @@ function isObject(value: unknown): value is Record<string, unknown> {
 
 function readString(value: unknown): string {
   if (typeof value !== 'string')
-    throw new Error('服务返回的运行记录不完整，请重试。');
+    throw new ResponseProblem('服务返回的运行记录不完整，请重试。');
   return value;
 }
 
 function readNumber(value: unknown): number {
   if (typeof value !== 'number' || !Number.isFinite(value) || value < 0) {
-    throw new Error('服务返回的运行记录不完整，请重试。');
+    throw new ResponseProblem('服务返回的运行记录不完整，请重试。');
   }
   return value;
 }
 
 /** Serialized cards have no brand: validate evidence and re-enter the real gate. */
-function readRun(value: unknown): Run {
-  if (!isObject(value)) throw new Error('服务返回的结果格式不正确，请重试。');
+function readRun(value: unknown, question: string, httpStatus: number): Run {
+  if (!isObject(value))
+    throw new ResponseProblem('服务返回的结果格式不正确，请重试。');
+  if (value['question'] !== question) {
+    throw new ResponseProblem(
+      '返回结果与本次提问不一致，本次结果未展示。请重新提交。',
+    );
+  }
   const status = value['status'];
   if (
     status !== 'complete' &&
@@ -55,22 +121,22 @@ function readRun(value: unknown): Run {
     status !== 'invalid' &&
     status !== 'error'
   ) {
-    throw new Error('服务返回了无法识别的状态，请重试。');
+    throw new ResponseProblem('服务返回了无法识别的状态，请重试。');
   }
   const rawCards = value['cards'];
   const rawEvidence = value['evidence'];
   if (!Array.isArray(rawCards) || !Array.isArray(rawEvidence)) {
-    throw new Error('服务返回的卡片或来源格式不正确，请重试。');
+    throw new ResponseProblem('服务返回的卡片或来源格式不正确，请重试。');
   }
   if (status === 'complete' && rawCards.length === 0) {
-    throw new Error('服务未返回知识卡，请调整问题后重试。');
+    throw new ResponseProblem('服务未返回知识卡，请调整问题后重试。');
   }
   if (
     status === 'incomplete' &&
     value['incompleteReason'] !== 'missing' &&
     value['incompleteReason'] !== 'conflicting'
   ) {
-    throw new Error('服务未说明依据不足的原因，本次结果未展示。');
+    throw new ResponseProblem('服务未说明依据不足的原因，本次结果未展示。');
   }
   const evidence = rawEvidence.map((candidate: unknown) => {
     const parsed = Evidence.safeParse(candidate);
@@ -78,13 +144,22 @@ function readRun(value: unknown): Run {
       !parsed.success ||
       (parsed.data.url && !/^https?:\/\//i.test(parsed.data.url))
     ) {
-      throw new Error('来源数据未通过检查，本次结果未展示。');
+      throw new ResponseProblem('来源数据未通过检查，本次结果未展示。');
     }
     return parsed.data;
   });
   const ids = new Set(evidence.map((item) => item.id));
   if (ids.size !== evidence.length)
-    throw new Error('来源编号重复，本次结果未展示。');
+    throw new ResponseProblem('来源编号重复，本次结果未展示。');
+  const provenance = readProvenance(value['provenance']);
+  if (
+    !Number.isInteger(provenance.retrievedCount) ||
+    provenance.retrievedCount !== evidence.length ||
+    !Number.isInteger(provenance.indexedChunkCount) ||
+    provenance.indexedChunkCount < evidence.length
+  ) {
+    throw new ResponseProblem('召回段落数量与来源记录不一致，本次结果未展示。');
+  }
   const checked = gate(rawCards, evidence);
   // Source-only cards carry identifiers rather than grounded fields, so resolve
   // their identifiers explicitly as well before displaying them.
@@ -92,16 +167,33 @@ function readRun(value: unknown): Run {
     (card) =>
       card.type !== 'evidence' || card.evidenceIds.every((id) => ids.has(id)),
   );
+  const timing = readTiming(value['timing']);
+  const usage = readUsage(value['usage']);
   return {
     status,
     evidence,
     result: { cards, failures: checked.failures },
     rejectedCount: rawCards.length - cards.length,
-    provenance: readProvenance(value['provenance']),
-    timing: readTiming(value['timing']),
-    usage: readUsage(value['usage']),
+    provenance,
+    timing,
+    usage,
     message:
-      typeof value['message'] === 'string' ? value['message'] : undefined,
+      status === 'error' || status === 'invalid'
+        ? failureMessage(value['code'], httpStatus)
+        : status === 'incomplete'
+          ? value['incompleteReason'] === 'conflicting'
+            ? cards.length > 0
+              ? '检索来源存在分歧，知识卡仅展示可支持的部分。'
+              : '检索来源存在分歧，本次未生成知识卡。'
+            : evidence.length === 0 &&
+                timing.generationMs === 0 &&
+                usage === null
+              ? '当前语料没有检索到匹配片段，未调用模型。请尝试具体技术名称或英文关键词。'
+              : cards.length > 0
+                ? '当前检索证据不足，知识卡仅展示可支持的部分。'
+                : '当前检索证据不足，本次未生成知识卡。'
+          : undefined,
+    failureCode: typeof value['code'] === 'string' ? value['code'] : undefined,
   };
 }
 
@@ -116,7 +208,7 @@ function readProvenance(value: unknown): LiveCardsProvenance {
     (value['queryExpansion'] !== 'technical-terms-v1' &&
       value['queryExpansion'] !== 'none')
   ) {
-    throw new Error('服务返回的来源记录不完整，请重试。');
+    throw new ResponseProblem('服务返回的来源记录不完整，请重试。');
   }
   return {
     corpusVersion: readString(value['corpusVersion']),
@@ -137,7 +229,8 @@ function readProvenance(value: unknown): LiveCardsProvenance {
 }
 
 function readTiming(value: unknown): LiveCardsTiming {
-  if (!isObject(value)) throw new Error('服务未提供本次耗时，请重试。');
+  if (!isObject(value))
+    throw new ResponseProblem('服务未提供本次耗时，请重试。');
   return {
     retrievalMs: readNumber(value['retrievalMs']),
     generationMs: readNumber(value['generationMs']),
@@ -148,7 +241,8 @@ function readTiming(value: unknown): LiveCardsTiming {
 
 function readUsage(value: unknown): LiveCardsUsage | null {
   if (value === null) return null;
-  if (!isObject(value)) throw new Error('服务返回的用量记录不完整，请重试。');
+  if (!isObject(value))
+    throw new ResponseProblem('服务返回的用量记录不完整，请重试。');
   const count = (field: string) =>
     value[field] === null ? null : readNumber(value[field]);
   return {
@@ -197,37 +291,72 @@ export function LiveAskPanel({
     setAsked(trimmed);
     setRun(null);
     setNotice(null);
+    let onAbort: () => void = () => {};
+    const stopped = new Promise<never>((_, reject) => {
+      onAbort = () =>
+        reject(
+          new ResponseProblem(
+            controller.signal.reason === 'client-deadline'
+              ? '等待超过 75 秒，已停止等待。服务端可能已开始生成，暂时无法确认本次用量；没有自动重试。'
+              : '已取消等待，本次结果不会显示。服务端可能已开始生成。',
+          ),
+        );
+      controller.signal.addEventListener('abort', onAbort, { once: true });
+    });
+    const timer = setTimeout(
+      () => controller.abort('client-deadline'),
+      CLIENT_DEADLINE_MS,
+    );
     try {
-      const response = await fetch(endpoint, {
-        method: 'POST',
-        credentials: 'omit',
-        headers: { 'content-type': 'application/json' },
-        body: JSON.stringify({ question: trimmed }),
-        signal: controller.signal,
-      });
-      const body: unknown = await response.json();
+      const operation = async () => {
+        const response = await fetch(endpoint, {
+          method: 'POST',
+          credentials: 'omit',
+          headers: { 'content-type': 'application/json' },
+          body: JSON.stringify({ question: trimmed }),
+          signal: controller.signal,
+        });
+        let body: unknown;
+        try {
+          body = await response.json();
+        } catch {
+          throw new ResponseProblem(
+            response.ok
+              ? '服务未返回可读取的 JSON，本次结果未展示。请稍后重试。'
+              : failureMessage(undefined, response.status),
+          );
+        }
+        return { response, body };
+      };
+      const { response, body } = await Promise.race([operation(), stopped]);
       if (requestRevision !== revision.current) return;
-      // Rate/concurrency guards may return a small error envelope.
+      // Full generation failures still carry real sources, timing and usage.
+      // Rate/concurrency guards have only a small error envelope.
       if (
         !response.ok &&
-        isObject(body) &&
-        typeof body['message'] === 'string'
+        (!isObject(body) ||
+          (body['status'] !== 'error' && body['status'] !== 'invalid') ||
+          !Array.isArray(body['evidence']) ||
+          !isObject(body['provenance']))
       ) {
-        throw new Error(body['message']);
-      }
-      if (!response.ok)
-        throw new Error(
-          `本次请求失败（HTTP ${response.status}），请稍后重试。`,
+        throw new ResponseProblem(
+          failureMessage(
+            isObject(body) ? body['code'] : undefined,
+            response.status,
+          ),
         );
-      setRun(readRun(body));
+      }
+      setRun(readRun(body, trimmed, response.status));
     } catch (error) {
       if (requestRevision !== revision.current) return;
       setNotice(
-        error instanceof Error && error.name !== 'SyntaxError'
+        error instanceof ResponseProblem
           ? error.message
-          : '暂时无法取得可读取的回答，请稍后重试。',
+          : '网络连接或响应读取失败，请检查网络后重试；暂时无法确认本次模型用量。',
       );
     } finally {
+      clearTimeout(timer);
+      controller.signal.removeEventListener('abort', onAbort);
       if (requestRevision === revision.current) {
         active.current = null;
         setPending(false);
@@ -377,6 +506,12 @@ function RunResult({ run }: { run: Run }) {
   const resolve = (id: string) => byId.get(id);
   const canRender = run.status === 'complete' || run.status === 'incomplete';
   const cards = canRender ? run.result.cards : [];
+  const modelWasSkipped =
+    (run.status === 'incomplete' &&
+      run.evidence.length === 0 &&
+      run.timing.generationMs === 0 &&
+      run.usage === null) ||
+    (run.failureCode === 'model-unavailable' && run.timing.generationMs === 0);
   return (
     <SourceDrawerProvider resolve={resolve}>
       <div className="live-ask-result-head" aria-live="polite">
@@ -472,8 +607,10 @@ function RunResult({ run }: { run: Run }) {
               <dt>用量</dt>
               <dd>
                 {run.usage
-                  ? `输入 ${run.usage.inputTokens ?? '未提供'} tokens · 输出 ${run.usage.outputTokens ?? '未提供'} tokens`
-                  : '服务未返回用量'}
+                  ? `未缓存输入 ${run.usage.inputTokens ?? '未提供'} tokens · 输出 ${run.usage.outputTokens ?? '未提供'} tokens · 缓存读取 ${run.usage.cacheReadInputTokens ?? '未提供'} tokens · 缓存写入 ${run.usage.cacheCreationInputTokens ?? '未提供'} tokens`
+                  : modelWasSkipped
+                    ? '本次未调用模型，无本次模型用量。'
+                    : '服务未返回用量，不能据此判断为零消耗。'}
               </dd>
             </div>
             <div>
