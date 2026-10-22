@@ -40,7 +40,11 @@
     "framework:graph": "pnpm --filter @rgux/generation run framework:run --config eval/framework/graph.json",
     "images:replay": "pnpm --filter @rgux/corpus run images:replay",
     "images:budget": "pnpm --filter @rgux/corpus run images:budget",
-    "images:review": "pnpm --filter @rgux/corpus run images:review"
+    "images:review": "pnpm --filter @rgux/corpus run images:review",
+    "web:images:build": "pnpm --filter @rgux/web run images:build",
+    "web:images:check": "pnpm --filter @rgux/web run images:check",
+    "web:review:dev": "pnpm --filter @rgux/web run review:dev",
+    "web:review:build": "pnpm --filter @rgux/web run review:build"
   },
   "devDependencies": {
     "typescript": "^7.0.2"

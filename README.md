@@ -5,6 +5,19 @@ An experimental knowledge explorer that combines retrieval-augmented generation
 **Generative UI**, then composes the smallest useful set of interactive knowledge
 cards for the current question.
 
+## Review the current work
+
+**[Open the project preview](https://yuki-uix.github.io/rag-generative-ui-explorer/)**
+— project overview, interactive knowledge-card examples with source drawers, and
+the image-retrieval experiment with original images, gold review and real rankings.
+The preview is published from the review branch and links to its exact commit;
+it does not imply the PR has been merged or the MVP is complete.
+
+The GitHub Pages preview runs entirely in the browser. It does not provide the
+live `/api/ask` service; the online Markdown baseline remains a separate
+Cloudflare Worker deployment. See [web delivery and review](docs/WEB-REVIEW.md)
+for scope, local commands and deployment details.
+
 ## Product hypothesis
 
 Most RAG applications return a block of prose. This project tests whether users

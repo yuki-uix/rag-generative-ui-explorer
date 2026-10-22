@@ -6,6 +6,7 @@
 node_modules/
 coverage/
 dist/
+dist-review/
 *.log
 .verify-ok
 .claude-worktrees/

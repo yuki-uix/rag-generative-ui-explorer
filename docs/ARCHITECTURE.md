@@ -274,6 +274,13 @@ separate product published it once cannot be reproduced from this repository.
 Experiment infrastructure should not depend on a gesture the project cannot
 repeat.
 
+The later [review preview](WEB-REVIEW.md) adds a separate GitHub Pages target
+for the overview, fixed knowledge-card examples and saved image-experiment
+observations. It reuses app components but provides no `/api/ask` or server
+runtime. Its branch/commit is shown explicitly, so reviewers can open unmerged
+work without mistaking it for the deployed online baseline. Cloudflare remains
+the application's runtime target described here.
+
 Every root script that delegates to a package says `run`, and
 `workspace:check` fails when one does not. `pnpm --filter <pkg> deploy` does not
 invoke that package's `deploy` script: `deploy` is one of pnpm's own commands, so
