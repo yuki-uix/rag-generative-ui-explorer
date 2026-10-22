@@ -37,7 +37,16 @@
     "framework:smoke": "pnpm --filter @rgux/generation run framework:run",
     "framework:live": "pnpm --filter @rgux/generation run framework:run --live",
     "framework:compare": "pnpm --filter @rgux/generation run framework:run --config eval/framework/comparison.json",
-    "framework:graph": "pnpm --filter @rgux/generation run framework:run --config eval/framework/graph.json"
+    "framework:graph": "pnpm --filter @rgux/generation run framework:run --config eval/framework/graph.json",
+    "images:replay": "pnpm --filter @rgux/corpus run images:replay",
+    "images:budget": "pnpm --filter @rgux/corpus run images:budget",
+    "images:review": "pnpm --filter @rgux/corpus run images:review",
+    "web:images:build": "pnpm --filter @rgux/web run images:build",
+    "web:images:check": "pnpm --filter @rgux/web run images:check",
+    "web:review:dev": "pnpm --filter @rgux/web run review:dev",
+    "web:review:build": "pnpm --filter @rgux/web run review:build",
+    "web:planner-schema:build": "pnpm --filter @rgux/web run planner-schema:build",
+    "web:planner-schema:check": "pnpm --filter @rgux/web run planner-schema:check"
   },
   "devDependencies": {
     "typescript": "^7.0.2"

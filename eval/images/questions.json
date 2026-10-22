@@ -1,0 +1,571 @@
+{
+  "version": "image-questions-1",
+  "language": "en",
+  "author": "same assistant as corpus/harness; not independent or blind",
+  "questions": [
+    {
+      "id": "figure-01-a-literal",
+      "group": "doc-01",
+      "split": "development",
+      "category": "literal",
+      "question": "Which sparse retrieval figure contains the label \"Inverted index\"?",
+      "goldenImageIds": [
+        "figure-01-a"
+      ],
+      "rationale": "The requested label is present in figure-01-a."
+    },
+    {
+      "id": "figure-01-a-concept",
+      "group": "doc-01",
+      "split": "development",
+      "category": "concept",
+      "question": "Find the illustration of looking up literal words in postings before ranking documents.",
+      "goldenImageIds": [
+        "figure-01-a"
+      ],
+      "rationale": "Concept flow in the vertical diagram."
+    },
+    {
+      "id": "figure-01-b-literal",
+      "group": "doc-01",
+      "split": "development",
+      "category": "literal",
+      "question": "Which sparse retrieval figure contains the label \"Document length\"?",
+      "goldenImageIds": [
+        "figure-01-b"
+      ],
+      "rationale": "The requested label is present in figure-01-b."
+    },
+    {
+      "id": "figure-01-b-layout",
+      "group": "doc-01",
+      "split": "development",
+      "category": "layout",
+      "question": "Find the sparse retrieval diagram with orange boxes, two parallel branches and a merge at the bottom.",
+      "goldenImageIds": [
+        "figure-01-b"
+      ],
+      "rationale": "The orange diamond layout is visible only in this diagram of this source group."
+    },
+    {
+      "id": "figure-02-a-literal",
+      "group": "doc-02",
+      "split": "evaluation",
+      "category": "literal",
+      "question": "Which dense retrieval figure contains the label \"Stored vectors\"?",
+      "goldenImageIds": [
+        "figure-02-a"
+      ],
+      "rationale": "The requested label is present in figure-02-a."
+    },
+    {
+      "id": "figure-02-a-concept",
+      "group": "doc-02",
+      "split": "evaluation",
+      "category": "concept",
+      "question": "Find the illustration of precomputing document representations for nearest-neighbor lookup.",
+      "goldenImageIds": [
+        "figure-02-a"
+      ],
+      "rationale": "Concept flow in the vertical diagram."
+    },
+    {
+      "id": "figure-02-b-literal",
+      "group": "doc-02",
+      "split": "evaluation",
+      "category": "literal",
+      "question": "Which dense retrieval figure contains the label \"Question encoder\"?",
+      "goldenImageIds": [
+        "figure-02-b"
+      ],
+      "rationale": "The requested label is present in figure-02-b."
+    },
+    {
+      "id": "figure-02-b-layout",
+      "group": "doc-02",
+      "split": "evaluation",
+      "category": "layout",
+      "question": "Find the dense retrieval diagram with orange boxes, two parallel branches and a merge at the bottom.",
+      "goldenImageIds": [
+        "figure-02-b"
+      ],
+      "rationale": "The orange diamond layout is visible only in this diagram of this source group."
+    },
+    {
+      "id": "figure-03-a-literal",
+      "group": "doc-03",
+      "split": "development",
+      "category": "literal",
+      "question": "Which candidate fusion figure contains the label \"Reciprocal ranks\"?",
+      "goldenImageIds": [
+        "figure-03-a"
+      ],
+      "rationale": "The requested label is present in figure-03-a."
+    },
+    {
+      "id": "figure-03-a-concept",
+      "group": "doc-03",
+      "split": "development",
+      "category": "concept",
+      "question": "Find the illustration that combines retrieval positions instead of incomparable raw scores.",
+      "goldenImageIds": [
+        "figure-03-a"
+      ],
+      "rationale": "Concept flow in the vertical diagram."
+    },
+    {
+      "id": "figure-03-b-literal",
+      "group": "doc-03",
+      "split": "development",
+      "category": "literal",
+      "question": "Which candidate fusion figure contains the label \"RRF combination\"?",
+      "goldenImageIds": [
+        "figure-03-b"
+      ],
+      "rationale": "The requested label is present in figure-03-b."
+    },
+    {
+      "id": "figure-03-b-layout",
+      "group": "doc-03",
+      "split": "development",
+      "category": "layout",
+      "question": "Find the candidate fusion diagram with orange boxes, two parallel branches and a merge at the bottom.",
+      "goldenImageIds": [
+        "figure-03-b"
+      ],
+      "rationale": "The orange diamond layout is visible only in this diagram of this source group."
+    },
+    {
+      "id": "figure-04-a-literal",
+      "group": "doc-04",
+      "split": "evaluation",
+      "category": "literal",
+      "question": "Which reranking figure contains the label \"Cross encoder\"?",
+      "goldenImageIds": [
+        "figure-04-a"
+      ],
+      "rationale": "The requested label is present in figure-04-a."
+    },
+    {
+      "id": "figure-04-a-concept",
+      "group": "doc-04",
+      "split": "evaluation",
+      "category": "concept",
+      "question": "Find the illustration of scoring query-document pairs after initial retrieval.",
+      "goldenImageIds": [
+        "figure-04-a"
+      ],
+      "rationale": "Concept flow in the vertical diagram."
+    },
+    {
+      "id": "figure-04-b-literal",
+      "group": "doc-04",
+      "split": "evaluation",
+      "category": "literal",
+      "question": "Which reranking figure contains the label \"Reordered subset\"?",
+      "goldenImageIds": [
+        "figure-04-b"
+      ],
+      "rationale": "The requested label is present in figure-04-b."
+    },
+    {
+      "id": "figure-04-b-layout",
+      "group": "doc-04",
+      "split": "evaluation",
+      "category": "layout",
+      "question": "Find the reranking diagram with orange boxes, two parallel branches and a merge at the bottom.",
+      "goldenImageIds": [
+        "figure-04-b"
+      ],
+      "rationale": "The orange diamond layout is visible only in this diagram of this source group."
+    },
+    {
+      "id": "figure-05-a-literal",
+      "group": "doc-05",
+      "split": "development",
+      "category": "literal",
+      "question": "Which ingestion and chunking figure contains the label \"Stable identifiers\"?",
+      "goldenImageIds": [
+        "figure-05-a"
+      ],
+      "rationale": "The requested label is present in figure-05-a."
+    },
+    {
+      "id": "figure-05-a-concept",
+      "group": "doc-05",
+      "split": "development",
+      "category": "concept",
+      "question": "Find the illustration of splitting documents into addressable units before indexing.",
+      "goldenImageIds": [
+        "figure-05-a"
+      ],
+      "rationale": "Concept flow in the vertical diagram."
+    },
+    {
+      "id": "figure-05-b-literal",
+      "group": "doc-05",
+      "split": "development",
+      "category": "literal",
+      "question": "Which ingestion and chunking figure contains the label \"Section location\"?",
+      "goldenImageIds": [
+        "figure-05-b"
+      ],
+      "rationale": "The requested label is present in figure-05-b."
+    },
+    {
+      "id": "figure-05-b-layout",
+      "group": "doc-05",
+      "split": "development",
+      "category": "layout",
+      "question": "Find the ingestion and chunking diagram with orange boxes, two parallel branches and a merge at the bottom.",
+      "goldenImageIds": [
+        "figure-05-b"
+      ],
+      "rationale": "The orange diamond layout is visible only in this diagram of this source group."
+    },
+    {
+      "id": "figure-06-a-literal",
+      "group": "doc-06",
+      "split": "evaluation",
+      "category": "literal",
+      "question": "Which context assembly figure contains the label \"Deduplicate\"?",
+      "goldenImageIds": [
+        "figure-06-a"
+      ],
+      "rationale": "The requested label is present in figure-06-a."
+    },
+    {
+      "id": "figure-06-a-concept",
+      "group": "doc-06",
+      "split": "evaluation",
+      "category": "concept",
+      "question": "Find the illustration of removing repeated passages and fitting evidence into a limited prompt.",
+      "goldenImageIds": [
+        "figure-06-a"
+      ],
+      "rationale": "Concept flow in the vertical diagram."
+    },
+    {
+      "id": "figure-06-b-literal",
+      "group": "doc-06",
+      "split": "evaluation",
+      "category": "literal",
+      "question": "Which context assembly figure contains the label \"Passage boundaries\"?",
+      "goldenImageIds": [
+        "figure-06-b"
+      ],
+      "rationale": "The requested label is present in figure-06-b."
+    },
+    {
+      "id": "figure-06-b-layout",
+      "group": "doc-06",
+      "split": "evaluation",
+      "category": "layout",
+      "question": "Find the context assembly diagram with orange boxes, two parallel branches and a merge at the bottom.",
+      "goldenImageIds": [
+        "figure-06-b"
+      ],
+      "rationale": "The orange diamond layout is visible only in this diagram of this source group."
+    },
+    {
+      "id": "figure-07-a-literal",
+      "group": "doc-07",
+      "split": "development",
+      "category": "literal",
+      "question": "Which query transformation figure contains the label \"Query rewrite\"?",
+      "goldenImageIds": [
+        "figure-07-a"
+      ],
+      "rationale": "The requested label is present in figure-07-a."
+    },
+    {
+      "id": "figure-07-a-concept",
+      "group": "doc-07",
+      "split": "development",
+      "category": "concept",
+      "question": "Find the illustration of reformulating the question before searching while preserving its intent.",
+      "goldenImageIds": [
+        "figure-07-a"
+      ],
+      "rationale": "Concept flow in the vertical diagram."
+    },
+    {
+      "id": "figure-07-b-literal",
+      "group": "doc-07",
+      "split": "development",
+      "category": "literal",
+      "question": "Which query transformation figure contains the label \"Decomposition\"?",
+      "goldenImageIds": [
+        "figure-07-b"
+      ],
+      "rationale": "The requested label is present in figure-07-b."
+    },
+    {
+      "id": "figure-07-b-layout",
+      "group": "doc-07",
+      "split": "development",
+      "category": "layout",
+      "question": "Find the query transformation diagram with orange boxes, two parallel branches and a merge at the bottom.",
+      "goldenImageIds": [
+        "figure-07-b"
+      ],
+      "rationale": "The orange diamond layout is visible only in this diagram of this source group."
+    },
+    {
+      "id": "figure-08-a-literal",
+      "group": "doc-08",
+      "split": "evaluation",
+      "category": "literal",
+      "question": "Which grounded generation figure contains the label \"Check support\"?",
+      "goldenImageIds": [
+        "figure-08-a"
+      ],
+      "rationale": "The requested label is present in figure-08-a."
+    },
+    {
+      "id": "figure-08-a-concept",
+      "group": "doc-08",
+      "split": "evaluation",
+      "category": "concept",
+      "question": "Find the illustration of checking that generated statements are supported before publishing an answer.",
+      "goldenImageIds": [
+        "figure-08-a"
+      ],
+      "rationale": "Concept flow in the vertical diagram."
+    },
+    {
+      "id": "figure-08-b-literal",
+      "group": "doc-08",
+      "split": "evaluation",
+      "category": "literal",
+      "question": "Which grounded generation figure contains the label \"Inferred claim\"?",
+      "goldenImageIds": [
+        "figure-08-b"
+      ],
+      "rationale": "The requested label is present in figure-08-b."
+    },
+    {
+      "id": "figure-08-b-layout",
+      "group": "doc-08",
+      "split": "evaluation",
+      "category": "layout",
+      "question": "Find the grounded generation diagram with orange boxes, two parallel branches and a merge at the bottom.",
+      "goldenImageIds": [
+        "figure-08-b"
+      ],
+      "rationale": "The orange diamond layout is visible only in this diagram of this source group."
+    },
+    {
+      "id": "figure-09-a-literal",
+      "group": "doc-09",
+      "split": "development",
+      "category": "literal",
+      "question": "Which declarative ui schemas figure contains the label \"Known components\"?",
+      "goldenImageIds": [
+        "figure-09-a"
+      ],
+      "rationale": "The requested label is present in figure-09-a."
+    },
+    {
+      "id": "figure-09-a-concept",
+      "group": "doc-09",
+      "split": "development",
+      "category": "concept",
+      "question": "Find the illustration of validating a component specification before rendering a trusted interface.",
+      "goldenImageIds": [
+        "figure-09-a"
+      ],
+      "rationale": "Concept flow in the vertical diagram."
+    },
+    {
+      "id": "figure-09-b-literal",
+      "group": "doc-09",
+      "split": "development",
+      "category": "literal",
+      "question": "Which declarative ui schemas figure contains the label \"Required fields\"?",
+      "goldenImageIds": [
+        "figure-09-b"
+      ],
+      "rationale": "The requested label is present in figure-09-b."
+    },
+    {
+      "id": "figure-09-b-layout",
+      "group": "doc-09",
+      "split": "development",
+      "category": "layout",
+      "question": "Find the declarative ui schemas diagram with orange boxes, two parallel branches and a merge at the bottom.",
+      "goldenImageIds": [
+        "figure-09-b"
+      ],
+      "rationale": "The orange diamond layout is visible only in this diagram of this source group."
+    },
+    {
+      "id": "figure-10-a-literal",
+      "group": "doc-10",
+      "split": "evaluation",
+      "category": "literal",
+      "question": "Which incremental rendering figure contains the label \"Buffer structure\"?",
+      "goldenImageIds": [
+        "figure-10-a"
+      ],
+      "rationale": "The requested label is present in figure-10-a."
+    },
+    {
+      "id": "figure-10-a-concept",
+      "group": "doc-10",
+      "split": "evaluation",
+      "category": "concept",
+      "question": "Find the illustration of buffering incomplete structure before displaying a complete validated component.",
+      "goldenImageIds": [
+        "figure-10-a"
+      ],
+      "rationale": "Concept flow in the vertical diagram."
+    },
+    {
+      "id": "figure-10-b-literal",
+      "group": "doc-10",
+      "split": "evaluation",
+      "category": "literal",
+      "question": "Which incremental rendering figure contains the label \"Progress status\"?",
+      "goldenImageIds": [
+        "figure-10-b"
+      ],
+      "rationale": "The requested label is present in figure-10-b."
+    },
+    {
+      "id": "figure-10-b-layout",
+      "group": "doc-10",
+      "split": "evaluation",
+      "category": "layout",
+      "question": "Find the incremental rendering diagram with orange boxes, two parallel branches and a merge at the bottom.",
+      "goldenImageIds": [
+        "figure-10-b"
+      ],
+      "rationale": "The orange diamond layout is visible only in this diagram of this source group."
+    },
+    {
+      "id": "figure-11-a-literal",
+      "group": "doc-11",
+      "split": "development",
+      "category": "literal",
+      "question": "Which field level citations figure contains the label \"Check attribution\"?",
+      "goldenImageIds": [
+        "figure-11-a"
+      ],
+      "rationale": "The requested label is present in figure-11-a."
+    },
+    {
+      "id": "figure-11-a-concept",
+      "group": "doc-11",
+      "split": "development",
+      "category": "concept",
+      "question": "Find the illustration that traces a single factual field to its own supporting passage.",
+      "goldenImageIds": [
+        "figure-11-a"
+      ],
+      "rationale": "Concept flow in the vertical diagram."
+    },
+    {
+      "id": "figure-11-b-literal",
+      "group": "doc-11",
+      "split": "development",
+      "category": "literal",
+      "question": "Which field level citations figure contains the label \"Second factual field\"?",
+      "goldenImageIds": [
+        "figure-11-b"
+      ],
+      "rationale": "The requested label is present in figure-11-b."
+    },
+    {
+      "id": "figure-11-b-layout",
+      "group": "doc-11",
+      "split": "development",
+      "category": "layout",
+      "question": "Find the field level citations diagram with orange boxes, two parallel branches and a merge at the bottom.",
+      "goldenImageIds": [
+        "figure-11-b"
+      ],
+      "rationale": "The orange diamond layout is visible only in this diagram of this source group."
+    },
+    {
+      "id": "figure-12-a-literal",
+      "group": "doc-12",
+      "split": "evaluation",
+      "category": "literal",
+      "question": "Which state continuity figure contains the label \"User selection\"?",
+      "goldenImageIds": [
+        "figure-12-a"
+      ],
+      "rationale": "The requested label is present in figure-12-a."
+    },
+    {
+      "id": "figure-12-a-concept",
+      "group": "doc-12",
+      "split": "evaluation",
+      "category": "concept",
+      "question": "Find the illustration of carrying a user selection across successive generated interfaces.",
+      "goldenImageIds": [
+        "figure-12-a"
+      ],
+      "rationale": "Concept flow in the vertical diagram."
+    },
+    {
+      "id": "figure-12-b-literal",
+      "group": "doc-12",
+      "split": "evaluation",
+      "category": "literal",
+      "question": "Which state continuity figure contains the label \"UI state\"?",
+      "goldenImageIds": [
+        "figure-12-b"
+      ],
+      "rationale": "The requested label is present in figure-12-b."
+    },
+    {
+      "id": "figure-12-b-layout",
+      "group": "doc-12",
+      "split": "evaluation",
+      "category": "layout",
+      "question": "Find the state continuity diagram with orange boxes, two parallel branches and a merge at the bottom.",
+      "goldenImageIds": [
+        "figure-12-b"
+      ],
+      "rationale": "The orange diamond layout is visible only in this diagram of this source group."
+    },
+    {
+      "id": "negative-1",
+      "group": "negative-1",
+      "split": "development",
+      "category": "negative",
+      "question": "Find a photograph of a cat sleeping on a keyboard.",
+      "goldenImageIds": [],
+      "rationale": "No image in this authored corpus depicts this request."
+    },
+    {
+      "id": "negative-2",
+      "group": "negative-2",
+      "split": "evaluation",
+      "category": "negative",
+      "question": "Which diagram shows a Kubernetes pod autoscaler?",
+      "goldenImageIds": [],
+      "rationale": "No image in this authored corpus depicts this request."
+    },
+    {
+      "id": "negative-3",
+      "group": "negative-3",
+      "split": "development",
+      "category": "negative",
+      "question": "Find a line chart of GPU power consumption over time.",
+      "goldenImageIds": [],
+      "rationale": "No image in this authored corpus depicts this request."
+    },
+    {
+      "id": "negative-4",
+      "group": "negative-4",
+      "split": "evaluation",
+      "category": "negative",
+      "question": "Which figure shows a speech synthesis codec waveform?",
+      "goldenImageIds": [],
+      "rationale": "No image in this authored corpus depicts this request."
+    }
+  ]
+}

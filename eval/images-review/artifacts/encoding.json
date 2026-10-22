@@ -1,0 +1,1251 @@
+{
+  "version": "image-control-encoding-1",
+  "freezeSha256": "113d217dc5cda0a8f0e14f389cd8249ad81d3c09192aaf769b1ee4415310ff63",
+  "startedAt": "2026-10-22T06:28:40.730Z",
+  "completedAt": "2026-10-22T06:28:43.941Z",
+  "loadMs": 194.49962500000004,
+  "totalMs": 3209.5927090000005,
+  "peakRssKiB": 831440,
+  "runtime": {
+    "node": "v23.7.0",
+    "cpu": "Apple M4 Pro",
+    "platform": "darwin",
+    "arch": "arm64",
+    "transformers": "3.8.1",
+    "onnxruntime": "1.21.0"
+  },
+  "model": "Xenova/clip-vit-base-patch32",
+  "revision": "d15189d7028b43f1d3e65039190477f6af591c2a",
+  "dtype": "q8",
+  "device": "cpu",
+  "storage": "raw-projected-float32-le; L2 normalize during scoring",
+  "providerApiCalls": 0,
+  "modelFiles": [
+    {
+      "path": "Xenova/clip-vit-base-patch32/d15189d7028b43f1d3e65039190477f6af591c2a/config.json",
+      "sha256": "493ef57ff783e42d1530c91b53469b7fdf8db8a9c1408e86998fcb7899a4f495",
+      "bytes": 4524
+    },
+    {
+      "path": "Xenova/clip-vit-base-patch32/d15189d7028b43f1d3e65039190477f6af591c2a/onnx/text_model_quantized.onnx",
+      "sha256": "73baab855d406190da9faa498cfedf65f15cf309f4cc7385b7b032e6d08e5c3a",
+      "bytes": 64504507
+    },
+    {
+      "path": "Xenova/clip-vit-base-patch32/d15189d7028b43f1d3e65039190477f6af591c2a/onnx/vision_model_quantized.onnx",
+      "sha256": "583fd1110a514667812fee7d684952aaf82a99b959760c8d7dca7e0ab9839299",
+      "bytes": 89117001
+    },
+    {
+      "path": "Xenova/clip-vit-base-patch32/d15189d7028b43f1d3e65039190477f6af591c2a/preprocessor_config.json",
+      "sha256": "6f638fb9401a6d6296feff533ee7efe657b787c49f954f82f5906b36ef2a1b1f",
+      "bytes": 520
+    },
+    {
+      "path": "Xenova/clip-vit-base-patch32/d15189d7028b43f1d3e65039190477f6af591c2a/tokenizer.json",
+      "sha256": "f7f3b7af117d467b58374797691a6438d3e6b9e9cef800dfd5dced7f697a90cd",
+      "bytes": 2224119
+    },
+    {
+      "path": "Xenova/clip-vit-base-patch32/d15189d7028b43f1d3e65039190477f6af591c2a/tokenizer_config.json",
+      "sha256": "60ba2912bc6344c94bc16bbdec27fa1209409167b6f2fdf3cfe9e65462ea3967",
+      "bytes": 775
+    }
+  ],
+  "passes": [
+    {
+      "repetition": 1,
+      "file": "artifacts/pass-1.f32",
+      "sha256": "fa292544b73805ab83d204e6e84f8950ca974b8fe7e10bf1437c991f80211c49",
+      "bytes": 159744,
+      "rows": [
+        {
+          "id": "control-01-1",
+          "kind": "image",
+          "elapsedMs": 42.184875000000034
+        },
+        {
+          "id": "control-01-2",
+          "kind": "image",
+          "elapsedMs": 30.19150000000002
+        },
+        {
+          "id": "control-01-3",
+          "kind": "image",
+          "elapsedMs": 29.95387500000004
+        },
+        {
+          "id": "control-01-4",
+          "kind": "image",
+          "elapsedMs": 29.34887500000002
+        },
+        {
+          "id": "control-02-1",
+          "kind": "image",
+          "elapsedMs": 29.774166000000037
+        },
+        {
+          "id": "control-02-2",
+          "kind": "image",
+          "elapsedMs": 31.503582999999935
+        },
+        {
+          "id": "control-02-3",
+          "kind": "image",
+          "elapsedMs": 36.78991700000006
+        },
+        {
+          "id": "control-02-4",
+          "kind": "image",
+          "elapsedMs": 31.27800000000002
+        },
+        {
+          "id": "control-03-1",
+          "kind": "image",
+          "elapsedMs": 31.665833999999904
+        },
+        {
+          "id": "control-03-2",
+          "kind": "image",
+          "elapsedMs": 30.38170799999989
+        },
+        {
+          "id": "control-03-3",
+          "kind": "image",
+          "elapsedMs": 31.619041000000152
+        },
+        {
+          "id": "control-03-4",
+          "kind": "image",
+          "elapsedMs": 30.75633400000015
+        },
+        {
+          "id": "control-04-1",
+          "kind": "image",
+          "elapsedMs": 35.36412500000006
+        },
+        {
+          "id": "control-04-2",
+          "kind": "image",
+          "elapsedMs": 29.877624999999853
+        },
+        {
+          "id": "control-04-3",
+          "kind": "image",
+          "elapsedMs": 29.861083000000008
+        },
+        {
+          "id": "control-04-4",
+          "kind": "image",
+          "elapsedMs": 31.122958000000153
+        },
+        {
+          "id": "control-05-1",
+          "kind": "image",
+          "elapsedMs": 33.693708000000015
+        },
+        {
+          "id": "control-05-2",
+          "kind": "image",
+          "elapsedMs": 29.843166999999994
+        },
+        {
+          "id": "control-05-3",
+          "kind": "image",
+          "elapsedMs": 30.720416999999998
+        },
+        {
+          "id": "control-05-4",
+          "kind": "image",
+          "elapsedMs": 31.22808299999997
+        },
+        {
+          "id": "control-06-1",
+          "kind": "image",
+          "elapsedMs": 29.108000000000175
+        },
+        {
+          "id": "control-06-2",
+          "kind": "image",
+          "elapsedMs": 29.238542000000052
+        },
+        {
+          "id": "control-06-3",
+          "kind": "image",
+          "elapsedMs": 33.86929199999986
+        },
+        {
+          "id": "control-06-4",
+          "kind": "image",
+          "elapsedMs": 29.679084000000103
+        },
+        {
+          "id": "doc-02-blue-column",
+          "kind": "query",
+          "elapsedMs": 5.678542000000107
+        },
+        {
+          "id": "doc-02-blue-diamond",
+          "kind": "query",
+          "elapsedMs": 4.291832999999997
+        },
+        {
+          "id": "doc-02-orange-column",
+          "kind": "query",
+          "elapsedMs": 4.433915999999954
+        },
+        {
+          "id": "doc-02-orange-diamond",
+          "kind": "query",
+          "elapsedMs": 5.509459000000106
+        },
+        {
+          "id": "doc-02-blue",
+          "kind": "query",
+          "elapsedMs": 3.43491599999993
+        },
+        {
+          "id": "doc-02-orange",
+          "kind": "query",
+          "elapsedMs": 3.0239999999998872
+        },
+        {
+          "id": "doc-02-column",
+          "kind": "query",
+          "elapsedMs": 3.786582999999837
+        },
+        {
+          "id": "doc-02-diamond",
+          "kind": "query",
+          "elapsedMs": 4.681124999999838
+        },
+        {
+          "id": "doc-02-topic",
+          "kind": "query",
+          "elapsedMs": 2.8735419999998157
+        },
+        {
+          "id": "doc-04-blue-column",
+          "kind": "query",
+          "elapsedMs": 3.7834580000001097
+        },
+        {
+          "id": "doc-04-blue-diamond",
+          "kind": "query",
+          "elapsedMs": 4.297416999999996
+        },
+        {
+          "id": "doc-04-orange-column",
+          "kind": "query",
+          "elapsedMs": 3.813374999999951
+        },
+        {
+          "id": "doc-04-orange-diamond",
+          "kind": "query",
+          "elapsedMs": 4.384667000000036
+        },
+        {
+          "id": "doc-04-blue",
+          "kind": "query",
+          "elapsedMs": 3.842832999999928
+        },
+        {
+          "id": "doc-04-orange",
+          "kind": "query",
+          "elapsedMs": 3.7315000000000964
+        },
+        {
+          "id": "doc-04-column",
+          "kind": "query",
+          "elapsedMs": 4.545957999999928
+        },
+        {
+          "id": "doc-04-diamond",
+          "kind": "query",
+          "elapsedMs": 4.273707999999942
+        },
+        {
+          "id": "doc-04-topic",
+          "kind": "query",
+          "elapsedMs": 2.427832999999964
+        },
+        {
+          "id": "doc-06-blue-column",
+          "kind": "query",
+          "elapsedMs": 4.219666999999845
+        },
+        {
+          "id": "doc-06-blue-diamond",
+          "kind": "query",
+          "elapsedMs": 5.035417000000052
+        },
+        {
+          "id": "doc-06-orange-column",
+          "kind": "query",
+          "elapsedMs": 4.20254100000011
+        },
+        {
+          "id": "doc-06-orange-diamond",
+          "kind": "query",
+          "elapsedMs": 5.021124999999984
+        },
+        {
+          "id": "doc-06-blue",
+          "kind": "query",
+          "elapsedMs": 3.7248329999999896
+        },
+        {
+          "id": "doc-06-orange",
+          "kind": "query",
+          "elapsedMs": 4.0912080000000515
+        },
+        {
+          "id": "doc-06-column",
+          "kind": "query",
+          "elapsedMs": 4.789042000000109
+        },
+        {
+          "id": "doc-06-diamond",
+          "kind": "query",
+          "elapsedMs": 3.871415999999954
+        },
+        {
+          "id": "doc-06-topic",
+          "kind": "query",
+          "elapsedMs": 2.245249999999942
+        },
+        {
+          "id": "doc-08-blue-column",
+          "kind": "query",
+          "elapsedMs": 4.06616699999995
+        },
+        {
+          "id": "doc-08-blue-diamond",
+          "kind": "query",
+          "elapsedMs": 4.7566249999999854
+        },
+        {
+          "id": "doc-08-orange-column",
+          "kind": "query",
+          "elapsedMs": 4.111292000000049
+        },
+        {
+          "id": "doc-08-orange-diamond",
+          "kind": "query",
+          "elapsedMs": 4.761833000000024
+        },
+        {
+          "id": "doc-08-blue",
+          "kind": "query",
+          "elapsedMs": 3.5874169999999594
+        },
+        {
+          "id": "doc-08-orange",
+          "kind": "query",
+          "elapsedMs": 3.9683749999999236
+        },
+        {
+          "id": "doc-08-column",
+          "kind": "query",
+          "elapsedMs": 4.882959000000028
+        },
+        {
+          "id": "doc-08-diamond",
+          "kind": "query",
+          "elapsedMs": 4.451458000000002
+        },
+        {
+          "id": "doc-08-topic",
+          "kind": "query",
+          "elapsedMs": 2.3666249999998854
+        },
+        {
+          "id": "doc-10-blue-column",
+          "kind": "query",
+          "elapsedMs": 5.05012499999998
+        },
+        {
+          "id": "doc-10-blue-diamond",
+          "kind": "query",
+          "elapsedMs": 4.030500000000075
+        },
+        {
+          "id": "doc-10-orange-column",
+          "kind": "query",
+          "elapsedMs": 5.027957999999899
+        },
+        {
+          "id": "doc-10-orange-diamond",
+          "kind": "query",
+          "elapsedMs": 3.8922079999999823
+        },
+        {
+          "id": "doc-10-blue",
+          "kind": "query",
+          "elapsedMs": 3.1454579999999623
+        },
+        {
+          "id": "doc-10-orange",
+          "kind": "query",
+          "elapsedMs": 3.0329169999999976
+        },
+        {
+          "id": "doc-10-column",
+          "kind": "query",
+          "elapsedMs": 3.7715840000000753
+        },
+        {
+          "id": "doc-10-diamond",
+          "kind": "query",
+          "elapsedMs": 4.386583000000201
+        },
+        {
+          "id": "doc-10-topic",
+          "kind": "query",
+          "elapsedMs": 2.886417000000165
+        },
+        {
+          "id": "doc-12-blue-column",
+          "kind": "query",
+          "elapsedMs": 4.22849999999994
+        },
+        {
+          "id": "doc-12-blue-diamond",
+          "kind": "query",
+          "elapsedMs": 4.402665999999954
+        },
+        {
+          "id": "doc-12-orange-column",
+          "kind": "query",
+          "elapsedMs": 3.946124999999938
+        },
+        {
+          "id": "doc-12-orange-diamond",
+          "kind": "query",
+          "elapsedMs": 4.60591700000009
+        },
+        {
+          "id": "doc-12-blue",
+          "kind": "query",
+          "elapsedMs": 3.668042000000014
+        },
+        {
+          "id": "doc-12-orange",
+          "kind": "query",
+          "elapsedMs": 3.701000000000022
+        },
+        {
+          "id": "doc-12-column",
+          "kind": "query",
+          "elapsedMs": 4.896791000000121
+        },
+        {
+          "id": "doc-12-diamond",
+          "kind": "query",
+          "elapsedMs": 4.024457999999868
+        },
+        {
+          "id": "doc-12-topic",
+          "kind": "query",
+          "elapsedMs": 2.3290830000000824
+        }
+      ]
+    },
+    {
+      "repetition": 2,
+      "file": "artifacts/pass-2.f32",
+      "sha256": "fa292544b73805ab83d204e6e84f8950ca974b8fe7e10bf1437c991f80211c49",
+      "bytes": 159744,
+      "rows": [
+        {
+          "id": "control-01-1",
+          "kind": "image",
+          "elapsedMs": 31.14283300000011
+        },
+        {
+          "id": "control-01-2",
+          "kind": "image",
+          "elapsedMs": 29.52320899999995
+        },
+        {
+          "id": "control-01-3",
+          "kind": "image",
+          "elapsedMs": 30.154874999999947
+        },
+        {
+          "id": "control-01-4",
+          "kind": "image",
+          "elapsedMs": 30.457333000000062
+        },
+        {
+          "id": "control-02-1",
+          "kind": "image",
+          "elapsedMs": 31.521582999999964
+        },
+        {
+          "id": "control-02-2",
+          "kind": "image",
+          "elapsedMs": 28.857375000000047
+        },
+        {
+          "id": "control-02-3",
+          "kind": "image",
+          "elapsedMs": 29.86129199999982
+        },
+        {
+          "id": "control-02-4",
+          "kind": "image",
+          "elapsedMs": 30.91429100000005
+        },
+        {
+          "id": "control-03-1",
+          "kind": "image",
+          "elapsedMs": 29.16412500000024
+        },
+        {
+          "id": "control-03-2",
+          "kind": "image",
+          "elapsedMs": 28.637042000000292
+        },
+        {
+          "id": "control-03-3",
+          "kind": "image",
+          "elapsedMs": 30.641667000000325
+        },
+        {
+          "id": "control-03-4",
+          "kind": "image",
+          "elapsedMs": 31.397292000000107
+        },
+        {
+          "id": "control-04-1",
+          "kind": "image",
+          "elapsedMs": 34.52887499999997
+        },
+        {
+          "id": "control-04-2",
+          "kind": "image",
+          "elapsedMs": 30.24370799999997
+        },
+        {
+          "id": "control-04-3",
+          "kind": "image",
+          "elapsedMs": 30.637917000000016
+        },
+        {
+          "id": "control-04-4",
+          "kind": "image",
+          "elapsedMs": 29.570875000000342
+        },
+        {
+          "id": "control-05-1",
+          "kind": "image",
+          "elapsedMs": 30.858749999999873
+        },
+        {
+          "id": "control-05-2",
+          "kind": "image",
+          "elapsedMs": 31.800916000000143
+        },
+        {
+          "id": "control-05-3",
+          "kind": "image",
+          "elapsedMs": 29.45745799999986
+        },
+        {
+          "id": "control-05-4",
+          "kind": "image",
+          "elapsedMs": 31.337125000000015
+        },
+        {
+          "id": "control-06-1",
+          "kind": "image",
+          "elapsedMs": 30.667875000000095
+        },
+        {
+          "id": "control-06-2",
+          "kind": "image",
+          "elapsedMs": 30.775833000000148
+        },
+        {
+          "id": "control-06-3",
+          "kind": "image",
+          "elapsedMs": 30.194208000000344
+        },
+        {
+          "id": "control-06-4",
+          "kind": "image",
+          "elapsedMs": 35.46262499999966
+        },
+        {
+          "id": "doc-02-blue-column",
+          "kind": "query",
+          "elapsedMs": 4.870665999999801
+        },
+        {
+          "id": "doc-02-blue-diamond",
+          "kind": "query",
+          "elapsedMs": 4.30600000000004
+        },
+        {
+          "id": "doc-02-orange-column",
+          "kind": "query",
+          "elapsedMs": 4.546707999999853
+        },
+        {
+          "id": "doc-02-orange-diamond",
+          "kind": "query",
+          "elapsedMs": 4.390000000000327
+        },
+        {
+          "id": "doc-02-blue",
+          "kind": "query",
+          "elapsedMs": 3.2048750000003565
+        },
+        {
+          "id": "doc-02-orange",
+          "kind": "query",
+          "elapsedMs": 3.552458000000115
+        },
+        {
+          "id": "doc-02-column",
+          "kind": "query",
+          "elapsedMs": 4.144416999999976
+        },
+        {
+          "id": "doc-02-diamond",
+          "kind": "query",
+          "elapsedMs": 4.87887499999988
+        },
+        {
+          "id": "doc-02-topic",
+          "kind": "query",
+          "elapsedMs": 2.92975000000024
+        },
+        {
+          "id": "doc-04-blue-column",
+          "kind": "query",
+          "elapsedMs": 4.204915999999685
+        },
+        {
+          "id": "doc-04-blue-diamond",
+          "kind": "query",
+          "elapsedMs": 4.705042000000049
+        },
+        {
+          "id": "doc-04-orange-column",
+          "kind": "query",
+          "elapsedMs": 4.296708000000308
+        },
+        {
+          "id": "doc-04-orange-diamond",
+          "kind": "query",
+          "elapsedMs": 4.480999999999767
+        },
+        {
+          "id": "doc-04-blue",
+          "kind": "query",
+          "elapsedMs": 4.2540829999998095
+        },
+        {
+          "id": "doc-04-orange",
+          "kind": "query",
+          "elapsedMs": 3.780124999999771
+        },
+        {
+          "id": "doc-04-column",
+          "kind": "query",
+          "elapsedMs": 4.6870420000000195
+        },
+        {
+          "id": "doc-04-diamond",
+          "kind": "query",
+          "elapsedMs": 4.444375000000036
+        },
+        {
+          "id": "doc-04-topic",
+          "kind": "query",
+          "elapsedMs": 2.574166999999761
+        },
+        {
+          "id": "doc-06-blue-column",
+          "kind": "query",
+          "elapsedMs": 4.132415999999921
+        },
+        {
+          "id": "doc-06-blue-diamond",
+          "kind": "query",
+          "elapsedMs": 4.7893340000000535
+        },
+        {
+          "id": "doc-06-orange-column",
+          "kind": "query",
+          "elapsedMs": 3.8977500000000873
+        },
+        {
+          "id": "doc-06-orange-diamond",
+          "kind": "query",
+          "elapsedMs": 4.731291999999939
+        },
+        {
+          "id": "doc-06-blue",
+          "kind": "query",
+          "elapsedMs": 3.902082999999948
+        },
+        {
+          "id": "doc-06-orange",
+          "kind": "query",
+          "elapsedMs": 3.739665999999943
+        },
+        {
+          "id": "doc-06-column",
+          "kind": "query",
+          "elapsedMs": 4.489583000000039
+        },
+        {
+          "id": "doc-06-diamond",
+          "kind": "query",
+          "elapsedMs": 4.0456250000002
+        },
+        {
+          "id": "doc-06-topic",
+          "kind": "query",
+          "elapsedMs": 2.398834000000079
+        },
+        {
+          "id": "doc-08-blue-column",
+          "kind": "query",
+          "elapsedMs": 4.047042000000147
+        },
+        {
+          "id": "doc-08-blue-diamond",
+          "kind": "query",
+          "elapsedMs": 4.440499999999702
+        },
+        {
+          "id": "doc-08-orange-column",
+          "kind": "query",
+          "elapsedMs": 3.8767910000001393
+        },
+        {
+          "id": "doc-08-orange-diamond",
+          "kind": "query",
+          "elapsedMs": 4.777207999999973
+        },
+        {
+          "id": "doc-08-blue",
+          "kind": "query",
+          "elapsedMs": 3.7857920000001286
+        },
+        {
+          "id": "doc-08-orange",
+          "kind": "query",
+          "elapsedMs": 3.7496249999999236
+        },
+        {
+          "id": "doc-08-column",
+          "kind": "query",
+          "elapsedMs": 4.917000000000371
+        },
+        {
+          "id": "doc-08-diamond",
+          "kind": "query",
+          "elapsedMs": 4.0244580000003225
+        },
+        {
+          "id": "doc-08-topic",
+          "kind": "query",
+          "elapsedMs": 2.163250000000062
+        },
+        {
+          "id": "doc-10-blue-column",
+          "kind": "query",
+          "elapsedMs": 4.921624999999949
+        },
+        {
+          "id": "doc-10-blue-diamond",
+          "kind": "query",
+          "elapsedMs": 4.2599999999997635
+        },
+        {
+          "id": "doc-10-orange-column",
+          "kind": "query",
+          "elapsedMs": 5.223375000000033
+        },
+        {
+          "id": "doc-10-orange-diamond",
+          "kind": "query",
+          "elapsedMs": 4.060541999999714
+        },
+        {
+          "id": "doc-10-blue",
+          "kind": "query",
+          "elapsedMs": 3.1590830000000096
+        },
+        {
+          "id": "doc-10-orange",
+          "kind": "query",
+          "elapsedMs": 3.265209000000141
+        },
+        {
+          "id": "doc-10-column",
+          "kind": "query",
+          "elapsedMs": 4.431084000000283
+        },
+        {
+          "id": "doc-10-diamond",
+          "kind": "query",
+          "elapsedMs": 4.5974999999998545
+        },
+        {
+          "id": "doc-10-topic",
+          "kind": "query",
+          "elapsedMs": 3.178834000000279
+        },
+        {
+          "id": "doc-12-blue-column",
+          "kind": "query",
+          "elapsedMs": 4.2150000000001455
+        },
+        {
+          "id": "doc-12-blue-diamond",
+          "kind": "query",
+          "elapsedMs": 5.188457999999628
+        },
+        {
+          "id": "doc-12-orange-column",
+          "kind": "query",
+          "elapsedMs": 4.087667000000238
+        },
+        {
+          "id": "doc-12-orange-diamond",
+          "kind": "query",
+          "elapsedMs": 5.146292000000358
+        },
+        {
+          "id": "doc-12-blue",
+          "kind": "query",
+          "elapsedMs": 3.766708000000108
+        },
+        {
+          "id": "doc-12-orange",
+          "kind": "query",
+          "elapsedMs": 3.99612500000012
+        },
+        {
+          "id": "doc-12-column",
+          "kind": "query",
+          "elapsedMs": 4.644332999999733
+        },
+        {
+          "id": "doc-12-diamond",
+          "kind": "query",
+          "elapsedMs": 4.2334579999997
+        },
+        {
+          "id": "doc-12-topic",
+          "kind": "query",
+          "elapsedMs": 2.216042000000016
+        }
+      ]
+    },
+    {
+      "repetition": 3,
+      "file": "artifacts/pass-3.f32",
+      "sha256": "fa292544b73805ab83d204e6e84f8950ca974b8fe7e10bf1437c991f80211c49",
+      "bytes": 159744,
+      "rows": [
+        {
+          "id": "control-01-1",
+          "kind": "image",
+          "elapsedMs": 31.10312500000009
+        },
+        {
+          "id": "control-01-2",
+          "kind": "image",
+          "elapsedMs": 29.72637500000019
+        },
+        {
+          "id": "control-01-3",
+          "kind": "image",
+          "elapsedMs": 31.997749999999996
+        },
+        {
+          "id": "control-01-4",
+          "kind": "image",
+          "elapsedMs": 31.46283299999959
+        },
+        {
+          "id": "control-02-1",
+          "kind": "image",
+          "elapsedMs": 32.18758300000036
+        },
+        {
+          "id": "control-02-2",
+          "kind": "image",
+          "elapsedMs": 30.353583999999955
+        },
+        {
+          "id": "control-02-3",
+          "kind": "image",
+          "elapsedMs": 29.592165999999906
+        },
+        {
+          "id": "control-02-4",
+          "kind": "image",
+          "elapsedMs": 30.542374999999993
+        },
+        {
+          "id": "control-03-1",
+          "kind": "image",
+          "elapsedMs": 31.076249999999618
+        },
+        {
+          "id": "control-03-2",
+          "kind": "image",
+          "elapsedMs": 29.87958299999991
+        },
+        {
+          "id": "control-03-3",
+          "kind": "image",
+          "elapsedMs": 32.86654200000021
+        },
+        {
+          "id": "control-03-4",
+          "kind": "image",
+          "elapsedMs": 31.74433399999998
+        },
+        {
+          "id": "control-04-1",
+          "kind": "image",
+          "elapsedMs": 31.148290999999972
+        },
+        {
+          "id": "control-04-2",
+          "kind": "image",
+          "elapsedMs": 31.882666999999856
+        },
+        {
+          "id": "control-04-3",
+          "kind": "image",
+          "elapsedMs": 35.03954199999998
+        },
+        {
+          "id": "control-04-4",
+          "kind": "image",
+          "elapsedMs": 30.61762499999986
+        },
+        {
+          "id": "control-05-1",
+          "kind": "image",
+          "elapsedMs": 30.462833000000046
+        },
+        {
+          "id": "control-05-2",
+          "kind": "image",
+          "elapsedMs": 32.88579200000004
+        },
+        {
+          "id": "control-05-3",
+          "kind": "image",
+          "elapsedMs": 31.748375000000124
+        },
+        {
+          "id": "control-05-4",
+          "kind": "image",
+          "elapsedMs": 30.753458000000137
+        },
+        {
+          "id": "control-06-1",
+          "kind": "image",
+          "elapsedMs": 33.1147090000004
+        },
+        {
+          "id": "control-06-2",
+          "kind": "image",
+          "elapsedMs": 30.64041700000007
+        },
+        {
+          "id": "control-06-3",
+          "kind": "image",
+          "elapsedMs": 31.288375000000087
+        },
+        {
+          "id": "control-06-4",
+          "kind": "image",
+          "elapsedMs": 32.6310840000001
+        },
+        {
+          "id": "doc-02-blue-column",
+          "kind": "query",
+          "elapsedMs": 5.300166999999874
+        },
+        {
+          "id": "doc-02-blue-diamond",
+          "kind": "query",
+          "elapsedMs": 4.132333999999901
+        },
+        {
+          "id": "doc-02-orange-column",
+          "kind": "query",
+          "elapsedMs": 4.968582999999853
+        },
+        {
+          "id": "doc-02-orange-diamond",
+          "kind": "query",
+          "elapsedMs": 3.8109589999999116
+        },
+        {
+          "id": "doc-02-blue",
+          "kind": "query",
+          "elapsedMs": 3.548334000000068
+        },
+        {
+          "id": "doc-02-orange",
+          "kind": "query",
+          "elapsedMs": 3.1761249999999563
+        },
+        {
+          "id": "doc-02-column",
+          "kind": "query",
+          "elapsedMs": 4.419917000000169
+        },
+        {
+          "id": "doc-02-diamond",
+          "kind": "query",
+          "elapsedMs": 4.676582999999937
+        },
+        {
+          "id": "doc-02-topic",
+          "kind": "query",
+          "elapsedMs": 2.780457999999726
+        },
+        {
+          "id": "doc-04-blue-column",
+          "kind": "query",
+          "elapsedMs": 4.1281669999998485
+        },
+        {
+          "id": "doc-04-blue-diamond",
+          "kind": "query",
+          "elapsedMs": 4.455707999999959
+        },
+        {
+          "id": "doc-04-orange-column",
+          "kind": "query",
+          "elapsedMs": 4.140875000000051
+        },
+        {
+          "id": "doc-04-orange-diamond",
+          "kind": "query",
+          "elapsedMs": 4.611832999999933
+        },
+        {
+          "id": "doc-04-blue",
+          "kind": "query",
+          "elapsedMs": 3.748833000000104
+        },
+        {
+          "id": "doc-04-orange",
+          "kind": "query",
+          "elapsedMs": 4.146750000000338
+        },
+        {
+          "id": "doc-04-column",
+          "kind": "query",
+          "elapsedMs": 4.585667000000285
+        },
+        {
+          "id": "doc-04-diamond",
+          "kind": "query",
+          "elapsedMs": 4.2456670000001395
+        },
+        {
+          "id": "doc-04-topic",
+          "kind": "query",
+          "elapsedMs": 2.589791999999761
+        },
+        {
+          "id": "doc-06-blue-column",
+          "kind": "query",
+          "elapsedMs": 4.396709000000101
+        },
+        {
+          "id": "doc-06-blue-diamond",
+          "kind": "query",
+          "elapsedMs": 4.69720899999993
+        },
+        {
+          "id": "doc-06-orange-column",
+          "kind": "query",
+          "elapsedMs": 4.5127080000002024
+        },
+        {
+          "id": "doc-06-orange-diamond",
+          "kind": "query",
+          "elapsedMs": 4.583958000000166
+        },
+        {
+          "id": "doc-06-blue",
+          "kind": "query",
+          "elapsedMs": 3.40945899999997
+        },
+        {
+          "id": "doc-06-orange",
+          "kind": "query",
+          "elapsedMs": 3.4912500000000364
+        },
+        {
+          "id": "doc-06-column",
+          "kind": "query",
+          "elapsedMs": 4.477167000000009
+        },
+        {
+          "id": "doc-06-diamond",
+          "kind": "query",
+          "elapsedMs": 4.369832999999744
+        },
+        {
+          "id": "doc-06-topic",
+          "kind": "query",
+          "elapsedMs": 2.5947909999999865
+        },
+        {
+          "id": "doc-08-blue-column",
+          "kind": "query",
+          "elapsedMs": 4.452915999999732
+        },
+        {
+          "id": "doc-08-blue-diamond",
+          "kind": "query",
+          "elapsedMs": 4.750416999999743
+        },
+        {
+          "id": "doc-08-orange-column",
+          "kind": "query",
+          "elapsedMs": 4.237749999999778
+        },
+        {
+          "id": "doc-08-orange-diamond",
+          "kind": "query",
+          "elapsedMs": 5.047208999999839
+        },
+        {
+          "id": "doc-08-blue",
+          "kind": "query",
+          "elapsedMs": 3.8540409999995973
+        },
+        {
+          "id": "doc-08-orange",
+          "kind": "query",
+          "elapsedMs": 3.782165999999961
+        },
+        {
+          "id": "doc-08-column",
+          "kind": "query",
+          "elapsedMs": 4.9856249999998
+        },
+        {
+          "id": "doc-08-diamond",
+          "kind": "query",
+          "elapsedMs": 4.085249999999633
+        },
+        {
+          "id": "doc-08-topic",
+          "kind": "query",
+          "elapsedMs": 2.3848339999999553
+        },
+        {
+          "id": "doc-10-blue-column",
+          "kind": "query",
+          "elapsedMs": 4.449624999999742
+        },
+        {
+          "id": "doc-10-blue-diamond",
+          "kind": "query",
+          "elapsedMs": 4.027708000000075
+        },
+        {
+          "id": "doc-10-orange-column",
+          "kind": "query",
+          "elapsedMs": 4.921083000000181
+        },
+        {
+          "id": "doc-10-orange-diamond",
+          "kind": "query",
+          "elapsedMs": 4.087333999999828
+        },
+        {
+          "id": "doc-10-blue",
+          "kind": "query",
+          "elapsedMs": 3.6262919999999212
+        },
+        {
+          "id": "doc-10-orange",
+          "kind": "query",
+          "elapsedMs": 3.1872089999997115
+        },
+        {
+          "id": "doc-10-column",
+          "kind": "query",
+          "elapsedMs": 4.484375
+        },
+        {
+          "id": "doc-10-diamond",
+          "kind": "query",
+          "elapsedMs": 4.658124999999927
+        },
+        {
+          "id": "doc-10-topic",
+          "kind": "query",
+          "elapsedMs": 3.3028330000001915
+        },
+        {
+          "id": "doc-12-blue-column",
+          "kind": "query",
+          "elapsedMs": 3.941957999999886
+        },
+        {
+          "id": "doc-12-blue-diamond",
+          "kind": "query",
+          "elapsedMs": 4.378416999999899
+        },
+        {
+          "id": "doc-12-orange-column",
+          "kind": "query",
+          "elapsedMs": 3.868000000000393
+        },
+        {
+          "id": "doc-12-orange-diamond",
+          "kind": "query",
+          "elapsedMs": 5.238000000000284
+        },
+        {
+          "id": "doc-12-blue",
+          "kind": "query",
+          "elapsedMs": 3.917917000000216
+        },
+        {
+          "id": "doc-12-orange",
+          "kind": "query",
+          "elapsedMs": 3.8913330000000315
+        },
+        {
+          "id": "doc-12-column",
+          "kind": "query",
+          "elapsedMs": 5.144667000000027
+        },
+        {
+          "id": "doc-12-diamond",
+          "kind": "query",
+          "elapsedMs": 4.146124999999756
+        },
+        {
+          "id": "doc-12-topic",
+          "kind": "query",
+          "elapsedMs": 2.4164169999999103
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,15 @@
+{
+  "version": "image-review-additional-diagnostics-1",
+  "role": "post-run analysis of sealed observations; no new fitting or label changes",
+  "rankingsIdenticalAcrossThreePasses": true,
+  "ocrBagCountsByFamily": {
+    "doc-02": 1,
+    "doc-04": 2,
+    "doc-06": 1,
+    "doc-08": 1,
+    "doc-10": 1,
+    "doc-12": 1
+  },
+  "sourceTextIndexing": "one BM25 document per source family; expand equal source score to its four image IDs; no duplicated source documents",
+  "legacyGoldReview": "24 exact-label lookups are retained for descriptive scoped comparison; all 12 concepts and all 12 confounded layout queries excluded from the primary model-adoption comparison; four negatives are diagnostic"
+}

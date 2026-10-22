@@ -1,0 +1,534 @@
+{
+  "version": "image-review-questions-1",
+  "language": "en",
+  "questions": [
+    {
+      "id": "doc-02-blue-column",
+      "family": "doc-02",
+      "kind": "conjunction",
+      "question": "Find the dense retrieval diagram with blue boxes arranged in a vertical column.",
+      "goldenImageIds": [
+        "control-01-1"
+      ]
+    },
+    {
+      "id": "doc-02-blue-diamond",
+      "family": "doc-02",
+      "kind": "conjunction",
+      "question": "Find the dense retrieval diagram with blue boxes arranged in a diamond.",
+      "goldenImageIds": [
+        "control-01-2"
+      ]
+    },
+    {
+      "id": "doc-02-orange-column",
+      "family": "doc-02",
+      "kind": "conjunction",
+      "question": "Find the dense retrieval diagram with orange boxes arranged in a vertical column.",
+      "goldenImageIds": [
+        "control-01-3"
+      ]
+    },
+    {
+      "id": "doc-02-orange-diamond",
+      "family": "doc-02",
+      "kind": "conjunction",
+      "question": "Find the dense retrieval diagram with orange boxes arranged in a diamond.",
+      "goldenImageIds": [
+        "control-01-4"
+      ]
+    },
+    {
+      "id": "doc-02-blue",
+      "family": "doc-02",
+      "kind": "color",
+      "question": "Find the dense retrieval diagram with blue boxes.",
+      "goldenImageIds": [
+        "control-01-1",
+        "control-01-2"
+      ]
+    },
+    {
+      "id": "doc-02-orange",
+      "family": "doc-02",
+      "kind": "color",
+      "question": "Find the dense retrieval diagram with orange boxes.",
+      "goldenImageIds": [
+        "control-01-3",
+        "control-01-4"
+      ]
+    },
+    {
+      "id": "doc-02-column",
+      "family": "doc-02",
+      "kind": "layout",
+      "question": "Find the dense retrieval diagram with boxes arranged in a vertical column.",
+      "goldenImageIds": [
+        "control-01-1",
+        "control-01-3"
+      ]
+    },
+    {
+      "id": "doc-02-diamond",
+      "family": "doc-02",
+      "kind": "layout",
+      "question": "Find the dense retrieval diagram with boxes arranged in a diamond.",
+      "goldenImageIds": [
+        "control-01-2",
+        "control-01-4"
+      ]
+    },
+    {
+      "id": "doc-02-topic",
+      "family": "doc-02",
+      "kind": "topic",
+      "question": "Find a dense retrieval diagram.",
+      "goldenImageIds": [
+        "control-01-1",
+        "control-01-2",
+        "control-01-3",
+        "control-01-4"
+      ]
+    },
+    {
+      "id": "doc-04-blue-column",
+      "family": "doc-04",
+      "kind": "conjunction",
+      "question": "Find the reranking diagram with blue boxes arranged in a vertical column.",
+      "goldenImageIds": [
+        "control-02-4"
+      ]
+    },
+    {
+      "id": "doc-04-blue-diamond",
+      "family": "doc-04",
+      "kind": "conjunction",
+      "question": "Find the reranking diagram with blue boxes arranged in a diamond.",
+      "goldenImageIds": [
+        "control-02-1"
+      ]
+    },
+    {
+      "id": "doc-04-orange-column",
+      "family": "doc-04",
+      "kind": "conjunction",
+      "question": "Find the reranking diagram with orange boxes arranged in a vertical column.",
+      "goldenImageIds": [
+        "control-02-2"
+      ]
+    },
+    {
+      "id": "doc-04-orange-diamond",
+      "family": "doc-04",
+      "kind": "conjunction",
+      "question": "Find the reranking diagram with orange boxes arranged in a diamond.",
+      "goldenImageIds": [
+        "control-02-3"
+      ]
+    },
+    {
+      "id": "doc-04-blue",
+      "family": "doc-04",
+      "kind": "color",
+      "question": "Find the reranking diagram with blue boxes.",
+      "goldenImageIds": [
+        "control-02-1",
+        "control-02-4"
+      ]
+    },
+    {
+      "id": "doc-04-orange",
+      "family": "doc-04",
+      "kind": "color",
+      "question": "Find the reranking diagram with orange boxes.",
+      "goldenImageIds": [
+        "control-02-2",
+        "control-02-3"
+      ]
+    },
+    {
+      "id": "doc-04-column",
+      "family": "doc-04",
+      "kind": "layout",
+      "question": "Find the reranking diagram with boxes arranged in a vertical column.",
+      "goldenImageIds": [
+        "control-02-2",
+        "control-02-4"
+      ]
+    },
+    {
+      "id": "doc-04-diamond",
+      "family": "doc-04",
+      "kind": "layout",
+      "question": "Find the reranking diagram with boxes arranged in a diamond.",
+      "goldenImageIds": [
+        "control-02-1",
+        "control-02-3"
+      ]
+    },
+    {
+      "id": "doc-04-topic",
+      "family": "doc-04",
+      "kind": "topic",
+      "question": "Find a reranking diagram.",
+      "goldenImageIds": [
+        "control-02-1",
+        "control-02-2",
+        "control-02-3",
+        "control-02-4"
+      ]
+    },
+    {
+      "id": "doc-06-blue-column",
+      "family": "doc-06",
+      "kind": "conjunction",
+      "question": "Find the context assembly diagram with blue boxes arranged in a vertical column.",
+      "goldenImageIds": [
+        "control-03-3"
+      ]
+    },
+    {
+      "id": "doc-06-blue-diamond",
+      "family": "doc-06",
+      "kind": "conjunction",
+      "question": "Find the context assembly diagram with blue boxes arranged in a diamond.",
+      "goldenImageIds": [
+        "control-03-4"
+      ]
+    },
+    {
+      "id": "doc-06-orange-column",
+      "family": "doc-06",
+      "kind": "conjunction",
+      "question": "Find the context assembly diagram with orange boxes arranged in a vertical column.",
+      "goldenImageIds": [
+        "control-03-1"
+      ]
+    },
+    {
+      "id": "doc-06-orange-diamond",
+      "family": "doc-06",
+      "kind": "conjunction",
+      "question": "Find the context assembly diagram with orange boxes arranged in a diamond.",
+      "goldenImageIds": [
+        "control-03-2"
+      ]
+    },
+    {
+      "id": "doc-06-blue",
+      "family": "doc-06",
+      "kind": "color",
+      "question": "Find the context assembly diagram with blue boxes.",
+      "goldenImageIds": [
+        "control-03-3",
+        "control-03-4"
+      ]
+    },
+    {
+      "id": "doc-06-orange",
+      "family": "doc-06",
+      "kind": "color",
+      "question": "Find the context assembly diagram with orange boxes.",
+      "goldenImageIds": [
+        "control-03-1",
+        "control-03-2"
+      ]
+    },
+    {
+      "id": "doc-06-column",
+      "family": "doc-06",
+      "kind": "layout",
+      "question": "Find the context assembly diagram with boxes arranged in a vertical column.",
+      "goldenImageIds": [
+        "control-03-1",
+        "control-03-3"
+      ]
+    },
+    {
+      "id": "doc-06-diamond",
+      "family": "doc-06",
+      "kind": "layout",
+      "question": "Find the context assembly diagram with boxes arranged in a diamond.",
+      "goldenImageIds": [
+        "control-03-2",
+        "control-03-4"
+      ]
+    },
+    {
+      "id": "doc-06-topic",
+      "family": "doc-06",
+      "kind": "topic",
+      "question": "Find a context assembly diagram.",
+      "goldenImageIds": [
+        "control-03-1",
+        "control-03-2",
+        "control-03-3",
+        "control-03-4"
+      ]
+    },
+    {
+      "id": "doc-08-blue-column",
+      "family": "doc-08",
+      "kind": "conjunction",
+      "question": "Find the grounded generation diagram with blue boxes arranged in a vertical column.",
+      "goldenImageIds": [
+        "control-04-2"
+      ]
+    },
+    {
+      "id": "doc-08-blue-diamond",
+      "family": "doc-08",
+      "kind": "conjunction",
+      "question": "Find the grounded generation diagram with blue boxes arranged in a diamond.",
+      "goldenImageIds": [
+        "control-04-3"
+      ]
+    },
+    {
+      "id": "doc-08-orange-column",
+      "family": "doc-08",
+      "kind": "conjunction",
+      "question": "Find the grounded generation diagram with orange boxes arranged in a vertical column.",
+      "goldenImageIds": [
+        "control-04-4"
+      ]
+    },
+    {
+      "id": "doc-08-orange-diamond",
+      "family": "doc-08",
+      "kind": "conjunction",
+      "question": "Find the grounded generation diagram with orange boxes arranged in a diamond.",
+      "goldenImageIds": [
+        "control-04-1"
+      ]
+    },
+    {
+      "id": "doc-08-blue",
+      "family": "doc-08",
+      "kind": "color",
+      "question": "Find the grounded generation diagram with blue boxes.",
+      "goldenImageIds": [
+        "control-04-2",
+        "control-04-3"
+      ]
+    },
+    {
+      "id": "doc-08-orange",
+      "family": "doc-08",
+      "kind": "color",
+      "question": "Find the grounded generation diagram with orange boxes.",
+      "goldenImageIds": [
+        "control-04-1",
+        "control-04-4"
+      ]
+    },
+    {
+      "id": "doc-08-column",
+      "family": "doc-08",
+      "kind": "layout",
+      "question": "Find the grounded generation diagram with boxes arranged in a vertical column.",
+      "goldenImageIds": [
+        "control-04-2",
+        "control-04-4"
+      ]
+    },
+    {
+      "id": "doc-08-diamond",
+      "family": "doc-08",
+      "kind": "layout",
+      "question": "Find the grounded generation diagram with boxes arranged in a diamond.",
+      "goldenImageIds": [
+        "control-04-1",
+        "control-04-3"
+      ]
+    },
+    {
+      "id": "doc-08-topic",
+      "family": "doc-08",
+      "kind": "topic",
+      "question": "Find a grounded generation diagram.",
+      "goldenImageIds": [
+        "control-04-1",
+        "control-04-2",
+        "control-04-3",
+        "control-04-4"
+      ]
+    },
+    {
+      "id": "doc-10-blue-column",
+      "family": "doc-10",
+      "kind": "conjunction",
+      "question": "Find the incremental rendering diagram with blue boxes arranged in a vertical column.",
+      "goldenImageIds": [
+        "control-05-1"
+      ]
+    },
+    {
+      "id": "doc-10-blue-diamond",
+      "family": "doc-10",
+      "kind": "conjunction",
+      "question": "Find the incremental rendering diagram with blue boxes arranged in a diamond.",
+      "goldenImageIds": [
+        "control-05-2"
+      ]
+    },
+    {
+      "id": "doc-10-orange-column",
+      "family": "doc-10",
+      "kind": "conjunction",
+      "question": "Find the incremental rendering diagram with orange boxes arranged in a vertical column.",
+      "goldenImageIds": [
+        "control-05-3"
+      ]
+    },
+    {
+      "id": "doc-10-orange-diamond",
+      "family": "doc-10",
+      "kind": "conjunction",
+      "question": "Find the incremental rendering diagram with orange boxes arranged in a diamond.",
+      "goldenImageIds": [
+        "control-05-4"
+      ]
+    },
+    {
+      "id": "doc-10-blue",
+      "family": "doc-10",
+      "kind": "color",
+      "question": "Find the incremental rendering diagram with blue boxes.",
+      "goldenImageIds": [
+        "control-05-1",
+        "control-05-2"
+      ]
+    },
+    {
+      "id": "doc-10-orange",
+      "family": "doc-10",
+      "kind": "color",
+      "question": "Find the incremental rendering diagram with orange boxes.",
+      "goldenImageIds": [
+        "control-05-3",
+        "control-05-4"
+      ]
+    },
+    {
+      "id": "doc-10-column",
+      "family": "doc-10",
+      "kind": "layout",
+      "question": "Find the incremental rendering diagram with boxes arranged in a vertical column.",
+      "goldenImageIds": [
+        "control-05-1",
+        "control-05-3"
+      ]
+    },
+    {
+      "id": "doc-10-diamond",
+      "family": "doc-10",
+      "kind": "layout",
+      "question": "Find the incremental rendering diagram with boxes arranged in a diamond.",
+      "goldenImageIds": [
+        "control-05-2",
+        "control-05-4"
+      ]
+    },
+    {
+      "id": "doc-10-topic",
+      "family": "doc-10",
+      "kind": "topic",
+      "question": "Find a incremental rendering diagram.",
+      "goldenImageIds": [
+        "control-05-1",
+        "control-05-2",
+        "control-05-3",
+        "control-05-4"
+      ]
+    },
+    {
+      "id": "doc-12-blue-column",
+      "family": "doc-12",
+      "kind": "conjunction",
+      "question": "Find the state continuity diagram with blue boxes arranged in a vertical column.",
+      "goldenImageIds": [
+        "control-06-4"
+      ]
+    },
+    {
+      "id": "doc-12-blue-diamond",
+      "family": "doc-12",
+      "kind": "conjunction",
+      "question": "Find the state continuity diagram with blue boxes arranged in a diamond.",
+      "goldenImageIds": [
+        "control-06-1"
+      ]
+    },
+    {
+      "id": "doc-12-orange-column",
+      "family": "doc-12",
+      "kind": "conjunction",
+      "question": "Find the state continuity diagram with orange boxes arranged in a vertical column.",
+      "goldenImageIds": [
+        "control-06-2"
+      ]
+    },
+    {
+      "id": "doc-12-orange-diamond",
+      "family": "doc-12",
+      "kind": "conjunction",
+      "question": "Find the state continuity diagram with orange boxes arranged in a diamond.",
+      "goldenImageIds": [
+        "control-06-3"
+      ]
+    },
+    {
+      "id": "doc-12-blue",
+      "family": "doc-12",
+      "kind": "color",
+      "question": "Find the state continuity diagram with blue boxes.",
+      "goldenImageIds": [
+        "control-06-1",
+        "control-06-4"
+      ]
+    },
+    {
+      "id": "doc-12-orange",
+      "family": "doc-12",
+      "kind": "color",
+      "question": "Find the state continuity diagram with orange boxes.",
+      "goldenImageIds": [
+        "control-06-2",
+        "control-06-3"
+      ]
+    },
+    {
+      "id": "doc-12-column",
+      "family": "doc-12",
+      "kind": "layout",
+      "question": "Find the state continuity diagram with boxes arranged in a vertical column.",
+      "goldenImageIds": [
+        "control-06-2",
+        "control-06-4"
+      ]
+    },
+    {
+      "id": "doc-12-diamond",
+      "family": "doc-12",
+      "kind": "layout",
+      "question": "Find the state continuity diagram with boxes arranged in a diamond.",
+      "goldenImageIds": [
+        "control-06-1",
+        "control-06-3"
+      ]
+    },
+    {
+      "id": "doc-12-topic",
+      "family": "doc-12",
+      "kind": "topic",
+      "question": "Find a state continuity diagram.",
+      "goldenImageIds": [
+        "control-06-1",
+        "control-06-2",
+        "control-06-3",
+        "control-06-4"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,620 @@
+{
+  "method": "post-hoc same-assistant review; not independently adjudicated",
+  "rows": [
+    {
+      "questionId": "figure-01-a-literal",
+      "originalGold": [
+        "figure-01-a"
+      ],
+      "status": "exact-label-lookup",
+      "primary": true,
+      "reason": "Quoted label and topic identify one rendered image; not a semantic-answer judgment.",
+      "exactLabelMatches": [
+        "figure-01-a"
+      ],
+      "knownAlternative": null
+    },
+    {
+      "questionId": "figure-01-a-concept",
+      "originalGold": [
+        "figure-01-a"
+      ],
+      "status": "target-only-not-exhaustive",
+      "primary": false,
+      "reason": "Intended flow is present, but other candidates were not exhaustively adjudicated for broad semantic relevance; no unique-gold effectiveness claim.",
+      "exactLabelMatches": null,
+      "knownAlternative": null
+    },
+    {
+      "questionId": "figure-01-b-literal",
+      "originalGold": [
+        "figure-01-b"
+      ],
+      "status": "exact-label-lookup",
+      "primary": true,
+      "reason": "Quoted label and topic identify one rendered image; not a semantic-answer judgment.",
+      "exactLabelMatches": [
+        "figure-01-b"
+      ],
+      "knownAlternative": null
+    },
+    {
+      "questionId": "figure-01-b-layout",
+      "originalGold": [
+        "figure-01-b"
+      ],
+      "status": "confounded-layout",
+      "primary": false,
+      "reason": "All requested orange branch images also differ in words, arrows and OCR lengths; no isolated visual attribution.",
+      "exactLabelMatches": null,
+      "knownAlternative": null
+    },
+    {
+      "questionId": "figure-02-a-literal",
+      "originalGold": [
+        "figure-02-a"
+      ],
+      "status": "exact-label-lookup",
+      "primary": true,
+      "reason": "Quoted label and topic identify one rendered image; not a semantic-answer judgment.",
+      "exactLabelMatches": [
+        "figure-02-a"
+      ],
+      "knownAlternative": null
+    },
+    {
+      "questionId": "figure-02-a-concept",
+      "originalGold": [
+        "figure-02-a"
+      ],
+      "status": "target-only-not-exhaustive",
+      "primary": false,
+      "reason": "Intended flow is present, but other candidates were not exhaustively adjudicated for broad semantic relevance; no unique-gold effectiveness claim.",
+      "exactLabelMatches": null,
+      "knownAlternative": null
+    },
+    {
+      "questionId": "figure-02-b-literal",
+      "originalGold": [
+        "figure-02-b"
+      ],
+      "status": "exact-label-lookup",
+      "primary": true,
+      "reason": "Quoted label and topic identify one rendered image; not a semantic-answer judgment.",
+      "exactLabelMatches": [
+        "figure-02-b"
+      ],
+      "knownAlternative": null
+    },
+    {
+      "questionId": "figure-02-b-layout",
+      "originalGold": [
+        "figure-02-b"
+      ],
+      "status": "confounded-layout",
+      "primary": false,
+      "reason": "All requested orange branch images also differ in words, arrows and OCR lengths; no isolated visual attribution.",
+      "exactLabelMatches": null,
+      "knownAlternative": null
+    },
+    {
+      "questionId": "figure-03-a-literal",
+      "originalGold": [
+        "figure-03-a"
+      ],
+      "status": "exact-label-lookup",
+      "primary": true,
+      "reason": "Quoted label and topic identify one rendered image; not a semantic-answer judgment.",
+      "exactLabelMatches": [
+        "figure-03-a"
+      ],
+      "knownAlternative": null
+    },
+    {
+      "questionId": "figure-03-a-concept",
+      "originalGold": [
+        "figure-03-a"
+      ],
+      "status": "incomplete-gold",
+      "primary": false,
+      "reason": "figure-03-b explicitly fuses ranked lexical/dense lists with RRF and is also relevant. The single-positive original label is incomplete.",
+      "exactLabelMatches": null,
+      "knownAlternative": [
+        "figure-03-a",
+        "figure-03-b"
+      ]
+    },
+    {
+      "questionId": "figure-03-b-literal",
+      "originalGold": [
+        "figure-03-b"
+      ],
+      "status": "exact-label-lookup",
+      "primary": true,
+      "reason": "Quoted label and topic identify one rendered image; not a semantic-answer judgment.",
+      "exactLabelMatches": [
+        "figure-03-b"
+      ],
+      "knownAlternative": null
+    },
+    {
+      "questionId": "figure-03-b-layout",
+      "originalGold": [
+        "figure-03-b"
+      ],
+      "status": "confounded-layout",
+      "primary": false,
+      "reason": "All requested orange branch images also differ in words, arrows and OCR lengths; no isolated visual attribution.",
+      "exactLabelMatches": null,
+      "knownAlternative": null
+    },
+    {
+      "questionId": "figure-04-a-literal",
+      "originalGold": [
+        "figure-04-a"
+      ],
+      "status": "exact-label-lookup",
+      "primary": true,
+      "reason": "Quoted label and topic identify one rendered image; not a semantic-answer judgment.",
+      "exactLabelMatches": [
+        "figure-04-a"
+      ],
+      "knownAlternative": null
+    },
+    {
+      "questionId": "figure-04-a-concept",
+      "originalGold": [
+        "figure-04-a"
+      ],
+      "status": "target-only-not-exhaustive",
+      "primary": false,
+      "reason": "Intended flow is present, but other candidates were not exhaustively adjudicated for broad semantic relevance; no unique-gold effectiveness claim.",
+      "exactLabelMatches": null,
+      "knownAlternative": null
+    },
+    {
+      "questionId": "figure-04-b-literal",
+      "originalGold": [
+        "figure-04-b"
+      ],
+      "status": "exact-label-lookup",
+      "primary": true,
+      "reason": "Quoted label and topic identify one rendered image; not a semantic-answer judgment.",
+      "exactLabelMatches": [
+        "figure-04-b"
+      ],
+      "knownAlternative": null
+    },
+    {
+      "questionId": "figure-04-b-layout",
+      "originalGold": [
+        "figure-04-b"
+      ],
+      "status": "confounded-layout",
+      "primary": false,
+      "reason": "All requested orange branch images also differ in words, arrows and OCR lengths; no isolated visual attribution.",
+      "exactLabelMatches": null,
+      "knownAlternative": null
+    },
+    {
+      "questionId": "figure-05-a-literal",
+      "originalGold": [
+        "figure-05-a"
+      ],
+      "status": "exact-label-lookup",
+      "primary": true,
+      "reason": "Quoted label and topic identify one rendered image; not a semantic-answer judgment.",
+      "exactLabelMatches": [
+        "figure-05-a"
+      ],
+      "knownAlternative": null
+    },
+    {
+      "questionId": "figure-05-a-concept",
+      "originalGold": [
+        "figure-05-a"
+      ],
+      "status": "target-only-not-exhaustive",
+      "primary": false,
+      "reason": "Intended flow is present, but other candidates were not exhaustively adjudicated for broad semantic relevance; no unique-gold effectiveness claim.",
+      "exactLabelMatches": null,
+      "knownAlternative": null
+    },
+    {
+      "questionId": "figure-05-b-literal",
+      "originalGold": [
+        "figure-05-b"
+      ],
+      "status": "exact-label-lookup",
+      "primary": true,
+      "reason": "Quoted label and topic identify one rendered image; not a semantic-answer judgment.",
+      "exactLabelMatches": [
+        "figure-05-b"
+      ],
+      "knownAlternative": null
+    },
+    {
+      "questionId": "figure-05-b-layout",
+      "originalGold": [
+        "figure-05-b"
+      ],
+      "status": "confounded-layout",
+      "primary": false,
+      "reason": "All requested orange branch images also differ in words, arrows and OCR lengths; no isolated visual attribution.",
+      "exactLabelMatches": null,
+      "knownAlternative": null
+    },
+    {
+      "questionId": "figure-06-a-literal",
+      "originalGold": [
+        "figure-06-a"
+      ],
+      "status": "exact-label-lookup",
+      "primary": true,
+      "reason": "Quoted label and topic identify one rendered image; not a semantic-answer judgment.",
+      "exactLabelMatches": [
+        "figure-06-a"
+      ],
+      "knownAlternative": null
+    },
+    {
+      "questionId": "figure-06-a-concept",
+      "originalGold": [
+        "figure-06-a"
+      ],
+      "status": "target-only-not-exhaustive",
+      "primary": false,
+      "reason": "Intended flow is present, but other candidates were not exhaustively adjudicated for broad semantic relevance; no unique-gold effectiveness claim.",
+      "exactLabelMatches": null,
+      "knownAlternative": null
+    },
+    {
+      "questionId": "figure-06-b-literal",
+      "originalGold": [
+        "figure-06-b"
+      ],
+      "status": "exact-label-lookup",
+      "primary": true,
+      "reason": "Quoted label and topic identify one rendered image; not a semantic-answer judgment.",
+      "exactLabelMatches": [
+        "figure-06-b"
+      ],
+      "knownAlternative": null
+    },
+    {
+      "questionId": "figure-06-b-layout",
+      "originalGold": [
+        "figure-06-b"
+      ],
+      "status": "confounded-layout",
+      "primary": false,
+      "reason": "All requested orange branch images also differ in words, arrows and OCR lengths; no isolated visual attribution.",
+      "exactLabelMatches": null,
+      "knownAlternative": null
+    },
+    {
+      "questionId": "figure-07-a-literal",
+      "originalGold": [
+        "figure-07-a"
+      ],
+      "status": "exact-label-lookup",
+      "primary": true,
+      "reason": "Quoted label and topic identify one rendered image; not a semantic-answer judgment.",
+      "exactLabelMatches": [
+        "figure-07-a"
+      ],
+      "knownAlternative": null
+    },
+    {
+      "questionId": "figure-07-a-concept",
+      "originalGold": [
+        "figure-07-a"
+      ],
+      "status": "diagram-content-erratum",
+      "primary": false,
+      "reason": "Original intent is incorrectly drawn as a final serial stage, not an invariant. Source mitigation retrieves original and rewritten queries and fuses candidates.",
+      "exactLabelMatches": null,
+      "knownAlternative": null
+    },
+    {
+      "questionId": "figure-07-b-literal",
+      "originalGold": [
+        "figure-07-b"
+      ],
+      "status": "exact-label-lookup",
+      "primary": true,
+      "reason": "Quoted label and topic identify one rendered image; not a semantic-answer judgment.",
+      "exactLabelMatches": [
+        "figure-07-b"
+      ],
+      "knownAlternative": null
+    },
+    {
+      "questionId": "figure-07-b-layout",
+      "originalGold": [
+        "figure-07-b"
+      ],
+      "status": "confounded-layout",
+      "primary": false,
+      "reason": "All requested orange branch images also differ in words, arrows and OCR lengths; no isolated visual attribution.",
+      "exactLabelMatches": null,
+      "knownAlternative": null
+    },
+    {
+      "questionId": "figure-08-a-literal",
+      "originalGold": [
+        "figure-08-a"
+      ],
+      "status": "exact-label-lookup",
+      "primary": true,
+      "reason": "Quoted label and topic identify one rendered image; not a semantic-answer judgment.",
+      "exactLabelMatches": [
+        "figure-08-a"
+      ],
+      "knownAlternative": null
+    },
+    {
+      "questionId": "figure-08-a-concept",
+      "originalGold": [
+        "figure-08-a"
+      ],
+      "status": "target-only-not-exhaustive",
+      "primary": false,
+      "reason": "Intended flow is present, but other candidates were not exhaustively adjudicated for broad semantic relevance; no unique-gold effectiveness claim.",
+      "exactLabelMatches": null,
+      "knownAlternative": null
+    },
+    {
+      "questionId": "figure-08-b-literal",
+      "originalGold": [
+        "figure-08-b"
+      ],
+      "status": "exact-label-lookup",
+      "primary": true,
+      "reason": "Quoted label and topic identify one rendered image; not a semantic-answer judgment.",
+      "exactLabelMatches": [
+        "figure-08-b"
+      ],
+      "knownAlternative": null
+    },
+    {
+      "questionId": "figure-08-b-layout",
+      "originalGold": [
+        "figure-08-b"
+      ],
+      "status": "confounded-layout",
+      "primary": false,
+      "reason": "All requested orange branch images also differ in words, arrows and OCR lengths; no isolated visual attribution.",
+      "exactLabelMatches": null,
+      "knownAlternative": null
+    },
+    {
+      "questionId": "figure-09-a-literal",
+      "originalGold": [
+        "figure-09-a"
+      ],
+      "status": "exact-label-lookup",
+      "primary": true,
+      "reason": "Quoted label and topic identify one rendered image; not a semantic-answer judgment.",
+      "exactLabelMatches": [
+        "figure-09-a"
+      ],
+      "knownAlternative": null
+    },
+    {
+      "questionId": "figure-09-a-concept",
+      "originalGold": [
+        "figure-09-a"
+      ],
+      "status": "target-only-not-exhaustive",
+      "primary": false,
+      "reason": "Intended flow is present, but other candidates were not exhaustively adjudicated for broad semantic relevance; no unique-gold effectiveness claim.",
+      "exactLabelMatches": null,
+      "knownAlternative": null
+    },
+    {
+      "questionId": "figure-09-b-literal",
+      "originalGold": [
+        "figure-09-b"
+      ],
+      "status": "exact-label-lookup",
+      "primary": true,
+      "reason": "Quoted label and topic identify one rendered image; not a semantic-answer judgment.",
+      "exactLabelMatches": [
+        "figure-09-b"
+      ],
+      "knownAlternative": null
+    },
+    {
+      "questionId": "figure-09-b-layout",
+      "originalGold": [
+        "figure-09-b"
+      ],
+      "status": "confounded-layout",
+      "primary": false,
+      "reason": "All requested orange branch images also differ in words, arrows and OCR lengths; no isolated visual attribution.",
+      "exactLabelMatches": null,
+      "knownAlternative": null
+    },
+    {
+      "questionId": "figure-10-a-literal",
+      "originalGold": [
+        "figure-10-a"
+      ],
+      "status": "exact-label-lookup",
+      "primary": true,
+      "reason": "Quoted label and topic identify one rendered image; not a semantic-answer judgment.",
+      "exactLabelMatches": [
+        "figure-10-a"
+      ],
+      "knownAlternative": null
+    },
+    {
+      "questionId": "figure-10-a-concept",
+      "originalGold": [
+        "figure-10-a"
+      ],
+      "status": "target-only-not-exhaustive",
+      "primary": false,
+      "reason": "Intended flow is present, but other candidates were not exhaustively adjudicated for broad semantic relevance; no unique-gold effectiveness claim.",
+      "exactLabelMatches": null,
+      "knownAlternative": null
+    },
+    {
+      "questionId": "figure-10-b-literal",
+      "originalGold": [
+        "figure-10-b"
+      ],
+      "status": "exact-label-lookup",
+      "primary": true,
+      "reason": "Quoted label and topic identify one rendered image; not a semantic-answer judgment.",
+      "exactLabelMatches": [
+        "figure-10-b"
+      ],
+      "knownAlternative": null
+    },
+    {
+      "questionId": "figure-10-b-layout",
+      "originalGold": [
+        "figure-10-b"
+      ],
+      "status": "confounded-layout",
+      "primary": false,
+      "reason": "All requested orange branch images also differ in words, arrows and OCR lengths; no isolated visual attribution.",
+      "exactLabelMatches": null,
+      "knownAlternative": null
+    },
+    {
+      "questionId": "figure-11-a-literal",
+      "originalGold": [
+        "figure-11-a"
+      ],
+      "status": "exact-label-lookup",
+      "primary": true,
+      "reason": "Quoted label and topic identify one rendered image; not a semantic-answer judgment.",
+      "exactLabelMatches": [
+        "figure-11-a"
+      ],
+      "knownAlternative": null
+    },
+    {
+      "questionId": "figure-11-a-concept",
+      "originalGold": [
+        "figure-11-a"
+      ],
+      "status": "target-only-not-exhaustive",
+      "primary": false,
+      "reason": "Intended flow is present, but other candidates were not exhaustively adjudicated for broad semantic relevance; no unique-gold effectiveness claim.",
+      "exactLabelMatches": null,
+      "knownAlternative": null
+    },
+    {
+      "questionId": "figure-11-b-literal",
+      "originalGold": [
+        "figure-11-b"
+      ],
+      "status": "exact-label-lookup",
+      "primary": true,
+      "reason": "Quoted label and topic identify one rendered image; not a semantic-answer judgment.",
+      "exactLabelMatches": [
+        "figure-11-b"
+      ],
+      "knownAlternative": null
+    },
+    {
+      "questionId": "figure-11-b-layout",
+      "originalGold": [
+        "figure-11-b"
+      ],
+      "status": "confounded-layout",
+      "primary": false,
+      "reason": "All requested orange branch images also differ in words, arrows and OCR lengths; no isolated visual attribution.",
+      "exactLabelMatches": null,
+      "knownAlternative": null
+    },
+    {
+      "questionId": "figure-12-a-literal",
+      "originalGold": [
+        "figure-12-a"
+      ],
+      "status": "exact-label-lookup",
+      "primary": true,
+      "reason": "Quoted label and topic identify one rendered image; not a semantic-answer judgment.",
+      "exactLabelMatches": [
+        "figure-12-a"
+      ],
+      "knownAlternative": null
+    },
+    {
+      "questionId": "figure-12-a-concept",
+      "originalGold": [
+        "figure-12-a"
+      ],
+      "status": "target-only-not-exhaustive",
+      "primary": false,
+      "reason": "Intended flow is present, but other candidates were not exhaustively adjudicated for broad semantic relevance; no unique-gold effectiveness claim.",
+      "exactLabelMatches": null,
+      "knownAlternative": null
+    },
+    {
+      "questionId": "figure-12-b-literal",
+      "originalGold": [
+        "figure-12-b"
+      ],
+      "status": "exact-label-lookup",
+      "primary": true,
+      "reason": "Quoted label and topic identify one rendered image; not a semantic-answer judgment.",
+      "exactLabelMatches": [
+        "figure-12-b"
+      ],
+      "knownAlternative": null
+    },
+    {
+      "questionId": "figure-12-b-layout",
+      "originalGold": [
+        "figure-12-b"
+      ],
+      "status": "confounded-layout",
+      "primary": false,
+      "reason": "All requested orange branch images also differ in words, arrows and OCR lengths; no isolated visual attribution.",
+      "exactLabelMatches": null,
+      "knownAlternative": null
+    },
+    {
+      "questionId": "negative-1",
+      "originalGold": [],
+      "status": "negative-diagnostic",
+      "primary": false,
+      "reason": "No calibrated abstention rule; do not score answer refusal.",
+      "exactLabelMatches": null,
+      "knownAlternative": null
+    },
+    {
+      "questionId": "negative-2",
+      "originalGold": [],
+      "status": "negative-diagnostic",
+      "primary": false,
+      "reason": "No calibrated abstention rule; do not score answer refusal.",
+      "exactLabelMatches": null,
+      "knownAlternative": null
+    },
+    {
+      "questionId": "negative-3",
+      "originalGold": [],
+      "status": "negative-diagnostic",
+      "primary": false,
+      "reason": "No calibrated abstention rule; do not score answer refusal.",
+      "exactLabelMatches": null,
+      "knownAlternative": null
+    },
+    {
+      "questionId": "negative-4",
+      "originalGold": [],
+      "status": "negative-diagnostic",
+      "primary": false,
+      "reason": "No calibrated abstention rule; do not score answer refusal.",
+      "exactLabelMatches": null,
+      "knownAlternative": null
+    }
+  ]
+}

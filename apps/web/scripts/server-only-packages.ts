@@ -45,6 +45,8 @@ export const SERVER_ONLY = [
       // filesystem-touching module is left uncovered, so the next one cannot be
       // missed the same way.
       '## Intersection topics',
+      // Independent offline image experiment file readers must never ship to UI.
+      'Frozen execution code changed.',
     ],
   },
 ] as const;

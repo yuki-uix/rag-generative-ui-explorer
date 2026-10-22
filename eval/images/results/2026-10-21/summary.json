@@ -1,0 +1,5270 @@
+{
+  "version": "image-retrieval-report-1",
+  "freezeSha256": "adae1fb5af9ad654c430c0187955bc297ede7da8576f65a1fd19fde2f9018150",
+  "ocrSha256": "ac0dbf2c465d6cae25d126df108f982234e2fe26603c20facd4b592c5384b0cf",
+  "encodingSha256": "59127b2a7c694672735707c570987d302448afe511854f12ccc630339318e629",
+  "samples": {
+    "images": 24,
+    "questions": 52,
+    "repetitions": 3
+  },
+  "observations": {
+    "ocr": {
+      "totalMs": 1223.1719493865967,
+      "perImageMs": {
+        "n": 24,
+        "median": 43.20251941680908,
+        "min": 40.64595699310303,
+        "max": 194.99003887176514
+      },
+      "engine": "Apple Vision VNRecognizeTextRequest",
+      "revision": 3,
+      "os": "Version 26.6.2 (Build 25G83)"
+    },
+    "clip": {
+      "loadMs": 234.042459,
+      "totalMs": 3138.8275,
+      "peakRssKiB": 897824,
+      "imageEncodingMs": {
+        "n": 72,
+        "median": 29.215249500000027,
+        "min": 28.246374999999716,
+        "max": 41.81575000000004
+      },
+      "queryEncodingMs": {
+        "n": 156,
+        "median": 4.301249499999926,
+        "min": 2.9961249999998927,
+        "max": 9.998583000000053
+      },
+      "modelBytes": 155851446,
+      "runtime": {
+        "transformers": "3.8.1",
+        "node": "v23.7.0",
+        "platform": "darwin",
+        "arch": "arm64",
+        "cpu": "Apple M4 Pro",
+        "onnxruntime": "1.21.0"
+      }
+    },
+    "indexes": {
+      "textMs": 5.103833000000009,
+      "ocrMs": 0.14154200000001538
+    },
+    "costs": {
+      "hostedProviderCalls": 0,
+      "hostedProviderCharge": 0,
+      "hardwareElectricityEngineering": "unpriced"
+    }
+  },
+  "slices": [
+    {
+      "arm": "text",
+      "split": "all",
+      "category": "all",
+      "uniqueQuestions": 52,
+      "answerableQuestions": 48,
+      "observations": 156,
+      "metrics": {
+        "recall1": {
+          "n": 3,
+          "median": 0.4166666666666667,
+          "min": 0.4166666666666667,
+          "max": 0.4166666666666667
+        },
+        "recall3": {
+          "n": 3,
+          "median": 0.9583333333333334,
+          "min": 0.9583333333333334,
+          "max": 0.9583333333333334
+        },
+        "recall5": {
+          "n": 3,
+          "median": 0.9583333333333334,
+          "min": 0.9583333333333334,
+          "max": 0.9583333333333334
+        },
+        "hit1": {
+          "n": 3,
+          "median": 0.4166666666666667,
+          "min": 0.4166666666666667,
+          "max": 0.4166666666666667
+        },
+        "hit3": {
+          "n": 3,
+          "median": 0.9583333333333334,
+          "min": 0.9583333333333334,
+          "max": 0.9583333333333334
+        },
+        "hit5": {
+          "n": 3,
+          "median": 0.9583333333333334,
+          "min": 0.9583333333333334,
+          "max": 0.9583333333333334
+        },
+        "mrr5": {
+          "n": 3,
+          "median": 0.6770833333333334,
+          "min": 0.6770833333333334,
+          "max": 0.6770833333333334
+        },
+        "ndcg5": {
+          "n": 3,
+          "median": 0.7502371735863234,
+          "min": 0.7502371735863234,
+          "max": 0.7502371735863234
+        }
+      },
+      "repetitions": [
+        {
+          "repetition": 1,
+          "metrics": {
+            "recall1": 0.4166666666666667,
+            "recall3": 0.9583333333333334,
+            "recall5": 0.9583333333333334,
+            "hit1": 0.4166666666666667,
+            "hit3": 0.9583333333333334,
+            "hit5": 0.9583333333333334,
+            "mrr5": 0.6770833333333334,
+            "ndcg5": 0.7502371735863234
+          }
+        },
+        {
+          "repetition": 2,
+          "metrics": {
+            "recall1": 0.4166666666666667,
+            "recall3": 0.9583333333333334,
+            "recall5": 0.9583333333333334,
+            "hit1": 0.4166666666666667,
+            "hit3": 0.9583333333333334,
+            "hit5": 0.9583333333333334,
+            "mrr5": 0.6770833333333334,
+            "ndcg5": 0.7502371735863234
+          }
+        },
+        {
+          "repetition": 3,
+          "metrics": {
+            "recall1": 0.4166666666666667,
+            "recall3": 0.9583333333333334,
+            "recall5": 0.9583333333333334,
+            "hit1": 0.4166666666666667,
+            "hit3": 0.9583333333333334,
+            "hit5": 0.9583333333333334,
+            "mrr5": 0.6770833333333334,
+            "ndcg5": 0.7502371735863234
+          }
+        }
+      ],
+      "searchMs": {
+        "n": 156,
+        "median": 0.009582999999992126,
+        "min": 0.005708999999995967,
+        "max": 5.516165999999998
+      },
+      "queryEncodingMs": null
+    },
+    {
+      "arm": "ocr",
+      "split": "all",
+      "category": "all",
+      "uniqueQuestions": 52,
+      "answerableQuestions": 48,
+      "observations": 156,
+      "metrics": {
+        "recall1": {
+          "n": 3,
+          "median": 0.8541666666666666,
+          "min": 0.8541666666666666,
+          "max": 0.8541666666666666
+        },
+        "recall3": {
+          "n": 3,
+          "median": 0.9166666666666666,
+          "min": 0.9166666666666666,
+          "max": 0.9166666666666666
+        },
+        "recall5": {
+          "n": 3,
+          "median": 0.9375,
+          "min": 0.9375,
+          "max": 0.9375
+        },
+        "hit1": {
+          "n": 3,
+          "median": 0.8541666666666666,
+          "min": 0.8541666666666666,
+          "max": 0.8541666666666666
+        },
+        "hit3": {
+          "n": 3,
+          "median": 0.9166666666666666,
+          "min": 0.9166666666666666,
+          "max": 0.9166666666666666
+        },
+        "hit5": {
+          "n": 3,
+          "median": 0.9375,
+          "min": 0.9375,
+          "max": 0.9375
+        },
+        "mrr5": {
+          "n": 3,
+          "median": 0.890625,
+          "min": 0.890625,
+          "max": 0.890625
+        },
+        "ndcg5": {
+          "n": 3,
+          "median": 0.9025722045580785,
+          "min": 0.9025722045580785,
+          "max": 0.9025722045580785
+        }
+      },
+      "repetitions": [
+        {
+          "repetition": 1,
+          "metrics": {
+            "recall1": 0.8541666666666666,
+            "recall3": 0.9166666666666666,
+            "recall5": 0.9375,
+            "hit1": 0.8541666666666666,
+            "hit3": 0.9166666666666666,
+            "hit5": 0.9375,
+            "mrr5": 0.890625,
+            "ndcg5": 0.9025722045580785
+          }
+        },
+        {
+          "repetition": 2,
+          "metrics": {
+            "recall1": 0.8541666666666666,
+            "recall3": 0.9166666666666666,
+            "recall5": 0.9375,
+            "hit1": 0.8541666666666666,
+            "hit3": 0.9166666666666666,
+            "hit5": 0.9375,
+            "mrr5": 0.890625,
+            "ndcg5": 0.9025722045580785
+          }
+        },
+        {
+          "repetition": 3,
+          "metrics": {
+            "recall1": 0.8541666666666666,
+            "recall3": 0.9166666666666666,
+            "recall5": 0.9375,
+            "hit1": 0.8541666666666666,
+            "hit3": 0.9166666666666666,
+            "hit5": 0.9375,
+            "mrr5": 0.890625,
+            "ndcg5": 0.9025722045580785
+          }
+        }
+      ],
+      "searchMs": {
+        "n": 156,
+        "median": 0.0032915000000031114,
+        "min": 0.0015830000000107702,
+        "max": 0.012833999999998014
+      },
+      "queryEncodingMs": null
+    },
+    {
+      "arm": "clip",
+      "split": "all",
+      "category": "all",
+      "uniqueQuestions": 52,
+      "answerableQuestions": 48,
+      "observations": 156,
+      "metrics": {
+        "recall1": {
+          "n": 3,
+          "median": 0.3541666666666667,
+          "min": 0.3541666666666667,
+          "max": 0.3541666666666667
+        },
+        "recall3": {
+          "n": 3,
+          "median": 0.4791666666666667,
+          "min": 0.4791666666666667,
+          "max": 0.4791666666666667
+        },
+        "recall5": {
+          "n": 3,
+          "median": 0.6041666666666666,
+          "min": 0.6041666666666666,
+          "max": 0.6041666666666666
+        },
+        "hit1": {
+          "n": 3,
+          "median": 0.3541666666666667,
+          "min": 0.3541666666666667,
+          "max": 0.3541666666666667
+        },
+        "hit3": {
+          "n": 3,
+          "median": 0.4791666666666667,
+          "min": 0.4791666666666667,
+          "max": 0.4791666666666667
+        },
+        "hit5": {
+          "n": 3,
+          "median": 0.6041666666666666,
+          "min": 0.6041666666666666,
+          "max": 0.6041666666666666
+        },
+        "mrr5": {
+          "n": 3,
+          "median": 0.43333333333333335,
+          "min": 0.43333333333333335,
+          "max": 0.43333333333333335
+        },
+        "ndcg5": {
+          "n": 3,
+          "median": 0.475032366787486,
+          "min": 0.475032366787486,
+          "max": 0.475032366787486
+        }
+      },
+      "repetitions": [
+        {
+          "repetition": 1,
+          "metrics": {
+            "recall1": 0.3541666666666667,
+            "recall3": 0.4791666666666667,
+            "recall5": 0.6041666666666666,
+            "hit1": 0.3541666666666667,
+            "hit3": 0.4791666666666667,
+            "hit5": 0.6041666666666666,
+            "mrr5": 0.43333333333333335,
+            "ndcg5": 0.475032366787486
+          }
+        },
+        {
+          "repetition": 2,
+          "metrics": {
+            "recall1": 0.3541666666666667,
+            "recall3": 0.4791666666666667,
+            "recall5": 0.6041666666666666,
+            "hit1": 0.3541666666666667,
+            "hit3": 0.4791666666666667,
+            "hit5": 0.6041666666666666,
+            "mrr5": 0.43333333333333335,
+            "ndcg5": 0.475032366787486
+          }
+        },
+        {
+          "repetition": 3,
+          "metrics": {
+            "recall1": 0.3541666666666667,
+            "recall3": 0.4791666666666667,
+            "recall5": 0.6041666666666666,
+            "hit1": 0.3541666666666667,
+            "hit3": 0.4791666666666667,
+            "hit5": 0.6041666666666666,
+            "mrr5": 0.43333333333333335,
+            "ndcg5": 0.475032366787486
+          }
+        }
+      ],
+      "searchMs": {
+        "n": 156,
+        "median": 0.08047899999998265,
+        "min": 0.06666699999999537,
+        "max": 0.8838749999999891
+      },
+      "queryEncodingMs": {
+        "n": 156,
+        "median": 4.301249499999926,
+        "min": 2.9961249999998927,
+        "max": 9.998583000000053
+      }
+    },
+    {
+      "arm": "text",
+      "split": "all",
+      "category": "literal",
+      "uniqueQuestions": 24,
+      "answerableQuestions": 24,
+      "observations": 72,
+      "metrics": {
+        "recall1": {
+          "n": 3,
+          "median": 0.5,
+          "min": 0.5,
+          "max": 0.5
+        },
+        "recall3": {
+          "n": 3,
+          "median": 0.9583333333333334,
+          "min": 0.9583333333333334,
+          "max": 0.9583333333333334
+        },
+        "recall5": {
+          "n": 3,
+          "median": 0.9583333333333334,
+          "min": 0.9583333333333334,
+          "max": 0.9583333333333334
+        },
+        "hit1": {
+          "n": 3,
+          "median": 0.5,
+          "min": 0.5,
+          "max": 0.5
+        },
+        "hit3": {
+          "n": 3,
+          "median": 0.9583333333333334,
+          "min": 0.9583333333333334,
+          "max": 0.9583333333333334
+        },
+        "hit5": {
+          "n": 3,
+          "median": 0.9583333333333334,
+          "min": 0.9583333333333334,
+          "max": 0.9583333333333334
+        },
+        "mrr5": {
+          "n": 3,
+          "median": 0.7291666666666666,
+          "min": 0.7291666666666666,
+          "max": 0.7291666666666666
+        },
+        "ndcg5": {
+          "n": 3,
+          "median": 0.7891761370535848,
+          "min": 0.7891761370535848,
+          "max": 0.7891761370535848
+        }
+      },
+      "repetitions": [
+        {
+          "repetition": 1,
+          "metrics": {
+            "recall1": 0.5,
+            "recall3": 0.9583333333333334,
+            "recall5": 0.9583333333333334,
+            "hit1": 0.5,
+            "hit3": 0.9583333333333334,
+            "hit5": 0.9583333333333334,
+            "mrr5": 0.7291666666666666,
+            "ndcg5": 0.7891761370535848
+          }
+        },
+        {
+          "repetition": 2,
+          "metrics": {
+            "recall1": 0.5,
+            "recall3": 0.9583333333333334,
+            "recall5": 0.9583333333333334,
+            "hit1": 0.5,
+            "hit3": 0.9583333333333334,
+            "hit5": 0.9583333333333334,
+            "mrr5": 0.7291666666666666,
+            "ndcg5": 0.7891761370535848
+          }
+        },
+        {
+          "repetition": 3,
+          "metrics": {
+            "recall1": 0.5,
+            "recall3": 0.9583333333333334,
+            "recall5": 0.9583333333333334,
+            "hit1": 0.5,
+            "hit3": 0.9583333333333334,
+            "hit5": 0.9583333333333334,
+            "mrr5": 0.7291666666666666,
+            "ndcg5": 0.7891761370535848
+          }
+        }
+      ],
+      "searchMs": {
+        "n": 72,
+        "median": 0.00837500000000091,
+        "min": 0.005832999999995536,
+        "max": 5.516165999999998
+      },
+      "queryEncodingMs": null
+    },
+    {
+      "arm": "ocr",
+      "split": "all",
+      "category": "literal",
+      "uniqueQuestions": 24,
+      "answerableQuestions": 24,
+      "observations": 72,
+      "metrics": {
+        "recall1": {
+          "n": 3,
+          "median": 1,
+          "min": 1,
+          "max": 1
+        },
+        "recall3": {
+          "n": 3,
+          "median": 1,
+          "min": 1,
+          "max": 1
+        },
+        "recall5": {
+          "n": 3,
+          "median": 1,
+          "min": 1,
+          "max": 1
+        },
+        "hit1": {
+          "n": 3,
+          "median": 1,
+          "min": 1,
+          "max": 1
+        },
+        "hit3": {
+          "n": 3,
+          "median": 1,
+          "min": 1,
+          "max": 1
+        },
+        "hit5": {
+          "n": 3,
+          "median": 1,
+          "min": 1,
+          "max": 1
+        },
+        "mrr5": {
+          "n": 3,
+          "median": 1,
+          "min": 1,
+          "max": 1
+        },
+        "ndcg5": {
+          "n": 3,
+          "median": 1,
+          "min": 1,
+          "max": 1
+        }
+      },
+      "repetitions": [
+        {
+          "repetition": 1,
+          "metrics": {
+            "recall1": 1,
+            "recall3": 1,
+            "recall5": 1,
+            "hit1": 1,
+            "hit3": 1,
+            "hit5": 1,
+            "mrr5": 1,
+            "ndcg5": 1
+          }
+        },
+        {
+          "repetition": 2,
+          "metrics": {
+            "recall1": 1,
+            "recall3": 1,
+            "recall5": 1,
+            "hit1": 1,
+            "hit3": 1,
+            "hit5": 1,
+            "mrr5": 1,
+            "ndcg5": 1
+          }
+        },
+        {
+          "repetition": 3,
+          "metrics": {
+            "recall1": 1,
+            "recall3": 1,
+            "recall5": 1,
+            "hit1": 1,
+            "hit3": 1,
+            "hit5": 1,
+            "mrr5": 1,
+            "ndcg5": 1
+          }
+        }
+      ],
+      "searchMs": {
+        "n": 72,
+        "median": 0.0029584999999912043,
+        "min": 0.0020420000000171967,
+        "max": 0.012041000000010627
+      },
+      "queryEncodingMs": null
+    },
+    {
+      "arm": "clip",
+      "split": "all",
+      "category": "literal",
+      "uniqueQuestions": 24,
+      "answerableQuestions": 24,
+      "observations": 72,
+      "metrics": {
+        "recall1": {
+          "n": 3,
+          "median": 0.4166666666666667,
+          "min": 0.4166666666666667,
+          "max": 0.4166666666666667
+        },
+        "recall3": {
+          "n": 3,
+          "median": 0.625,
+          "min": 0.625,
+          "max": 0.625
+        },
+        "recall5": {
+          "n": 3,
+          "median": 0.75,
+          "min": 0.75,
+          "max": 0.75
+        },
+        "hit1": {
+          "n": 3,
+          "median": 0.4166666666666667,
+          "min": 0.4166666666666667,
+          "max": 0.4166666666666667
+        },
+        "hit3": {
+          "n": 3,
+          "median": 0.625,
+          "min": 0.625,
+          "max": 0.625
+        },
+        "hit5": {
+          "n": 3,
+          "median": 0.75,
+          "min": 0.75,
+          "max": 0.75
+        },
+        "mrr5": {
+          "n": 3,
+          "median": 0.5340277777777779,
+          "min": 0.5340277777777779,
+          "max": 0.5340277777777779
+        },
+        "ndcg5": {
+          "n": 3,
+          "median": 0.5873821430523688,
+          "min": 0.5873821430523688,
+          "max": 0.5873821430523688
+        }
+      },
+      "repetitions": [
+        {
+          "repetition": 1,
+          "metrics": {
+            "recall1": 0.4166666666666667,
+            "recall3": 0.625,
+            "recall5": 0.75,
+            "hit1": 0.4166666666666667,
+            "hit3": 0.625,
+            "hit5": 0.75,
+            "mrr5": 0.5340277777777779,
+            "ndcg5": 0.5873821430523688
+          }
+        },
+        {
+          "repetition": 2,
+          "metrics": {
+            "recall1": 0.4166666666666667,
+            "recall3": 0.625,
+            "recall5": 0.75,
+            "hit1": 0.4166666666666667,
+            "hit3": 0.625,
+            "hit5": 0.75,
+            "mrr5": 0.5340277777777779,
+            "ndcg5": 0.5873821430523688
+          }
+        },
+        {
+          "repetition": 3,
+          "metrics": {
+            "recall1": 0.4166666666666667,
+            "recall3": 0.625,
+            "recall5": 0.75,
+            "hit1": 0.4166666666666667,
+            "hit3": 0.625,
+            "hit5": 0.75,
+            "mrr5": 0.5340277777777779,
+            "ndcg5": 0.5873821430523688
+          }
+        }
+      ],
+      "searchMs": {
+        "n": 72,
+        "median": 0.07837499999999409,
+        "min": 0.06720899999999119,
+        "max": 0.21579100000002427
+      },
+      "queryEncodingMs": {
+        "n": 72,
+        "median": 3.7858955000001515,
+        "min": 3.478375000000142,
+        "max": 8.447624999999789
+      }
+    },
+    {
+      "arm": "text",
+      "split": "all",
+      "category": "concept",
+      "uniqueQuestions": 12,
+      "answerableQuestions": 12,
+      "observations": 36,
+      "metrics": {
+        "recall1": {
+          "n": 3,
+          "median": 0.6666666666666666,
+          "min": 0.6666666666666666,
+          "max": 0.6666666666666666
+        },
+        "recall3": {
+          "n": 3,
+          "median": 0.9166666666666666,
+          "min": 0.9166666666666666,
+          "max": 0.9166666666666666
+        },
+        "recall5": {
+          "n": 3,
+          "median": 0.9166666666666666,
+          "min": 0.9166666666666666,
+          "max": 0.9166666666666666
+        },
+        "hit1": {
+          "n": 3,
+          "median": 0.6666666666666666,
+          "min": 0.6666666666666666,
+          "max": 0.6666666666666666
+        },
+        "hit3": {
+          "n": 3,
+          "median": 0.9166666666666666,
+          "min": 0.9166666666666666,
+          "max": 0.9166666666666666
+        },
+        "hit5": {
+          "n": 3,
+          "median": 0.9166666666666666,
+          "min": 0.9166666666666666,
+          "max": 0.9166666666666666
+        },
+        "mrr5": {
+          "n": 3,
+          "median": 0.75,
+          "min": 0.75,
+          "max": 0.75
+        },
+        "ndcg5": {
+          "n": 3,
+          "median": 0.7916666666666666,
+          "min": 0.7916666666666666,
+          "max": 0.7916666666666666
+        }
+      },
+      "repetitions": [
+        {
+          "repetition": 1,
+          "metrics": {
+            "recall1": 0.6666666666666666,
+            "recall3": 0.9166666666666666,
+            "recall5": 0.9166666666666666,
+            "hit1": 0.6666666666666666,
+            "hit3": 0.9166666666666666,
+            "hit5": 0.9166666666666666,
+            "mrr5": 0.75,
+            "ndcg5": 0.7916666666666666
+          }
+        },
+        {
+          "repetition": 2,
+          "metrics": {
+            "recall1": 0.6666666666666666,
+            "recall3": 0.9166666666666666,
+            "recall5": 0.9166666666666666,
+            "hit1": 0.6666666666666666,
+            "hit3": 0.9166666666666666,
+            "hit5": 0.9166666666666666,
+            "mrr5": 0.75,
+            "ndcg5": 0.7916666666666666
+          }
+        },
+        {
+          "repetition": 3,
+          "metrics": {
+            "recall1": 0.6666666666666666,
+            "recall3": 0.9166666666666666,
+            "recall5": 0.9166666666666666,
+            "hit1": 0.6666666666666666,
+            "hit3": 0.9166666666666666,
+            "hit5": 0.9166666666666666,
+            "mrr5": 0.75,
+            "ndcg5": 0.7916666666666666
+          }
+        }
+      ],
+      "searchMs": {
+        "n": 36,
+        "median": 0.010645499999995423,
+        "min": 0.008041999999989002,
+        "max": 0.02129199999998832
+      },
+      "queryEncodingMs": null
+    },
+    {
+      "arm": "ocr",
+      "split": "all",
+      "category": "concept",
+      "uniqueQuestions": 12,
+      "answerableQuestions": 12,
+      "observations": 36,
+      "metrics": {
+        "recall1": {
+          "n": 3,
+          "median": 0.4166666666666667,
+          "min": 0.4166666666666667,
+          "max": 0.4166666666666667
+        },
+        "recall3": {
+          "n": 3,
+          "median": 0.6666666666666666,
+          "min": 0.6666666666666666,
+          "max": 0.6666666666666666
+        },
+        "recall5": {
+          "n": 3,
+          "median": 0.75,
+          "min": 0.75,
+          "max": 0.75
+        },
+        "hit1": {
+          "n": 3,
+          "median": 0.4166666666666667,
+          "min": 0.4166666666666667,
+          "max": 0.4166666666666667
+        },
+        "hit3": {
+          "n": 3,
+          "median": 0.6666666666666666,
+          "min": 0.6666666666666666,
+          "max": 0.6666666666666666
+        },
+        "hit5": {
+          "n": 3,
+          "median": 0.75,
+          "min": 0.75,
+          "max": 0.75
+        },
+        "mrr5": {
+          "n": 3,
+          "median": 0.5625,
+          "min": 0.5625,
+          "max": 0.5625
+        },
+        "ndcg5": {
+          "n": 3,
+          "median": 0.6102888182323138,
+          "min": 0.6102888182323138,
+          "max": 0.6102888182323138
+        }
+      },
+      "repetitions": [
+        {
+          "repetition": 1,
+          "metrics": {
+            "recall1": 0.4166666666666667,
+            "recall3": 0.6666666666666666,
+            "recall5": 0.75,
+            "hit1": 0.4166666666666667,
+            "hit3": 0.6666666666666666,
+            "hit5": 0.75,
+            "mrr5": 0.5625,
+            "ndcg5": 0.6102888182323138
+          }
+        },
+        {
+          "repetition": 2,
+          "metrics": {
+            "recall1": 0.4166666666666667,
+            "recall3": 0.6666666666666666,
+            "recall5": 0.75,
+            "hit1": 0.4166666666666667,
+            "hit3": 0.6666666666666666,
+            "hit5": 0.75,
+            "mrr5": 0.5625,
+            "ndcg5": 0.6102888182323138
+          }
+        },
+        {
+          "repetition": 3,
+          "metrics": {
+            "recall1": 0.4166666666666667,
+            "recall3": 0.6666666666666666,
+            "recall5": 0.75,
+            "hit1": 0.4166666666666667,
+            "hit3": 0.6666666666666666,
+            "hit5": 0.75,
+            "mrr5": 0.5625,
+            "ndcg5": 0.6102888182323138
+          }
+        }
+      ],
+      "searchMs": {
+        "n": 36,
+        "median": 0.003374999999991246,
+        "min": 0.002041999999988775,
+        "max": 0.007874999999984311
+      },
+      "queryEncodingMs": null
+    },
+    {
+      "arm": "clip",
+      "split": "all",
+      "category": "concept",
+      "uniqueQuestions": 12,
+      "answerableQuestions": 12,
+      "observations": 36,
+      "metrics": {
+        "recall1": {
+          "n": 3,
+          "median": 0,
+          "min": 0,
+          "max": 0
+        },
+        "recall3": {
+          "n": 3,
+          "median": 0.08333333333333333,
+          "min": 0.08333333333333333,
+          "max": 0.08333333333333333
+        },
+        "recall5": {
+          "n": 3,
+          "median": 0.25,
+          "min": 0.25,
+          "max": 0.25
+        },
+        "hit1": {
+          "n": 3,
+          "median": 0,
+          "min": 0,
+          "max": 0
+        },
+        "hit3": {
+          "n": 3,
+          "median": 0.08333333333333333,
+          "min": 0.08333333333333333,
+          "max": 0.08333333333333333
+        },
+        "hit5": {
+          "n": 3,
+          "median": 0.25,
+          "min": 0.25,
+          "max": 0.25
+        },
+        "mrr5": {
+          "n": 3,
+          "median": 0.06527777777777777,
+          "min": 0.06527777777777777,
+          "max": 0.06527777777777777
+        },
+        "ndcg5": {
+          "n": 3,
+          "median": 0.10979411377566123,
+          "min": 0.10979411377566123,
+          "max": 0.10979411377566123
+        }
+      },
+      "repetitions": [
+        {
+          "repetition": 1,
+          "metrics": {
+            "recall1": 0,
+            "recall3": 0.08333333333333333,
+            "recall5": 0.25,
+            "hit1": 0,
+            "hit3": 0.08333333333333333,
+            "hit5": 0.25,
+            "mrr5": 0.06527777777777777,
+            "ndcg5": 0.10979411377566123
+          }
+        },
+        {
+          "repetition": 2,
+          "metrics": {
+            "recall1": 0,
+            "recall3": 0.08333333333333333,
+            "recall5": 0.25,
+            "hit1": 0,
+            "hit3": 0.08333333333333333,
+            "hit5": 0.25,
+            "mrr5": 0.06527777777777777,
+            "ndcg5": 0.10979411377566123
+          }
+        },
+        {
+          "repetition": 3,
+          "metrics": {
+            "recall1": 0,
+            "recall3": 0.08333333333333333,
+            "recall5": 0.25,
+            "hit1": 0,
+            "hit3": 0.08333333333333333,
+            "hit5": 0.25,
+            "mrr5": 0.06527777777777777,
+            "ndcg5": 0.10979411377566123
+          }
+        }
+      ],
+      "searchMs": {
+        "n": 36,
+        "median": 0.08354200000000844,
+        "min": 0.06708299999999667,
+        "max": 0.8838749999999891
+      },
+      "queryEncodingMs": {
+        "n": 36,
+        "median": 4.423562499999889,
+        "min": 3.721625000000131,
+        "max": 4.821707999999944
+      }
+    },
+    {
+      "arm": "text",
+      "split": "all",
+      "category": "layout",
+      "uniqueQuestions": 12,
+      "answerableQuestions": 12,
+      "observations": 36,
+      "metrics": {
+        "recall1": {
+          "n": 3,
+          "median": 0,
+          "min": 0,
+          "max": 0
+        },
+        "recall3": {
+          "n": 3,
+          "median": 1,
+          "min": 1,
+          "max": 1
+        },
+        "recall5": {
+          "n": 3,
+          "median": 1,
+          "min": 1,
+          "max": 1
+        },
+        "hit1": {
+          "n": 3,
+          "median": 0,
+          "min": 0,
+          "max": 0
+        },
+        "hit3": {
+          "n": 3,
+          "median": 1,
+          "min": 1,
+          "max": 1
+        },
+        "hit5": {
+          "n": 3,
+          "median": 1,
+          "min": 1,
+          "max": 1
+        },
+        "mrr5": {
+          "n": 3,
+          "median": 0.5,
+          "min": 0.5,
+          "max": 0.5
+        },
+        "ndcg5": {
+          "n": 3,
+          "median": 0.6309297535714576,
+          "min": 0.6309297535714576,
+          "max": 0.6309297535714576
+        }
+      },
+      "repetitions": [
+        {
+          "repetition": 1,
+          "metrics": {
+            "recall1": 0,
+            "recall3": 1,
+            "recall5": 1,
+            "hit1": 0,
+            "hit3": 1,
+            "hit5": 1,
+            "mrr5": 0.5,
+            "ndcg5": 0.6309297535714576
+          }
+        },
+        {
+          "repetition": 2,
+          "metrics": {
+            "recall1": 0,
+            "recall3": 1,
+            "recall5": 1,
+            "hit1": 0,
+            "hit3": 1,
+            "hit5": 1,
+            "mrr5": 0.5,
+            "ndcg5": 0.6309297535714576
+          }
+        },
+        {
+          "repetition": 3,
+          "metrics": {
+            "recall1": 0,
+            "recall3": 1,
+            "recall5": 1,
+            "hit1": 0,
+            "hit3": 1,
+            "hit5": 1,
+            "mrr5": 0.5,
+            "ndcg5": 0.6309297535714576
+          }
+        }
+      ],
+      "searchMs": {
+        "n": 36,
+        "median": 0.010520499999998378,
+        "min": 0.007542000000000826,
+        "max": 0.028624999999976808
+      },
+      "queryEncodingMs": null
+    },
+    {
+      "arm": "ocr",
+      "split": "all",
+      "category": "layout",
+      "uniqueQuestions": 12,
+      "answerableQuestions": 12,
+      "observations": 36,
+      "metrics": {
+        "recall1": {
+          "n": 3,
+          "median": 1,
+          "min": 1,
+          "max": 1
+        },
+        "recall3": {
+          "n": 3,
+          "median": 1,
+          "min": 1,
+          "max": 1
+        },
+        "recall5": {
+          "n": 3,
+          "median": 1,
+          "min": 1,
+          "max": 1
+        },
+        "hit1": {
+          "n": 3,
+          "median": 1,
+          "min": 1,
+          "max": 1
+        },
+        "hit3": {
+          "n": 3,
+          "median": 1,
+          "min": 1,
+          "max": 1
+        },
+        "hit5": {
+          "n": 3,
+          "median": 1,
+          "min": 1,
+          "max": 1
+        },
+        "mrr5": {
+          "n": 3,
+          "median": 1,
+          "min": 1,
+          "max": 1
+        },
+        "ndcg5": {
+          "n": 3,
+          "median": 1,
+          "min": 1,
+          "max": 1
+        }
+      },
+      "repetitions": [
+        {
+          "repetition": 1,
+          "metrics": {
+            "recall1": 1,
+            "recall3": 1,
+            "recall5": 1,
+            "hit1": 1,
+            "hit3": 1,
+            "hit5": 1,
+            "mrr5": 1,
+            "ndcg5": 1
+          }
+        },
+        {
+          "repetition": 2,
+          "metrics": {
+            "recall1": 1,
+            "recall3": 1,
+            "recall5": 1,
+            "hit1": 1,
+            "hit3": 1,
+            "hit5": 1,
+            "mrr5": 1,
+            "ndcg5": 1
+          }
+        },
+        {
+          "repetition": 3,
+          "metrics": {
+            "recall1": 1,
+            "recall3": 1,
+            "recall5": 1,
+            "hit1": 1,
+            "hit3": 1,
+            "hit5": 1,
+            "mrr5": 1,
+            "ndcg5": 1
+          }
+        }
+      ],
+      "searchMs": {
+        "n": 36,
+        "median": 0.0040624999999892,
+        "min": 0.00304199999999355,
+        "max": 0.011499999999983856
+      },
+      "queryEncodingMs": null
+    },
+    {
+      "arm": "clip",
+      "split": "all",
+      "category": "layout",
+      "uniqueQuestions": 12,
+      "answerableQuestions": 12,
+      "observations": 36,
+      "metrics": {
+        "recall1": {
+          "n": 3,
+          "median": 0.5833333333333334,
+          "min": 0.5833333333333334,
+          "max": 0.5833333333333334
+        },
+        "recall3": {
+          "n": 3,
+          "median": 0.5833333333333334,
+          "min": 0.5833333333333334,
+          "max": 0.5833333333333334
+        },
+        "recall5": {
+          "n": 3,
+          "median": 0.6666666666666666,
+          "min": 0.6666666666666666,
+          "max": 0.6666666666666666
+        },
+        "hit1": {
+          "n": 3,
+          "median": 0.5833333333333334,
+          "min": 0.5833333333333334,
+          "max": 0.5833333333333334
+        },
+        "hit3": {
+          "n": 3,
+          "median": 0.5833333333333334,
+          "min": 0.5833333333333334,
+          "max": 0.5833333333333334
+        },
+        "hit5": {
+          "n": 3,
+          "median": 0.6666666666666666,
+          "min": 0.6666666666666666,
+          "max": 0.6666666666666666
+        },
+        "mrr5": {
+          "n": 3,
+          "median": 0.6,
+          "min": 0.6,
+          "max": 0.6
+        },
+        "ndcg5": {
+          "n": 3,
+          "median": 0.6155710672695451,
+          "min": 0.6155710672695451,
+          "max": 0.6155710672695451
+        }
+      },
+      "repetitions": [
+        {
+          "repetition": 1,
+          "metrics": {
+            "recall1": 0.5833333333333334,
+            "recall3": 0.5833333333333334,
+            "recall5": 0.6666666666666666,
+            "hit1": 0.5833333333333334,
+            "hit3": 0.5833333333333334,
+            "hit5": 0.6666666666666666,
+            "mrr5": 0.6,
+            "ndcg5": 0.6155710672695451
+          }
+        },
+        {
+          "repetition": 2,
+          "metrics": {
+            "recall1": 0.5833333333333334,
+            "recall3": 0.5833333333333334,
+            "recall5": 0.6666666666666666,
+            "hit1": 0.5833333333333334,
+            "hit3": 0.5833333333333334,
+            "hit5": 0.6666666666666666,
+            "mrr5": 0.6,
+            "ndcg5": 0.6155710672695451
+          }
+        },
+        {
+          "repetition": 3,
+          "metrics": {
+            "recall1": 0.5833333333333334,
+            "recall3": 0.5833333333333334,
+            "recall5": 0.6666666666666666,
+            "hit1": 0.5833333333333334,
+            "hit3": 0.5833333333333334,
+            "hit5": 0.6666666666666666,
+            "mrr5": 0.6,
+            "ndcg5": 0.6155710672695451
+          }
+        }
+      ],
+      "searchMs": {
+        "n": 36,
+        "median": 0.07985399999998322,
+        "min": 0.06666699999999537,
+        "max": 0.5099579999999833
+      },
+      "queryEncodingMs": {
+        "n": 36,
+        "median": 5.55685399999993,
+        "min": 5.220041999999921,
+        "max": 9.998583000000053
+      }
+    },
+    {
+      "arm": "text",
+      "split": "all",
+      "category": "negative",
+      "uniqueQuestions": 4,
+      "answerableQuestions": 0,
+      "observations": 12,
+      "metrics": {
+        "recall1": null,
+        "recall3": null,
+        "recall5": null,
+        "hit1": null,
+        "hit3": null,
+        "hit5": null,
+        "mrr5": null,
+        "ndcg5": null
+      },
+      "repetitions": [
+        {
+          "repetition": 1,
+          "metrics": {
+            "recall1": null,
+            "recall3": null,
+            "recall5": null,
+            "hit1": null,
+            "hit3": null,
+            "hit5": null,
+            "mrr5": null,
+            "ndcg5": null
+          }
+        },
+        {
+          "repetition": 2,
+          "metrics": {
+            "recall1": null,
+            "recall3": null,
+            "recall5": null,
+            "hit1": null,
+            "hit3": null,
+            "hit5": null,
+            "mrr5": null,
+            "ndcg5": null
+          }
+        },
+        {
+          "repetition": 3,
+          "metrics": {
+            "recall1": null,
+            "recall3": null,
+            "recall5": null,
+            "hit1": null,
+            "hit3": null,
+            "hit5": null,
+            "mrr5": null,
+            "ndcg5": null
+          }
+        }
+      ],
+      "searchMs": {
+        "n": 12,
+        "median": 0.007583000000010998,
+        "min": 0.005708999999995967,
+        "max": 0.013542000000001053
+      },
+      "queryEncodingMs": null
+    },
+    {
+      "arm": "ocr",
+      "split": "all",
+      "category": "negative",
+      "uniqueQuestions": 4,
+      "answerableQuestions": 0,
+      "observations": 12,
+      "metrics": {
+        "recall1": null,
+        "recall3": null,
+        "recall5": null,
+        "hit1": null,
+        "hit3": null,
+        "hit5": null,
+        "mrr5": null,
+        "ndcg5": null
+      },
+      "repetitions": [
+        {
+          "repetition": 1,
+          "metrics": {
+            "recall1": null,
+            "recall3": null,
+            "recall5": null,
+            "hit1": null,
+            "hit3": null,
+            "hit5": null,
+            "mrr5": null,
+            "ndcg5": null
+          }
+        },
+        {
+          "repetition": 2,
+          "metrics": {
+            "recall1": null,
+            "recall3": null,
+            "recall5": null,
+            "hit1": null,
+            "hit3": null,
+            "hit5": null,
+            "mrr5": null,
+            "ndcg5": null
+          }
+        },
+        {
+          "repetition": 3,
+          "metrics": {
+            "recall1": null,
+            "recall3": null,
+            "recall5": null,
+            "hit1": null,
+            "hit3": null,
+            "hit5": null,
+            "mrr5": null,
+            "ndcg5": null
+          }
+        }
+      ],
+      "searchMs": {
+        "n": 12,
+        "median": 0.002250000000003638,
+        "min": 0.0015830000000107702,
+        "max": 0.012833999999998014
+      },
+      "queryEncodingMs": null
+    },
+    {
+      "arm": "clip",
+      "split": "all",
+      "category": "negative",
+      "uniqueQuestions": 4,
+      "answerableQuestions": 0,
+      "observations": 12,
+      "metrics": {
+        "recall1": null,
+        "recall3": null,
+        "recall5": null,
+        "hit1": null,
+        "hit3": null,
+        "hit5": null,
+        "mrr5": null,
+        "ndcg5": null
+      },
+      "repetitions": [
+        {
+          "repetition": 1,
+          "metrics": {
+            "recall1": null,
+            "recall3": null,
+            "recall5": null,
+            "hit1": null,
+            "hit3": null,
+            "hit5": null,
+            "mrr5": null,
+            "ndcg5": null
+          }
+        },
+        {
+          "repetition": 2,
+          "metrics": {
+            "recall1": null,
+            "recall3": null,
+            "recall5": null,
+            "hit1": null,
+            "hit3": null,
+            "hit5": null,
+            "mrr5": null,
+            "ndcg5": null
+          }
+        },
+        {
+          "repetition": 3,
+          "metrics": {
+            "recall1": null,
+            "recall3": null,
+            "recall5": null,
+            "hit1": null,
+            "hit3": null,
+            "hit5": null,
+            "mrr5": null,
+            "ndcg5": null
+          }
+        }
+      ],
+      "searchMs": {
+        "n": 12,
+        "median": 0.08364600000001587,
+        "min": 0.0680420000000197,
+        "max": 0.08975000000000932
+      },
+      "queryEncodingMs": {
+        "n": 12,
+        "median": 3.4951035000000275,
+        "min": 2.9961249999998927,
+        "max": 3.7383340000001226
+      }
+    },
+    {
+      "arm": "text",
+      "split": "development",
+      "category": "all",
+      "uniqueQuestions": 26,
+      "answerableQuestions": 24,
+      "observations": 78,
+      "metrics": {
+        "recall1": {
+          "n": 3,
+          "median": 0.4583333333333333,
+          "min": 0.4583333333333333,
+          "max": 0.4583333333333333
+        },
+        "recall3": {
+          "n": 3,
+          "median": 0.9583333333333334,
+          "min": 0.9583333333333334,
+          "max": 0.9583333333333334
+        },
+        "recall5": {
+          "n": 3,
+          "median": 0.9583333333333334,
+          "min": 0.9583333333333334,
+          "max": 0.9583333333333334
+        },
+        "hit1": {
+          "n": 3,
+          "median": 0.4583333333333333,
+          "min": 0.4583333333333333,
+          "max": 0.4583333333333333
+        },
+        "hit3": {
+          "n": 3,
+          "median": 0.9583333333333334,
+          "min": 0.9583333333333334,
+          "max": 0.9583333333333334
+        },
+        "hit5": {
+          "n": 3,
+          "median": 0.9583333333333334,
+          "min": 0.9583333333333334,
+          "max": 0.9583333333333334
+        },
+        "mrr5": {
+          "n": 3,
+          "median": 0.7083333333333334,
+          "min": 0.7083333333333334,
+          "max": 0.7083333333333334
+        },
+        "ndcg5": {
+          "n": 3,
+          "median": 0.7737982101190622,
+          "min": 0.7737982101190622,
+          "max": 0.7737982101190622
+        }
+      },
+      "repetitions": [
+        {
+          "repetition": 1,
+          "metrics": {
+            "recall1": 0.4583333333333333,
+            "recall3": 0.9583333333333334,
+            "recall5": 0.9583333333333334,
+            "hit1": 0.4583333333333333,
+            "hit3": 0.9583333333333334,
+            "hit5": 0.9583333333333334,
+            "mrr5": 0.7083333333333334,
+            "ndcg5": 0.7737982101190622
+          }
+        },
+        {
+          "repetition": 2,
+          "metrics": {
+            "recall1": 0.4583333333333333,
+            "recall3": 0.9583333333333334,
+            "recall5": 0.9583333333333334,
+            "hit1": 0.4583333333333333,
+            "hit3": 0.9583333333333334,
+            "hit5": 0.9583333333333334,
+            "mrr5": 0.7083333333333334,
+            "ndcg5": 0.7737982101190622
+          }
+        },
+        {
+          "repetition": 3,
+          "metrics": {
+            "recall1": 0.4583333333333333,
+            "recall3": 0.9583333333333334,
+            "recall5": 0.9583333333333334,
+            "hit1": 0.4583333333333333,
+            "hit3": 0.9583333333333334,
+            "hit5": 0.9583333333333334,
+            "mrr5": 0.7083333333333334,
+            "ndcg5": 0.7737982101190622
+          }
+        }
+      ],
+      "searchMs": {
+        "n": 78,
+        "median": 0.009624499999986824,
+        "min": 0.005832999999995536,
+        "max": 5.516165999999998
+      },
+      "queryEncodingMs": null
+    },
+    {
+      "arm": "ocr",
+      "split": "development",
+      "category": "all",
+      "uniqueQuestions": 26,
+      "answerableQuestions": 24,
+      "observations": 78,
+      "metrics": {
+        "recall1": {
+          "n": 3,
+          "median": 0.8333333333333334,
+          "min": 0.8333333333333334,
+          "max": 0.8333333333333334
+        },
+        "recall3": {
+          "n": 3,
+          "median": 0.9166666666666666,
+          "min": 0.9166666666666666,
+          "max": 0.9166666666666666
+        },
+        "recall5": {
+          "n": 3,
+          "median": 0.9583333333333334,
+          "min": 0.9583333333333334,
+          "max": 0.9583333333333334
+        },
+        "hit1": {
+          "n": 3,
+          "median": 0.8333333333333334,
+          "min": 0.8333333333333334,
+          "max": 0.8333333333333334
+        },
+        "hit3": {
+          "n": 3,
+          "median": 0.9166666666666666,
+          "min": 0.9166666666666666,
+          "max": 0.9166666666666666
+        },
+        "hit5": {
+          "n": 3,
+          "median": 0.9583333333333334,
+          "min": 0.9583333333333334,
+          "max": 0.9583333333333334
+        },
+        "mrr5": {
+          "n": 3,
+          "median": 0.8854166666666666,
+          "min": 0.8854166666666666,
+          "max": 0.8854166666666666
+        },
+        "ndcg5": {
+          "n": 3,
+          "median": 0.9038556693840128,
+          "min": 0.9038556693840128,
+          "max": 0.9038556693840128
+        }
+      },
+      "repetitions": [
+        {
+          "repetition": 1,
+          "metrics": {
+            "recall1": 0.8333333333333334,
+            "recall3": 0.9166666666666666,
+            "recall5": 0.9583333333333334,
+            "hit1": 0.8333333333333334,
+            "hit3": 0.9166666666666666,
+            "hit5": 0.9583333333333334,
+            "mrr5": 0.8854166666666666,
+            "ndcg5": 0.9038556693840128
+          }
+        },
+        {
+          "repetition": 2,
+          "metrics": {
+            "recall1": 0.8333333333333334,
+            "recall3": 0.9166666666666666,
+            "recall5": 0.9583333333333334,
+            "hit1": 0.8333333333333334,
+            "hit3": 0.9166666666666666,
+            "hit5": 0.9583333333333334,
+            "mrr5": 0.8854166666666666,
+            "ndcg5": 0.9038556693840128
+          }
+        },
+        {
+          "repetition": 3,
+          "metrics": {
+            "recall1": 0.8333333333333334,
+            "recall3": 0.9166666666666666,
+            "recall5": 0.9583333333333334,
+            "hit1": 0.8333333333333334,
+            "hit3": 0.9166666666666666,
+            "hit5": 0.9583333333333334,
+            "mrr5": 0.8854166666666666,
+            "ndcg5": 0.9038556693840128
+          }
+        }
+      ],
+      "searchMs": {
+        "n": 78,
+        "median": 0.0033334999999823367,
+        "min": 0.0017910000000256332,
+        "max": 0.012833999999998014
+      },
+      "queryEncodingMs": null
+    },
+    {
+      "arm": "clip",
+      "split": "development",
+      "category": "all",
+      "uniqueQuestions": 26,
+      "answerableQuestions": 24,
+      "observations": 78,
+      "metrics": {
+        "recall1": {
+          "n": 3,
+          "median": 0.375,
+          "min": 0.375,
+          "max": 0.375
+        },
+        "recall3": {
+          "n": 3,
+          "median": 0.4166666666666667,
+          "min": 0.4166666666666667,
+          "max": 0.4166666666666667
+        },
+        "recall5": {
+          "n": 3,
+          "median": 0.5,
+          "min": 0.5,
+          "max": 0.5
+        },
+        "hit1": {
+          "n": 3,
+          "median": 0.375,
+          "min": 0.375,
+          "max": 0.375
+        },
+        "hit3": {
+          "n": 3,
+          "median": 0.4166666666666667,
+          "min": 0.4166666666666667,
+          "max": 0.4166666666666667
+        },
+        "hit5": {
+          "n": 3,
+          "median": 0.5,
+          "min": 0.5,
+          "max": 0.5
+        },
+        "mrr5": {
+          "n": 3,
+          "median": 0.4076388888888889,
+          "min": 0.4076388888888889,
+          "max": 0.4076388888888889
+        },
+        "ndcg5": {
+          "n": 3,
+          "median": 0.42989705688783064,
+          "min": 0.42989705688783064,
+          "max": 0.42989705688783064
+        }
+      },
+      "repetitions": [
+        {
+          "repetition": 1,
+          "metrics": {
+            "recall1": 0.375,
+            "recall3": 0.4166666666666667,
+            "recall5": 0.5,
+            "hit1": 0.375,
+            "hit3": 0.4166666666666667,
+            "hit5": 0.5,
+            "mrr5": 0.4076388888888889,
+            "ndcg5": 0.42989705688783064
+          }
+        },
+        {
+          "repetition": 2,
+          "metrics": {
+            "recall1": 0.375,
+            "recall3": 0.4166666666666667,
+            "recall5": 0.5,
+            "hit1": 0.375,
+            "hit3": 0.4166666666666667,
+            "hit5": 0.5,
+            "mrr5": 0.4076388888888889,
+            "ndcg5": 0.42989705688783064
+          }
+        },
+        {
+          "repetition": 3,
+          "metrics": {
+            "recall1": 0.375,
+            "recall3": 0.4166666666666667,
+            "recall5": 0.5,
+            "hit1": 0.375,
+            "hit3": 0.4166666666666667,
+            "hit5": 0.5,
+            "mrr5": 0.4076388888888889,
+            "ndcg5": 0.42989705688783064
+          }
+        }
+      ],
+      "searchMs": {
+        "n": 78,
+        "median": 0.08150000000000546,
+        "min": 0.06666699999999537,
+        "max": 0.8838749999999891
+      },
+      "queryEncodingMs": {
+        "n": 78,
+        "median": 4.398396000000048,
+        "min": 3.4400410000000647,
+        "max": 9.998583000000053
+      }
+    },
+    {
+      "arm": "text",
+      "split": "development",
+      "category": "literal",
+      "uniqueQuestions": 12,
+      "answerableQuestions": 12,
+      "observations": 36,
+      "metrics": {
+        "recall1": {
+          "n": 3,
+          "median": 0.5,
+          "min": 0.5,
+          "max": 0.5
+        },
+        "recall3": {
+          "n": 3,
+          "median": 1,
+          "min": 1,
+          "max": 1
+        },
+        "recall5": {
+          "n": 3,
+          "median": 1,
+          "min": 1,
+          "max": 1
+        },
+        "hit1": {
+          "n": 3,
+          "median": 0.5,
+          "min": 0.5,
+          "max": 0.5
+        },
+        "hit3": {
+          "n": 3,
+          "median": 1,
+          "min": 1,
+          "max": 1
+        },
+        "hit5": {
+          "n": 3,
+          "median": 1,
+          "min": 1,
+          "max": 1
+        },
+        "mrr5": {
+          "n": 3,
+          "median": 0.75,
+          "min": 0.75,
+          "max": 0.75
+        },
+        "ndcg5": {
+          "n": 3,
+          "median": 0.8154648767857289,
+          "min": 0.8154648767857289,
+          "max": 0.8154648767857289
+        }
+      },
+      "repetitions": [
+        {
+          "repetition": 1,
+          "metrics": {
+            "recall1": 0.5,
+            "recall3": 1,
+            "recall5": 1,
+            "hit1": 0.5,
+            "hit3": 1,
+            "hit5": 1,
+            "mrr5": 0.75,
+            "ndcg5": 0.8154648767857289
+          }
+        },
+        {
+          "repetition": 2,
+          "metrics": {
+            "recall1": 0.5,
+            "recall3": 1,
+            "recall5": 1,
+            "hit1": 0.5,
+            "hit3": 1,
+            "hit5": 1,
+            "mrr5": 0.75,
+            "ndcg5": 0.8154648767857289
+          }
+        },
+        {
+          "repetition": 3,
+          "metrics": {
+            "recall1": 0.5,
+            "recall3": 1,
+            "recall5": 1,
+            "hit1": 0.5,
+            "hit3": 1,
+            "hit5": 1,
+            "mrr5": 0.75,
+            "ndcg5": 0.8154648767857289
+          }
+        }
+      ],
+      "searchMs": {
+        "n": 36,
+        "median": 0.008750000000020464,
+        "min": 0.005832999999995536,
+        "max": 5.516165999999998
+      },
+      "queryEncodingMs": null
+    },
+    {
+      "arm": "ocr",
+      "split": "development",
+      "category": "literal",
+      "uniqueQuestions": 12,
+      "answerableQuestions": 12,
+      "observations": 36,
+      "metrics": {
+        "recall1": {
+          "n": 3,
+          "median": 1,
+          "min": 1,
+          "max": 1
+        },
+        "recall3": {
+          "n": 3,
+          "median": 1,
+          "min": 1,
+          "max": 1
+        },
+        "recall5": {
+          "n": 3,
+          "median": 1,
+          "min": 1,
+          "max": 1
+        },
+        "hit1": {
+          "n": 3,
+          "median": 1,
+          "min": 1,
+          "max": 1
+        },
+        "hit3": {
+          "n": 3,
+          "median": 1,
+          "min": 1,
+          "max": 1
+        },
+        "hit5": {
+          "n": 3,
+          "median": 1,
+          "min": 1,
+          "max": 1
+        },
+        "mrr5": {
+          "n": 3,
+          "median": 1,
+          "min": 1,
+          "max": 1
+        },
+        "ndcg5": {
+          "n": 3,
+          "median": 1,
+          "min": 1,
+          "max": 1
+        }
+      },
+      "repetitions": [
+        {
+          "repetition": 1,
+          "metrics": {
+            "recall1": 1,
+            "recall3": 1,
+            "recall5": 1,
+            "hit1": 1,
+            "hit3": 1,
+            "hit5": 1,
+            "mrr5": 1,
+            "ndcg5": 1
+          }
+        },
+        {
+          "repetition": 2,
+          "metrics": {
+            "recall1": 1,
+            "recall3": 1,
+            "recall5": 1,
+            "hit1": 1,
+            "hit3": 1,
+            "hit5": 1,
+            "mrr5": 1,
+            "ndcg5": 1
+          }
+        },
+        {
+          "repetition": 3,
+          "metrics": {
+            "recall1": 1,
+            "recall3": 1,
+            "recall5": 1,
+            "hit1": 1,
+            "hit3": 1,
+            "hit5": 1,
+            "mrr5": 1,
+            "ndcg5": 1
+          }
+        }
+      ],
+      "searchMs": {
+        "n": 36,
+        "median": 0.0029795000000092386,
+        "min": 0.002165999999988344,
+        "max": 0.012041000000010627
+      },
+      "queryEncodingMs": null
+    },
+    {
+      "arm": "clip",
+      "split": "development",
+      "category": "literal",
+      "uniqueQuestions": 12,
+      "answerableQuestions": 12,
+      "observations": 36,
+      "metrics": {
+        "recall1": {
+          "n": 3,
+          "median": 0.5,
+          "min": 0.5,
+          "max": 0.5
+        },
+        "recall3": {
+          "n": 3,
+          "median": 0.5,
+          "min": 0.5,
+          "max": 0.5
+        },
+        "recall5": {
+          "n": 3,
+          "median": 0.5833333333333334,
+          "min": 0.5833333333333334,
+          "max": 0.5833333333333334
+        },
+        "hit1": {
+          "n": 3,
+          "median": 0.5,
+          "min": 0.5,
+          "max": 0.5
+        },
+        "hit3": {
+          "n": 3,
+          "median": 0.5,
+          "min": 0.5,
+          "max": 0.5
+        },
+        "hit5": {
+          "n": 3,
+          "median": 0.5833333333333334,
+          "min": 0.5833333333333334,
+          "max": 0.5833333333333334
+        },
+        "mrr5": {
+          "n": 3,
+          "median": 0.5166666666666667,
+          "min": 0.5166666666666667,
+          "max": 0.5166666666666667
+        },
+        "ndcg5": {
+          "n": 3,
+          "median": 0.5322377339362118,
+          "min": 0.5322377339362118,
+          "max": 0.5322377339362118
+        }
+      },
+      "repetitions": [
+        {
+          "repetition": 1,
+          "metrics": {
+            "recall1": 0.5,
+            "recall3": 0.5,
+            "recall5": 0.5833333333333334,
+            "hit1": 0.5,
+            "hit3": 0.5,
+            "hit5": 0.5833333333333334,
+            "mrr5": 0.5166666666666667,
+            "ndcg5": 0.5322377339362118
+          }
+        },
+        {
+          "repetition": 2,
+          "metrics": {
+            "recall1": 0.5,
+            "recall3": 0.5,
+            "recall5": 0.5833333333333334,
+            "hit1": 0.5,
+            "hit3": 0.5,
+            "hit5": 0.5833333333333334,
+            "mrr5": 0.5166666666666667,
+            "ndcg5": 0.5322377339362118
+          }
+        },
+        {
+          "repetition": 3,
+          "metrics": {
+            "recall1": 0.5,
+            "recall3": 0.5,
+            "recall5": 0.5833333333333334,
+            "hit1": 0.5,
+            "hit3": 0.5,
+            "hit5": 0.5833333333333334,
+            "mrr5": 0.5166666666666667,
+            "ndcg5": 0.5322377339362118
+          }
+        }
+      ],
+      "searchMs": {
+        "n": 36,
+        "median": 0.07983349999999234,
+        "min": 0.06737499999999841,
+        "max": 0.21579100000002427
+      },
+      "queryEncodingMs": {
+        "n": 36,
+        "median": 3.805146000000036,
+        "min": 3.478375000000142,
+        "max": 8.447624999999789
+      }
+    },
+    {
+      "arm": "text",
+      "split": "development",
+      "category": "concept",
+      "uniqueQuestions": 6,
+      "answerableQuestions": 6,
+      "observations": 18,
+      "metrics": {
+        "recall1": {
+          "n": 3,
+          "median": 0.8333333333333334,
+          "min": 0.8333333333333334,
+          "max": 0.8333333333333334
+        },
+        "recall3": {
+          "n": 3,
+          "median": 0.8333333333333334,
+          "min": 0.8333333333333334,
+          "max": 0.8333333333333334
+        },
+        "recall5": {
+          "n": 3,
+          "median": 0.8333333333333334,
+          "min": 0.8333333333333334,
+          "max": 0.8333333333333334
+        },
+        "hit1": {
+          "n": 3,
+          "median": 0.8333333333333334,
+          "min": 0.8333333333333334,
+          "max": 0.8333333333333334
+        },
+        "hit3": {
+          "n": 3,
+          "median": 0.8333333333333334,
+          "min": 0.8333333333333334,
+          "max": 0.8333333333333334
+        },
+        "hit5": {
+          "n": 3,
+          "median": 0.8333333333333334,
+          "min": 0.8333333333333334,
+          "max": 0.8333333333333334
+        },
+        "mrr5": {
+          "n": 3,
+          "median": 0.8333333333333334,
+          "min": 0.8333333333333334,
+          "max": 0.8333333333333334
+        },
+        "ndcg5": {
+          "n": 3,
+          "median": 0.8333333333333334,
+          "min": 0.8333333333333334,
+          "max": 0.8333333333333334
+        }
+      },
+      "repetitions": [
+        {
+          "repetition": 1,
+          "metrics": {
+            "recall1": 0.8333333333333334,
+            "recall3": 0.8333333333333334,
+            "recall5": 0.8333333333333334,
+            "hit1": 0.8333333333333334,
+            "hit3": 0.8333333333333334,
+            "hit5": 0.8333333333333334,
+            "mrr5": 0.8333333333333334,
+            "ndcg5": 0.8333333333333334
+          }
+        },
+        {
+          "repetition": 2,
+          "metrics": {
+            "recall1": 0.8333333333333334,
+            "recall3": 0.8333333333333334,
+            "recall5": 0.8333333333333334,
+            "hit1": 0.8333333333333334,
+            "hit3": 0.8333333333333334,
+            "hit5": 0.8333333333333334,
+            "mrr5": 0.8333333333333334,
+            "ndcg5": 0.8333333333333334
+          }
+        },
+        {
+          "repetition": 3,
+          "metrics": {
+            "recall1": 0.8333333333333334,
+            "recall3": 0.8333333333333334,
+            "recall5": 0.8333333333333334,
+            "hit1": 0.8333333333333334,
+            "hit3": 0.8333333333333334,
+            "hit5": 0.8333333333333334,
+            "mrr5": 0.8333333333333334,
+            "ndcg5": 0.8333333333333334
+          }
+        }
+      ],
+      "searchMs": {
+        "n": 18,
+        "median": 0.010500000000007503,
+        "min": 0.008041999999989002,
+        "max": 0.02129199999998832
+      },
+      "queryEncodingMs": null
+    },
+    {
+      "arm": "ocr",
+      "split": "development",
+      "category": "concept",
+      "uniqueQuestions": 6,
+      "answerableQuestions": 6,
+      "observations": 18,
+      "metrics": {
+        "recall1": {
+          "n": 3,
+          "median": 0.3333333333333333,
+          "min": 0.3333333333333333,
+          "max": 0.3333333333333333
+        },
+        "recall3": {
+          "n": 3,
+          "median": 0.6666666666666666,
+          "min": 0.6666666666666666,
+          "max": 0.6666666666666666
+        },
+        "recall5": {
+          "n": 3,
+          "median": 0.8333333333333334,
+          "min": 0.8333333333333334,
+          "max": 0.8333333333333334
+        },
+        "hit1": {
+          "n": 3,
+          "median": 0.3333333333333333,
+          "min": 0.3333333333333333,
+          "max": 0.3333333333333333
+        },
+        "hit3": {
+          "n": 3,
+          "median": 0.6666666666666666,
+          "min": 0.6666666666666666,
+          "max": 0.6666666666666666
+        },
+        "hit5": {
+          "n": 3,
+          "median": 0.8333333333333334,
+          "min": 0.8333333333333334,
+          "max": 0.8333333333333334
+        },
+        "mrr5": {
+          "n": 3,
+          "median": 0.5416666666666666,
+          "min": 0.5416666666666666,
+          "max": 0.5416666666666666
+        },
+        "ndcg5": {
+          "n": 3,
+          "median": 0.6154226775360514,
+          "min": 0.6154226775360514,
+          "max": 0.6154226775360514
+        }
+      },
+      "repetitions": [
+        {
+          "repetition": 1,
+          "metrics": {
+            "recall1": 0.3333333333333333,
+            "recall3": 0.6666666666666666,
+            "recall5": 0.8333333333333334,
+            "hit1": 0.3333333333333333,
+            "hit3": 0.6666666666666666,
+            "hit5": 0.8333333333333334,
+            "mrr5": 0.5416666666666666,
+            "ndcg5": 0.6154226775360514
+          }
+        },
+        {
+          "repetition": 2,
+          "metrics": {
+            "recall1": 0.3333333333333333,
+            "recall3": 0.6666666666666666,
+            "recall5": 0.8333333333333334,
+            "hit1": 0.3333333333333333,
+            "hit3": 0.6666666666666666,
+            "hit5": 0.8333333333333334,
+            "mrr5": 0.5416666666666666,
+            "ndcg5": 0.6154226775360514
+          }
+        },
+        {
+          "repetition": 3,
+          "metrics": {
+            "recall1": 0.3333333333333333,
+            "recall3": 0.6666666666666666,
+            "recall5": 0.8333333333333334,
+            "hit1": 0.3333333333333333,
+            "hit3": 0.6666666666666666,
+            "hit5": 0.8333333333333334,
+            "mrr5": 0.5416666666666666,
+            "ndcg5": 0.6154226775360514
+          }
+        }
+      ],
+      "searchMs": {
+        "n": 18,
+        "median": 0.003437499999989768,
+        "min": 0.002041999999988775,
+        "max": 0.006499999999988404
+      },
+      "queryEncodingMs": null
+    },
+    {
+      "arm": "clip",
+      "split": "development",
+      "category": "concept",
+      "uniqueQuestions": 6,
+      "answerableQuestions": 6,
+      "observations": 18,
+      "metrics": {
+        "recall1": {
+          "n": 3,
+          "median": 0,
+          "min": 0,
+          "max": 0
+        },
+        "recall3": {
+          "n": 3,
+          "median": 0.16666666666666666,
+          "min": 0.16666666666666666,
+          "max": 0.16666666666666666
+        },
+        "recall5": {
+          "n": 3,
+          "median": 0.3333333333333333,
+          "min": 0.3333333333333333,
+          "max": 0.3333333333333333
+        },
+        "hit1": {
+          "n": 3,
+          "median": 0,
+          "min": 0,
+          "max": 0
+        },
+        "hit3": {
+          "n": 3,
+          "median": 0.16666666666666666,
+          "min": 0.16666666666666666,
+          "max": 0.16666666666666666
+        },
+        "hit5": {
+          "n": 3,
+          "median": 0.3333333333333333,
+          "min": 0.3333333333333333,
+          "max": 0.3333333333333333
+        },
+        "mrr5": {
+          "n": 3,
+          "median": 0.09722222222222221,
+          "min": 0.09722222222222221,
+          "max": 0.09722222222222221
+        },
+        "ndcg5": {
+          "n": 3,
+          "median": 0.15511275967889884,
+          "min": 0.15511275967889884,
+          "max": 0.15511275967889884
+        }
+      },
+      "repetitions": [
+        {
+          "repetition": 1,
+          "metrics": {
+            "recall1": 0,
+            "recall3": 0.16666666666666666,
+            "recall5": 0.3333333333333333,
+            "hit1": 0,
+            "hit3": 0.16666666666666666,
+            "hit5": 0.3333333333333333,
+            "mrr5": 0.09722222222222221,
+            "ndcg5": 0.15511275967889884
+          }
+        },
+        {
+          "repetition": 2,
+          "metrics": {
+            "recall1": 0,
+            "recall3": 0.16666666666666666,
+            "recall5": 0.3333333333333333,
+            "hit1": 0,
+            "hit3": 0.16666666666666666,
+            "hit5": 0.3333333333333333,
+            "mrr5": 0.09722222222222221,
+            "ndcg5": 0.15511275967889884
+          }
+        },
+        {
+          "repetition": 3,
+          "metrics": {
+            "recall1": 0,
+            "recall3": 0.16666666666666666,
+            "recall5": 0.3333333333333333,
+            "hit1": 0,
+            "hit3": 0.16666666666666666,
+            "hit5": 0.3333333333333333,
+            "mrr5": 0.09722222222222221,
+            "ndcg5": 0.15511275967889884
+          }
+        }
+      ],
+      "searchMs": {
+        "n": 18,
+        "median": 0.08333300000001032,
+        "min": 0.06708299999999667,
+        "max": 0.8838749999999891
+      },
+      "queryEncodingMs": {
+        "n": 18,
+        "median": 4.423562499999889,
+        "min": 3.721625000000131,
+        "max": 4.821707999999944
+      }
+    },
+    {
+      "arm": "text",
+      "split": "development",
+      "category": "layout",
+      "uniqueQuestions": 6,
+      "answerableQuestions": 6,
+      "observations": 18,
+      "metrics": {
+        "recall1": {
+          "n": 3,
+          "median": 0,
+          "min": 0,
+          "max": 0
+        },
+        "recall3": {
+          "n": 3,
+          "median": 1,
+          "min": 1,
+          "max": 1
+        },
+        "recall5": {
+          "n": 3,
+          "median": 1,
+          "min": 1,
+          "max": 1
+        },
+        "hit1": {
+          "n": 3,
+          "median": 0,
+          "min": 0,
+          "max": 0
+        },
+        "hit3": {
+          "n": 3,
+          "median": 1,
+          "min": 1,
+          "max": 1
+        },
+        "hit5": {
+          "n": 3,
+          "median": 1,
+          "min": 1,
+          "max": 1
+        },
+        "mrr5": {
+          "n": 3,
+          "median": 0.5,
+          "min": 0.5,
+          "max": 0.5
+        },
+        "ndcg5": {
+          "n": 3,
+          "median": 0.6309297535714576,
+          "min": 0.6309297535714576,
+          "max": 0.6309297535714576
+        }
+      },
+      "repetitions": [
+        {
+          "repetition": 1,
+          "metrics": {
+            "recall1": 0,
+            "recall3": 1,
+            "recall5": 1,
+            "hit1": 0,
+            "hit3": 1,
+            "hit5": 1,
+            "mrr5": 0.5,
+            "ndcg5": 0.6309297535714576
+          }
+        },
+        {
+          "repetition": 2,
+          "metrics": {
+            "recall1": 0,
+            "recall3": 1,
+            "recall5": 1,
+            "hit1": 0,
+            "hit3": 1,
+            "hit5": 1,
+            "mrr5": 0.5,
+            "ndcg5": 0.6309297535714576
+          }
+        },
+        {
+          "repetition": 3,
+          "metrics": {
+            "recall1": 0,
+            "recall3": 1,
+            "recall5": 1,
+            "hit1": 0,
+            "hit3": 1,
+            "hit5": 1,
+            "mrr5": 0.5,
+            "ndcg5": 0.6309297535714576
+          }
+        }
+      ],
+      "searchMs": {
+        "n": 18,
+        "median": 0.010520999999997116,
+        "min": 0.007542000000000826,
+        "max": 0.028542000000015832
+      },
+      "queryEncodingMs": null
+    },
+    {
+      "arm": "ocr",
+      "split": "development",
+      "category": "layout",
+      "uniqueQuestions": 6,
+      "answerableQuestions": 6,
+      "observations": 18,
+      "metrics": {
+        "recall1": {
+          "n": 3,
+          "median": 1,
+          "min": 1,
+          "max": 1
+        },
+        "recall3": {
+          "n": 3,
+          "median": 1,
+          "min": 1,
+          "max": 1
+        },
+        "recall5": {
+          "n": 3,
+          "median": 1,
+          "min": 1,
+          "max": 1
+        },
+        "hit1": {
+          "n": 3,
+          "median": 1,
+          "min": 1,
+          "max": 1
+        },
+        "hit3": {
+          "n": 3,
+          "median": 1,
+          "min": 1,
+          "max": 1
+        },
+        "hit5": {
+          "n": 3,
+          "median": 1,
+          "min": 1,
+          "max": 1
+        },
+        "mrr5": {
+          "n": 3,
+          "median": 1,
+          "min": 1,
+          "max": 1
+        },
+        "ndcg5": {
+          "n": 3,
+          "median": 1,
+          "min": 1,
+          "max": 1
+        }
+      },
+      "repetitions": [
+        {
+          "repetition": 1,
+          "metrics": {
+            "recall1": 1,
+            "recall3": 1,
+            "recall5": 1,
+            "hit1": 1,
+            "hit3": 1,
+            "hit5": 1,
+            "mrr5": 1,
+            "ndcg5": 1
+          }
+        },
+        {
+          "repetition": 2,
+          "metrics": {
+            "recall1": 1,
+            "recall3": 1,
+            "recall5": 1,
+            "hit1": 1,
+            "hit3": 1,
+            "hit5": 1,
+            "mrr5": 1,
+            "ndcg5": 1
+          }
+        },
+        {
+          "repetition": 3,
+          "metrics": {
+            "recall1": 1,
+            "recall3": 1,
+            "recall5": 1,
+            "hit1": 1,
+            "hit3": 1,
+            "hit5": 1,
+            "mrr5": 1,
+            "ndcg5": 1
+          }
+        }
+      ],
+      "searchMs": {
+        "n": 18,
+        "median": 0.0040624999999892,
+        "min": 0.00304199999999355,
+        "max": 0.011499999999983856
+      },
+      "queryEncodingMs": null
+    },
+    {
+      "arm": "clip",
+      "split": "development",
+      "category": "layout",
+      "uniqueQuestions": 6,
+      "answerableQuestions": 6,
+      "observations": 18,
+      "metrics": {
+        "recall1": {
+          "n": 3,
+          "median": 0.5,
+          "min": 0.5,
+          "max": 0.5
+        },
+        "recall3": {
+          "n": 3,
+          "median": 0.5,
+          "min": 0.5,
+          "max": 0.5
+        },
+        "recall5": {
+          "n": 3,
+          "median": 0.5,
+          "min": 0.5,
+          "max": 0.5
+        },
+        "hit1": {
+          "n": 3,
+          "median": 0.5,
+          "min": 0.5,
+          "max": 0.5
+        },
+        "hit3": {
+          "n": 3,
+          "median": 0.5,
+          "min": 0.5,
+          "max": 0.5
+        },
+        "hit5": {
+          "n": 3,
+          "median": 0.5,
+          "min": 0.5,
+          "max": 0.5
+        },
+        "mrr5": {
+          "n": 3,
+          "median": 0.5,
+          "min": 0.5,
+          "max": 0.5
+        },
+        "ndcg5": {
+          "n": 3,
+          "median": 0.5,
+          "min": 0.5,
+          "max": 0.5
+        }
+      },
+      "repetitions": [
+        {
+          "repetition": 1,
+          "metrics": {
+            "recall1": 0.5,
+            "recall3": 0.5,
+            "recall5": 0.5,
+            "hit1": 0.5,
+            "hit3": 0.5,
+            "hit5": 0.5,
+            "mrr5": 0.5,
+            "ndcg5": 0.5
+          }
+        },
+        {
+          "repetition": 2,
+          "metrics": {
+            "recall1": 0.5,
+            "recall3": 0.5,
+            "recall5": 0.5,
+            "hit1": 0.5,
+            "hit3": 0.5,
+            "hit5": 0.5,
+            "mrr5": 0.5,
+            "ndcg5": 0.5
+          }
+        },
+        {
+          "repetition": 3,
+          "metrics": {
+            "recall1": 0.5,
+            "recall3": 0.5,
+            "recall5": 0.5,
+            "hit1": 0.5,
+            "hit3": 0.5,
+            "hit5": 0.5,
+            "mrr5": 0.5,
+            "ndcg5": 0.5
+          }
+        }
+      ],
+      "searchMs": {
+        "n": 18,
+        "median": 0.08204150000000254,
+        "min": 0.06666699999999537,
+        "max": 0.5099579999999833
+      },
+      "queryEncodingMs": {
+        "n": 18,
+        "median": 5.638770999999906,
+        "min": 5.281749999999647,
+        "max": 9.998583000000053
+      }
+    },
+    {
+      "arm": "text",
+      "split": "development",
+      "category": "negative",
+      "uniqueQuestions": 2,
+      "answerableQuestions": 0,
+      "observations": 6,
+      "metrics": {
+        "recall1": null,
+        "recall3": null,
+        "recall5": null,
+        "hit1": null,
+        "hit3": null,
+        "hit5": null,
+        "mrr5": null,
+        "ndcg5": null
+      },
+      "repetitions": [
+        {
+          "repetition": 1,
+          "metrics": {
+            "recall1": null,
+            "recall3": null,
+            "recall5": null,
+            "hit1": null,
+            "hit3": null,
+            "hit5": null,
+            "mrr5": null,
+            "ndcg5": null
+          }
+        },
+        {
+          "repetition": 2,
+          "metrics": {
+            "recall1": null,
+            "recall3": null,
+            "recall5": null,
+            "hit1": null,
+            "hit3": null,
+            "hit5": null,
+            "mrr5": null,
+            "ndcg5": null
+          }
+        },
+        {
+          "repetition": 3,
+          "metrics": {
+            "recall1": null,
+            "recall3": null,
+            "recall5": null,
+            "hit1": null,
+            "hit3": null,
+            "hit5": null,
+            "mrr5": null,
+            "ndcg5": null
+          }
+        }
+      ],
+      "searchMs": {
+        "n": 6,
+        "median": 0.008416500000009819,
+        "min": 0.0072079999999914435,
+        "max": 0.012625000000014097
+      },
+      "queryEncodingMs": null
+    },
+    {
+      "arm": "ocr",
+      "split": "development",
+      "category": "negative",
+      "uniqueQuestions": 2,
+      "answerableQuestions": 0,
+      "observations": 6,
+      "metrics": {
+        "recall1": null,
+        "recall3": null,
+        "recall5": null,
+        "hit1": null,
+        "hit3": null,
+        "hit5": null,
+        "mrr5": null,
+        "ndcg5": null
+      },
+      "repetitions": [
+        {
+          "repetition": 1,
+          "metrics": {
+            "recall1": null,
+            "recall3": null,
+            "recall5": null,
+            "hit1": null,
+            "hit3": null,
+            "hit5": null,
+            "mrr5": null,
+            "ndcg5": null
+          }
+        },
+        {
+          "repetition": 2,
+          "metrics": {
+            "recall1": null,
+            "recall3": null,
+            "recall5": null,
+            "hit1": null,
+            "hit3": null,
+            "hit5": null,
+            "mrr5": null,
+            "ndcg5": null
+          }
+        },
+        {
+          "repetition": 3,
+          "metrics": {
+            "recall1": null,
+            "recall3": null,
+            "recall5": null,
+            "hit1": null,
+            "hit3": null,
+            "hit5": null,
+            "mrr5": null,
+            "ndcg5": null
+          }
+        }
+      ],
+      "searchMs": {
+        "n": 6,
+        "median": 0.0023754999999994197,
+        "min": 0.0017910000000256332,
+        "max": 0.012833999999998014
+      },
+      "queryEncodingMs": null
+    },
+    {
+      "arm": "clip",
+      "split": "development",
+      "category": "negative",
+      "uniqueQuestions": 2,
+      "answerableQuestions": 0,
+      "observations": 6,
+      "metrics": {
+        "recall1": null,
+        "recall3": null,
+        "recall5": null,
+        "hit1": null,
+        "hit3": null,
+        "hit5": null,
+        "mrr5": null,
+        "ndcg5": null
+      },
+      "repetitions": [
+        {
+          "repetition": 1,
+          "metrics": {
+            "recall1": null,
+            "recall3": null,
+            "recall5": null,
+            "hit1": null,
+            "hit3": null,
+            "hit5": null,
+            "mrr5": null,
+            "ndcg5": null
+          }
+        },
+        {
+          "repetition": 2,
+          "metrics": {
+            "recall1": null,
+            "recall3": null,
+            "recall5": null,
+            "hit1": null,
+            "hit3": null,
+            "hit5": null,
+            "mrr5": null,
+            "ndcg5": null
+          }
+        },
+        {
+          "repetition": 3,
+          "metrics": {
+            "recall1": null,
+            "recall3": null,
+            "recall5": null,
+            "hit1": null,
+            "hit3": null,
+            "hit5": null,
+            "mrr5": null,
+            "ndcg5": null
+          }
+        }
+      ],
+      "searchMs": {
+        "n": 6,
+        "median": 0.08320850000001201,
+        "min": 0.0680420000000197,
+        "max": 0.08387500000000614
+      },
+      "queryEncodingMs": {
+        "n": 6,
+        "median": 3.6262499999998,
+        "min": 3.4400410000000647,
+        "max": 3.7383340000001226
+      }
+    },
+    {
+      "arm": "text",
+      "split": "evaluation",
+      "category": "all",
+      "uniqueQuestions": 26,
+      "answerableQuestions": 24,
+      "observations": 78,
+      "metrics": {
+        "recall1": {
+          "n": 3,
+          "median": 0.375,
+          "min": 0.375,
+          "max": 0.375
+        },
+        "recall3": {
+          "n": 3,
+          "median": 0.9583333333333334,
+          "min": 0.9583333333333334,
+          "max": 0.9583333333333334
+        },
+        "recall5": {
+          "n": 3,
+          "median": 0.9583333333333334,
+          "min": 0.9583333333333334,
+          "max": 0.9583333333333334
+        },
+        "hit1": {
+          "n": 3,
+          "median": 0.375,
+          "min": 0.375,
+          "max": 0.375
+        },
+        "hit3": {
+          "n": 3,
+          "median": 0.9583333333333334,
+          "min": 0.9583333333333334,
+          "max": 0.9583333333333334
+        },
+        "hit5": {
+          "n": 3,
+          "median": 0.9583333333333334,
+          "min": 0.9583333333333334,
+          "max": 0.9583333333333334
+        },
+        "mrr5": {
+          "n": 3,
+          "median": 0.6458333333333334,
+          "min": 0.6458333333333334,
+          "max": 0.6458333333333334
+        },
+        "ndcg5": {
+          "n": 3,
+          "median": 0.7266761370535848,
+          "min": 0.7266761370535848,
+          "max": 0.7266761370535848
+        }
+      },
+      "repetitions": [
+        {
+          "repetition": 1,
+          "metrics": {
+            "recall1": 0.375,
+            "recall3": 0.9583333333333334,
+            "recall5": 0.9583333333333334,
+            "hit1": 0.375,
+            "hit3": 0.9583333333333334,
+            "hit5": 0.9583333333333334,
+            "mrr5": 0.6458333333333334,
+            "ndcg5": 0.7266761370535848
+          }
+        },
+        {
+          "repetition": 2,
+          "metrics": {
+            "recall1": 0.375,
+            "recall3": 0.9583333333333334,
+            "recall5": 0.9583333333333334,
+            "hit1": 0.375,
+            "hit3": 0.9583333333333334,
+            "hit5": 0.9583333333333334,
+            "mrr5": 0.6458333333333334,
+            "ndcg5": 0.7266761370535848
+          }
+        },
+        {
+          "repetition": 3,
+          "metrics": {
+            "recall1": 0.375,
+            "recall3": 0.9583333333333334,
+            "recall5": 0.9583333333333334,
+            "hit1": 0.375,
+            "hit3": 0.9583333333333334,
+            "hit5": 0.9583333333333334,
+            "mrr5": 0.6458333333333334,
+            "ndcg5": 0.7266761370535848
+          }
+        }
+      ],
+      "searchMs": {
+        "n": 78,
+        "median": 0.009478999999998905,
+        "min": 0.005708999999995967,
+        "max": 0.028624999999976808
+      },
+      "queryEncodingMs": null
+    },
+    {
+      "arm": "ocr",
+      "split": "evaluation",
+      "category": "all",
+      "uniqueQuestions": 26,
+      "answerableQuestions": 24,
+      "observations": 78,
+      "metrics": {
+        "recall1": {
+          "n": 3,
+          "median": 0.875,
+          "min": 0.875,
+          "max": 0.875
+        },
+        "recall3": {
+          "n": 3,
+          "median": 0.9166666666666666,
+          "min": 0.9166666666666666,
+          "max": 0.9166666666666666
+        },
+        "recall5": {
+          "n": 3,
+          "median": 0.9166666666666666,
+          "min": 0.9166666666666666,
+          "max": 0.9166666666666666
+        },
+        "hit1": {
+          "n": 3,
+          "median": 0.875,
+          "min": 0.875,
+          "max": 0.875
+        },
+        "hit3": {
+          "n": 3,
+          "median": 0.9166666666666666,
+          "min": 0.9166666666666666,
+          "max": 0.9166666666666666
+        },
+        "hit5": {
+          "n": 3,
+          "median": 0.9166666666666666,
+          "min": 0.9166666666666666,
+          "max": 0.9166666666666666
+        },
+        "mrr5": {
+          "n": 3,
+          "median": 0.8958333333333334,
+          "min": 0.8958333333333334,
+          "max": 0.8958333333333334
+        },
+        "ndcg5": {
+          "n": 3,
+          "median": 0.9012887397321441,
+          "min": 0.9012887397321441,
+          "max": 0.9012887397321441
+        }
+      },
+      "repetitions": [
+        {
+          "repetition": 1,
+          "metrics": {
+            "recall1": 0.875,
+            "recall3": 0.9166666666666666,
+            "recall5": 0.9166666666666666,
+            "hit1": 0.875,
+            "hit3": 0.9166666666666666,
+            "hit5": 0.9166666666666666,
+            "mrr5": 0.8958333333333334,
+            "ndcg5": 0.9012887397321441
+          }
+        },
+        {
+          "repetition": 2,
+          "metrics": {
+            "recall1": 0.875,
+            "recall3": 0.9166666666666666,
+            "recall5": 0.9166666666666666,
+            "hit1": 0.875,
+            "hit3": 0.9166666666666666,
+            "hit5": 0.9166666666666666,
+            "mrr5": 0.8958333333333334,
+            "ndcg5": 0.9012887397321441
+          }
+        },
+        {
+          "repetition": 3,
+          "metrics": {
+            "recall1": 0.875,
+            "recall3": 0.9166666666666666,
+            "recall5": 0.9166666666666666,
+            "hit1": 0.875,
+            "hit3": 0.9166666666666666,
+            "hit5": 0.9166666666666666,
+            "mrr5": 0.8958333333333334,
+            "ndcg5": 0.9012887397321441
+          }
+        }
+      ],
+      "searchMs": {
+        "n": 78,
+        "median": 0.0032290000000045893,
+        "min": 0.0015830000000107702,
+        "max": 0.007874999999984311
+      },
+      "queryEncodingMs": null
+    },
+    {
+      "arm": "clip",
+      "split": "evaluation",
+      "category": "all",
+      "uniqueQuestions": 26,
+      "answerableQuestions": 24,
+      "observations": 78,
+      "metrics": {
+        "recall1": {
+          "n": 3,
+          "median": 0.3333333333333333,
+          "min": 0.3333333333333333,
+          "max": 0.3333333333333333
+        },
+        "recall3": {
+          "n": 3,
+          "median": 0.5416666666666666,
+          "min": 0.5416666666666666,
+          "max": 0.5416666666666666
+        },
+        "recall5": {
+          "n": 3,
+          "median": 0.7083333333333334,
+          "min": 0.7083333333333334,
+          "max": 0.7083333333333334
+        },
+        "hit1": {
+          "n": 3,
+          "median": 0.3333333333333333,
+          "min": 0.3333333333333333,
+          "max": 0.3333333333333333
+        },
+        "hit3": {
+          "n": 3,
+          "median": 0.5416666666666666,
+          "min": 0.5416666666666666,
+          "max": 0.5416666666666666
+        },
+        "hit5": {
+          "n": 3,
+          "median": 0.7083333333333334,
+          "min": 0.7083333333333334,
+          "max": 0.7083333333333334
+        },
+        "mrr5": {
+          "n": 3,
+          "median": 0.4590277777777778,
+          "min": 0.4590277777777778,
+          "max": 0.4590277777777778
+        },
+        "ndcg5": {
+          "n": 3,
+          "median": 0.5201676766871414,
+          "min": 0.5201676766871414,
+          "max": 0.5201676766871414
+        }
+      },
+      "repetitions": [
+        {
+          "repetition": 1,
+          "metrics": {
+            "recall1": 0.3333333333333333,
+            "recall3": 0.5416666666666666,
+            "recall5": 0.7083333333333334,
+            "hit1": 0.3333333333333333,
+            "hit3": 0.5416666666666666,
+            "hit5": 0.7083333333333334,
+            "mrr5": 0.4590277777777778,
+            "ndcg5": 0.5201676766871414
+          }
+        },
+        {
+          "repetition": 2,
+          "metrics": {
+            "recall1": 0.3333333333333333,
+            "recall3": 0.5416666666666666,
+            "recall5": 0.7083333333333334,
+            "hit1": 0.3333333333333333,
+            "hit3": 0.5416666666666666,
+            "hit5": 0.7083333333333334,
+            "mrr5": 0.4590277777777778,
+            "ndcg5": 0.5201676766871414
+          }
+        },
+        {
+          "repetition": 3,
+          "metrics": {
+            "recall1": 0.3333333333333333,
+            "recall3": 0.5416666666666666,
+            "recall5": 0.7083333333333334,
+            "hit1": 0.3333333333333333,
+            "hit3": 0.5416666666666666,
+            "hit5": 0.7083333333333334,
+            "mrr5": 0.4590277777777778,
+            "ndcg5": 0.5201676766871414
+          }
+        }
+      ],
+      "searchMs": {
+        "n": 78,
+        "median": 0.07933349999998995,
+        "min": 0.06704200000001492,
+        "max": 0.10316599999998743
+      },
+      "queryEncodingMs": {
+        "n": 78,
+        "median": 4.180896500000131,
+        "min": 2.9961249999998927,
+        "max": 5.860666999999921
+      }
+    },
+    {
+      "arm": "text",
+      "split": "evaluation",
+      "category": "literal",
+      "uniqueQuestions": 12,
+      "answerableQuestions": 12,
+      "observations": 36,
+      "metrics": {
+        "recall1": {
+          "n": 3,
+          "median": 0.5,
+          "min": 0.5,
+          "max": 0.5
+        },
+        "recall3": {
+          "n": 3,
+          "median": 0.9166666666666666,
+          "min": 0.9166666666666666,
+          "max": 0.9166666666666666
+        },
+        "recall5": {
+          "n": 3,
+          "median": 0.9166666666666666,
+          "min": 0.9166666666666666,
+          "max": 0.9166666666666666
+        },
+        "hit1": {
+          "n": 3,
+          "median": 0.5,
+          "min": 0.5,
+          "max": 0.5
+        },
+        "hit3": {
+          "n": 3,
+          "median": 0.9166666666666666,
+          "min": 0.9166666666666666,
+          "max": 0.9166666666666666
+        },
+        "hit5": {
+          "n": 3,
+          "median": 0.9166666666666666,
+          "min": 0.9166666666666666,
+          "max": 0.9166666666666666
+        },
+        "mrr5": {
+          "n": 3,
+          "median": 0.7083333333333334,
+          "min": 0.7083333333333334,
+          "max": 0.7083333333333334
+        },
+        "ndcg5": {
+          "n": 3,
+          "median": 0.7628873973214407,
+          "min": 0.7628873973214407,
+          "max": 0.7628873973214407
+        }
+      },
+      "repetitions": [
+        {
+          "repetition": 1,
+          "metrics": {
+            "recall1": 0.5,
+            "recall3": 0.9166666666666666,
+            "recall5": 0.9166666666666666,
+            "hit1": 0.5,
+            "hit3": 0.9166666666666666,
+            "hit5": 0.9166666666666666,
+            "mrr5": 0.7083333333333334,
+            "ndcg5": 0.7628873973214407
+          }
+        },
+        {
+          "repetition": 2,
+          "metrics": {
+            "recall1": 0.5,
+            "recall3": 0.9166666666666666,
+            "recall5": 0.9166666666666666,
+            "hit1": 0.5,
+            "hit3": 0.9166666666666666,
+            "hit5": 0.9166666666666666,
+            "mrr5": 0.7083333333333334,
+            "ndcg5": 0.7628873973214407
+          }
+        },
+        {
+          "repetition": 3,
+          "metrics": {
+            "recall1": 0.5,
+            "recall3": 0.9166666666666666,
+            "recall5": 0.9166666666666666,
+            "hit1": 0.5,
+            "hit3": 0.9166666666666666,
+            "hit5": 0.9166666666666666,
+            "mrr5": 0.7083333333333334,
+            "ndcg5": 0.7628873973214407
+          }
+        }
+      ],
+      "searchMs": {
+        "n": 36,
+        "median": 0.008062499999994088,
+        "min": 0.006249999999994316,
+        "max": 0.0176659999999913
+      },
+      "queryEncodingMs": null
+    },
+    {
+      "arm": "ocr",
+      "split": "evaluation",
+      "category": "literal",
+      "uniqueQuestions": 12,
+      "answerableQuestions": 12,
+      "observations": 36,
+      "metrics": {
+        "recall1": {
+          "n": 3,
+          "median": 1,
+          "min": 1,
+          "max": 1
+        },
+        "recall3": {
+          "n": 3,
+          "median": 1,
+          "min": 1,
+          "max": 1
+        },
+        "recall5": {
+          "n": 3,
+          "median": 1,
+          "min": 1,
+          "max": 1
+        },
+        "hit1": {
+          "n": 3,
+          "median": 1,
+          "min": 1,
+          "max": 1
+        },
+        "hit3": {
+          "n": 3,
+          "median": 1,
+          "min": 1,
+          "max": 1
+        },
+        "hit5": {
+          "n": 3,
+          "median": 1,
+          "min": 1,
+          "max": 1
+        },
+        "mrr5": {
+          "n": 3,
+          "median": 1,
+          "min": 1,
+          "max": 1
+        },
+        "ndcg5": {
+          "n": 3,
+          "median": 1,
+          "min": 1,
+          "max": 1
+        }
+      },
+      "repetitions": [
+        {
+          "repetition": 1,
+          "metrics": {
+            "recall1": 1,
+            "recall3": 1,
+            "recall5": 1,
+            "hit1": 1,
+            "hit3": 1,
+            "hit5": 1,
+            "mrr5": 1,
+            "ndcg5": 1
+          }
+        },
+        {
+          "repetition": 2,
+          "metrics": {
+            "recall1": 1,
+            "recall3": 1,
+            "recall5": 1,
+            "hit1": 1,
+            "hit3": 1,
+            "hit5": 1,
+            "mrr5": 1,
+            "ndcg5": 1
+          }
+        },
+        {
+          "repetition": 3,
+          "metrics": {
+            "recall1": 1,
+            "recall3": 1,
+            "recall5": 1,
+            "hit1": 1,
+            "hit3": 1,
+            "hit5": 1,
+            "mrr5": 1,
+            "ndcg5": 1
+          }
+        }
+      ],
+      "searchMs": {
+        "n": 36,
+        "median": 0.0026875000000075033,
+        "min": 0.0020420000000171967,
+        "max": 0.007125000000002046
+      },
+      "queryEncodingMs": null
+    },
+    {
+      "arm": "clip",
+      "split": "evaluation",
+      "category": "literal",
+      "uniqueQuestions": 12,
+      "answerableQuestions": 12,
+      "observations": 36,
+      "metrics": {
+        "recall1": {
+          "n": 3,
+          "median": 0.3333333333333333,
+          "min": 0.3333333333333333,
+          "max": 0.3333333333333333
+        },
+        "recall3": {
+          "n": 3,
+          "median": 0.75,
+          "min": 0.75,
+          "max": 0.75
+        },
+        "recall5": {
+          "n": 3,
+          "median": 0.9166666666666666,
+          "min": 0.9166666666666666,
+          "max": 0.9166666666666666
+        },
+        "hit1": {
+          "n": 3,
+          "median": 0.3333333333333333,
+          "min": 0.3333333333333333,
+          "max": 0.3333333333333333
+        },
+        "hit3": {
+          "n": 3,
+          "median": 0.75,
+          "min": 0.75,
+          "max": 0.75
+        },
+        "hit5": {
+          "n": 3,
+          "median": 0.9166666666666666,
+          "min": 0.9166666666666666,
+          "max": 0.9166666666666666
+        },
+        "mrr5": {
+          "n": 3,
+          "median": 0.5513888888888888,
+          "min": 0.5513888888888888,
+          "max": 0.5513888888888888
+        },
+        "ndcg5": {
+          "n": 3,
+          "median": 0.6425265521685256,
+          "min": 0.6425265521685256,
+          "max": 0.6425265521685256
+        }
+      },
+      "repetitions": [
+        {
+          "repetition": 1,
+          "metrics": {
+            "recall1": 0.3333333333333333,
+            "recall3": 0.75,
+            "recall5": 0.9166666666666666,
+            "hit1": 0.3333333333333333,
+            "hit3": 0.75,
+            "hit5": 0.9166666666666666,
+            "mrr5": 0.5513888888888888,
+            "ndcg5": 0.6425265521685256
+          }
+        },
+        {
+          "repetition": 2,
+          "metrics": {
+            "recall1": 0.3333333333333333,
+            "recall3": 0.75,
+            "recall5": 0.9166666666666666,
+            "hit1": 0.3333333333333333,
+            "hit3": 0.75,
+            "hit5": 0.9166666666666666,
+            "mrr5": 0.5513888888888888,
+            "ndcg5": 0.6425265521685256
+          }
+        },
+        {
+          "repetition": 3,
+          "metrics": {
+            "recall1": 0.3333333333333333,
+            "recall3": 0.75,
+            "recall5": 0.9166666666666666,
+            "hit1": 0.3333333333333333,
+            "hit3": 0.75,
+            "hit5": 0.9166666666666666,
+            "mrr5": 0.5513888888888888,
+            "ndcg5": 0.6425265521685256
+          }
+        }
+      ],
+      "searchMs": {
+        "n": 36,
+        "median": 0.07820849999998813,
+        "min": 0.06720899999999119,
+        "max": 0.10316599999998743
+      },
+      "queryEncodingMs": {
+        "n": 36,
+        "median": 3.749832999999967,
+        "min": 3.4916669999997794,
+        "max": 4.7198329999998805
+      }
+    },
+    {
+      "arm": "text",
+      "split": "evaluation",
+      "category": "concept",
+      "uniqueQuestions": 6,
+      "answerableQuestions": 6,
+      "observations": 18,
+      "metrics": {
+        "recall1": {
+          "n": 3,
+          "median": 0.5,
+          "min": 0.5,
+          "max": 0.5
+        },
+        "recall3": {
+          "n": 3,
+          "median": 1,
+          "min": 1,
+          "max": 1
+        },
+        "recall5": {
+          "n": 3,
+          "median": 1,
+          "min": 1,
+          "max": 1
+        },
+        "hit1": {
+          "n": 3,
+          "median": 0.5,
+          "min": 0.5,
+          "max": 0.5
+        },
+        "hit3": {
+          "n": 3,
+          "median": 1,
+          "min": 1,
+          "max": 1
+        },
+        "hit5": {
+          "n": 3,
+          "median": 1,
+          "min": 1,
+          "max": 1
+        },
+        "mrr5": {
+          "n": 3,
+          "median": 0.6666666666666666,
+          "min": 0.6666666666666666,
+          "max": 0.6666666666666666
+        },
+        "ndcg5": {
+          "n": 3,
+          "median": 0.75,
+          "min": 0.75,
+          "max": 0.75
+        }
+      },
+      "repetitions": [
+        {
+          "repetition": 1,
+          "metrics": {
+            "recall1": 0.5,
+            "recall3": 1,
+            "recall5": 1,
+            "hit1": 0.5,
+            "hit3": 1,
+            "hit5": 1,
+            "mrr5": 0.6666666666666666,
+            "ndcg5": 0.75
+          }
+        },
+        {
+          "repetition": 2,
+          "metrics": {
+            "recall1": 0.5,
+            "recall3": 1,
+            "recall5": 1,
+            "hit1": 0.5,
+            "hit3": 1,
+            "hit5": 1,
+            "mrr5": 0.6666666666666666,
+            "ndcg5": 0.75
+          }
+        },
+        {
+          "repetition": 3,
+          "metrics": {
+            "recall1": 0.5,
+            "recall3": 1,
+            "recall5": 1,
+            "hit1": 0.5,
+            "hit3": 1,
+            "hit5": 1,
+            "mrr5": 0.6666666666666666,
+            "ndcg5": 0.75
+          }
+        }
+      ],
+      "searchMs": {
+        "n": 18,
+        "median": 0.01099999999999568,
+        "min": 0.008042000000017424,
+        "max": 0.020666000000005624
+      },
+      "queryEncodingMs": null
+    },
+    {
+      "arm": "ocr",
+      "split": "evaluation",
+      "category": "concept",
+      "uniqueQuestions": 6,
+      "answerableQuestions": 6,
+      "observations": 18,
+      "metrics": {
+        "recall1": {
+          "n": 3,
+          "median": 0.5,
+          "min": 0.5,
+          "max": 0.5
+        },
+        "recall3": {
+          "n": 3,
+          "median": 0.6666666666666666,
+          "min": 0.6666666666666666,
+          "max": 0.6666666666666666
+        },
+        "recall5": {
+          "n": 3,
+          "median": 0.6666666666666666,
+          "min": 0.6666666666666666,
+          "max": 0.6666666666666666
+        },
+        "hit1": {
+          "n": 3,
+          "median": 0.5,
+          "min": 0.5,
+          "max": 0.5
+        },
+        "hit3": {
+          "n": 3,
+          "median": 0.6666666666666666,
+          "min": 0.6666666666666666,
+          "max": 0.6666666666666666
+        },
+        "hit5": {
+          "n": 3,
+          "median": 0.6666666666666666,
+          "min": 0.6666666666666666,
+          "max": 0.6666666666666666
+        },
+        "mrr5": {
+          "n": 3,
+          "median": 0.5833333333333334,
+          "min": 0.5833333333333334,
+          "max": 0.5833333333333334
+        },
+        "ndcg5": {
+          "n": 3,
+          "median": 0.6051549589285763,
+          "min": 0.6051549589285763,
+          "max": 0.6051549589285763
+        }
+      },
+      "repetitions": [
+        {
+          "repetition": 1,
+          "metrics": {
+            "recall1": 0.5,
+            "recall3": 0.6666666666666666,
+            "recall5": 0.6666666666666666,
+            "hit1": 0.5,
+            "hit3": 0.6666666666666666,
+            "hit5": 0.6666666666666666,
+            "mrr5": 0.5833333333333334,
+            "ndcg5": 0.6051549589285763
+          }
+        },
+        {
+          "repetition": 2,
+          "metrics": {
+            "recall1": 0.5,
+            "recall3": 0.6666666666666666,
+            "recall5": 0.6666666666666666,
+            "hit1": 0.5,
+            "hit3": 0.6666666666666666,
+            "hit5": 0.6666666666666666,
+            "mrr5": 0.5833333333333334,
+            "ndcg5": 0.6051549589285763
+          }
+        },
+        {
+          "repetition": 3,
+          "metrics": {
+            "recall1": 0.5,
+            "recall3": 0.6666666666666666,
+            "recall5": 0.6666666666666666,
+            "hit1": 0.5,
+            "hit3": 0.6666666666666666,
+            "hit5": 0.6666666666666666,
+            "mrr5": 0.5833333333333334,
+            "ndcg5": 0.6051549589285763
+          }
+        }
+      ],
+      "searchMs": {
+        "n": 18,
+        "median": 0.0032709999999980255,
+        "min": 0.0027910000000019863,
+        "max": 0.007874999999984311
+      },
+      "queryEncodingMs": null
+    },
+    {
+      "arm": "clip",
+      "split": "evaluation",
+      "category": "concept",
+      "uniqueQuestions": 6,
+      "answerableQuestions": 6,
+      "observations": 18,
+      "metrics": {
+        "recall1": {
+          "n": 3,
+          "median": 0,
+          "min": 0,
+          "max": 0
+        },
+        "recall3": {
+          "n": 3,
+          "median": 0,
+          "min": 0,
+          "max": 0
+        },
+        "recall5": {
+          "n": 3,
+          "median": 0.16666666666666666,
+          "min": 0.16666666666666666,
+          "max": 0.16666666666666666
+        },
+        "hit1": {
+          "n": 3,
+          "median": 0,
+          "min": 0,
+          "max": 0
+        },
+        "hit3": {
+          "n": 3,
+          "median": 0,
+          "min": 0,
+          "max": 0
+        },
+        "hit5": {
+          "n": 3,
+          "median": 0.16666666666666666,
+          "min": 0.16666666666666666,
+          "max": 0.16666666666666666
+        },
+        "mrr5": {
+          "n": 3,
+          "median": 0.03333333333333333,
+          "min": 0.03333333333333333,
+          "max": 0.03333333333333333
+        },
+        "ndcg5": {
+          "n": 3,
+          "median": 0.0644754678724236,
+          "min": 0.0644754678724236,
+          "max": 0.0644754678724236
+        }
+      },
+      "repetitions": [
+        {
+          "repetition": 1,
+          "metrics": {
+            "recall1": 0,
+            "recall3": 0,
+            "recall5": 0.16666666666666666,
+            "hit1": 0,
+            "hit3": 0,
+            "hit5": 0.16666666666666666,
+            "mrr5": 0.03333333333333333,
+            "ndcg5": 0.0644754678724236
+          }
+        },
+        {
+          "repetition": 2,
+          "metrics": {
+            "recall1": 0,
+            "recall3": 0,
+            "recall5": 0.16666666666666666,
+            "hit1": 0,
+            "hit3": 0,
+            "hit5": 0.16666666666666666,
+            "mrr5": 0.03333333333333333,
+            "ndcg5": 0.0644754678724236
+          }
+        },
+        {
+          "repetition": 3,
+          "metrics": {
+            "recall1": 0,
+            "recall3": 0,
+            "recall5": 0.16666666666666666,
+            "hit1": 0,
+            "hit3": 0,
+            "hit5": 0.16666666666666666,
+            "mrr5": 0.03333333333333333,
+            "ndcg5": 0.0644754678724236
+          }
+        }
+      ],
+      "searchMs": {
+        "n": 18,
+        "median": 0.08456250000000409,
+        "min": 0.06725000000000136,
+        "max": 0.09712500000000546
+      },
+      "queryEncodingMs": {
+        "n": 18,
+        "median": 4.431062999999995,
+        "min": 3.7589580000001206,
+        "max": 4.6440000000000055
+      }
+    },
+    {
+      "arm": "text",
+      "split": "evaluation",
+      "category": "layout",
+      "uniqueQuestions": 6,
+      "answerableQuestions": 6,
+      "observations": 18,
+      "metrics": {
+        "recall1": {
+          "n": 3,
+          "median": 0,
+          "min": 0,
+          "max": 0
+        },
+        "recall3": {
+          "n": 3,
+          "median": 1,
+          "min": 1,
+          "max": 1
+        },
+        "recall5": {
+          "n": 3,
+          "median": 1,
+          "min": 1,
+          "max": 1
+        },
+        "hit1": {
+          "n": 3,
+          "median": 0,
+          "min": 0,
+          "max": 0
+        },
+        "hit3": {
+          "n": 3,
+          "median": 1,
+          "min": 1,
+          "max": 1
+        },
+        "hit5": {
+          "n": 3,
+          "median": 1,
+          "min": 1,
+          "max": 1
+        },
+        "mrr5": {
+          "n": 3,
+          "median": 0.5,
+          "min": 0.5,
+          "max": 0.5
+        },
+        "ndcg5": {
+          "n": 3,
+          "median": 0.6309297535714576,
+          "min": 0.6309297535714576,
+          "max": 0.6309297535714576
+        }
+      },
+      "repetitions": [
+        {
+          "repetition": 1,
+          "metrics": {
+            "recall1": 0,
+            "recall3": 1,
+            "recall5": 1,
+            "hit1": 0,
+            "hit3": 1,
+            "hit5": 1,
+            "mrr5": 0.5,
+            "ndcg5": 0.6309297535714576
+          }
+        },
+        {
+          "repetition": 2,
+          "metrics": {
+            "recall1": 0,
+            "recall3": 1,
+            "recall5": 1,
+            "hit1": 0,
+            "hit3": 1,
+            "hit5": 1,
+            "mrr5": 0.5,
+            "ndcg5": 0.6309297535714576
+          }
+        },
+        {
+          "repetition": 3,
+          "metrics": {
+            "recall1": 0,
+            "recall3": 1,
+            "recall5": 1,
+            "hit1": 0,
+            "hit3": 1,
+            "hit5": 1,
+            "mrr5": 0.5,
+            "ndcg5": 0.6309297535714576
+          }
+        }
+      ],
+      "searchMs": {
+        "n": 18,
+        "median": 0.010499999999993292,
+        "min": 0.008374999999972488,
+        "max": 0.028624999999976808
+      },
+      "queryEncodingMs": null
+    },
+    {
+      "arm": "ocr",
+      "split": "evaluation",
+      "category": "layout",
+      "uniqueQuestions": 6,
+      "answerableQuestions": 6,
+      "observations": 18,
+      "metrics": {
+        "recall1": {
+          "n": 3,
+          "median": 1,
+          "min": 1,
+          "max": 1
+        },
+        "recall3": {
+          "n": 3,
+          "median": 1,
+          "min": 1,
+          "max": 1
+        },
+        "recall5": {
+          "n": 3,
+          "median": 1,
+          "min": 1,
+          "max": 1
+        },
+        "hit1": {
+          "n": 3,
+          "median": 1,
+          "min": 1,
+          "max": 1
+        },
+        "hit3": {
+          "n": 3,
+          "median": 1,
+          "min": 1,
+          "max": 1
+        },
+        "hit5": {
+          "n": 3,
+          "median": 1,
+          "min": 1,
+          "max": 1
+        },
+        "mrr5": {
+          "n": 3,
+          "median": 1,
+          "min": 1,
+          "max": 1
+        },
+        "ndcg5": {
+          "n": 3,
+          "median": 1,
+          "min": 1,
+          "max": 1
+        }
+      },
+      "repetitions": [
+        {
+          "repetition": 1,
+          "metrics": {
+            "recall1": 1,
+            "recall3": 1,
+            "recall5": 1,
+            "hit1": 1,
+            "hit3": 1,
+            "hit5": 1,
+            "mrr5": 1,
+            "ndcg5": 1
+          }
+        },
+        {
+          "repetition": 2,
+          "metrics": {
+            "recall1": 1,
+            "recall3": 1,
+            "recall5": 1,
+            "hit1": 1,
+            "hit3": 1,
+            "hit5": 1,
+            "mrr5": 1,
+            "ndcg5": 1
+          }
+        },
+        {
+          "repetition": 3,
+          "metrics": {
+            "recall1": 1,
+            "recall3": 1,
+            "recall5": 1,
+            "hit1": 1,
+            "hit3": 1,
+            "hit5": 1,
+            "mrr5": 1,
+            "ndcg5": 1
+          }
+        }
+      ],
+      "searchMs": {
+        "n": 18,
+        "median": 0.0038339999999976726,
+        "min": 0.003208000000000766,
+        "max": 0.007791999999994914
+      },
+      "queryEncodingMs": null
+    },
+    {
+      "arm": "clip",
+      "split": "evaluation",
+      "category": "layout",
+      "uniqueQuestions": 6,
+      "answerableQuestions": 6,
+      "observations": 18,
+      "metrics": {
+        "recall1": {
+          "n": 3,
+          "median": 0.6666666666666666,
+          "min": 0.6666666666666666,
+          "max": 0.6666666666666666
+        },
+        "recall3": {
+          "n": 3,
+          "median": 0.6666666666666666,
+          "min": 0.6666666666666666,
+          "max": 0.6666666666666666
+        },
+        "recall5": {
+          "n": 3,
+          "median": 0.8333333333333334,
+          "min": 0.8333333333333334,
+          "max": 0.8333333333333334
+        },
+        "hit1": {
+          "n": 3,
+          "median": 0.6666666666666666,
+          "min": 0.6666666666666666,
+          "max": 0.6666666666666666
+        },
+        "hit3": {
+          "n": 3,
+          "median": 0.6666666666666666,
+          "min": 0.6666666666666666,
+          "max": 0.6666666666666666
+        },
+        "hit5": {
+          "n": 3,
+          "median": 0.8333333333333334,
+          "min": 0.8333333333333334,
+          "max": 0.8333333333333334
+        },
+        "mrr5": {
+          "n": 3,
+          "median": 0.7000000000000001,
+          "min": 0.7000000000000001,
+          "max": 0.7000000000000001
+        },
+        "ndcg5": {
+          "n": 3,
+          "median": 0.7311421345390903,
+          "min": 0.7311421345390903,
+          "max": 0.7311421345390903
+        }
+      },
+      "repetitions": [
+        {
+          "repetition": 1,
+          "metrics": {
+            "recall1": 0.6666666666666666,
+            "recall3": 0.6666666666666666,
+            "recall5": 0.8333333333333334,
+            "hit1": 0.6666666666666666,
+            "hit3": 0.6666666666666666,
+            "hit5": 0.8333333333333334,
+            "mrr5": 0.7000000000000001,
+            "ndcg5": 0.7311421345390903
+          }
+        },
+        {
+          "repetition": 2,
+          "metrics": {
+            "recall1": 0.6666666666666666,
+            "recall3": 0.6666666666666666,
+            "recall5": 0.8333333333333334,
+            "hit1": 0.6666666666666666,
+            "hit3": 0.6666666666666666,
+            "hit5": 0.8333333333333334,
+            "mrr5": 0.7000000000000001,
+            "ndcg5": 0.7311421345390903
+          }
+        },
+        {
+          "repetition": 3,
+          "metrics": {
+            "recall1": 0.6666666666666666,
+            "recall3": 0.6666666666666666,
+            "recall5": 0.8333333333333334,
+            "hit1": 0.6666666666666666,
+            "hit3": 0.6666666666666666,
+            "hit5": 0.8333333333333334,
+            "mrr5": 0.7000000000000001,
+            "ndcg5": 0.7311421345390903
+          }
+        }
+      ],
+      "searchMs": {
+        "n": 18,
+        "median": 0.07752100000000439,
+        "min": 0.06704200000001492,
+        "max": 0.08799999999999386
+      },
+      "queryEncodingMs": {
+        "n": 18,
+        "median": 5.438562500000103,
+        "min": 5.220041999999921,
+        "max": 5.860666999999921
+      }
+    },
+    {
+      "arm": "text",
+      "split": "evaluation",
+      "category": "negative",
+      "uniqueQuestions": 2,
+      "answerableQuestions": 0,
+      "observations": 6,
+      "metrics": {
+        "recall1": null,
+        "recall3": null,
+        "recall5": null,
+        "hit1": null,
+        "hit3": null,
+        "hit5": null,
+        "mrr5": null,
+        "ndcg5": null
+      },
+      "repetitions": [
+        {
+          "repetition": 1,
+          "metrics": {
+            "recall1": null,
+            "recall3": null,
+            "recall5": null,
+            "hit1": null,
+            "hit3": null,
+            "hit5": null,
+            "mrr5": null,
+            "ndcg5": null
+          }
+        },
+        {
+          "repetition": 2,
+          "metrics": {
+            "recall1": null,
+            "recall3": null,
+            "recall5": null,
+            "hit1": null,
+            "hit3": null,
+            "hit5": null,
+            "mrr5": null,
+            "ndcg5": null
+          }
+        },
+        {
+          "repetition": 3,
+          "metrics": {
+            "recall1": null,
+            "recall3": null,
+            "recall5": null,
+            "hit1": null,
+            "hit3": null,
+            "hit5": null,
+            "mrr5": null,
+            "ndcg5": null
+          }
+        }
+      ],
+      "searchMs": {
+        "n": 6,
+        "median": 0.007000000000005002,
+        "min": 0.005708999999995967,
+        "max": 0.013542000000001053
+      },
+      "queryEncodingMs": null
+    },
+    {
+      "arm": "ocr",
+      "split": "evaluation",
+      "category": "negative",
+      "uniqueQuestions": 2,
+      "answerableQuestions": 0,
+      "observations": 6,
+      "metrics": {
+        "recall1": null,
+        "recall3": null,
+        "recall5": null,
+        "hit1": null,
+        "hit3": null,
+        "hit5": null,
+        "mrr5": null,
+        "ndcg5": null
+      },
+      "repetitions": [
+        {
+          "repetition": 1,
+          "metrics": {
+            "recall1": null,
+            "recall3": null,
+            "recall5": null,
+            "hit1": null,
+            "hit3": null,
+            "hit5": null,
+            "mrr5": null,
+            "ndcg5": null
+          }
+        },
+        {
+          "repetition": 2,
+          "metrics": {
+            "recall1": null,
+            "recall3": null,
+            "recall5": null,
+            "hit1": null,
+            "hit3": null,
+            "hit5": null,
+            "mrr5": null,
+            "ndcg5": null
+          }
+        },
+        {
+          "repetition": 3,
+          "metrics": {
+            "recall1": null,
+            "recall3": null,
+            "recall5": null,
+            "hit1": null,
+            "hit3": null,
+            "hit5": null,
+            "mrr5": null,
+            "ndcg5": null
+          }
+        }
+      ],
+      "searchMs": {
+        "n": 6,
+        "median": 0.002124999999992383,
+        "min": 0.0015830000000107702,
+        "max": 0.0028749999999888587
+      },
+      "queryEncodingMs": null
+    },
+    {
+      "arm": "clip",
+      "split": "evaluation",
+      "category": "negative",
+      "uniqueQuestions": 2,
+      "answerableQuestions": 0,
+      "observations": 6,
+      "metrics": {
+        "recall1": null,
+        "recall3": null,
+        "recall5": null,
+        "hit1": null,
+        "hit3": null,
+        "hit5": null,
+        "mrr5": null,
+        "ndcg5": null
+      },
+      "repetitions": [
+        {
+          "repetition": 1,
+          "metrics": {
+            "recall1": null,
+            "recall3": null,
+            "recall5": null,
+            "hit1": null,
+            "hit3": null,
+            "hit5": null,
+            "mrr5": null,
+            "ndcg5": null
+          }
+        },
+        {
+          "repetition": 2,
+          "metrics": {
+            "recall1": null,
+            "recall3": null,
+            "recall5": null,
+            "hit1": null,
+            "hit3": null,
+            "hit5": null,
+            "mrr5": null,
+            "ndcg5": null
+          }
+        },
+        {
+          "repetition": 3,
+          "metrics": {
+            "recall1": null,
+            "recall3": null,
+            "recall5": null,
+            "hit1": null,
+            "hit3": null,
+            "hit5": null,
+            "mrr5": null,
+            "ndcg5": null
+          }
+        }
+      ],
+      "searchMs": {
+        "n": 6,
+        "median": 0.08472850000001131,
+        "min": 0.06808300000000145,
+        "max": 0.08975000000000932
+      },
+      "queryEncodingMs": {
+        "n": 6,
+        "median": 3.2477499999998827,
+        "min": 2.9961249999998927,
+        "max": 3.580999999999676
+      }
+    }
+  ],
+  "identicalClipRankingsAcrossPasses": true,
+  "negativeQueries": [
+    {
+      "arm": "text",
+      "repetition": 1,
+      "questionId": "negative-1",
+      "top": [
+        {
+          "evidenceId": "figure-10-a",
+          "score": 0.2707948611288562
+        },
+        {
+          "evidenceId": "figure-10-b",
+          "score": 0.2707948611288562
+        },
+        {
+          "evidenceId": "figure-02-a",
+          "score": 0.2583520020536499
+        },
+        {
+          "evidenceId": "figure-02-b",
+          "score": 0.2583520020536499
+        },
+        {
+          "evidenceId": "figure-03-a",
+          "score": 0.25259595338469765
+        }
+      ]
+    },
+    {
+      "arm": "ocr",
+      "repetition": 1,
+      "questionId": "negative-1",
+      "top": []
+    },
+    {
+      "arm": "clip",
+      "repetition": 1,
+      "questionId": "negative-1",
+      "top": [
+        {
+          "evidenceId": "figure-04-b",
+          "score": 0.21506750344135792
+        },
+        {
+          "evidenceId": "figure-06-a",
+          "score": 0.21382216012895844
+        },
+        {
+          "evidenceId": "figure-04-a",
+          "score": 0.21358264984956726
+        },
+        {
+          "evidenceId": "figure-06-b",
+          "score": 0.2054214359753932
+        },
+        {
+          "evidenceId": "figure-12-a",
+          "score": 0.20283177026944477
+        }
+      ]
+    },
+    {
+      "arm": "ocr",
+      "repetition": 1,
+      "questionId": "negative-2",
+      "top": []
+    },
+    {
+      "arm": "clip",
+      "repetition": 1,
+      "questionId": "negative-2",
+      "top": [
+        {
+          "evidenceId": "figure-07-a",
+          "score": 0.2808380954513549
+        },
+        {
+          "evidenceId": "figure-12-b",
+          "score": 0.2805651168422394
+        },
+        {
+          "evidenceId": "figure-12-a",
+          "score": 0.2801330075766661
+        },
+        {
+          "evidenceId": "figure-02-a",
+          "score": 0.2790270970285105
+        },
+        {
+          "evidenceId": "figure-07-b",
+          "score": 0.2778638391364917
+        }
+      ]
+    },
+    {
+      "arm": "text",
+      "repetition": 1,
+      "questionId": "negative-2",
+      "top": [
+        {
+          "evidenceId": "figure-02-a",
+          "score": 0.08100158252067921
+        },
+        {
+          "evidenceId": "figure-02-b",
+          "score": 0.08100158252067921
+        },
+        {
+          "evidenceId": "figure-12-a",
+          "score": 0.0787177575776109
+        },
+        {
+          "evidenceId": "figure-12-b",
+          "score": 0.0787177575776109
+        },
+        {
+          "evidenceId": "figure-06-a",
+          "score": 0.07712740403718892
+        }
+      ]
+    },
+    {
+      "arm": "clip",
+      "repetition": 1,
+      "questionId": "negative-3",
+      "top": [
+        {
+          "evidenceId": "figure-12-a",
+          "score": 0.2534067486421013
+        },
+        {
+          "evidenceId": "figure-08-a",
+          "score": 0.24663393682897253
+        },
+        {
+          "evidenceId": "figure-10-a",
+          "score": 0.24625976037764216
+        },
+        {
+          "evidenceId": "figure-12-b",
+          "score": 0.2351925050004776
+        },
+        {
+          "evidenceId": "figure-05-a",
+          "score": 0.23001476596455206
+        }
+      ]
+    },
+    {
+      "arm": "text",
+      "repetition": 1,
+      "questionId": "negative-3",
+      "top": [
+        {
+          "evidenceId": "figure-05-a",
+          "score": 2.3765396529071303
+        },
+        {
+          "evidenceId": "figure-05-b",
+          "score": 2.3765396529071303
+        },
+        {
+          "evidenceId": "figure-09-a",
+          "score": 1.8486380828959217
+        },
+        {
+          "evidenceId": "figure-09-b",
+          "score": 1.8486380828959217
+        },
+        {
+          "evidenceId": "figure-10-a",
+          "score": 1.524828993478523
+        }
+      ]
+    },
+    {
+      "arm": "ocr",
+      "repetition": 1,
+      "questionId": "negative-3",
+      "top": []
+    },
+    {
+      "arm": "text",
+      "repetition": 1,
+      "questionId": "negative-4",
+      "top": [
+        {
+          "evidenceId": "figure-02-a",
+          "score": 0.08100158252067921
+        },
+        {
+          "evidenceId": "figure-02-b",
+          "score": 0.08100158252067921
+        },
+        {
+          "evidenceId": "figure-12-a",
+          "score": 0.0787177575776109
+        },
+        {
+          "evidenceId": "figure-12-b",
+          "score": 0.0787177575776109
+        },
+        {
+          "evidenceId": "figure-06-a",
+          "score": 0.07712740403718892
+        }
+      ]
+    },
+    {
+      "arm": "ocr",
+      "repetition": 1,
+      "questionId": "negative-4",
+      "top": []
+    },
+    {
+      "arm": "clip",
+      "repetition": 1,
+      "questionId": "negative-4",
+      "top": [
+        {
+          "evidenceId": "figure-01-a",
+          "score": 0.2709752828065564
+        },
+        {
+          "evidenceId": "figure-06-a",
+          "score": 0.2688806778519861
+        },
+        {
+          "evidenceId": "figure-10-a",
+          "score": 0.26657598188874077
+        },
+        {
+          "evidenceId": "figure-12-a",
+          "score": 0.25996547284341004
+        },
+        {
+          "evidenceId": "figure-07-a",
+          "score": 0.25968162210520307
+        }
+      ]
+    },
+    {
+      "arm": "ocr",
+      "repetition": 2,
+      "questionId": "negative-1",
+      "top": []
+    },
+    {
+      "arm": "clip",
+      "repetition": 2,
+      "questionId": "negative-1",
+      "top": [
+        {
+          "evidenceId": "figure-04-b",
+          "score": 0.21506750344135792
+        },
+        {
+          "evidenceId": "figure-06-a",
+          "score": 0.21382216012895844
+        },
+        {
+          "evidenceId": "figure-04-a",
+          "score": 0.21358264984956726
+        },
+        {
+          "evidenceId": "figure-06-b",
+          "score": 0.2054214359753932
+        },
+        {
+          "evidenceId": "figure-12-a",
+          "score": 0.20283177026944477
+        }
+      ]
+    },
+    {
+      "arm": "text",
+      "repetition": 2,
+      "questionId": "negative-1",
+      "top": [
+        {
+          "evidenceId": "figure-10-a",
+          "score": 0.2707948611288562
+        },
+        {
+          "evidenceId": "figure-10-b",
+          "score": 0.2707948611288562
+        },
+        {
+          "evidenceId": "figure-02-a",
+          "score": 0.2583520020536499
+        },
+        {
+          "evidenceId": "figure-02-b",
+          "score": 0.2583520020536499
+        },
+        {
+          "evidenceId": "figure-03-a",
+          "score": 0.25259595338469765
+        }
+      ]
+    },
+    {
+      "arm": "clip",
+      "repetition": 2,
+      "questionId": "negative-2",
+      "top": [
+        {
+          "evidenceId": "figure-07-a",
+          "score": 0.2808380954513549
+        },
+        {
+          "evidenceId": "figure-12-b",
+          "score": 0.2805651168422394
+        },
+        {
+          "evidenceId": "figure-12-a",
+          "score": 0.2801330075766661
+        },
+        {
+          "evidenceId": "figure-02-a",
+          "score": 0.2790270970285105
+        },
+        {
+          "evidenceId": "figure-07-b",
+          "score": 0.2778638391364917
+        }
+      ]
+    },
+    {
+      "arm": "text",
+      "repetition": 2,
+      "questionId": "negative-2",
+      "top": [
+        {
+          "evidenceId": "figure-02-a",
+          "score": 0.08100158252067921
+        },
+        {
+          "evidenceId": "figure-02-b",
+          "score": 0.08100158252067921
+        },
+        {
+          "evidenceId": "figure-12-a",
+          "score": 0.0787177575776109
+        },
+        {
+          "evidenceId": "figure-12-b",
+          "score": 0.0787177575776109
+        },
+        {
+          "evidenceId": "figure-06-a",
+          "score": 0.07712740403718892
+        }
+      ]
+    },
+    {
+      "arm": "ocr",
+      "repetition": 2,
+      "questionId": "negative-2",
+      "top": []
+    },
+    {
+      "arm": "text",
+      "repetition": 2,
+      "questionId": "negative-3",
+      "top": [
+        {
+          "evidenceId": "figure-05-a",
+          "score": 2.3765396529071303
+        },
+        {
+          "evidenceId": "figure-05-b",
+          "score": 2.3765396529071303
+        },
+        {
+          "evidenceId": "figure-09-a",
+          "score": 1.8486380828959217
+        },
+        {
+          "evidenceId": "figure-09-b",
+          "score": 1.8486380828959217
+        },
+        {
+          "evidenceId": "figure-10-a",
+          "score": 1.524828993478523
+        }
+      ]
+    },
+    {
+      "arm": "ocr",
+      "repetition": 2,
+      "questionId": "negative-3",
+      "top": []
+    },
+    {
+      "arm": "clip",
+      "repetition": 2,
+      "questionId": "negative-3",
+      "top": [
+        {
+          "evidenceId": "figure-12-a",
+          "score": 0.2534067486421013
+        },
+        {
+          "evidenceId": "figure-08-a",
+          "score": 0.24663393682897253
+        },
+        {
+          "evidenceId": "figure-10-a",
+          "score": 0.24625976037764216
+        },
+        {
+          "evidenceId": "figure-12-b",
+          "score": 0.2351925050004776
+        },
+        {
+          "evidenceId": "figure-05-a",
+          "score": 0.23001476596455206
+        }
+      ]
+    },
+    {
+      "arm": "ocr",
+      "repetition": 2,
+      "questionId": "negative-4",
+      "top": []
+    },
+    {
+      "arm": "clip",
+      "repetition": 2,
+      "questionId": "negative-4",
+      "top": [
+        {
+          "evidenceId": "figure-01-a",
+          "score": 0.2709752828065564
+        },
+        {
+          "evidenceId": "figure-06-a",
+          "score": 0.2688806778519861
+        },
+        {
+          "evidenceId": "figure-10-a",
+          "score": 0.26657598188874077
+        },
+        {
+          "evidenceId": "figure-12-a",
+          "score": 0.25996547284341004
+        },
+        {
+          "evidenceId": "figure-07-a",
+          "score": 0.25968162210520307
+        }
+      ]
+    },
+    {
+      "arm": "text",
+      "repetition": 2,
+      "questionId": "negative-4",
+      "top": [
+        {
+          "evidenceId": "figure-02-a",
+          "score": 0.08100158252067921
+        },
+        {
+          "evidenceId": "figure-02-b",
+          "score": 0.08100158252067921
+        },
+        {
+          "evidenceId": "figure-12-a",
+          "score": 0.0787177575776109
+        },
+        {
+          "evidenceId": "figure-12-b",
+          "score": 0.0787177575776109
+        },
+        {
+          "evidenceId": "figure-06-a",
+          "score": 0.07712740403718892
+        }
+      ]
+    },
+    {
+      "arm": "clip",
+      "repetition": 3,
+      "questionId": "negative-1",
+      "top": [
+        {
+          "evidenceId": "figure-04-b",
+          "score": 0.21506750344135792
+        },
+        {
+          "evidenceId": "figure-06-a",
+          "score": 0.21382216012895844
+        },
+        {
+          "evidenceId": "figure-04-a",
+          "score": 0.21358264984956726
+        },
+        {
+          "evidenceId": "figure-06-b",
+          "score": 0.2054214359753932
+        },
+        {
+          "evidenceId": "figure-12-a",
+          "score": 0.20283177026944477
+        }
+      ]
+    },
+    {
+      "arm": "text",
+      "repetition": 3,
+      "questionId": "negative-1",
+      "top": [
+        {
+          "evidenceId": "figure-10-a",
+          "score": 0.2707948611288562
+        },
+        {
+          "evidenceId": "figure-10-b",
+          "score": 0.2707948611288562
+        },
+        {
+          "evidenceId": "figure-02-a",
+          "score": 0.2583520020536499
+        },
+        {
+          "evidenceId": "figure-02-b",
+          "score": 0.2583520020536499
+        },
+        {
+          "evidenceId": "figure-03-a",
+          "score": 0.25259595338469765
+        }
+      ]
+    },
+    {
+      "arm": "ocr",
+      "repetition": 3,
+      "questionId": "negative-1",
+      "top": []
+    },
+    {
+      "arm": "text",
+      "repetition": 3,
+      "questionId": "negative-2",
+      "top": [
+        {
+          "evidenceId": "figure-02-a",
+          "score": 0.08100158252067921
+        },
+        {
+          "evidenceId": "figure-02-b",
+          "score": 0.08100158252067921
+        },
+        {
+          "evidenceId": "figure-12-a",
+          "score": 0.0787177575776109
+        },
+        {
+          "evidenceId": "figure-12-b",
+          "score": 0.0787177575776109
+        },
+        {
+          "evidenceId": "figure-06-a",
+          "score": 0.07712740403718892
+        }
+      ]
+    },
+    {
+      "arm": "ocr",
+      "repetition": 3,
+      "questionId": "negative-2",
+      "top": []
+    },
+    {
+      "arm": "clip",
+      "repetition": 3,
+      "questionId": "negative-2",
+      "top": [
+        {
+          "evidenceId": "figure-07-a",
+          "score": 0.2808380954513549
+        },
+        {
+          "evidenceId": "figure-12-b",
+          "score": 0.2805651168422394
+        },
+        {
+          "evidenceId": "figure-12-a",
+          "score": 0.2801330075766661
+        },
+        {
+          "evidenceId": "figure-02-a",
+          "score": 0.2790270970285105
+        },
+        {
+          "evidenceId": "figure-07-b",
+          "score": 0.2778638391364917
+        }
+      ]
+    },
+    {
+      "arm": "ocr",
+      "repetition": 3,
+      "questionId": "negative-3",
+      "top": []
+    },
+    {
+      "arm": "clip",
+      "repetition": 3,
+      "questionId": "negative-3",
+      "top": [
+        {
+          "evidenceId": "figure-12-a",
+          "score": 0.2534067486421013
+        },
+        {
+          "evidenceId": "figure-08-a",
+          "score": 0.24663393682897253
+        },
+        {
+          "evidenceId": "figure-10-a",
+          "score": 0.24625976037764216
+        },
+        {
+          "evidenceId": "figure-12-b",
+          "score": 0.2351925050004776
+        },
+        {
+          "evidenceId": "figure-05-a",
+          "score": 0.23001476596455206
+        }
+      ]
+    },
+    {
+      "arm": "text",
+      "repetition": 3,
+      "questionId": "negative-3",
+      "top": [
+        {
+          "evidenceId": "figure-05-a",
+          "score": 2.3765396529071303
+        },
+        {
+          "evidenceId": "figure-05-b",
+          "score": 2.3765396529071303
+        },
+        {
+          "evidenceId": "figure-09-a",
+          "score": 1.8486380828959217
+        },
+        {
+          "evidenceId": "figure-09-b",
+          "score": 1.8486380828959217
+        },
+        {
+          "evidenceId": "figure-10-a",
+          "score": 1.524828993478523
+        }
+      ]
+    },
+    {
+      "arm": "clip",
+      "repetition": 3,
+      "questionId": "negative-4",
+      "top": [
+        {
+          "evidenceId": "figure-01-a",
+          "score": 0.2709752828065564
+        },
+        {
+          "evidenceId": "figure-06-a",
+          "score": 0.2688806778519861
+        },
+        {
+          "evidenceId": "figure-10-a",
+          "score": 0.26657598188874077
+        },
+        {
+          "evidenceId": "figure-12-a",
+          "score": 0.25996547284341004
+        },
+        {
+          "evidenceId": "figure-07-a",
+          "score": 0.25968162210520307
+        }
+      ]
+    },
+    {
+      "arm": "text",
+      "repetition": 3,
+      "questionId": "negative-4",
+      "top": [
+        {
+          "evidenceId": "figure-02-a",
+          "score": 0.08100158252067921
+        },
+        {
+          "evidenceId": "figure-02-b",
+          "score": 0.08100158252067921
+        },
+        {
+          "evidenceId": "figure-12-a",
+          "score": 0.0787177575776109
+        },
+        {
+          "evidenceId": "figure-12-b",
+          "score": 0.0787177575776109
+        },
+        {
+          "evidenceId": "figure-06-a",
+          "score": 0.07712740403718892
+        }
+      ]
+    },
+    {
+      "arm": "ocr",
+      "repetition": 3,
+      "questionId": "negative-4",
+      "top": []
+    }
+  ]
+}

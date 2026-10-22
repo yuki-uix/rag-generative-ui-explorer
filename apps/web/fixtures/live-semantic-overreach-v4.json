@@ -1,0 +1,45 @@
+{
+  "kind": "rendered-field-observation-not-raw-completion",
+  "observedDate": "2026-10-22",
+  "question": "稀疏检索是什么？",
+  "webSourceCommit": "ad4edcabd10d4a29a94ec72b21dff769ceb4d115",
+  "generationVersion": "live-cards-4",
+  "model": "deepseek-v4-pro",
+  "httpStatus": 200,
+  "cardType": "definition",
+  "observedCardTitle": "稀疏检索",
+  "observedFactualFieldCount": 5,
+  "observedField": {
+    "text": "与稠密检索的失败方式不同，因此实际系统常同时运行两者并融合结果。",
+    "mode": "summarized",
+    "evidenceIds": [
+      "rag/sparse-retrieval#what-this-means-here#0-179d75b3"
+    ]
+  },
+  "citedPassage": {
+    "id": "rag/sparse-retrieval#what-this-means-here#0-179d75b3",
+    "documentId": "rag/sparse-retrieval",
+    "documentTitle": "Sparse retrieval",
+    "section": "What this means here",
+    "text": "Sparse and dense retrieval fail in different directions, which is the whole\nargument for running both and fusing the results rather than choosing one. The\nfusion step has its own note.\n\nFor evaluation, BM25 is worth keeping as a reported arm even after hybrid\nretrieval is in place. If the hybrid system cannot beat BM25 alone on this\ncorpus, that is a finding about the corpus or the embedding model, and it is\nbetter to know it than to assume the more elaborate pipeline is earning its\ncost.",
+    "retrievalScore": 0,
+    "metadata": {
+      "author": "yuki-uix",
+      "category": "rag"
+    }
+  },
+  "serverTotalMsAsDisplayed": 3870,
+  "usageAsDisplayed": {
+    "inputTokens": 1117,
+    "outputTokens": 294,
+    "cacheReadInputTokens": 1536,
+    "cacheCreationInputTokens": 0
+  },
+  "semanticReview": {
+    "supportedPart": "Sparse and dense retrieval fail in different directions.",
+    "unsupportedPart": "实际系统常同时运行两者并融合结果",
+    "reason": "The cited passage gives an argument for running both; it does not establish actual adoption frequency.",
+    "reviewers": "implementation-team AI assistants, not independent humans"
+  },
+  "rawCompletionCaptured": false
+}

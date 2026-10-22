@@ -1,0 +1,222 @@
+{
+  "executedAt": "2026-10-22T09:45:45.467Z",
+  "kind": "targeted-integration-review-not-F5-evaluation",
+  "records": [
+    {
+      "question": "What is the current p99 latency of our RAG service?",
+      "httpStatus": 200,
+      "body": {
+        "question": "What is the current p99 latency of our RAG service?",
+        "evidence": [
+          {
+            "id": "intersection/ui-driven-retrieval#constrained-hops-not-an-autonomous-loop#0-84cd6e3e",
+            "documentId": "intersection/ui-driven-retrieval",
+            "documentTitle": "Retrieval driven by UI actions",
+            "section": "Constrained hops, not an autonomous loop",
+            "text": "Iterative retrieval is a known pattern and it is usually autonomous: the model\ndecides it needs more, fetches, and repeats.\n\nA UI-driven hop is different in one important respect — the reader decided.\nLatency stays bounded, cost stays predictable, and two runs of the same\ninteraction remain comparable, which an autonomous loop cannot promise.\n\nIt also matches the mixed-initiative principle about efficient invocation and\ntermination: the automated service exists and the user asks for it, rather than\nit deciding on their behalf. The event-based agent protocols encode the same\nposture from the other direction, treating interrupts and steering as\nfirst-class rather than as escapes from a pipeline.",
+            "retrievalScore": 7.295188525344836,
+            "metadata": {
+              "author": "yuki-uix",
+              "category": "intersection"
+            },
+            "url": "https://github.com/yuki-uix/rag-generative-ui-explorer/blob/37813a283f9f0a2f1adc7daa373e973b3a7a0332/knowledge/intersection/ui-driven-retrieval.md"
+          },
+          {
+            "id": "rag/production-concerns#body#0-7195cf89",
+            "documentId": "rag/production-concerns",
+            "documentTitle": "Production concerns",
+            "text": "Most RAG writing stops at retrieval quality. The concerns below are what decide\nwhether a system that retrieves well is operable, and several of them shape\ndesign choices that are expensive to revisit later.",
+            "retrievalScore": 6.55066179851538,
+            "metadata": {
+              "author": "yuki-uix",
+              "category": "rag"
+            },
+            "url": "https://github.com/yuki-uix/rag-generative-ui-explorer/blob/37813a283f9f0a2f1adc7daa373e973b3a7a0332/knowledge/rag/production-concerns.md"
+          },
+          {
+            "id": "rag/failure-modes#body#0-624b11ef",
+            "documentId": "rag/failure-modes",
+            "documentTitle": "Failure modes",
+            "text": "A wrong RAG answer looks the same regardless of which stage produced it. The\nvalue of naming the modes is that each has a different fix, and a system that\ncannot distinguish them will fix the wrong stage.\n\nThe work this note is drawn from separates the abilities a RAG system needs\ninto distinct testable capacities rather than a single accuracy figure — noise\nrobustness, rejecting the unanswerable, integrating multiple documents, and\nhandling counterfactual sources. The four modes below follow that split.",
+            "retrievalScore": 5.4691077698116635,
+            "metadata": {
+              "author": "yuki-uix",
+              "category": "rag"
+            },
+            "url": "https://github.com/yuki-uix/rag-generative-ui-explorer/blob/37813a283f9f0a2f1adc7daa373e973b3a7a0332/knowledge/rag/failure-modes.md"
+          },
+          {
+            "id": "intersection/a2ui-as-an-output-boundary-for-rag#body#0-3177108d",
+            "documentId": "intersection/a2ui-as-an-output-boundary-for-rag",
+            "documentTitle": "A2UI as an output boundary for RAG",
+            "text": "RAG and A2UI can be connected cleanly because they answer different questions.\nRAG determines which external evidence is available for an answer. A2UI\ndetermines how an agent communicates an interactive surface to a renderer. One\ndoes not imply the other.",
+            "retrievalScore": 5.383169456661129,
+            "metadata": {
+              "author": "yuki-uix",
+              "category": "intersection"
+            },
+            "url": "https://github.com/yuki-uix/rag-generative-ui-explorer/blob/37813a283f9f0a2f1adc7daa373e973b3a7a0332/knowledge/intersection/a2ui-as-an-output-boundary-for-rag.md"
+          },
+          {
+            "id": "rag/advanced-patterns#agentic-rag#0-b3e579c2",
+            "documentId": "rag/advanced-patterns",
+            "documentTitle": "Advanced RAG patterns",
+            "section": "Agentic RAG",
+            "text": "The model decides *whether* to retrieve, *what* to retrieve, and *when it has\nenough*, rather than following a fixed pipeline.\n\nThis is the most flexible and the least predictable. Latency becomes variable\nrather than bounded, cost varies per query, and reproducing a result requires\nreplaying a sequence of decisions rather than a single call. For a system being\nevaluated on comparable runs, that variance is a direct cost: two runs of the\nsame question are no longer the same experiment.",
+            "retrievalScore": 5.127569105974151,
+            "metadata": {
+              "author": "yuki-uix",
+              "category": "rag"
+            },
+            "url": "https://github.com/yuki-uix/rag-generative-ui-explorer/blob/37813a283f9f0a2f1adc7daa373e973b3a7a0332/knowledge/rag/advanced-patterns.md"
+          },
+          {
+            "id": "rag/rag-motivation#the-distinction-the-paper-draws#0-8850bcf8",
+            "documentId": "rag/rag-motivation",
+            "documentTitle": "RAG motivation and core architecture",
+            "section": "The distinction the paper draws",
+            "text": "The framing that has outlasted the specific architecture is the split between\n**parametric memory** — what the weights encode — and **non-parametric memory**\n— an index the model queries when it answers.\n\nNon-parametric memory can be edited without touching the model. Swap a document\nand the system's answer changes. Delete one and the claims it supported go with\nit. This is what makes RAG viable for knowledge that changes, and it is why the\ncorpus version matters as much as the model version when reproducing a result.",
+            "retrievalScore": 5.012306112996981,
+            "metadata": {
+              "author": "yuki-uix",
+              "category": "rag"
+            },
+            "url": "https://github.com/yuki-uix/rag-generative-ui-explorer/blob/37813a283f9f0a2f1adc7daa373e973b3a7a0332/knowledge/rag/rag-motivation.md"
+          },
+          {
+            "id": "generative-ui/streaming-and-incremental-rendering#retraction-is-the-cost-people-underestimate#0-c24b0db3",
+            "documentId": "generative-ui/streaming-and-incremental-rendering",
+            "documentTitle": "Streaming and incremental rendering",
+            "section": "Retraction is the cost people underestimate",
+            "text": "If partial output is rendered and then fails validation, something has to\nhappen on screen. Every option is bad: content vanishes, content changes under\nthe reader's eye, or an error replaces what they were mid-sentence through.\n\nA reader who watches a claim appear and then disappear has learned something\nabout the system's reliability that no amount of later correctness undoes. For\nan interface whose entire proposition is that its claims are traceable, that is\nan expensive impression to create for a latency win.",
+            "retrievalScore": 4.851350169022929,
+            "metadata": {
+              "author": "yuki-uix",
+              "category": "generative-ui"
+            },
+            "url": "https://github.com/yuki-uix/rag-generative-ui-explorer/blob/37813a283f9f0a2f1adc7daa373e973b3a7a0332/knowledge/generative-ui/streaming-and-incremental-rendering.md"
+          },
+          {
+            "id": "generative-ui/what-generative-ui-is#a-spectrum-not-a-category#0-c1b5b6d0",
+            "documentId": "generative-ui/what-generative-ui-is",
+            "documentTitle": "What generative UI is",
+            "section": "A spectrum, not a category",
+            "text": "At one end, a model chooses among components a human wrote and supplies their\ndata. The set of possible interfaces is enumerable in advance; the model picks\nfrom it. This is what tool-to-component mapping in current SDKs does, and what\nthe two agent-UI protocols describe: an agent emits structured intent, and a\nclient renders it with its own component library.\n\nAt the other end, a model writes markup, styles, and scripts, and the host\ndisplays whatever comes back. The set of possible interfaces is unbounded.\n\nBetween those sit approaches where the model composes from a vocabulary but\ncontrols arrangement — a declarative layout tree over known primitives.\n\nThe interesting property is not where a system sits but that the position is a\ndeliberate choice with different consequences at each point.",
+            "retrievalScore": 4.672142732223054,
+            "metadata": {
+              "author": "yuki-uix",
+              "category": "generative-ui"
+            },
+            "url": "https://github.com/yuki-uix/rag-generative-ui-explorer/blob/37813a283f9f0a2f1adc7daa373e973b3a7a0332/knowledge/generative-ui/what-generative-ui-is.md"
+          }
+        ],
+        "provenance": {
+          "corpusVersion": "corpus-3e4863076378",
+          "retrieval": "lexical-bm25",
+          "retrievalQuery": "What is the current p99 latency of our RAG service?",
+          "queryExpansion": "none",
+          "retrievedCount": 8,
+          "indexedChunkCount": 229,
+          "profileId": "deepseek-v4-pro",
+          "model": "deepseek-v4-pro",
+          "promptVersion": "card-planner-1",
+          "schemaEnforced": false,
+          "thinking": "disabled",
+          "generationVersion": "live-cards-4",
+          "generatedAt": "2026-10-22T09:45:44.011Z",
+          "validation": "schema-and-citation-checks"
+        },
+        "usage": {
+          "inputTokens": 1016,
+          "outputTokens": 23,
+          "cacheCreationInputTokens": 0,
+          "cacheReadInputTokens": 1536
+        },
+        "timing": {
+          "retrievalMs": 0,
+          "generationMs": 1235,
+          "validationMs": 0,
+          "totalMs": 1235
+        },
+        "status": "incomplete",
+        "cards": [],
+        "incompleteReason": "missing",
+        "message": "当前检索证据不足，知识卡仅展示可支持的部分。"
+      }
+    },
+    {
+      "question": "怎样制作焦糖布丁？",
+      "httpStatus": 200,
+      "body": {
+        "question": "怎样制作焦糖布丁？",
+        "evidence": [],
+        "provenance": {
+          "corpusVersion": "corpus-3e4863076378",
+          "retrieval": "lexical-bm25",
+          "retrievalQuery": "怎样制作焦糖布丁？",
+          "queryExpansion": "none",
+          "retrievedCount": 0,
+          "indexedChunkCount": 229,
+          "profileId": "deepseek-v4-pro",
+          "model": "deepseek-v4-pro",
+          "promptVersion": "card-planner-1",
+          "schemaEnforced": false,
+          "thinking": "disabled",
+          "generationVersion": "live-cards-4",
+          "generatedAt": "2026-10-22T09:45:45.556Z",
+          "validation": "schema-and-citation-checks"
+        },
+        "usage": null,
+        "timing": {
+          "retrievalMs": 0,
+          "generationMs": 0,
+          "validationMs": 0,
+          "totalMs": 0
+        },
+        "status": "incomplete",
+        "cards": [],
+        "incompleteReason": "missing",
+        "message": "当前语料没有检索到匹配片段，未调用模型或编造知识卡。可以尝试具体的技术名称或英文关键词。"
+      }
+    }
+  ],
+  "browserObservations": [
+    {
+      "capture": "rendered-ui-not-raw-completion",
+      "generationVersion": "live-cards-4",
+      "question": "重排把100个候选截成前5个结果时，Recall@5一定保持不变吗？",
+      "observedCardTitle": "重排截断候选时 Recall@5 不是必然保持不变",
+      "cardType": "evidence",
+      "cardCount": 1,
+      "sourceCount": 8,
+      "serverTotalMsAsDisplayed": 1740,
+      "semanticReview": "The title preserves the smaller-cutoff versus whole-candidate-set distinction."
+    },
+    {
+      "capture": "rendered-ui-not-raw-completion",
+      "generationVersion": "live-cards-4",
+      "question": "How do I make caramel pudding?",
+      "cardCount": 0,
+      "sourceCount": 8,
+      "serverTotalMsAsDisplayed": 1470,
+      "message": "当前检索证据不足，本次未生成知识卡。",
+      "phase": "after response-handling correction"
+    },
+    {
+      "capture": "rendered-ui-not-raw-completion",
+      "generationVersion": "live-cards-4",
+      "question": "稀疏检索和稠密检索如何匹配文档？",
+      "httpStatusAsDisplayed": 422,
+      "cardCount": 0,
+      "sourceCount": 8,
+      "serverTotalMsAsDisplayed": 3950,
+      "usageAsDisplayed": {
+        "inputTokens": 1118,
+        "cacheReadInputTokens": 1536,
+        "cacheCreationInputTokens": 0,
+        "outputTokens": 355
+      },
+      "exactValidationStage": "unknown; no raw completion captured"
+    }
+  ]
+}

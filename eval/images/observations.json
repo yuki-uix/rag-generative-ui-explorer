@@ -1,0 +1,14 @@
+{
+  "version": "image-observation-ledger-1",
+  "sealedAt": "2026-10-21T14:20:45.111501Z",
+  "freezeSha256": "adae1fb5af9ad654c430c0187955bc297ede7da8576f65a1fd19fde2f9018150",
+  "files": {
+    "artifacts/ocr.json": "ac0dbf2c465d6cae25d126df108f982234e2fe26603c20facd4b592c5384b0cf",
+    "artifacts/encoding.json": "59127b2a7c694672735707c570987d302448afe511854f12ccc630339318e629",
+    "artifacts/weights-download.json": "51bb68827f17c426cbbfe87bc7aed6700c8b478d97e082de727abbf255cd91e8",
+    "artifacts/preflight-freeze.json": "cd878adff1fcb0b69b7c3c622805cd83140a21951c68286c0f75326ff58e3bad",
+    "results/2026-10-21/records.jsonl": "8195b97782bf13e4d6f720e8bc05ceab31eab775629a9aa98e43cca566251844",
+    "results/2026-10-21/summary.json": "8bd7b9aa257cd5e9f612d2be3c36fb23fd763c08343bc58ef0ac556efccc0b16",
+    "results/2026-10-21/report.md": "312bab36c85fffb3a83f106d372c36a5e1aa8e10e431537817a3c00436517bf6"
+  }
+}

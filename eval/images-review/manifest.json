@@ -1,0 +1,510 @@
+{
+  "version": "image-review-controls-1",
+  "purpose": "post-hoc diagnostic; not a fresh effectiveness benchmark",
+  "figures": [
+    {
+      "id": "control-01-1",
+      "family": "doc-02",
+      "title": "Dense retrieval",
+      "image": "assets/control-01-1.png",
+      "imageSha256": "1e168563ccc32e428e4019facbc34e2ef04fe012388a10d08fc2bd8dd6e28d48",
+      "source": "sources/doc-02.md",
+      "sourceSha256": "6152333df5c9d89f9bc91b824c847b4d3144b11284b766ac24c91713561bb401",
+      "color": "blue",
+      "layout": "column",
+      "visibleText": [
+        "Dense retrieval",
+        "Passages",
+        "Passage encoder",
+        "Stored vectors",
+        "Nearest neighbors"
+      ],
+      "sourceFigure": "figure-02-a",
+      "width": 768,
+      "height": 768
+    },
+    {
+      "id": "control-01-2",
+      "family": "doc-02",
+      "title": "Dense retrieval",
+      "image": "assets/control-01-2.png",
+      "imageSha256": "97f3f46eda16d52c1d92a2d58dc0fcf406d5973a8f6baa9abbae52b0234956fc",
+      "source": "sources/doc-02.md",
+      "sourceSha256": "6152333df5c9d89f9bc91b824c847b4d3144b11284b766ac24c91713561bb401",
+      "color": "blue",
+      "layout": "diamond",
+      "visibleText": [
+        "Dense retrieval",
+        "Passages",
+        "Passage encoder",
+        "Stored vectors",
+        "Nearest neighbors"
+      ],
+      "sourceFigure": "figure-02-a",
+      "width": 768,
+      "height": 768
+    },
+    {
+      "id": "control-01-3",
+      "family": "doc-02",
+      "title": "Dense retrieval",
+      "image": "assets/control-01-3.png",
+      "imageSha256": "393afc508f35889af6ce0d45ff7b5a2b8941a421635ac3371bcf30ebf0ab1e6a",
+      "source": "sources/doc-02.md",
+      "sourceSha256": "6152333df5c9d89f9bc91b824c847b4d3144b11284b766ac24c91713561bb401",
+      "color": "orange",
+      "layout": "column",
+      "visibleText": [
+        "Dense retrieval",
+        "Passages",
+        "Passage encoder",
+        "Stored vectors",
+        "Nearest neighbors"
+      ],
+      "sourceFigure": "figure-02-a",
+      "width": 768,
+      "height": 768
+    },
+    {
+      "id": "control-01-4",
+      "family": "doc-02",
+      "title": "Dense retrieval",
+      "image": "assets/control-01-4.png",
+      "imageSha256": "82beab8c3bfd4e01ef185ebea400d8526f2189d1af0faebb7d06157186754dc1",
+      "source": "sources/doc-02.md",
+      "sourceSha256": "6152333df5c9d89f9bc91b824c847b4d3144b11284b766ac24c91713561bb401",
+      "color": "orange",
+      "layout": "diamond",
+      "visibleText": [
+        "Dense retrieval",
+        "Passages",
+        "Passage encoder",
+        "Stored vectors",
+        "Nearest neighbors"
+      ],
+      "sourceFigure": "figure-02-a",
+      "width": 768,
+      "height": 768
+    },
+    {
+      "id": "control-02-1",
+      "family": "doc-04",
+      "title": "Reranking",
+      "image": "assets/control-02-1.png",
+      "imageSha256": "3de53f7583c83c522238945276b771241106fab57e46b48bd295ecf4cbb91aba",
+      "source": "sources/doc-04.md",
+      "sourceSha256": "fd99445565076a87108c4f3fb513521660fb234f332a49e98e5d7817980f40e9",
+      "color": "blue",
+      "layout": "diamond",
+      "visibleText": [
+        "Reranking",
+        "Retrieved candidates",
+        "Query passage pairs",
+        "Cross encoder",
+        "Reordered top K"
+      ],
+      "sourceFigure": "figure-04-a",
+      "width": 768,
+      "height": 768
+    },
+    {
+      "id": "control-02-2",
+      "family": "doc-04",
+      "title": "Reranking",
+      "image": "assets/control-02-2.png",
+      "imageSha256": "b8fcaa70baa32e00cf701103e24a33d157c90b673a1dce2c6a652fb25fa709c3",
+      "source": "sources/doc-04.md",
+      "sourceSha256": "fd99445565076a87108c4f3fb513521660fb234f332a49e98e5d7817980f40e9",
+      "color": "orange",
+      "layout": "column",
+      "visibleText": [
+        "Reranking",
+        "Retrieved candidates",
+        "Query passage pairs",
+        "Cross encoder",
+        "Reordered top K"
+      ],
+      "sourceFigure": "figure-04-a",
+      "width": 768,
+      "height": 768
+    },
+    {
+      "id": "control-02-3",
+      "family": "doc-04",
+      "title": "Reranking",
+      "image": "assets/control-02-3.png",
+      "imageSha256": "e4cd760b58115fe084cdbeb5a05e454ef77fdc50ad82ce944cbb430d9cdc2d4b",
+      "source": "sources/doc-04.md",
+      "sourceSha256": "fd99445565076a87108c4f3fb513521660fb234f332a49e98e5d7817980f40e9",
+      "color": "orange",
+      "layout": "diamond",
+      "visibleText": [
+        "Reranking",
+        "Retrieved candidates",
+        "Query passage pairs",
+        "Cross encoder",
+        "Reordered top K"
+      ],
+      "sourceFigure": "figure-04-a",
+      "width": 768,
+      "height": 768
+    },
+    {
+      "id": "control-02-4",
+      "family": "doc-04",
+      "title": "Reranking",
+      "image": "assets/control-02-4.png",
+      "imageSha256": "b18a6f53fbdc16f9be5d04f3966cd44fc4b02df712881838008c495b1c94247e",
+      "source": "sources/doc-04.md",
+      "sourceSha256": "fd99445565076a87108c4f3fb513521660fb234f332a49e98e5d7817980f40e9",
+      "color": "blue",
+      "layout": "column",
+      "visibleText": [
+        "Reranking",
+        "Retrieved candidates",
+        "Query passage pairs",
+        "Cross encoder",
+        "Reordered top K"
+      ],
+      "sourceFigure": "figure-04-a",
+      "width": 768,
+      "height": 768
+    },
+    {
+      "id": "control-03-1",
+      "family": "doc-06",
+      "title": "Context assembly",
+      "image": "assets/control-03-1.png",
+      "imageSha256": "e10aba5dd258de7776dd1f0a6ab27d62141cd1ca99411f54f2c61cbfcf9a3237",
+      "source": "sources/doc-06.md",
+      "sourceSha256": "720682d81ffb8d5964e9c42f47b68fd763b399c0b0e60d33fcb8e325ab754380",
+      "color": "orange",
+      "layout": "column",
+      "visibleText": [
+        "Context assembly",
+        "Retrieved passages",
+        "Deduplicate",
+        "Token budget",
+        "Ordered context"
+      ],
+      "sourceFigure": "figure-06-a",
+      "width": 768,
+      "height": 768
+    },
+    {
+      "id": "control-03-2",
+      "family": "doc-06",
+      "title": "Context assembly",
+      "image": "assets/control-03-2.png",
+      "imageSha256": "ab658589f8e328e730bd1c43eb3f06906904054398d7d6bb9b91b3b502192086",
+      "source": "sources/doc-06.md",
+      "sourceSha256": "720682d81ffb8d5964e9c42f47b68fd763b399c0b0e60d33fcb8e325ab754380",
+      "color": "orange",
+      "layout": "diamond",
+      "visibleText": [
+        "Context assembly",
+        "Retrieved passages",
+        "Deduplicate",
+        "Token budget",
+        "Ordered context"
+      ],
+      "sourceFigure": "figure-06-a",
+      "width": 768,
+      "height": 768
+    },
+    {
+      "id": "control-03-3",
+      "family": "doc-06",
+      "title": "Context assembly",
+      "image": "assets/control-03-3.png",
+      "imageSha256": "ba88a5df59883b0eddb1b8cb5119742e1d73b281262e7d968a9745fc0cf01716",
+      "source": "sources/doc-06.md",
+      "sourceSha256": "720682d81ffb8d5964e9c42f47b68fd763b399c0b0e60d33fcb8e325ab754380",
+      "color": "blue",
+      "layout": "column",
+      "visibleText": [
+        "Context assembly",
+        "Retrieved passages",
+        "Deduplicate",
+        "Token budget",
+        "Ordered context"
+      ],
+      "sourceFigure": "figure-06-a",
+      "width": 768,
+      "height": 768
+    },
+    {
+      "id": "control-03-4",
+      "family": "doc-06",
+      "title": "Context assembly",
+      "image": "assets/control-03-4.png",
+      "imageSha256": "a7577b217190062d03b74f524e0dabaf679af8c7faed6453d2b155eb15ec52aa",
+      "source": "sources/doc-06.md",
+      "sourceSha256": "720682d81ffb8d5964e9c42f47b68fd763b399c0b0e60d33fcb8e325ab754380",
+      "color": "blue",
+      "layout": "diamond",
+      "visibleText": [
+        "Context assembly",
+        "Retrieved passages",
+        "Deduplicate",
+        "Token budget",
+        "Ordered context"
+      ],
+      "sourceFigure": "figure-06-a",
+      "width": 768,
+      "height": 768
+    },
+    {
+      "id": "control-04-1",
+      "family": "doc-08",
+      "title": "Grounded generation",
+      "image": "assets/control-04-1.png",
+      "imageSha256": "d8eb819132e2e42211eeb21c6aa60bd95374018aa18fc3ecdf2a1674979bef5e",
+      "source": "sources/doc-08.md",
+      "sourceSha256": "f05b1b23fe1d958dc14c3a9f5bb2196ac6e2ca48dadc1aa9e39d4ce2d24d003a",
+      "color": "orange",
+      "layout": "diamond",
+      "visibleText": [
+        "Grounded generation",
+        "Retrieved evidence",
+        "Generate claims",
+        "Check support",
+        "Cited answer"
+      ],
+      "sourceFigure": "figure-08-a",
+      "width": 768,
+      "height": 768
+    },
+    {
+      "id": "control-04-2",
+      "family": "doc-08",
+      "title": "Grounded generation",
+      "image": "assets/control-04-2.png",
+      "imageSha256": "721583f4754c453cefc7996042d13cfaabfe88e48054ce3d251b109e9b47685c",
+      "source": "sources/doc-08.md",
+      "sourceSha256": "f05b1b23fe1d958dc14c3a9f5bb2196ac6e2ca48dadc1aa9e39d4ce2d24d003a",
+      "color": "blue",
+      "layout": "column",
+      "visibleText": [
+        "Grounded generation",
+        "Retrieved evidence",
+        "Generate claims",
+        "Check support",
+        "Cited answer"
+      ],
+      "sourceFigure": "figure-08-a",
+      "width": 768,
+      "height": 768
+    },
+    {
+      "id": "control-04-3",
+      "family": "doc-08",
+      "title": "Grounded generation",
+      "image": "assets/control-04-3.png",
+      "imageSha256": "ea832d03faeaa9294a830e4060df9018f6315efdbf38749f3431fdad1981b048",
+      "source": "sources/doc-08.md",
+      "sourceSha256": "f05b1b23fe1d958dc14c3a9f5bb2196ac6e2ca48dadc1aa9e39d4ce2d24d003a",
+      "color": "blue",
+      "layout": "diamond",
+      "visibleText": [
+        "Grounded generation",
+        "Retrieved evidence",
+        "Generate claims",
+        "Check support",
+        "Cited answer"
+      ],
+      "sourceFigure": "figure-08-a",
+      "width": 768,
+      "height": 768
+    },
+    {
+      "id": "control-04-4",
+      "family": "doc-08",
+      "title": "Grounded generation",
+      "image": "assets/control-04-4.png",
+      "imageSha256": "4ff5c595f166d981f322707412e3fc534b2ce81a3c190f83a4591a783cc11a82",
+      "source": "sources/doc-08.md",
+      "sourceSha256": "f05b1b23fe1d958dc14c3a9f5bb2196ac6e2ca48dadc1aa9e39d4ce2d24d003a",
+      "color": "orange",
+      "layout": "column",
+      "visibleText": [
+        "Grounded generation",
+        "Retrieved evidence",
+        "Generate claims",
+        "Check support",
+        "Cited answer"
+      ],
+      "sourceFigure": "figure-08-a",
+      "width": 768,
+      "height": 768
+    },
+    {
+      "id": "control-05-1",
+      "family": "doc-10",
+      "title": "Incremental rendering",
+      "image": "assets/control-05-1.png",
+      "imageSha256": "a3da4537de626f34e9de285279f3d0cd55fc1bb43ad6ea62b780d2fc6dad7448",
+      "source": "sources/doc-10.md",
+      "sourceSha256": "975bdfae01e37cdd21861710732479fcfc922303b96d9434bff11bb40bc49295",
+      "color": "blue",
+      "layout": "column",
+      "visibleText": [
+        "Incremental rendering",
+        "Partial JSON",
+        "Buffer structure",
+        "Validate component",
+        "Render complete card"
+      ],
+      "sourceFigure": "figure-10-a",
+      "width": 768,
+      "height": 768
+    },
+    {
+      "id": "control-05-2",
+      "family": "doc-10",
+      "title": "Incremental rendering",
+      "image": "assets/control-05-2.png",
+      "imageSha256": "dc51d767e2aa4a01932a845eeef2b843273d153559a1cc764918bbba08bd168c",
+      "source": "sources/doc-10.md",
+      "sourceSha256": "975bdfae01e37cdd21861710732479fcfc922303b96d9434bff11bb40bc49295",
+      "color": "blue",
+      "layout": "diamond",
+      "visibleText": [
+        "Incremental rendering",
+        "Partial JSON",
+        "Buffer structure",
+        "Validate component",
+        "Render complete card"
+      ],
+      "sourceFigure": "figure-10-a",
+      "width": 768,
+      "height": 768
+    },
+    {
+      "id": "control-05-3",
+      "family": "doc-10",
+      "title": "Incremental rendering",
+      "image": "assets/control-05-3.png",
+      "imageSha256": "adee4f41d6ad3e28e35455fb533a4712bd44dcfa78860226248ef879850e4fcc",
+      "source": "sources/doc-10.md",
+      "sourceSha256": "975bdfae01e37cdd21861710732479fcfc922303b96d9434bff11bb40bc49295",
+      "color": "orange",
+      "layout": "column",
+      "visibleText": [
+        "Incremental rendering",
+        "Partial JSON",
+        "Buffer structure",
+        "Validate component",
+        "Render complete card"
+      ],
+      "sourceFigure": "figure-10-a",
+      "width": 768,
+      "height": 768
+    },
+    {
+      "id": "control-05-4",
+      "family": "doc-10",
+      "title": "Incremental rendering",
+      "image": "assets/control-05-4.png",
+      "imageSha256": "c5c87e3d530f6ba09f73ab6503d9d56225495c9590b1a956990fb0ba47a5bbc3",
+      "source": "sources/doc-10.md",
+      "sourceSha256": "975bdfae01e37cdd21861710732479fcfc922303b96d9434bff11bb40bc49295",
+      "color": "orange",
+      "layout": "diamond",
+      "visibleText": [
+        "Incremental rendering",
+        "Partial JSON",
+        "Buffer structure",
+        "Validate component",
+        "Render complete card"
+      ],
+      "sourceFigure": "figure-10-a",
+      "width": 768,
+      "height": 768
+    },
+    {
+      "id": "control-06-1",
+      "family": "doc-12",
+      "title": "State continuity",
+      "image": "assets/control-06-1.png",
+      "imageSha256": "dae039595f84ec082ea592b8c486279f48a6eab3cafd6a9e01e6281ff2608a85",
+      "source": "sources/doc-12.md",
+      "sourceSha256": "2ac8f71baff3d8863450317c0db2f17bdaa7f906dede34695fd11871a0edf2e4",
+      "color": "blue",
+      "layout": "diamond",
+      "visibleText": [
+        "State continuity",
+        "First interface",
+        "User selection",
+        "Next response",
+        "Preserved state"
+      ],
+      "sourceFigure": "figure-12-a",
+      "width": 768,
+      "height": 768
+    },
+    {
+      "id": "control-06-2",
+      "family": "doc-12",
+      "title": "State continuity",
+      "image": "assets/control-06-2.png",
+      "imageSha256": "34dc3cf8ec5d9554ac62be5685549e4808fe35443fd44e66f1a0997e76965c8e",
+      "source": "sources/doc-12.md",
+      "sourceSha256": "2ac8f71baff3d8863450317c0db2f17bdaa7f906dede34695fd11871a0edf2e4",
+      "color": "orange",
+      "layout": "column",
+      "visibleText": [
+        "State continuity",
+        "First interface",
+        "User selection",
+        "Next response",
+        "Preserved state"
+      ],
+      "sourceFigure": "figure-12-a",
+      "width": 768,
+      "height": 768
+    },
+    {
+      "id": "control-06-3",
+      "family": "doc-12",
+      "title": "State continuity",
+      "image": "assets/control-06-3.png",
+      "imageSha256": "95c9e62ec66da189425d5968e99fda16e304107ab4a13a0aa4c2c53181fa5476",
+      "source": "sources/doc-12.md",
+      "sourceSha256": "2ac8f71baff3d8863450317c0db2f17bdaa7f906dede34695fd11871a0edf2e4",
+      "color": "orange",
+      "layout": "diamond",
+      "visibleText": [
+        "State continuity",
+        "First interface",
+        "User selection",
+        "Next response",
+        "Preserved state"
+      ],
+      "sourceFigure": "figure-12-a",
+      "width": 768,
+      "height": 768
+    },
+    {
+      "id": "control-06-4",
+      "family": "doc-12",
+      "title": "State continuity",
+      "image": "assets/control-06-4.png",
+      "imageSha256": "c28e95b276f64a0f3cb8c178326445a7e91ceedb05565412107c4d899a6ee750",
+      "source": "sources/doc-12.md",
+      "sourceSha256": "2ac8f71baff3d8863450317c0db2f17bdaa7f906dede34695fd11871a0edf2e4",
+      "color": "blue",
+      "layout": "column",
+      "visibleText": [
+        "State continuity",
+        "First interface",
+        "User selection",
+        "Next response",
+        "Preserved state"
+      ],
+      "sourceFigure": "figure-12-a",
+      "width": 768,
+      "height": 768
+    }
+  ]
+}

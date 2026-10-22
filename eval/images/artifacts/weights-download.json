@@ -1,0 +1,22 @@
+{
+  "version": "image-weight-acquisition-1",
+  "model": "Xenova/clip-vit-base-patch32",
+  "revision": "d15189d7028b43f1d3e65039190477f6af591c2a",
+  "startedAt": "2026-10-21T14:16:42.762897+00:00",
+  "completedAt": "2026-10-21T14:17:39.779657+00:00",
+  "elapsedMs": 57017.06387499871,
+  "method": "16 concurrent HTTP byte ranges; SHA256 checked against Hugging Face LFS metadata at the fixed commit",
+  "files": [
+    {
+      "file": "onnx/text_model_quantized.onnx",
+      "bytes": 64504507,
+      "sha256": "73baab855d406190da9faa498cfedf65f15cf309f4cc7385b7b032e6d08e5c3a"
+    },
+    {
+      "file": "onnx/vision_model_quantized.onnx",
+      "bytes": 89117001,
+      "sha256": "583fd1110a514667812fee7d684952aaf82a99b959760c8d7dca7e0ab9839299"
+    }
+  ],
+  "earlierAttempt": "A slow sequential initial download was stopped before any completed CLIP encoding pass; this acquisition duration excludes that earlier wait. Subsequent inference loads verified cached weights."
+}

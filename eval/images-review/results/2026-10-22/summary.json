@@ -1,0 +1,723 @@
+{
+  "version": "image-review-report-1",
+  "freezeSha256": "113d217dc5cda0a8f0e14f389cd8249ad81d3c09192aaf769b1ee4415310ff63",
+  "legacyLedgerSha256": "fef10a3cb7ebe2caabf4558481639b28e04bdea0366e3796f009198163240064",
+  "ocrSha256": "eae4f21a34d94d7d5c3d5c9bd32d81516955829c9c62aa8a47be5488f9175fa4",
+  "encodingSha256": "80c8a172236fbc0dc7f4cfbfa6640bdc536db9399cc85da6ab03a4f041e32999",
+  "samples": {
+    "figures": 24,
+    "families": 6,
+    "questions": 54,
+    "repetitions": 3
+  },
+  "summary": [
+    {
+      "arm": "source-text",
+      "kind": "conjunction",
+      "uniqueQuestions": 24,
+      "repetitions": [
+        {
+          "repetition": 1,
+          "fullHit1": 0.25,
+          "sourceHit1": 1,
+          "fullRecall5": 1,
+          "withinHit1": 0.25,
+          "tieExpectedHit1": 0.25,
+          "topicOnlyHit1": null
+        },
+        {
+          "repetition": 2,
+          "fullHit1": 0.25,
+          "sourceHit1": 1,
+          "fullRecall5": 1,
+          "withinHit1": 0.25,
+          "tieExpectedHit1": 0.25,
+          "topicOnlyHit1": null
+        },
+        {
+          "repetition": 3,
+          "fullHit1": 0.25,
+          "sourceHit1": 1,
+          "fullRecall5": 1,
+          "withinHit1": 0.25,
+          "tieExpectedHit1": 0.25,
+          "topicOnlyHit1": null
+        }
+      ],
+      "searchMs": {
+        "n": 72,
+        "median": 0.005958000000006791,
+        "min": 0.0049590000000137024,
+        "max": 5.731833999999992
+      }
+    },
+    {
+      "arm": "source-text",
+      "kind": "color",
+      "uniqueQuestions": 12,
+      "repetitions": [
+        {
+          "repetition": 1,
+          "fullHit1": 0.5,
+          "sourceHit1": 1,
+          "fullRecall5": 1,
+          "withinHit1": 0.5,
+          "tieExpectedHit1": 0.5,
+          "topicOnlyHit1": null
+        },
+        {
+          "repetition": 2,
+          "fullHit1": 0.5,
+          "sourceHit1": 1,
+          "fullRecall5": 1,
+          "withinHit1": 0.5,
+          "tieExpectedHit1": 0.5,
+          "topicOnlyHit1": null
+        },
+        {
+          "repetition": 3,
+          "fullHit1": 0.5,
+          "sourceHit1": 1,
+          "fullRecall5": 1,
+          "withinHit1": 0.5,
+          "tieExpectedHit1": 0.5,
+          "topicOnlyHit1": null
+        }
+      ],
+      "searchMs": {
+        "n": 36,
+        "median": 0.004958499999986543,
+        "min": 0.004500000000007276,
+        "max": 0.0277499999999975
+      }
+    },
+    {
+      "arm": "source-text",
+      "kind": "layout",
+      "uniqueQuestions": 12,
+      "repetitions": [
+        {
+          "repetition": 1,
+          "fullHit1": 0.5,
+          "sourceHit1": 1,
+          "fullRecall5": 1,
+          "withinHit1": 0.5,
+          "tieExpectedHit1": 0.5,
+          "topicOnlyHit1": null
+        },
+        {
+          "repetition": 2,
+          "fullHit1": 0.5,
+          "sourceHit1": 1,
+          "fullRecall5": 1,
+          "withinHit1": 0.5,
+          "tieExpectedHit1": 0.5,
+          "topicOnlyHit1": null
+        },
+        {
+          "repetition": 3,
+          "fullHit1": 0.5,
+          "sourceHit1": 1,
+          "fullRecall5": 1,
+          "withinHit1": 0.5,
+          "tieExpectedHit1": 0.5,
+          "topicOnlyHit1": null
+        }
+      ],
+      "searchMs": {
+        "n": 36,
+        "median": 0.0057495000000074015,
+        "min": 0.0050420000000030996,
+        "max": 0.01500000000001478
+      }
+    },
+    {
+      "arm": "source-text",
+      "kind": "topic",
+      "uniqueQuestions": 6,
+      "repetitions": [
+        {
+          "repetition": 1,
+          "fullHit1": 1,
+          "sourceHit1": 1,
+          "fullRecall5": 1,
+          "withinHit1": 1,
+          "tieExpectedHit1": 1,
+          "topicOnlyHit1": null
+        },
+        {
+          "repetition": 2,
+          "fullHit1": 1,
+          "sourceHit1": 1,
+          "fullRecall5": 1,
+          "withinHit1": 1,
+          "tieExpectedHit1": 1,
+          "topicOnlyHit1": null
+        },
+        {
+          "repetition": 3,
+          "fullHit1": 1,
+          "sourceHit1": 1,
+          "fullRecall5": 1,
+          "withinHit1": 1,
+          "tieExpectedHit1": 1,
+          "topicOnlyHit1": null
+        }
+      ],
+      "searchMs": {
+        "n": 18,
+        "median": 0.004791499999996063,
+        "min": 0.004208000000005541,
+        "max": 0.009540999999984479
+      }
+    },
+    {
+      "arm": "ocr",
+      "kind": "conjunction",
+      "uniqueQuestions": 24,
+      "repetitions": [
+        {
+          "repetition": 1,
+          "fullHit1": 0.25,
+          "sourceHit1": 1,
+          "fullRecall5": 1,
+          "withinHit1": 0.25,
+          "tieExpectedHit1": 0.25,
+          "topicOnlyHit1": null
+        },
+        {
+          "repetition": 2,
+          "fullHit1": 0.25,
+          "sourceHit1": 1,
+          "fullRecall5": 1,
+          "withinHit1": 0.25,
+          "tieExpectedHit1": 0.25,
+          "topicOnlyHit1": null
+        },
+        {
+          "repetition": 3,
+          "fullHit1": 0.25,
+          "sourceHit1": 1,
+          "fullRecall5": 1,
+          "withinHit1": 0.25,
+          "tieExpectedHit1": 0.25,
+          "topicOnlyHit1": null
+        }
+      ],
+      "searchMs": {
+        "n": 72,
+        "median": 0.0027500000000060254,
+        "min": 0.002082999999998947,
+        "max": 0.015999999999991132
+      }
+    },
+    {
+      "arm": "ocr",
+      "kind": "color",
+      "uniqueQuestions": 12,
+      "repetitions": [
+        {
+          "repetition": 1,
+          "fullHit1": 0.5,
+          "sourceHit1": 1,
+          "fullRecall5": 1,
+          "withinHit1": 0.5,
+          "tieExpectedHit1": 0.5,
+          "topicOnlyHit1": null
+        },
+        {
+          "repetition": 2,
+          "fullHit1": 0.5,
+          "sourceHit1": 1,
+          "fullRecall5": 1,
+          "withinHit1": 0.5,
+          "tieExpectedHit1": 0.5,
+          "topicOnlyHit1": null
+        },
+        {
+          "repetition": 3,
+          "fullHit1": 0.5,
+          "sourceHit1": 1,
+          "fullRecall5": 1,
+          "withinHit1": 0.5,
+          "tieExpectedHit1": 0.5,
+          "topicOnlyHit1": null
+        }
+      ],
+      "searchMs": {
+        "n": 36,
+        "median": 0.0022084999999947286,
+        "min": 0.0018330000000048585,
+        "max": 0.008000000000009777
+      }
+    },
+    {
+      "arm": "ocr",
+      "kind": "layout",
+      "uniqueQuestions": 12,
+      "repetitions": [
+        {
+          "repetition": 1,
+          "fullHit1": 0.5,
+          "sourceHit1": 1,
+          "fullRecall5": 1,
+          "withinHit1": 0.5,
+          "tieExpectedHit1": 0.5,
+          "topicOnlyHit1": null
+        },
+        {
+          "repetition": 2,
+          "fullHit1": 0.5,
+          "sourceHit1": 1,
+          "fullRecall5": 1,
+          "withinHit1": 0.5,
+          "tieExpectedHit1": 0.5,
+          "topicOnlyHit1": null
+        },
+        {
+          "repetition": 3,
+          "fullHit1": 0.5,
+          "sourceHit1": 1,
+          "fullRecall5": 1,
+          "withinHit1": 0.5,
+          "tieExpectedHit1": 0.5,
+          "topicOnlyHit1": null
+        }
+      ],
+      "searchMs": {
+        "n": 36,
+        "median": 0.002583499999985861,
+        "min": 0.002082999999998947,
+        "max": 0.0058339999999930114
+      }
+    },
+    {
+      "arm": "ocr",
+      "kind": "topic",
+      "uniqueQuestions": 6,
+      "repetitions": [
+        {
+          "repetition": 1,
+          "fullHit1": 1,
+          "sourceHit1": 1,
+          "fullRecall5": 1,
+          "withinHit1": 1,
+          "tieExpectedHit1": 1,
+          "topicOnlyHit1": null
+        },
+        {
+          "repetition": 2,
+          "fullHit1": 1,
+          "sourceHit1": 1,
+          "fullRecall5": 1,
+          "withinHit1": 1,
+          "tieExpectedHit1": 1,
+          "topicOnlyHit1": null
+        },
+        {
+          "repetition": 3,
+          "fullHit1": 1,
+          "sourceHit1": 1,
+          "fullRecall5": 1,
+          "withinHit1": 1,
+          "tieExpectedHit1": 1,
+          "topicOnlyHit1": null
+        }
+      ],
+      "searchMs": {
+        "n": 18,
+        "median": 0.002041999999988775,
+        "min": 0.0016660000000001673,
+        "max": 0.00333299999999781
+      }
+    },
+    {
+      "arm": "clip",
+      "kind": "conjunction",
+      "uniqueQuestions": 24,
+      "repetitions": [
+        {
+          "repetition": 1,
+          "fullHit1": 0.4583333333333333,
+          "sourceHit1": 0.75,
+          "fullRecall5": 0.8333333333333334,
+          "withinHit1": 0.5416666666666666,
+          "tieExpectedHit1": 0.5416666666666666,
+          "topicOnlyHit1": 0.25
+        },
+        {
+          "repetition": 2,
+          "fullHit1": 0.4583333333333333,
+          "sourceHit1": 0.75,
+          "fullRecall5": 0.8333333333333334,
+          "withinHit1": 0.5416666666666666,
+          "tieExpectedHit1": 0.5416666666666666,
+          "topicOnlyHit1": 0.25
+        },
+        {
+          "repetition": 3,
+          "fullHit1": 0.4583333333333333,
+          "sourceHit1": 0.75,
+          "fullRecall5": 0.8333333333333334,
+          "withinHit1": 0.5416666666666666,
+          "tieExpectedHit1": 0.5416666666666666,
+          "topicOnlyHit1": 0.25
+        }
+      ],
+      "searchMs": {
+        "n": 72,
+        "median": 0.07195799999999508,
+        "min": 0.06799999999998363,
+        "max": 0.428291999999999
+      }
+    },
+    {
+      "arm": "clip",
+      "kind": "color",
+      "uniqueQuestions": 12,
+      "repetitions": [
+        {
+          "repetition": 1,
+          "fullHit1": 0.9166666666666666,
+          "sourceHit1": 1,
+          "fullRecall5": 0.875,
+          "withinHit1": 0.9166666666666666,
+          "tieExpectedHit1": 0.9166666666666666,
+          "topicOnlyHit1": null
+        },
+        {
+          "repetition": 2,
+          "fullHit1": 0.9166666666666666,
+          "sourceHit1": 1,
+          "fullRecall5": 0.875,
+          "withinHit1": 0.9166666666666666,
+          "tieExpectedHit1": 0.9166666666666666,
+          "topicOnlyHit1": null
+        },
+        {
+          "repetition": 3,
+          "fullHit1": 0.9166666666666666,
+          "sourceHit1": 1,
+          "fullRecall5": 0.875,
+          "withinHit1": 0.9166666666666666,
+          "tieExpectedHit1": 0.9166666666666666,
+          "topicOnlyHit1": null
+        }
+      ],
+      "searchMs": {
+        "n": 36,
+        "median": 0.07127050000001134,
+        "min": 0.06820799999999849,
+        "max": 0.09254200000000878
+      }
+    },
+    {
+      "arm": "clip",
+      "kind": "layout",
+      "uniqueQuestions": 12,
+      "repetitions": [
+        {
+          "repetition": 1,
+          "fullHit1": 0.25,
+          "sourceHit1": 0.4166666666666667,
+          "fullRecall5": 0.7916666666666666,
+          "withinHit1": 0.5833333333333334,
+          "tieExpectedHit1": 0.5833333333333334,
+          "topicOnlyHit1": null
+        },
+        {
+          "repetition": 2,
+          "fullHit1": 0.25,
+          "sourceHit1": 0.4166666666666667,
+          "fullRecall5": 0.7916666666666666,
+          "withinHit1": 0.5833333333333334,
+          "tieExpectedHit1": 0.5833333333333334,
+          "topicOnlyHit1": null
+        },
+        {
+          "repetition": 3,
+          "fullHit1": 0.25,
+          "sourceHit1": 0.4166666666666667,
+          "fullRecall5": 0.7916666666666666,
+          "withinHit1": 0.5833333333333334,
+          "tieExpectedHit1": 0.5833333333333334,
+          "topicOnlyHit1": null
+        }
+      ],
+      "searchMs": {
+        "n": 36,
+        "median": 0.07212549999999851,
+        "min": 0.067875000000015,
+        "max": 0.32945900000001416
+      }
+    },
+    {
+      "arm": "clip",
+      "kind": "topic",
+      "uniqueQuestions": 6,
+      "repetitions": [
+        {
+          "repetition": 1,
+          "fullHit1": 1,
+          "sourceHit1": 1,
+          "fullRecall5": 0.7916666666666666,
+          "withinHit1": 1,
+          "tieExpectedHit1": 1,
+          "topicOnlyHit1": null
+        },
+        {
+          "repetition": 2,
+          "fullHit1": 1,
+          "sourceHit1": 1,
+          "fullRecall5": 0.7916666666666666,
+          "withinHit1": 1,
+          "tieExpectedHit1": 1,
+          "topicOnlyHit1": null
+        },
+        {
+          "repetition": 3,
+          "fullHit1": 1,
+          "sourceHit1": 1,
+          "fullRecall5": 0.7916666666666666,
+          "withinHit1": 1,
+          "tieExpectedHit1": 1,
+          "topicOnlyHit1": null
+        }
+      ],
+      "searchMs": {
+        "n": 18,
+        "median": 0.07106249999999648,
+        "min": 0.06808399999999892,
+        "max": 0.07987500000001546
+      }
+    },
+    {
+      "arm": "visible-text-control",
+      "kind": "conjunction",
+      "uniqueQuestions": 24,
+      "repetitions": [
+        {
+          "repetition": 1,
+          "fullHit1": 0.25,
+          "sourceHit1": 1,
+          "fullRecall5": 1,
+          "withinHit1": 0.25,
+          "tieExpectedHit1": 0.25,
+          "topicOnlyHit1": null
+        },
+        {
+          "repetition": 2,
+          "fullHit1": 0.25,
+          "sourceHit1": 1,
+          "fullRecall5": 1,
+          "withinHit1": 0.25,
+          "tieExpectedHit1": 0.25,
+          "topicOnlyHit1": null
+        },
+        {
+          "repetition": 3,
+          "fullHit1": 0.25,
+          "sourceHit1": 1,
+          "fullRecall5": 1,
+          "withinHit1": 0.25,
+          "tieExpectedHit1": 0.25,
+          "topicOnlyHit1": null
+        }
+      ],
+      "searchMs": {
+        "n": 72,
+        "median": 0.0027500000000060254,
+        "min": 0.002124999999978172,
+        "max": 0.011375000000015234
+      }
+    },
+    {
+      "arm": "visible-text-control",
+      "kind": "color",
+      "uniqueQuestions": 12,
+      "repetitions": [
+        {
+          "repetition": 1,
+          "fullHit1": 0.5,
+          "sourceHit1": 1,
+          "fullRecall5": 1,
+          "withinHit1": 0.5,
+          "tieExpectedHit1": 0.5,
+          "topicOnlyHit1": null
+        },
+        {
+          "repetition": 2,
+          "fullHit1": 0.5,
+          "sourceHit1": 1,
+          "fullRecall5": 1,
+          "withinHit1": 0.5,
+          "tieExpectedHit1": 0.5,
+          "topicOnlyHit1": null
+        },
+        {
+          "repetition": 3,
+          "fullHit1": 0.5,
+          "sourceHit1": 1,
+          "fullRecall5": 1,
+          "withinHit1": 0.5,
+          "tieExpectedHit1": 0.5,
+          "topicOnlyHit1": null
+        }
+      ],
+      "searchMs": {
+        "n": 36,
+        "median": 0.002209000000007677,
+        "min": 0.0018340000000023338,
+        "max": 0.009624999999999773
+      }
+    },
+    {
+      "arm": "visible-text-control",
+      "kind": "layout",
+      "uniqueQuestions": 12,
+      "repetitions": [
+        {
+          "repetition": 1,
+          "fullHit1": 0.5,
+          "sourceHit1": 1,
+          "fullRecall5": 1,
+          "withinHit1": 0.5,
+          "tieExpectedHit1": 0.5,
+          "topicOnlyHit1": null
+        },
+        {
+          "repetition": 2,
+          "fullHit1": 0.5,
+          "sourceHit1": 1,
+          "fullRecall5": 1,
+          "withinHit1": 0.5,
+          "tieExpectedHit1": 0.5,
+          "topicOnlyHit1": null
+        },
+        {
+          "repetition": 3,
+          "fullHit1": 0.5,
+          "sourceHit1": 1,
+          "fullRecall5": 1,
+          "withinHit1": 0.5,
+          "tieExpectedHit1": 0.5,
+          "topicOnlyHit1": null
+        }
+      ],
+      "searchMs": {
+        "n": 36,
+        "median": 0.0026250000000089813,
+        "min": 0.002082999999998947,
+        "max": 0.006917000000015605
+      }
+    },
+    {
+      "arm": "visible-text-control",
+      "kind": "topic",
+      "uniqueQuestions": 6,
+      "repetitions": [
+        {
+          "repetition": 1,
+          "fullHit1": 1,
+          "sourceHit1": 1,
+          "fullRecall5": 1,
+          "withinHit1": 1,
+          "tieExpectedHit1": 1,
+          "topicOnlyHit1": null
+        },
+        {
+          "repetition": 2,
+          "fullHit1": 1,
+          "sourceHit1": 1,
+          "fullRecall5": 1,
+          "withinHit1": 1,
+          "tieExpectedHit1": 1,
+          "topicOnlyHit1": null
+        },
+        {
+          "repetition": 3,
+          "fullHit1": 1,
+          "sourceHit1": 1,
+          "fullRecall5": 1,
+          "withinHit1": 1,
+          "tieExpectedHit1": 1,
+          "topicOnlyHit1": null
+        }
+      ],
+      "searchMs": {
+        "n": 18,
+        "median": 0.002104500000001508,
+        "min": 0.0018749999999840838,
+        "max": 0.003375000000005457
+      }
+    }
+  ],
+  "legacyDiagnostics": [
+    {
+      "arm": "text",
+      "category": "literal",
+      "uniqueQuestions": 24,
+      "deterministicHit1": 0.5,
+      "tieExpectedHit1": 0.4791666666666667,
+      "sourceFamilyHit1": 0.9583333333333334
+    },
+    {
+      "arm": "ocr",
+      "category": "literal",
+      "uniqueQuestions": 24,
+      "deterministicHit1": 1,
+      "tieExpectedHit1": 1,
+      "sourceFamilyHit1": 1
+    },
+    {
+      "arm": "clip",
+      "category": "literal",
+      "uniqueQuestions": 24,
+      "deterministicHit1": 0.4166666666666667,
+      "tieExpectedHit1": 0.4166666666666667,
+      "sourceFamilyHit1": 0.5416666666666666
+    },
+    {
+      "arm": "text",
+      "category": "layout",
+      "uniqueQuestions": 12,
+      "deterministicHit1": 0,
+      "tieExpectedHit1": 0.5,
+      "sourceFamilyHit1": 1
+    },
+    {
+      "arm": "ocr",
+      "category": "layout",
+      "uniqueQuestions": 12,
+      "deterministicHit1": 1,
+      "tieExpectedHit1": 1,
+      "sourceFamilyHit1": 1
+    },
+    {
+      "arm": "clip",
+      "category": "layout",
+      "uniqueQuestions": 12,
+      "deterministicHit1": 0.5833333333333334,
+      "tieExpectedHit1": 0.5833333333333334,
+      "sourceFamilyHit1": 0.5833333333333334
+    }
+  ],
+  "timing": {
+    "ocrMs": 1216.5489196777344,
+    "clipLoadMs": 194.49962500000004,
+    "clipTotalMs": 3209.5927090000005,
+    "peakRssKiB": 831440,
+    "imageMs": {
+      "n": 72,
+      "median": 30.76608350000015,
+      "min": 28.637042000000292,
+      "max": 42.184875000000034
+    },
+    "queryMs": {
+      "n": 162,
+      "median": 4.145270999999866,
+      "min": 2.163250000000062,
+      "max": 5.678542000000107
+    }
+  }
+}

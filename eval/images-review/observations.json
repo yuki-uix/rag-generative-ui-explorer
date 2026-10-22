@@ -1,0 +1,15 @@
+{
+  "version": "image-control-ledger-1",
+  "sealedAt": "2026-10-22T06:31:38.586244Z",
+  "freezeSha256": "113d217dc5cda0a8f0e14f389cd8249ad81d3c09192aaf769b1ee4415310ff63",
+  "files": {
+    "artifacts/encoding.json": "80c8a172236fbc0dc7f4cfbfa6640bdc536db9399cc85da6ab03a4f041e32999",
+    "artifacts/ocr.json": "eae4f21a34d94d7d5c3d5c9bd32d81516955829c9c62aa8a47be5488f9175fa4",
+    "artifacts/pass-1.f32": "fa292544b73805ab83d204e6e84f8950ca974b8fe7e10bf1437c991f80211c49",
+    "artifacts/pass-2.f32": "fa292544b73805ab83d204e6e84f8950ca974b8fe7e10bf1437c991f80211c49",
+    "artifacts/pass-3.f32": "fa292544b73805ab83d204e6e84f8950ca974b8fe7e10bf1437c991f80211c49",
+    "results/2026-10-22/records.jsonl": "b133ac7deabe6446a68baf806dfc95c25005b79c0b383c4132369c73e2753195",
+    "results/2026-10-22/summary.json": "ad37cf50a54f817656aaee274d2c7c2462d09e172b5d00208268940d7a586ac7",
+    "results/2026-10-22/gold-audit.json": "1b6622b91b409830779c06bb41473088cbff2753835e844b24ad2f070dd72fa0"
+  }
+}
