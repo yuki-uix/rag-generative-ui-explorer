@@ -62,6 +62,7 @@ jobs:
       # Post-review factorial controls and gold/tie audit. Offline, separate freeze.
       - run: pnpm images:review --out ../../eval/images-review/runs/ci
       - run: pnpm web:images:check
+      - run: pnpm web:planner-schema:check
       - run: pnpm web:review:build
       # Retrieval metrics are mechanical while no model sits in the pipeline, so
       # the whole 60-question set scores here for free. This is not a threshold

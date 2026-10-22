@@ -6,6 +6,7 @@ import {
   SiteFooter,
   SiteNav,
   appHref,
+  LIVE_CARDS_ENDPOINT,
 } from '../components/review/site-nav';
 import type { ImageReviewData } from '../lib/image-review-types';
 import '../app/globals.css';
@@ -22,13 +23,14 @@ const ImageReview = lazy(async () => {
 // The existing gallery resolves build-time evidence and gates fixtures using
 // contracts. It does not import the corpus reader or the generation runtime.
 const CardGalleryPage = lazy(() => import('../app/cards/page'));
+const LiveAskPage = lazy(() => import('../app/ask/page'));
 
 type PreviewRoute = 'home' | 'cards' | 'images' | 'ask';
 const titles: Record<PreviewRoute, string> = {
   home: 'RAG Explorer · 项目预览',
   cards: '知识卡 · RAG Explorer',
   images: '图片检索实验 · RAG Explorer',
-  ask: '问答状态 · RAG Explorer',
+  ask: '实时知识卡 · RAG Explorer',
 };
 function currentRoute(): PreviewRoute {
   const hash = window.location.hash.slice(1);
@@ -56,13 +58,12 @@ function AskStatus() {
       </p>
       <h2>已经实现了什么？</h2>
       <p>
-        服务器接收问题后，使用 BM25
-        检索语料，将段落交给真实模型，再校验引用并流式返回 Markdown
-        回答。知识卡页面目前展示固定示例，动态选卡的整体体验仍待整合与评估。
+        服务器接收问题后，使用 BM25 检索语料，将本次段落交给真实模型生成知识卡，
+        校验结构与引用后展示。当前预览尚未配置实时服务地址。
       </p>
       <p>
         <a
-          href={`${PROJECT_URL}/blob/codex/image-retrieval/apps/web/app/api/ask/route.ts`}
+          href={`${PROJECT_URL}/blob/codex/image-retrieval/apps/web/app/api/cards/route.ts`}
           target="_blank"
           rel="noreferrer"
         >
@@ -113,6 +114,7 @@ function Preview() {
   }, [route]);
 
   if (route === 'home') return <Home />;
+  if (route === 'ask' && LIVE_CARDS_ENDPOINT) return <Suspense fallback={<LoadingPage />}><LiveAskPage endpoint={LIVE_CARDS_ENDPOINT} /></Suspense>;
   if (route === 'images')
     return (
       <Suspense fallback={<LoadingPage />}>

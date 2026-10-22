@@ -1,0 +1,319 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "properties": {
+    "cards": {
+      "maxItems": 4,
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/KnowledgeCard"
+      }
+    },
+    "incomplete": {
+      "type": "boolean"
+    },
+    "incompleteReason": {
+      "enum": [
+        "missing",
+        "conflicting"
+      ]
+    }
+  },
+  "required": [
+    "cards",
+    "incomplete"
+  ],
+  "additionalProperties": false,
+  "$defs": {
+    "KnowledgeCard": {
+      "oneOf": [
+        {
+          "$ref": "#/$defs/DefinitionCard"
+        },
+        {
+          "$ref": "#/$defs/ComparisonCard"
+        },
+        {
+          "$ref": "#/$defs/MechanismCard"
+        },
+        {
+          "$ref": "#/$defs/ProcedureCard"
+        },
+        {
+          "$ref": "#/$defs/EvidenceCard"
+        }
+      ],
+      "title": "Knowledge card"
+    },
+    "DefinitionCard": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "$ref": "#/$defs/CardId"
+        },
+        "type": {
+          "type": "string",
+          "const": "definition"
+        },
+        "title": {
+          "type": "string",
+          "minLength": 1
+        },
+        "definition": {
+          "$ref": "#/$defs/GroundedText"
+        },
+        "keyPoints": {
+          "minItems": 1,
+          "maxItems": 5,
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/GroundedText"
+          }
+        }
+      },
+      "required": [
+        "id",
+        "type",
+        "title",
+        "definition",
+        "keyPoints"
+      ],
+      "additionalProperties": false,
+      "title": "Definition card"
+    },
+    "CardId": {
+      "type": "string",
+      "minLength": 1
+    },
+    "GroundedText": {
+      "type": "object",
+      "properties": {
+        "text": {
+          "type": "string",
+          "minLength": 1
+        },
+        "mode": {
+          "$ref": "#/$defs/GroundingMode"
+        },
+        "evidenceIds": {
+          "minItems": 1,
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/EvidenceId"
+          },
+          "uniqueItems": true
+        }
+      },
+      "required": [
+        "text",
+        "mode",
+        "evidenceIds"
+      ],
+      "additionalProperties": false,
+      "title": "Grounded text",
+      "description": "A factual field carrying its grounding mode and supporting evidence IDs."
+    },
+    "GroundingMode": {
+      "type": "string",
+      "enum": [
+        "extractive",
+        "summarized",
+        "inferred"
+      ]
+    },
+    "EvidenceId": {
+      "type": "string",
+      "minLength": 1,
+      "pattern": "^[a-z0-9][a-z0-9._/-]*#[a-z0-9][a-z0-9-]*#\\d+-[0-9a-f]{8}$",
+      "description": "Stable, addressable identifier for a corpus chunk."
+    },
+    "ComparisonCard": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "$ref": "#/$defs/CardId"
+        },
+        "type": {
+          "type": "string",
+          "const": "comparison"
+        },
+        "title": {
+          "type": "string",
+          "minLength": 1
+        },
+        "entities": {
+          "minItems": 2,
+          "maxItems": 4,
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "rows": {
+          "minItems": 1,
+          "maxItems": 8,
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/ComparisonRow"
+          }
+        }
+      },
+      "required": [
+        "id",
+        "type",
+        "title",
+        "entities",
+        "rows"
+      ],
+      "additionalProperties": false,
+      "title": "Comparison card"
+    },
+    "ComparisonRow": {
+      "type": "object",
+      "properties": {
+        "dimension": {
+          "type": "string",
+          "minLength": 1
+        },
+        "values": {
+          "minItems": 2,
+          "maxItems": 4,
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/GroundedText"
+          }
+        }
+      },
+      "required": [
+        "dimension",
+        "values"
+      ],
+      "additionalProperties": false
+    },
+    "MechanismCard": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "$ref": "#/$defs/CardId"
+        },
+        "type": {
+          "type": "string",
+          "const": "mechanism"
+        },
+        "title": {
+          "type": "string",
+          "minLength": 1
+        },
+        "stages": {
+          "minItems": 2,
+          "maxItems": 8,
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "label": {
+                "type": "string",
+                "minLength": 1
+              },
+              "description": {
+                "$ref": "#/$defs/GroundedText"
+              }
+            },
+            "required": [
+              "label",
+              "description"
+            ],
+            "additionalProperties": false
+          }
+        }
+      },
+      "required": [
+        "id",
+        "type",
+        "title",
+        "stages"
+      ],
+      "additionalProperties": false,
+      "title": "Mechanism card"
+    },
+    "ProcedureCard": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "$ref": "#/$defs/CardId"
+        },
+        "type": {
+          "type": "string",
+          "const": "procedure"
+        },
+        "title": {
+          "type": "string",
+          "minLength": 1
+        },
+        "steps": {
+          "minItems": 1,
+          "maxItems": 10,
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "title": {
+                "type": "string",
+                "minLength": 1
+              },
+              "instruction": {
+                "$ref": "#/$defs/GroundedText"
+              }
+            },
+            "required": [
+              "title",
+              "instruction"
+            ],
+            "additionalProperties": false
+          }
+        }
+      },
+      "required": [
+        "id",
+        "type",
+        "title",
+        "steps"
+      ],
+      "additionalProperties": false,
+      "title": "Procedure card"
+    },
+    "EvidenceCard": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "$ref": "#/$defs/CardId"
+        },
+        "type": {
+          "type": "string",
+          "const": "evidence"
+        },
+        "title": {
+          "type": "string",
+          "minLength": 1
+        },
+        "evidenceIds": {
+          "minItems": 1,
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/EvidenceId"
+          },
+          "uniqueItems": true
+        }
+      },
+      "required": [
+        "id",
+        "type",
+        "title",
+        "evidenceIds"
+      ],
+      "additionalProperties": false,
+      "title": "Evidence card"
+    }
+  }
+}

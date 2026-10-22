@@ -3,7 +3,7 @@ import {
   SiteNav,
   SiteFooter,
   PROJECT_URL,
-  STATIC_REVIEW,
+  LIVE_ASK_AVAILABLE,
   appHref,
 } from '@/components/review/site-nav';
 
@@ -23,14 +23,15 @@ export default function Home() {
               <em>证据，看得见。</em>
             </h1>
             <p>
-              这个项目探索如何把检索到的技术知识，呈现为能追溯来源的知识卡。先打开一张卡，点击引用查看原文；再去图片实验，核对三种检索方法的实际结果。
+              提出一个关于 RAG 或 Generative UI
+              的问题。系统检索真实语料，再由模型选择并生成知识卡；点击卡片引用，就能看到本次回答依据的原文。
             </p>
             <div className="delivery-actions">
               <a
                 className="delivery-button delivery-button-dark"
-                href={appHref('/cards')}
+                href={appHref('/ask')}
               >
-                先体验知识卡 <span>→</span>
+                提问并生成知识卡 <span>→</span>
               </a>
               <a
                 className="delivery-text-link"
@@ -57,8 +58,25 @@ export default function Home() {
           </div>
         </section>
         <section className="delivery-home-paths" aria-label="评审入口">
+          <a className="delivery-path-card" href={appHref('/ask')}>
+            <span className="delivery-card-index">01 / 直接提问</span>
+            <h2>
+              {LIVE_ASK_AVAILABLE ? '向语料提问' : '实时服务状态'}{' '}
+              <span>↗</span>
+            </h2>
+            <p>
+              {LIVE_ASK_AVAILABLE
+                ? '输入自己的问题，查看本次检索生成的动态知识卡、来源原文、模型和耗时。'
+                : '查看实时知识卡链路与运行方式；此预览尚未连接在线服务。'}
+            </p>
+            <span className="delivery-tag">
+              {LIVE_ASK_AVAILABLE
+                ? '真实检索 · 动态知识卡'
+                : '等待实时服务连接'}
+            </span>
+          </a>
           <a className="delivery-path-card" href={appHref('/cards')}>
-            <span className="delivery-card-index">01 / 先体验</span>
+            <span className="delivery-card-index">02 / 组件示例</span>
             <h2>
               知识如何呈现？ <span>↗</span>
             </h2>
@@ -71,7 +89,7 @@ export default function Home() {
             className="delivery-path-card"
             href={appHref('/experiments/images')}
           >
-            <span className="delivery-card-index">02 / 再看实验</span>
+            <span className="delivery-card-index">03 / 图片实验</span>
             <h2>
               图片找对了吗？ <span>↗</span>
             </h2>
@@ -81,22 +99,6 @@ export default function Home() {
             </p>
             <span className="delivery-tag">已实跑 · 浏览保存结果</span>
           </a>
-          <a className="delivery-path-card" href={appHref('/ask')}>
-            <span className="delivery-card-index">03 / 问答链路</span>
-            <h2>
-              {STATIC_REVIEW ? '问答做到哪了？' : '向语料提问'} <span>↗</span>
-            </h2>
-            <p>
-              {STATIC_REVIEW
-                ? '查看已实现的服务器问答链路与运行方式。当前 GitHub 静态预览提供功能状态说明，实时问答需要另行运行服务端。'
-                : '体验文字检索与流式回答，核查实际召回的段落和引用。此入口调用服务器配置的真实模型。'}
-            </p>
-            <span className="delivery-tag">
-              {STATIC_REVIEW
-                ? '服务器代码已实现 · 静态页不含 API'
-                : '在线模型 · Markdown 回答'}
-            </span>
-          </a>
         </section>
         <section className="delivery-home-boundary">
           <div>
@@ -105,13 +107,11 @@ export default function Home() {
           </div>
           <div>
             <p>
-              {STATIC_REVIEW
-                ? '当前网页可体验知识卡与来源展开，可核对图片检索的真实实验结果。服务器端文字检索、流式回答与引用验证已有实现，运行状态和代码在问答入口说明。'
-                : '当前可评审的是检索与引用验证链路、知识卡组件，以及独立的图片检索实验。'}
+              当前可体验真实检索与动态知识卡，点击字段引用查看本次来源；组件示例与图片实验也保留为独立入口。
               网页上的图片排名来自已经保存的真实实验。
             </p>
             <p>
-              动态知识卡的整体体验和用户收益仍待整合与评估；图片实验没有接入
+              结构与引用校验不等于事实已核实，生成的解释仍需核对原文。用户收益有待评估；图片实验没有接入
               LLaVA，也不改动 F5 基线。完成状态以{' '}
               <a href={appHref(`${PROJECT_URL}/issues`)}>GitHub issues</a>{' '}
               和实验记录为准。

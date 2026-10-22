@@ -40,6 +40,7 @@ jobs:
           REVIEW_BASE_PATH: /rag-generative-ui-explorer/
           VITE_REVIEW_BUILD_SHA: ${{ github.sha }}
           VITE_REVIEW_IS_PR_PREVIEW: ${{ github.ref_name != 'main' }}
+          VITE_LIVE_CARDS_ENDPOINT: ${{ vars.LIVE_CARDS_ENDPOINT }}
       - uses: actions/configure-pages@v5
       - uses: actions/upload-pages-artifact@v4
         with:

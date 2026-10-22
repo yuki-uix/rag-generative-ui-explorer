@@ -6,6 +6,9 @@ The system separates retrieval, card planning, validation, and rendering. The
 language model never writes application code and never queries the database
 directly.
 
+The following is the target architecture; hybrid retrieval and agent follow-ups
+are not the currently deployed web path.
+
 ```text
 User query
    |
@@ -30,11 +33,23 @@ Deterministic React card renderer
    +-> agent interaction -> new query analysis and retrieval
 ```
 
+The current web path is narrower:
+
+```mermaid
+flowchart LR
+  A["已上线网页：问题"] --> B["术语映射 + BM25 Top 8"]
+  B --> C["原生规划器：生成知识卡"]
+  C --> D["严格结构与引用校验"]
+  D --> E["卡片 + 本次来源抽屉"]
+```
+
 ## Runtime boundary and future evolution
 
-The current `/api/ask` flow is intentionally synchronous and request-scoped.
-It can stream a validated answer, but it does not own a durable task, a worker
-lease, or a cross-device session. That is an MVP boundary, not an assumption
+The current `/api/cards` flow is synchronous and request-scoped.
+It returns knowledge cards only after output and citation validation. It does
+not own a durable task, a worker lease, or a cross-device session. The previous
+public `/api/ask` endpoint returns 410; the unchanged Markdown baseline remains
+available through its CLI and evaluation package. That is an MVP boundary, not an assumption
 that long-running Agent work is safe to keep inside a request handler.
 
 If the product later needs recoverable runs, the API and worker should be
@@ -213,12 +228,15 @@ hide poor retrieval.
 ## Generation
 
 The planner receives only the current question, approved card schemas, and the
-reranked evidence set. It must produce the smallest useful card set and may
+retrieved evidence set (BM25 Top 8 in the current web runtime). It must
+produce the smallest useful card set and may
 return no cards when evidence is insufficient.
 
-Generation is attempted once. One constrained repair attempt is allowed for
-syntax or schema failures; evidence-policy failures are not silently repaired by
-inventing new citations.
+The live web runtime makes one generation attempt and performs no output repair.
+Any syntax, schema, citation or extractive-text failure rejects the response; it
+does not render partially accepted cards or invent replacement citations. See
+[web delivery](WEB-REVIEW.md) for the web-only generation version and deadlines.
+This product policy does not change the separate F5 evaluation configuration.
 
 ## Rendering
 
@@ -276,10 +294,13 @@ repeat.
 
 The later [review preview](WEB-REVIEW.md) adds a separate GitHub Pages target
 for the overview, fixed knowledge-card examples and saved image-experiment
-observations. It reuses app components but provides no `/api/ask` or server
-runtime. Its branch/commit is shown explicitly, so reviewers can open unmerged
-work without mistaking it for the deployed online baseline. Cloudflare remains
-the application's runtime target described here.
+observations. Its `#ask` page reuses the real questioning component and calls
+the Cloudflare `/api/cards` URL configured by `VITE_LIVE_CARDS_ENDPOINT`; Pages
+itself hosts no server or model credentials. Its branch/commit is shown
+explicitly so reviewers can identify unmerged work. Cloudflare remains the
+application's runtime target described here. [Web delivery](WEB-REVIEW.md) records
+the live-only term bridge, handle schema and generation settings separately
+from F5.
 
 Every root script that delegates to a package says `run`, and
 `workspace:check` fails when one does not. `pnpm --filter <pkg> deploy` does not
@@ -300,7 +321,7 @@ where a person actually stands.
 The production key is set with `pnpm web:secret DEEPSEEK_API_KEY`, which prompts
 for the value rather than taking it as an argument, keeping it out of shell
 history. `pnpm web:secret:list` shows which secrets exist without showing any
-value. Until the key is set, `/api/ask` answers 503 saying so — a configured
+value. Until the key is set, `/api/cards` answers 503 saying so — a configured
 absence rather than an opaque failure.
 
 `web:deploy` cannot run in CI — it would publish on every pull request and needs

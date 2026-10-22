@@ -7,16 +7,22 @@ cards for the current question.
 
 ## Review the current work
 
-**[Open the project preview](https://yuki-uix.github.io/rag-generative-ui-explorer/)**
-— project overview, interactive knowledge-card examples with source drawers, and
-the image-retrieval experiment with original images, gold review and real rankings.
-The preview is published from the review branch and links to its exact commit;
-it does not imply the PR has been merged or the MVP is complete.
+**[Ask a question and generate knowledge cards](https://yuki-uix.github.io/rag-generative-ui-explorer/#ask)**
+— enter a question about RAG or Generative UI, retrieve real corpus excerpts,
+then generate and validate a fresh set of cards. Click a card's source marker to
+inspect the original passage and its canonical link. The page shows the actual
+retrieval query, model, tokens and elapsed time. It never substitutes a fixed
+example when generation fails or the corpus has no evidence.
 
-The GitHub Pages preview runs entirely in the browser. It does not provide the
-live `/api/ask` service; the online Markdown baseline remains a separate
-Cloudflare Worker deployment. See [web delivery and review](docs/WEB-REVIEW.md)
-for scope, local commands and deployment details.
+GitHub Pages serves the client; the configured Cloudflare Worker performs
+retrieval and paid model calls while retaining the API key server-side.
+[Fixed component examples](https://yuki-uix.github.io/rag-generative-ui-explorer/#cards)
+and the [image experiment](https://yuki-uix.github.io/rag-generative-ui-explorer/#images)
+remain separate. The footer links to the deployed client commit; this branch
+preview does not imply the PR is merged or the MVP evaluation is complete.
+See [web delivery and review](docs/WEB-REVIEW.md) for deployment, limits and
+recorded live checks. F5's corpus, prompts, profiles and evaluation artifacts are
+unchanged.
 
 ## Product hypothesis
 
@@ -30,7 +36,8 @@ arbitrary executable UI code in the MVP.
 
 ## MVP
 
-The first release supports:
+The first release targets the following acceptance scope; this is not a list
+of features all currently deployed:
 
 - A curated, versioned knowledge corpus covering RAG and Generative UI.
 - Hybrid retrieval and reranking over that corpus.
@@ -72,7 +79,9 @@ contracts and evaluation plan.
 
 The repository includes the contracts, curated corpus, retrieval and Markdown
 baseline, fixed card components, and the native card planner with validation.
-Remaining integration and evaluation work is tracked in GitHub issues.
+The web application connects real BM25 retrieval to the native card planner,
+validation gates and source drawers. Remaining integration and evaluation work
+is tracked in GitHub issues.
 
 Work is tracked as GitHub issues grouped by milestone (M0–M4). M5–M8 are a
 future runtime evolution path, not part of the current MVP acceptance criteria.

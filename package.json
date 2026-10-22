@@ -44,7 +44,9 @@
     "web:images:build": "pnpm --filter @rgux/web run images:build",
     "web:images:check": "pnpm --filter @rgux/web run images:check",
     "web:review:dev": "pnpm --filter @rgux/web run review:dev",
-    "web:review:build": "pnpm --filter @rgux/web run review:build"
+    "web:review:build": "pnpm --filter @rgux/web run review:build",
+    "web:planner-schema:build": "pnpm --filter @rgux/web run planner-schema:build",
+    "web:planner-schema:check": "pnpm --filter @rgux/web run planner-schema:check"
   },
   "devDependencies": {
     "typescript": "^7.0.2"

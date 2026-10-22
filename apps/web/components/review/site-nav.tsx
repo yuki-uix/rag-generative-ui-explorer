@@ -2,6 +2,11 @@ export const PROJECT_URL =
   'https://github.com/yuki-uix/rag-generative-ui-explorer';
 export const REVIEW_PR_URL = `${PROJECT_URL}/pull/92`;
 export const STATIC_REVIEW = import.meta.env.VITE_REVIEW_STATIC === 'true';
+export const LIVE_CARDS_ENDPOINT = import.meta.env.VITE_LIVE_CARDS_ENDPOINT as
+  | string
+  | undefined;
+export const LIVE_ASK_AVAILABLE =
+  !STATIC_REVIEW || Boolean(LIVE_CARDS_ENDPOINT);
 const PREVIEW_UNMERGED = import.meta.env.VITE_REVIEW_IS_PR_PREVIEW !== 'false';
 const PREVIEW_BUILD_SHA = import.meta.env.VITE_REVIEW_BUILD_SHA as
   | string
@@ -58,22 +63,22 @@ export function SiteNav({
           项目总览
         </a>
         <a
+          href={appHref('/ask')}
+          aria-current={active === 'ask' ? 'page' : undefined}
+        >
+          {LIVE_ASK_AVAILABLE ? '实时提问' : '问答状态'}
+        </a>
+        <a
           href={appHref('/cards')}
           aria-current={active === 'cards' ? 'page' : undefined}
         >
-          知识卡
+          卡片示例
         </a>
         <a
           href={appHref('/experiments/images')}
           aria-current={active === 'images' ? 'page' : undefined}
         >
           图片实验
-        </a>
-        <a
-          href={appHref('/ask')}
-          aria-current={active === 'ask' ? 'page' : undefined}
-        >
-          {STATIC_REVIEW ? '问答状态' : '向语料提问'}
         </a>
         <a href={PROJECT_URL} target="_blank" rel="noreferrer">
           GitHub <span aria-hidden="true">↗</span>
