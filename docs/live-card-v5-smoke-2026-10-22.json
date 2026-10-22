@@ -1,0 +1,470 @@
+{
+  "executedAt": "2026-10-22T10:05:09.201Z",
+  "kind": "deployment-smoke-not-F5-evaluation",
+  "records": [
+    {
+      "question": "稀疏检索是什么？",
+      "httpStatus": 200,
+      "body": {
+        "question": "稀疏检索是什么？",
+        "evidence": [
+          {
+            "id": "rag/sparse-retrieval#body#0-d441a718",
+            "documentId": "rag/sparse-retrieval",
+            "documentTitle": "Sparse retrieval",
+            "text": "Sparse retrieval scores a document by the query terms it literally contains.\nThe representation is a vector over the vocabulary, almost all of whose entries\nare zero — hence \"sparse\" — and matching is a lookup in an inverted index\nrather than a distance computation in a learned space.\n\nBM25 is the scoring function most systems mean when they say \"keyword search\".\nIt is forty years old, has no learned parameters beyond two constants, and\nremains a serious baseline that dense retrievers are still measured against.",
+            "retrievalScore": 7.593398072560796,
+            "metadata": {
+              "author": "yuki-uix",
+              "category": "rag"
+            },
+            "url": "https://github.com/yuki-uix/rag-generative-ui-explorer/blob/37813a283f9f0a2f1adc7daa373e973b3a7a0332/knowledge/rag/sparse-retrieval.md"
+          },
+          {
+            "id": "rag/sparse-retrieval#what-this-means-here#0-179d75b3",
+            "documentId": "rag/sparse-retrieval",
+            "documentTitle": "Sparse retrieval",
+            "section": "What this means here",
+            "text": "Sparse and dense retrieval fail in different directions, which is the whole\nargument for running both and fusing the results rather than choosing one. The\nfusion step has its own note.\n\nFor evaluation, BM25 is worth keeping as a reported arm even after hybrid\nretrieval is in place. If the hybrid system cannot beat BM25 alone on this\ncorpus, that is a finding about the corpus or the embedding model, and it is\nbetter to know it than to assume the more elaborate pipeline is earning its\ncost.",
+            "retrievalScore": 6.195757715601534,
+            "metadata": {
+              "author": "yuki-uix",
+              "category": "rag"
+            },
+            "url": "https://github.com/yuki-uix/rag-generative-ui-explorer/blob/37813a283f9f0a2f1adc7daa373e973b3a7a0332/knowledge/rag/sparse-retrieval.md"
+          },
+          {
+            "id": "rag/dense-retrieval#body#0-9e7f8fbc",
+            "documentId": "rag/dense-retrieval",
+            "documentTitle": "Dense retrieval",
+            "text": "Dense retrieval represents queries and passages as vectors in a learned space\nand retrieves by proximity. Where lexical retrieval asks which documents\ncontain these words, dense retrieval asks which passages mean something close\nto this.",
+            "retrievalScore": 1.8497867843457858,
+            "metadata": {
+              "author": "yuki-uix",
+              "category": "rag"
+            },
+            "url": "https://github.com/yuki-uix/rag-generative-ui-explorer/blob/37813a283f9f0a2f1adc7daa373e973b3a7a0332/knowledge/rag/dense-retrieval.md"
+          },
+          {
+            "id": "rag/advanced-patterns#corrective-retrieval#0-b328aab0",
+            "documentId": "rag/advanced-patterns",
+            "documentTitle": "Advanced RAG patterns",
+            "section": "Corrective retrieval",
+            "text": "Plain RAG uses whatever retrieval returned. Corrective approaches add an\nassessment step: judge the retrieved set, and if it is inadequate, do something\nabout it — re-query, decompose, widen the search, or decline.\n\nThe useful part is the explicit judgement. A pipeline that never evaluates its\nown retrieval cannot distinguish \"retrieval succeeded and the answer is thin\"\nfrom \"retrieval failed and the model improvised\", which is the same distinction\nthe failure-modes note turns on.\n\nThe cost is an extra model call per query, and a threshold that decides when\nretrieval was good enough — a threshold that has to be calibrated, and that\ndrifts when the corpus or the embedding model changes.",
+            "retrievalScore": 1.7717784483697236,
+            "metadata": {
+              "author": "yuki-uix",
+              "category": "rag"
+            },
+            "url": "https://github.com/yuki-uix/rag-generative-ui-explorer/blob/37813a283f9f0a2f1adc7daa373e973b3a7a0332/knowledge/rag/advanced-patterns.md"
+          },
+          {
+            "id": "rag/advanced-patterns#choosing#0-d377e677",
+            "documentId": "rag/advanced-patterns",
+            "documentTitle": "Advanced RAG patterns",
+            "section": "Choosing",
+            "text": "The patterns are not a maturity ladder. Each answers a specific question that\nplain retrieval cannot, and adopting one whose question you do not have buys\nlatency and unpredictability for nothing.\n\nThe order worth trying: make plain retrieval work and measure it; add multi-hop\nif the evaluation set contains questions needing evidence that only a second\nretrieval could locate; add corrective assessment if the failure analysis shows\nthe system answering confidently from inadequate retrieval; consider graph\napproaches only if global questions are actually being asked.",
+            "retrievalScore": 1.7602416219042585,
+            "metadata": {
+              "author": "yuki-uix",
+              "category": "rag"
+            },
+            "url": "https://github.com/yuki-uix/rag-generative-ui-explorer/blob/37813a283f9f0a2f1adc7daa373e973b3a7a0332/knowledge/rag/advanced-patterns.md"
+          },
+          {
+            "id": "rag/query-transformation#what-each-one-can-break#0-054978b8",
+            "documentId": "rag/query-transformation",
+            "documentTitle": "Query rewriting, decomposition, and expansion",
+            "section": "What each one can break",
+            "text": "Every transformation is a place where the user's intent can be lost, and the\nloss is invisible downstream — retrieval returns confident results for the\nrewritten query, and nothing indicates the rewrite was wrong.\n\n**Rewriting** can discard the distinguishing word. \"Retrieval *without*\nreranking\" rewritten to \"retrieval and reranking\" inverts the question.\n\n**Decomposition** can split something that was only meaningful whole, and it\nmultiplies retrieval cost by the number of sub-queries.\n\n**Expansion** dilutes. Adding six synonyms to a three-word query means the\noriginal terms carry a quarter of the weight they did, and a precise query\nbecomes a vague one.\n\nAll three add a model call before retrieval, on the critical path, where it is\nfelt directly in time to first content.",
+            "retrievalScore": 1.7443101327445574,
+            "metadata": {
+              "author": "yuki-uix",
+              "category": "rag"
+            },
+            "url": "https://github.com/yuki-uix/rag-generative-ui-explorer/blob/37813a283f9f0a2f1adc7daa373e973b3a7a0332/knowledge/rag/query-transformation.md"
+          },
+          {
+            "id": "rag/rag-motivation#what-holds-and-what-does-not#0-a9c7bdb7",
+            "documentId": "rag/rag-motivation",
+            "documentTitle": "RAG motivation and core architecture",
+            "section": "What holds and what does not",
+            "text": "**Holds:** external memory removes the retraining requirement for factual\nupdates, and grounding in retrieved text makes citation possible at all.\nNeither is a small thing — without the second, an interface cannot honestly\nshow a source.\n\n**Does not hold automatically:** that retrieval reduces hallucination.\nRetrieval changes what the model has available; it does not compel the model to\nuse it, and it introduces a new failure mode where the model contradicts or\nembellishes a passage it was given. Retrieved-and-ignored and\nretrieved-and-misread are distinct from never-retrieved, and only the last is a\nretrieval problem.\n\n**Has aged:** the specific retriever. Dense-only retrieval was state of the art\nin 2020. Hybrid retrieval with fusion is the current default, for reasons the\nsparse-retrieval and candidate-fusion notes cover.",
+            "retrievalScore": 1.7418551865662,
+            "metadata": {
+              "author": "yuki-uix",
+              "category": "rag"
+            },
+            "url": "https://github.com/yuki-uix/rag-generative-ui-explorer/blob/37813a283f9f0a2f1adc7daa373e973b3a7a0332/knowledge/rag/rag-motivation.md"
+          },
+          {
+            "id": "rag/failure-modes#retrieval-miss#0-caf0500e",
+            "documentId": "rag/failure-modes",
+            "documentTitle": "Failure modes",
+            "section": "Retrieval miss",
+            "text": "The evidence was never retrieved. Nothing downstream can recover it.\n\nDetected by comparing the retrieval set against golden evidence: Recall@K on\nthe evaluation questions. This is the only mode visible without looking at the\nanswer at all, and it is why retrieval is measured on its own.\n\nFixes belong to retrieval: hybrid rather than single-strategy, query rewriting,\na larger candidate set, better chunking.",
+            "retrievalScore": 1.7291791837408395,
+            "metadata": {
+              "author": "yuki-uix",
+              "category": "rag"
+            },
+            "url": "https://github.com/yuki-uix/rag-generative-ui-explorer/blob/37813a283f9f0a2f1adc7daa373e973b3a7a0332/knowledge/rag/failure-modes.md"
+          }
+        ],
+        "provenance": {
+          "corpusVersion": "corpus-3e4863076378",
+          "retrieval": "lexical-bm25",
+          "retrievalQuery": "稀疏检索是什么？\nsparse retrieval",
+          "queryExpansion": "technical-terms-v1",
+          "retrievedCount": 8,
+          "indexedChunkCount": 229,
+          "profileId": "deepseek-v4-pro",
+          "model": "deepseek-v4-pro",
+          "promptVersion": "card-planner-1",
+          "schemaEnforced": false,
+          "thinking": "disabled",
+          "generationVersion": "live-cards-5",
+          "generatedAt": "2026-10-22T10:04:58.128Z",
+          "validation": "schema-and-citation-checks"
+        },
+        "usage": {
+          "inputTokens": 2171,
+          "outputTokens": 549,
+          "cacheCreationInputTokens": 0,
+          "cacheReadInputTokens": 640
+        },
+        "timing": {
+          "retrievalMs": 0.26191700000001106,
+          "generationMs": 5787.875666,
+          "validationMs": 9.589208000000326,
+          "totalMs": 5800.774959
+        },
+        "status": "complete",
+        "cards": [
+          {
+            "id": "sparse-retrieval-definition",
+            "type": "definition",
+            "title": "稀疏检索",
+            "definition": {
+              "text": "根据文档字面包含的查询词来给文档打分。",
+              "mode": "summarized",
+              "evidenceIds": [
+                "rag/sparse-retrieval#body#0-d441a718"
+              ]
+            },
+            "keyPoints": [
+              {
+                "text": "其表示是词汇表上的向量，几乎所有项都是零。",
+                "mode": "summarized",
+                "evidenceIds": [
+                  "rag/sparse-retrieval#body#0-d441a718"
+                ]
+              },
+              {
+                "text": "匹配通过倒排索引进行查找，而不是在学习空间中进行距离计算。",
+                "mode": "summarized",
+                "evidenceIds": [
+                  "rag/sparse-retrieval#body#0-d441a718"
+                ]
+              },
+              {
+                "text": "BM25 是大多数人说的\"关键词搜索\"所指的评分函数。",
+                "mode": "summarized",
+                "evidenceIds": [
+                  "rag/sparse-retrieval#body#0-d441a718"
+                ]
+              }
+            ]
+          },
+          {
+            "id": "sparse-vs-dense",
+            "type": "comparison",
+            "title": "稀疏检索与稠密检索",
+            "entities": [
+              "稀疏检索",
+              "稠密检索"
+            ],
+            "rows": [
+              {
+                "dimension": "提问方式",
+                "values": [
+                  {
+                    "text": "问哪些文档包含这些词。",
+                    "mode": "summarized",
+                    "evidenceIds": [
+                      "rag/dense-retrieval#body#0-9e7f8fbc"
+                    ]
+                  },
+                  {
+                    "text": "问哪些文段与这个查询的意思相近。",
+                    "mode": "summarized",
+                    "evidenceIds": [
+                      "rag/dense-retrieval#body#0-9e7f8fbc"
+                    ]
+                  }
+                ]
+              },
+              {
+                "dimension": "表示方式",
+                "values": [
+                  {
+                    "text": "词汇表上的稀疏向量。",
+                    "mode": "summarized",
+                    "evidenceIds": [
+                      "rag/sparse-retrieval#body#0-d441a718"
+                    ]
+                  },
+                  {
+                    "text": "学习空间中的向量。",
+                    "mode": "summarized",
+                    "evidenceIds": [
+                      "rag/dense-retrieval#body#0-9e7f8fbc"
+                    ]
+                  }
+                ]
+              },
+              {
+                "dimension": "匹配方式",
+                "values": [
+                  {
+                    "text": "倒排索引查找。",
+                    "mode": "summarized",
+                    "evidenceIds": [
+                      "rag/sparse-retrieval#body#0-d441a718"
+                    ]
+                  },
+                  {
+                    "text": "按接近程度检索。",
+                    "mode": "summarized",
+                    "evidenceIds": [
+                      "rag/dense-retrieval#body#0-9e7f8fbc"
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "rawModelOutput": "{\n  \"cards\": [\n    {\n      \"id\": \"sparse-retrieval-definition\",\n      \"type\": \"definition\",\n      \"title\": \"稀疏检索\",\n      \"definition\": {\n        \"text\": \"根据文档字面包含的查询词来给文档打分。\",\n        \"mode\": \"summarized\",\n        \"evidenceIds\": [\"E1\"]\n      },\n      \"keyPoints\": [\n        {\n          \"text\": \"其表示是词汇表上的向量，几乎所有项都是零。\",\n          \"mode\": \"summarized\",\n          \"evidenceIds\": [\"E1\"]\n        },\n        {\n          \"text\": \"匹配通过倒排索引进行查找，而不是在学习空间中进行距离计算。\",\n          \"mode\": \"summarized\",\n          \"evidenceIds\": [\"E1\"]\n        },\n        {\n          \"text\": \"BM25 是大多数人说的\\\"关键词搜索\\\"所指的评分函数。\",\n          \"mode\": \"summarized\",\n          \"evidenceIds\": [\"E1\"]\n        }\n      ]\n    },\n    {\n      \"id\": \"sparse-vs-dense\",\n      \"type\": \"comparison\",\n      \"title\": \"稀疏检索与稠密检索\",\n      \"entities\": [\"稀疏检索\", \"稠密检索\"],\n      \"rows\": [\n        {\n          \"dimension\": \"提问方式\",\n          \"values\": [\n            {\n              \"text\": \"问哪些文档包含这些词。\",\n              \"mode\": \"summarized\",\n              \"evidenceIds\": [\"E3\"]\n            },\n            {\n              \"text\": \"问哪些文段与这个查询的意思相近。\",\n              \"mode\": \"summarized\",\n              \"evidenceIds\": [\"E3\"]\n            }\n          ]\n        },\n        {\n          \"dimension\": \"表示方式\",\n          \"values\": [\n            {\n              \"text\": \"词汇表上的稀疏向量。\",\n              \"mode\": \"summarized\",\n              \"evidenceIds\": [\"E1\"]\n            },\n            {\n              \"text\": \"学习空间中的向量。\",\n              \"mode\": \"summarized\",\n              \"evidenceIds\": [\"E3\"]\n            }\n          ]\n        },\n        {\n          \"dimension\": \"匹配方式\",\n          \"values\": [\n            {\n              \"text\": \"倒排索引查找。\",\n              \"mode\": \"summarized\",\n              \"evidenceIds\": [\"E1\"]\n            },\n            {\n              \"text\": \"按接近程度检索。\",\n              \"mode\": \"summarized\",\n              \"evidenceIds\": [\"E3\"]\n            }\n          ]\n        }\n      ]\n    }\n  ],\n  \"incomplete\": false\n}",
+      "captureComplete": true,
+      "requestSettings": {
+        "model": "deepseek-v4-pro",
+        "max_tokens": 4096,
+        "thinking": {
+          "type": "disabled"
+        }
+      },
+      "systemPromptSha256": "1727b983488400c4be3eac572801e64b647d56031acc151a195927744860e9cc",
+      "userPromptSha256": "259e3d4d214b5cd7f4ac26109536a5491200d58e9c5b1916f6521b415edc96af"
+    },
+    {
+      "question": "重排会改变只保留前5条时的召回率吗？请区分10个候选的整体召回率与前5条的召回率。",
+      "httpStatus": 200,
+      "body": {
+        "question": "重排会改变只保留前5条时的召回率吗？请区分10个候选的整体召回率与前5条的召回率。",
+        "evidence": [
+          {
+            "id": "rag/reranking#deciding-whether-it-is-worth-it#0-f1766e2b",
+            "documentId": "rag/reranking",
+            "documentTitle": "Reranking",
+            "section": "Deciding whether it is worth it",
+            "text": "Reranking adds latency linear in candidates, and it sits on the critical path\nbefore generation can start. Three things decide whether it pays:\n\n**How large the candidate set is.** Reranking 100 candidates to pick 10 has\nroom to work. Reranking 12 to pick 10 mostly reorders noise.\n\n**How good the first stage already is.** A well-fused hybrid retriever leaves\nless for a reranker to fix.\n\n**Whether the downstream consumer is position-sensitive.** If all candidates go\ninto the prompt anyway, ordering still matters — evidence in the middle of a\nlong context is used least — but the effect is smaller than when a hard cutoff\ndiscards everything below rank ten.",
+            "retrievalScore": 10.149466242660223,
+            "metadata": {
+              "author": "yuki-uix",
+              "category": "rag"
+            },
+            "url": "https://github.com/yuki-uix/rag-generative-ui-explorer/blob/37813a283f9f0a2f1adc7daa373e973b3a7a0332/knowledge/rag/reranking.md"
+          },
+          {
+            "id": "rag/answer-quality-evaluation#three-questions-not-one#0-5255eb47",
+            "documentId": "rag/answer-quality-evaluation",
+            "documentTitle": "Answer quality evaluation",
+            "section": "Three questions, not one",
+            "text": "The decomposition this note is drawn from separates answer quality into\ncomponents that fail independently:\n\n**Faithfulness** — is every claim in the answer supported by the retrieved\ncontext? This is the hallucination measure. It is computed by breaking the\nanswer into individual statements and checking each against the context, which\nmatters: an answer that is 90% grounded and 10% invented is not 90% correct,\nand a whole-answer judgement tends to round it up.\n\n**Answer relevance** — does the answer address the question that was asked? An\nanswer can be perfectly faithful to the context and still not respond to the\nquestion, particularly when retrieval returned something adjacent.\n\n**Context relevance** — was the retrieved context actually needed? This catches\nthe retriever that achieves recall by returning everything. Sending twenty\nchunks where three would do inflates recall while degrading the answer, for the\nreasons the context-assembly note covers.\n\nThe decomposition is the durable contribution. A single \"quality\" score\nconflates three failures that call for three different fixes: better retrieval,\nbetter query understanding, and less context.",
+            "retrievalScore": 7.6100367777091105,
+            "metadata": {
+              "author": "yuki-uix",
+              "category": "rag"
+            },
+            "url": "https://github.com/yuki-uix/rag-generative-ui-explorer/blob/37813a283f9f0a2f1adc7daa373e973b3a7a0332/knowledge/rag/answer-quality-evaluation.md"
+          },
+          {
+            "id": "rag/reranking#reranking-cannot-raise-recall#0-8f587090",
+            "documentId": "rag/reranking",
+            "documentTitle": "Reranking",
+            "section": "Reranking cannot raise recall",
+            "text": "This is the property most often stated wrongly, and it has consequences for how\nresults get reported.\n\nA reranker reorders the candidates it was given. If the correct passage is not\nin that set, no amount of reranking will produce it. Recall@K after reranking,\nwhere K is the candidate count, is exactly Recall@K before it.\n\nWhat does change is precision at small cutoffs. If ten chunks reach the model\nout of a hundred candidates, reranking decides *which* ten, and nDCG improves\nwhile recall over the full candidate set stays flat. Reporting only nDCG after\nadding a reranker therefore suggests retrieval improved when retrieval did not\nchange at all.\n\nThe useful framing: retrieval determines what is *possible*, reranking\ndetermines what is *sent*.",
+            "retrievalScore": 7.585072509845052,
+            "metadata": {
+              "author": "yuki-uix",
+              "category": "rag"
+            },
+            "url": "https://github.com/yuki-uix/rag-generative-ui-explorer/blob/37813a283f9f0a2f1adc7daa373e973b3a7a0332/knowledge/rag/reranking.md"
+          },
+          {
+            "id": "rag/reranking#what-this-means-here#0-325d0087",
+            "documentId": "rag/reranking",
+            "documentTitle": "Reranking",
+            "section": "What this means here",
+            "text": "Reranking is specified as optional and is to be measured with the switch on and\noff, holding the question set, corpus version, and configuration fixed. Both\narms are to report recall and ordering metrics separately, so an ordering\nimprovement is not read as a retrieval improvement. This is M1 and unbuilt.\n\nThe added latency and cost are to be measured on real runs rather than\nprojected. The decision to keep or drop it belongs to whichever configuration\nthe numbers support, and the numbers have to include what it costs, not only\nwhat it improves.",
+            "retrievalScore": 6.355499638191368,
+            "metadata": {
+              "author": "yuki-uix",
+              "category": "rag"
+            },
+            "url": "https://github.com/yuki-uix/rag-generative-ui-explorer/blob/37813a283f9f0a2f1adc7daa373e973b3a7a0332/knowledge/rag/reranking.md"
+          },
+          {
+            "id": "rag/retrieval-metrics#mean-reciprocal-rank#0-84721eb4",
+            "documentId": "rag/retrieval-metrics",
+            "documentTitle": "Retrieval metrics",
+            "section": "Mean reciprocal rank",
+            "text": "The reciprocal of the position of the first relevant result, averaged over\nqueries. A first-position hit scores 1, second scores 0.5, tenth scores 0.1.\n\nMRR asks \"how quickly does the user reach something useful\", which makes it a\ngood match for interfaces where a person scans a list. It is a poor match for\nquestions needing several pieces of evidence, because it stops caring after the\nfirst hit — a retriever that finds one of four required chunks at rank 1 scores\nperfectly.",
+            "retrievalScore": 5.3838819935253595,
+            "metadata": {
+              "author": "yuki-uix",
+              "category": "rag"
+            },
+            "url": "https://github.com/yuki-uix/rag-generative-ui-explorer/blob/37813a283f9f0a2f1adc7daa373e973b3a7a0332/knowledge/rag/retrieval-metrics.md"
+          },
+          {
+            "id": "rag/failure-modes#distinguishing-them#0-9f4b0a0f",
+            "documentId": "rag/failure-modes",
+            "documentTitle": "Failure modes",
+            "section": "Distinguishing them",
+            "text": "The modes are ordered by how early they occur, and diagnosis follows the same\norder: check recall first, then whether the model used what it received, then\nwhether the sources agreed, then whether the conclusion exceeds them. Skipping\nto the last is how a retrieval bug gets addressed with prompt changes.",
+            "retrievalScore": 4.459668840932525,
+            "metadata": {
+              "author": "yuki-uix",
+              "category": "rag"
+            },
+            "url": "https://github.com/yuki-uix/rag-generative-ui-explorer/blob/37813a283f9f0a2f1adc7daa373e973b3a7a0332/knowledge/rag/failure-modes.md"
+          },
+          {
+            "id": "rag/retrieval-metrics#choosing-among-them#0-68c9ebcb",
+            "documentId": "rag/retrieval-metrics",
+            "documentTitle": "Retrieval metrics",
+            "section": "Choosing among them",
+            "text": "They answer different questions and should not be treated as interchangeable:\n\n- **Recall@K** — is the evidence available at all? Report this first.\n- **MRR** — how far must someone read before the first useful thing?\n- **nDCG** — is the ordering good, given that some evidence is better than\n  other evidence?\n\nA pipeline can improve on one and regress on another. Reranking often raises\nnDCG while leaving Recall@K exactly unchanged, because reranking reorders the\ncandidate set without adding to it. Reporting only nDCG in that situation\nsuggests retrieval improved when it did not.",
+            "retrievalScore": 3.7486892260923117,
+            "metadata": {
+              "author": "yuki-uix",
+              "category": "rag"
+            },
+            "url": "https://github.com/yuki-uix/rag-generative-ui-explorer/blob/37813a283f9f0a2f1adc7daa373e973b3a7a0332/knowledge/rag/retrieval-metrics.md"
+          },
+          {
+            "id": "rag/dense-retrieval#where-it-fails#0-cd5a43de",
+            "documentId": "rag/dense-retrieval",
+            "documentTitle": "Dense retrieval",
+            "section": "Where it fails",
+            "text": "The failures are the mirror image of BM25's.\n\n**Rare and out-of-vocabulary terms.** An exact identifier, a version number, a\nnewly coined term — the model has no useful representation, so it retrieves\nthings that are topically nearby and lexically unrelated.\n\n**Negation and small distinguishing words.** \"Retrieval with reranking\" and\n\"retrieval without reranking\" embed close together. The difference that matters\nmost to the reader is the one the representation compresses away.\n\n**Opacity.** When lexical retrieval misses, you can see which term failed to\nmatch. When dense retrieval misses, the answer is that the vectors were not\nclose, which is not a diagnosis.",
+            "retrievalScore": 3.611952265311888,
+            "metadata": {
+              "author": "yuki-uix",
+              "category": "rag"
+            },
+            "url": "https://github.com/yuki-uix/rag-generative-ui-explorer/blob/37813a283f9f0a2f1adc7daa373e973b3a7a0332/knowledge/rag/dense-retrieval.md"
+          }
+        ],
+        "provenance": {
+          "corpusVersion": "corpus-3e4863076378",
+          "retrieval": "lexical-bm25",
+          "retrievalQuery": "重排会改变只保留前5条时的召回率吗？请区分10个候选的整体召回率与前5条的召回率。\nreranking recall",
+          "queryExpansion": "technical-terms-v1",
+          "retrievedCount": 8,
+          "indexedChunkCount": 229,
+          "profileId": "deepseek-v4-pro",
+          "model": "deepseek-v4-pro",
+          "promptVersion": "card-planner-1",
+          "schemaEnforced": false,
+          "thinking": "disabled",
+          "generationVersion": "live-cards-5",
+          "generatedAt": "2026-10-22T10:05:03.932Z",
+          "validation": "schema-and-citation-checks"
+        },
+        "usage": {
+          "inputTokens": 1603,
+          "outputTokens": 333,
+          "cacheCreationInputTokens": 0,
+          "cacheReadInputTokens": 1408
+        },
+        "timing": {
+          "retrievalMs": 0.09633300000041345,
+          "generationMs": 5265.301542,
+          "validationMs": 1.8858749999999418,
+          "totalMs": 5267.768042000001
+        },
+        "status": "complete",
+        "cards": [
+          {
+            "id": "c1",
+            "type": "comparison",
+            "title": "重排对整体候选召回率与前5条召回率的影响",
+            "entities": [
+              "整体候选召回率",
+              "前5条召回率"
+            ],
+            "rows": [
+              {
+                "dimension": "重排是否会改变",
+                "values": [
+                  {
+                    "text": "不变；Recall@K在重排前后完全一致",
+                    "mode": "summarized",
+                    "evidenceIds": [
+                      "rag/reranking#reranking-cannot-raise-recall#0-8f587090",
+                      "rag/retrieval-metrics#choosing-among-them#0-68c9ebcb"
+                    ]
+                  },
+                  {
+                    "text": "可能改变；重排决定哪些候选进入前5条，若正确答案不在候选集中则无法通过重排产生",
+                    "mode": "summarized",
+                    "evidenceIds": [
+                      "rag/reranking#reranking-cannot-raise-recall#0-8f587090"
+                    ]
+                  }
+                ]
+              },
+              {
+                "dimension": "原因",
+                "values": [
+                  {
+                    "text": "重排只重新排序已有候选，不添加新候选",
+                    "mode": "summarized",
+                    "evidenceIds": [
+                      "rag/reranking#reranking-cannot-raise-recall#0-8f587090",
+                      "rag/retrieval-metrics#choosing-among-them#0-68c9ebcb"
+                    ]
+                  },
+                  {
+                    "text": "当存在硬截断时，重排决定哪些候选被保留、哪些被丢弃",
+                    "mode": "summarized",
+                    "evidenceIds": [
+                      "rag/reranking#deciding-whether-it-is-worth-it#0-f1766e2b",
+                      "rag/reranking#reranking-cannot-raise-recall#0-8f587090"
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "rawModelOutput": "{\n  \"cards\": [\n    {\n      \"id\": \"c1\",\n      \"type\": \"comparison\",\n      \"title\": \"重排对整体候选召回率与前5条召回率的影响\",\n      \"entities\": [\n        \"整体候选召回率\",\n        \"前5条召回率\"\n      ],\n      \"rows\": [\n        {\n          \"dimension\": \"重排是否会改变\",\n          \"values\": [\n            {\n              \"text\": \"不变；Recall@K在重排前后完全一致\",\n              \"mode\": \"summarized\",\n              \"evidenceIds\": [\n                \"E3\",\n                \"E7\"\n              ]\n            },\n            {\n              \"text\": \"可能改变；重排决定哪些候选进入前5条，若正确答案不在候选集中则无法通过重排产生\",\n              \"mode\": \"summarized\",\n              \"evidenceIds\": [\n                \"E3\"\n              ]\n            }\n          ]\n        },\n        {\n          \"dimension\": \"原因\",\n          \"values\": [\n            {\n              \"text\": \"重排只重新排序已有候选，不添加新候选\",\n              \"mode\": \"summarized\",\n              \"evidenceIds\": [\n                \"E3\",\n                \"E7\"\n              ]\n            },\n            {\n              \"text\": \"当存在硬截断时，重排决定哪些候选被保留、哪些被丢弃\",\n              \"mode\": \"summarized\",\n              \"evidenceIds\": [\n                \"E1\",\n                \"E3\"\n              ]\n            }\n          ]\n        }\n      ]\n    }\n  ],\n  \"incomplete\": false\n}",
+      "captureComplete": true,
+      "requestSettings": {
+        "model": "deepseek-v4-pro",
+        "max_tokens": 4096,
+        "thinking": {
+          "type": "disabled"
+        }
+      },
+      "systemPromptSha256": "1727b983488400c4be3eac572801e64b647d56031acc151a195927744860e9cc",
+      "userPromptSha256": "7446f18e4aa570e8cbed0b61a275b2f71265af5b9cc9a60853b84e487a9a4dac"
+    }
+  ],
+  "semanticReview": "Not automatically assessed; inspect each factual field against only its cited passages."
+}

@@ -53,7 +53,7 @@ query and `technical-terms-v1` or `none`. General Chinese semantic retrieval is
 not established by this small mapping.
 
 The web runtime reuses the native planner, original system/user prompt and DeepSeek
-profile. `live-cards-4` records these web-only generation differences:
+profile. `live-cards-5` records these web-only generation differences:
 
 1. `thinking: {type: "disabled"}` is sent through the request adapter to bound
    interactive waiting, without changing the shared model profile.
@@ -69,6 +69,11 @@ profile. `live-cards-4` records these web-only generation differences:
    Verbatim source text is rendered directly from the corpus in the source
    drawer and evidence cards. The original planner prompt remains the prefix,
    and the submitted question/evidence is preserved.
+4. The `live-cards-5` suffix preserves source scope, qualifiers and modality in
+   titles and fields. A rationale or recommendation must not become an empirical
+   adoption claim, a universal guarantee or a measurement. Each field must cite
+   the specific passages supporting its exact claim. This mitigates an observed
+   semantic failure; it is not an automatic entailment check.
 
 Generation makes one request, disables SDK retries and caps output at 4096
 tokens with a 60-second deadline. Any invalid card rejects the full response.
@@ -140,3 +145,8 @@ checks, not a controlled effectiveness evaluation.
 
 The [follow-up live review](LIVE-CARDS-REVIEW.md) records cross-question guards,
 full HTTP-failure records, client waiting limits and no-answer behavior.
+
+Generation revisions are provenance metadata rather than card-format versions.
+The client validates their `live-cards-N` format and displays the actual returned
+revision while retaining the same question, schema and citation gates. This
+allows compatible client/API revisions during a rolling deployment.

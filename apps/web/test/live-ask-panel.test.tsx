@@ -57,7 +57,7 @@ function answer(question = '为什么重排不能提高召回率？'): LiveCards
       promptVersion: 'test-prompt-v1',
       schemaEnforced: true,
       thinking: 'disabled',
-      generationVersion: 'live-cards-4',
+      generationVersion: 'live-cards-5',
       generatedAt: '2026-10-22T06:30:00Z',
       validation: 'schema-and-citation-checks',
     },
@@ -139,7 +139,7 @@ describe('live retrieval and card delivery', () => {
     expect(screen.queryByRole('dialog')).toBeNull();
     fireEvent.click(screen.getByText('本次运行与检索来源'));
     expect(screen.getByText('reranking recall')).toBeDefined();
-    expect(screen.getByText('live-cards-4 · 思考模式关闭')).toBeDefined();
+    expect(screen.getByText('live-cards-5 · 思考模式关闭')).toBeDefined();
     expect(
       screen.getByText(
         /未缓存输入 120 tokens · 输出 85 tokens · 缓存读取 0 tokens · 缓存写入 0 tokens/,
@@ -511,5 +511,47 @@ describe('live retrieval and card delivery', () => {
       await Promise.resolve();
     });
     expect(vi.getTimerCount()).toBe(0);
+  });
+
+  it('accepts an older compatible generation revision and displays the revision actually served', async () => {
+    vi.stubGlobal(
+      'fetch',
+      vi.fn<typeof fetch>().mockResolvedValue(
+        response({
+          ...answer(),
+          provenance: {
+            ...answer().provenance,
+            generationVersion: 'live-cards-4',
+          },
+        }),
+      ),
+    );
+    render(<LiveAskPanel />);
+    submit();
+    await screen.findByText('重排与召回');
+    fireEvent.click(screen.getByText('本次运行与检索来源'));
+    expect(screen.getByText('live-cards-4 · 思考模式关闭')).toBeDefined();
+    expect(screen.queryByText('live-cards-5 · 思考模式关闭')).toBeNull();
+  });
+
+  it('rejects malformed generation provenance without weakening the card gate', async () => {
+    vi.stubGlobal(
+      'fetch',
+      vi.fn<typeof fetch>().mockResolvedValue(
+        response({
+          ...answer(),
+          provenance: {
+            ...answer().provenance,
+            generationVersion: 'live-cards-0<script>',
+          },
+        }),
+      ),
+    );
+    const { container } = render(<LiveAskPanel />);
+    submit();
+    expect((await screen.findByRole('alert')).textContent).toContain(
+      '来源记录不完整',
+    );
+    expect(container.querySelector('[data-card-type]')).toBeNull();
   });
 });

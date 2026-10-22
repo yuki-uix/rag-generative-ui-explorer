@@ -18,7 +18,8 @@ export interface LiveCardsProvenance {
   schemaEnforced: boolean;
   /** Web request adapter; the frozen experiment profile remains unchanged. */
   thinking: 'disabled';
-  generationVersion: 'live-cards-4';
+  /** Generation metadata; card compatibility is checked through the card contract. */
+  generationVersion: string;
   generatedAt: string;
   /** Structural/citation checks do not prove a generated claim is factually correct. */
   validation: 'schema-and-citation-checks';

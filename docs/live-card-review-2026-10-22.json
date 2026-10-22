@@ -179,5 +179,44 @@
         "message": "当前语料没有检索到匹配片段，未调用模型或编造知识卡。可以尝试具体的技术名称或英文关键词。"
       }
     }
+  ],
+  "browserObservations": [
+    {
+      "capture": "rendered-ui-not-raw-completion",
+      "generationVersion": "live-cards-4",
+      "question": "重排把100个候选截成前5个结果时，Recall@5一定保持不变吗？",
+      "observedCardTitle": "重排截断候选时 Recall@5 不是必然保持不变",
+      "cardType": "evidence",
+      "cardCount": 1,
+      "sourceCount": 8,
+      "serverTotalMsAsDisplayed": 1740,
+      "semanticReview": "The title preserves the smaller-cutoff versus whole-candidate-set distinction."
+    },
+    {
+      "capture": "rendered-ui-not-raw-completion",
+      "generationVersion": "live-cards-4",
+      "question": "How do I make caramel pudding?",
+      "cardCount": 0,
+      "sourceCount": 8,
+      "serverTotalMsAsDisplayed": 1470,
+      "message": "当前检索证据不足，本次未生成知识卡。",
+      "phase": "after response-handling correction"
+    },
+    {
+      "capture": "rendered-ui-not-raw-completion",
+      "generationVersion": "live-cards-4",
+      "question": "稀疏检索和稠密检索如何匹配文档？",
+      "httpStatusAsDisplayed": 422,
+      "cardCount": 0,
+      "sourceCount": 8,
+      "serverTotalMsAsDisplayed": 3950,
+      "usageAsDisplayed": {
+        "inputTokens": 1118,
+        "cacheReadInputTokens": 1536,
+        "cacheCreationInputTokens": 0,
+        "outputTokens": 355
+      },
+      "exactValidationStage": "unknown; no raw completion captured"
+    }
   ]
 }

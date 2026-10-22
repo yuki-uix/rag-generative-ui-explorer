@@ -25,10 +25,14 @@ export const LIVE_CARDS_LIMITS = {
 
 const CORPUS_COMMIT = '37813a283f9f0a2f1adc7daa373e973b3a7a0332';
 export const WEB_OUTPUT_INSTRUCTIONS = [
-  'Web output contract (live-cards-4):',
+  'Web output contract (live-cards-5):',
   'Return one JSON object only. Its first character must be { and its last character must be }. Never use Markdown code fences or backticks.',
   'For every model-written factual field, use only summarized or inferred. Use summarized for supported summaries, translations, paraphrases, rewrites, and derived questions; use inferred only for a conclusion supported indirectly by the cited passages.',
   'Never use extractive in generated cards. Verbatim excerpts are displayed directly from the corpus in the source drawer and evidence card, without model-authored quotation.',
+  'Preserve the scope, qualifiers, modality, and strength of the cited evidence in card titles, labels, and factual fields. Keep conditions such as a fixed candidate set, the candidate-set size versus a smaller display cutoff, a particular corpus, or a project-specific plan explicit.',
+  'Never turn a rationale or recommendation into a claim about real-world practice frequency, a universal guarantee, or measured performance. Make those stronger claims only when the particular cited passages explicitly support them.',
+  'Each factual field must cite the particular passages supporting that exact claim and its qualifiers. Do not borrow a fact from an uncited neighboring passage just because it was also retrieved.',
+  'If the cited evidence supports only a narrower statement, state the narrower claim or omit it. Report incomplete when the available evidence cannot fully answer the question.',
 ].join('\n');
 
 function corpusNoteUrl(documentId: string): string {
@@ -223,7 +227,7 @@ export async function handleCardsRequest(request: Request, options: LiveCardsOpt
     promptVersion: PLANNER_PROMPT_VERSION,
     schemaEnforced: DEEPSEEK.enforcesOutputSchema,
     thinking: 'disabled',
-    generationVersion: 'live-cards-4',
+    generationVersion: 'live-cards-5',
     generatedAt: new Date().toISOString(),
     validation: 'schema-and-citation-checks',
   };

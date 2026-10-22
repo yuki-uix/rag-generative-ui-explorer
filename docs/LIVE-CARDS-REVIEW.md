@@ -2,9 +2,11 @@
 
 This review checks custom questions, source consistency, insufficient evidence
 and failures after the initial deployment. It does not modify or re-evaluate
-F5. Generation remains `live-cards-4`: same model, prompt prefix, web suffix,
-retrieval bundle and technical-term bridge. Findings below concern web response
-handling and validation, not an effectiveness comparison.
+F5. The first pass retained `live-cards-4` and fixed web response handling.
+A later field-level semantic defect led to the separately recorded
+`live-cards-5` web suffix below. The shared model profile, planner prefix,
+retrieval bundle and technical-term bridge remain unchanged. These selected
+checks are not an effectiveness comparison.
 
 ## Findings and corrections
 
@@ -46,6 +48,39 @@ These are selected, small integration checks, not a refusal-rate estimate or a
 blind holdout. Source-based semantic checks were performed by AI assistants in
 the implementation team, not independent human adjudicators.
 
+## Further production checks and semantic correction
+
+On the first patched deployment (`live-cards-4`, app commit `ad4edca`):
+
+- Repeating the English dessert question returned zero cards and eight passages
+  in 1.47s. The page now says “本次未生成知识卡”, with no partial-answer claim.
+- The Chinese zero-hit question returned zero cards, zero passages and the
+  explicit “未调用模型” notice.
+- “稀疏检索和稠密检索如何匹配文档？” produced a real HTTP 422 in 3.95s. The
+  page displayed zero cards but retained all eight sources and input 1118 /
+  cache-read 1536 / output 355 tokens. No raw completion was captured for this
+  request, so the exact validation stage is unknown; this is not evidence that
+  the answer's facts were wrong. No output was substituted or silently retried.
+- “稀疏检索是什么？” generated a definition card in 3.87s (input 1117 /
+  cache-read 1536 / output 294). Four factual fields were supported. One field
+  said “与稠密检索的失败方式不同，因此实际系统常同时运行两者并融合结果。” while
+  citing only `rag/sparse-retrieval#what-this-means-here#0-179d75b3`.
+
+That last source gives an **argument for** running and fusing both retrievers;
+it does not establish actual practice frequency. This is an observed semantic
+failure despite valid structure and citation IDs. The unchanged rendered field,
+its actual cited passage and review are preserved in
+[the v4 field observation](../apps/web/fixtures/live-semantic-overreach-v4.json),
+not misrepresented as a captured raw completion.
+
+`live-cards-5` adds web-only instructions to preserve source scope, qualifiers,
+recommendation versus established fact, and field-specific citation support.
+A rationale must not become a claim of widespread adoption, a universal
+benefit or a measurement. This applies to titles and labels too. The output is
+not rewritten, relabeled or accepted through a weaker gate. A prompt constraint
+is not an entailment verifier: an unsupported summary can still pass the
+mechanical gate, so semantic review remains necessary.
+
 ## Failure validation without an online outage
 
 A local static build is connected to an isolated HTTP fixture that uses the
@@ -67,12 +102,44 @@ remains open and unmerged.
 
 ## Validation and publication
 
-All 521 local tests pass, including 58 API and 14 live-form tests. Workspace
+All 523 local tests pass, including 58 API and 16 live-form tests. Workspace
 and web typechecks, web lint, planner schema/projection freshness checks,
 static production build and both bundle scans pass. The production output
 contains no endpoint from the isolated failure fixture.
 
-The follow-up Cloudflare Worker version is
-`63c05bed-17bd-4c85-83b5-4f1c4776d17b`; its full app and API are deployed from the
-review branch. GitHub Pages uses the existing production endpoint variable and
+The first response-handling correction (`live-cards-4`) deployed Cloudflare
+Worker version `63c05bed-17bd-4c85-83b5-4f1c4776d17b` from this review branch.
+The subsequent v5 deployment version is recorded in PR #92. GitHub Pages uses the existing production endpoint variable and
 publishes from the PR branch. The latest CI and Pages runs are linked in PR #92.
+
+The generation revision is recorded as metadata; a compatible previous revision
+is accepted after rechecking the same card, evidence and submitted-question
+contracts. A malformed revision is refused. Model-prompt revision does not
+serve as a substitute for card-format validation.
+
+## v5 actual model check after the semantic correction
+
+Two additional real local-handler calls preserve their unmodified raw model
+text, actual response sources, token usage and request-setting/prompt digests in
+[the v5 smoke record](live-card-v5-smoke-2026-10-22.json). Both full raw captures
+completed; requests themselves are retained locally without headers or keys.
+
+| Question | Result | Handler time | Input / cache-read / output tokens |
+| --- | --- | ---: | --- |
+| 稀疏检索是什么？ | complete, definition + comparison, 8 passages | 5.80s | 2171 / 640 / 549 |
+| 重排会改变只保留前5条时的召回率吗？请区分10个候选的整体召回率与前5条的召回率。 | complete, comparison, 8 passages | 5.27s | 1603 / 1408 / 333 |
+
+The revised definition does not claim actual adoption frequency. Its definition,
+vector representation, inverted-index matching and BM25 description are grounded
+in the sparse body passage; comparison cells cite the corresponding sparse or
+dense body passage. The reranking card separates the complete candidate set
+from the smaller top-five cutoff, without inventing a measured gain or a
+numerical recall value. These selected results do not establish that the v5
+prompt eliminates unsupported claims. The first response also adds a comparison
+card to a definition question; minimum-card selection is not guaranteed.
+
+The v5 semantic recheck covered 14 factual fields in these two responses. Minor
+wording limits remain: the first response says “大多数人” where its source says
+“most systems”; the recall cell relies on its “whole candidate set” column
+heading rather than repeating K=10 in the cell itself. Neither sample proves
+that the mechanical gate detects unsupported summaries.

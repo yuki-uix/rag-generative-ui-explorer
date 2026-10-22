@@ -118,7 +118,7 @@ describe('live knowledge cards API', () => {
       corpusVersion: bundle.corpusVersion, retrieval: 'lexical-bm25', retrievedCount: 8,
       indexedChunkCount: bundle.evidence.length, schemaEnforced: false,
       validation: 'schema-and-citation-checks', model: DEEPSEEK.model,
-      thinking: 'disabled', generationVersion: 'live-cards-4',
+      thinking: 'disabled', generationVersion: 'live-cards-5',
     });
     expect(body.usage).toMatchObject({ inputTokens: 100, outputTokens: 50 });
     expect(body.timing.totalMs).toBeGreaterThan(0);

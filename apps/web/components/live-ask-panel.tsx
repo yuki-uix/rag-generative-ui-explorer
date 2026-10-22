@@ -203,7 +203,8 @@ function readProvenance(value: unknown): LiveCardsProvenance {
     value['retrieval'] !== 'lexical-bm25' ||
     value['validation'] !== 'schema-and-citation-checks' ||
     value['thinking'] !== 'disabled' ||
-    value['generationVersion'] !== 'live-cards-4' ||
+    typeof value['generationVersion'] !== 'string' ||
+    !/^live-cards-[1-9]\d*$/.test(value['generationVersion']) ||
     typeof value['schemaEnforced'] !== 'boolean' ||
     (value['queryExpansion'] !== 'technical-terms-v1' &&
       value['queryExpansion'] !== 'none')
