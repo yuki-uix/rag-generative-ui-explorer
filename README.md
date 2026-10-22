@@ -90,7 +90,11 @@ implementation on paired source text, real OCR text, and real CLIP image/text
 embeddings on the same 24-image corpus. It has its own [task breakdown](eval/images/TASKS.md),
 [frozen protocol](eval/images/PROTOCOL.md), input hashes and saved observations.
 `pnpm images:replay --out /absolute/path/to/fresh/output` recomputes the comparison
-offline. This experiment does not add LLaVA or alter the F5 baseline.
+offline. The [PR review and counterbalanced follow-up](eval/images-review/REVIEW.md)
+withdraw the original aggregate effectiveness claims, audit gold/ties and separate
+color from position with equal printed text. `pnpm images:review --out
+/absolute/path/to/fresh/output` replays that separate diagnostic. These experiments
+do not add LLaVA or alter the F5 baseline.
 
 ## License
 

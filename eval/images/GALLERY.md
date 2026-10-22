@@ -1,4 +1,10 @@
-# Authored image corpus
+# Original authored image corpus — historical gallery
+
+**Erratum:** `figure-07-a` incorrectly draws “Original intent” as a final
+serial stage. See the [corrected original/rewritten retrieval flow](../images-review/corrections/query-transformation.png)
+and [review notes](../images-review/REVIEW.md). Original bytes stay unchanged
+because they were actual model inputs. Other branch drawings are simplified
+concept maps, not complete executable workflows.
 
 24 repository-authored teaching diagrams. See the [manifest](manifest.json) for source snapshots, commits, hashes and license. These are not figures reproduced from the papers cited in the notes.
 

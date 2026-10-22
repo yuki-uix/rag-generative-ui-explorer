@@ -1,10 +1,12 @@
-# I1–I3: measured image-retrieval pilot
+# V1 image-retrieval pilot — historical authored-label results
 
-**2026-10-21. Keep CLIP as an experiment; retain paired text and OCR as baselines.**
-On this small authored technical-diagram set, OCR provided the strongest first
-result, paired source text provided the strongest top-five recall, and q8 CLIP
-provided neither overall advantage. This does not compare every text retriever
-or every CLIP implementation, and does not establish general diagram understanding.
+**Review update, 2026-10-22:** the original aggregate model-adoption comparison
+is withdrawn. Concept gold was not exhaustive and layout/color/content were
+confounded. Read the [review findings and controlled follow-up](../images-review/REVIEW.md)
+before interpreting the tables below. Original model observations, labels,
+frozen code and numeric results remain unchanged for inspection and replay.
+Only the 24 exact-label lookups are retained as a scoped descriptive comparison;
+these results do not establish a general winning retriever.
 
 ## Data and execution identity
 
@@ -57,7 +59,7 @@ flowchart LR
   E --> F["已保存：逐题排名、耗时与失败"]
 ```
 
-## Retrieval results
+## Historical retrieval results under the original authored labels
 
 Values below are repetition medians; each metric's min/max equals its median.
 The [original summary](results/2026-10-21/summary.json) retains repetitions,
@@ -116,10 +118,12 @@ are unchanged in passes 2 and 3.
 | `figure-02-a-concept` | [Dense retrieval](assets/figure-02-a.png) | 3 | absent | 16 | Paired prose retrieves the concept; OCR has no matching terms in the target; CLIP's top result is a reranking diagram |
 | `figure-10-b-layout` | [Incremental rendering](assets/figure-10-b.png) | 2 | 1 | 12 | CLIP retrieves other branch diagrams but misses the correct topic in top five |
 
-Across all 48 answerable questions, CLIP has **zero additional hit@1/3/5 successes
-over OCR**. OCR has 24/21/16 successes respectively where CLIP misses. This is a
-negative result for adding this CLIP arm on this dataset; individual CLIP success
-examples should not be presented as unique benefits.
+Under the original strict single-target labels, the recorded count of additional
+CLIP hit@1/3/5 successes over OCR was zero (OCR-only counts 24/21/16). **This is
+an archived label-dependent statistic, not a model-adoption conclusion:** semantic
+relevance alternatives were not exhaustive and the visual slice was confounded.
+The [review](../images-review/REVIEW.md) narrows its interpretation and tests
+independently varied visual attributes without rewriting the old observations.
 
 All four negative queries receive neighbors from text and CLIP; OCR returns no
 candidate for all four. That is a lexical OOV result, not a calibrated
@@ -185,12 +189,9 @@ score tolerance and absolute floor of `1e-12`. No scoring algorithm or original
 observation was changed to accommodate this runtime difference. See the [README](README.md)
 for explicit commands that create fresh local OCR/encoding observations.
 
-Retain both paired text and OCR for further experiments. OCR was better at exact
-labels and first result selection; paired prose still recovered conceptual
-questions OCR could not match. CLIP stays experimental: no measured top-K gain
-over OCR offsets its additional encoder, weights and memory here. No production
-retriever, schema, card gate or image UI is changed, and LLaVA is not connected.
-The original knowledge, 60-question set, evaluation protocol and F5 paths remain
-unchanged. Independent heterogeneous figures, a stronger text baseline, reviewed
-relevance alternatives and counterbalanced visual tests would be a new baseline,
-not a retrospective improvement to this report.
+V1 alone does not establish which model to adopt. The current decision is to
+keep all three paths experimental and report only the task actually measured.
+The [post-review controls](../images-review/REVIEW.md) separate text identity,
+color, position, topic retrieval and within-family choice, and preserve both
+gains and failures. F5 and the original corpus/questions/protocol remain
+unchanged. No LLaVA or production image UI is added.

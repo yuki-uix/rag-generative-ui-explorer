@@ -34,3 +34,12 @@ flowchart LR
 All claims concern this small, exposed, same-author diagnostic corpus. Completing
 these tasks does not complete F5, prove a production retrieval gain, or provide
 image-grounded card generation.
+
+## Review correction, 2026-10-22
+
+PR #92 now includes a [52-question audit and controlled follow-up](../images-review/REVIEW.md).
+Only the exact-label subset is retained for scoped comparison. Semantic relevance
+alternatives are not fully adjudicated; #89 must not be auto-closed as though all
+original gold is independently correct. Original layout aggregates are diagnostic,
+not evidence of spatial understanding. The follow-up freezes a separate factorial
+corpus and never edits F5 or v1 observations. Its CI command is `pnpm images:review`.

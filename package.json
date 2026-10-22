@@ -39,7 +39,8 @@
     "framework:compare": "pnpm --filter @rgux/generation run framework:run --config eval/framework/comparison.json",
     "framework:graph": "pnpm --filter @rgux/generation run framework:run --config eval/framework/graph.json",
     "images:replay": "pnpm --filter @rgux/corpus run images:replay",
-    "images:budget": "pnpm --filter @rgux/corpus run images:budget"
+    "images:budget": "pnpm --filter @rgux/corpus run images:budget",
+    "images:review": "pnpm --filter @rgux/corpus run images:review"
   },
   "devDependencies": {
     "typescript": "^7.0.2"

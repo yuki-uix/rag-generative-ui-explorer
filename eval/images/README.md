@@ -1,4 +1,9 @@
-# Independent image retrieval
+# Original image retrieval pilot — historical replay
+
+**Review update (2026-10-22):** aggregate effectiveness claims are withdrawn.
+Concept gold and visual confounds require the [review audit and independent
+control freeze](../images-review/REVIEW.md). The commands here reproduce the
+original observations, not a corrected blind benchmark.
 
 A small text / OCR / CLIP retrieval experiment. [Tasks](TASKS.md),
 [frozen protocol](PROTOCOL.md), [manifest](manifest.json),
