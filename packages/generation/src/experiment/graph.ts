@@ -11,6 +11,7 @@ import { runExperiment, type ExperimentRecord } from './run.js';
 import { recordingTransport, safeError, type CallBudget, type RequestRecord } from './transport.js';
 import type { ExperimentInputs } from './inputs.js';
 import { graphFixture, graphFixtureRetriever, type GraphScenario } from './graph-fixtures.js';
+import { selectContext } from './context.js';
 
 export const COVERAGE_VERSION = 'evidence-coverage-1';
 export const REWRITE_VERSION = 'evidence-rewrite-1';
@@ -56,7 +57,7 @@ export interface GraphRun {
   toolCalls: number;
   calls: GraphCall[];
   timingMs: { node: string; elapsed: number }[];
-  snapshots: { query: string; evidence: Evidence[]; addedIds: string[]; droppedIds: string[]; contextChars: number }[];
+  snapshots: { query: string; evidence: Evidence[]; retrievedIds: string[]; addedIds: string[]; droppedIds: string[]; contextChars: number }[];
   events: { node: string; detail: string }[];
   stopReason: string | null;
   outcome: 'valid' | 'incomplete' | 'error';
@@ -175,23 +176,19 @@ export async function runGraphExperiment(
           }),
         ]).finally(() => clearTimeout(timer));
         const parsed = z.array(z.strictObject({ evidenceId: z.string(), score: z.number().finite() })).max(inputs.config.k).parse(candidates);
-        const evidence = [...run.evidence];
-        const retained = new Set(evidence.map((item) => item.id));
-        const addedIds: string[] = [];
-        const droppedIds: string[] = [];
-        for (const candidate of parsed) {
+        const candidatesWithText = parsed.map((candidate) => {
           const item = inputs.evidenceById.get(candidate.evidenceId);
           if (!item) throw new Error('Retriever returned an evidence ID outside the pinned corpus.');
-          if (retained.has(item.id)) continue;
-          const next = { ...item, retrievalScore: candidate.score };
-          if (evidence.length >= policy.maxEvidence || plannerUserPrompt(question.question, [...evidence, next]).length > policy.maxContextChars) {
-            droppedIds.push(item.id); continue;
-          }
-          retained.add(item.id); evidence.push(next); addedIds.push(item.id);
-        }
+          return { ...item, retrievalScore: candidate.score };
+        });
+        const evidence = selectContext(question.question, run.evidence, candidatesWithText, policy);
+        const previousIds = new Set(run.evidence.map((item) => item.id));
+        const retained = new Set(evidence.map((item) => item.id));
+        const addedIds = evidence.filter((item) => !previousIds.has(item.id)).map((item) => item.id);
+        const droppedIds = [...new Set([...run.evidence, ...candidatesWithText].filter((item) => !retained.has(item.id)).map((item) => item.id))];
         current = update(current, 'retrieve', `${addedIds.length} new evidence item(s), ${droppedIds.length} excluded by context cap`, {
           evidence, next: 'check', snapshots: [...run.snapshots, {
-            query: run.pendingQuery, evidence, addedIds, droppedIds,
+            query: run.pendingQuery, evidence, retrievedIds: parsed.map((item) => item.evidenceId), addedIds, droppedIds,
             contextChars: plannerUserPrompt(question.question, evidence).length,
           }],
         });

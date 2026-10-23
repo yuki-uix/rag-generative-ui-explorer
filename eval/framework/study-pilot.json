@@ -1,0 +1,38 @@
+{
+  "version": "framework-study-1",
+  "purpose": "pilot",
+  "repetitions": 1,
+  "questionSetIsBlind": false,
+  "expected": {
+    "questionSetSha256": "64b1e9a8d17a263f706c2783282157098c59bbf84ef03bb5168dbe19e6d41cc4",
+    "schemaSha256": "81d854da0c7d942238a64aecac6805ce9e64c69b2323083aee4e4b180bb7f13a",
+    "corpusVersion": "corpus-3e4863076378",
+    "promptVersion": "card-planner-1"
+  },
+  "experiment": {
+    "version": "framework-study-strategy-1",
+    "implementation": "langgraph",
+    "questionIds": [
+      "rag-001",
+      "rag-003",
+      "ins-001"
+    ],
+    "profileId": "deepseek-v4-pro",
+    "k": 4,
+    "maxTokens": 4096,
+    "maxModelCalls": 18,
+    "sdkMaxRetries": 0,
+    "timeoutMs": 60000,
+    "repetitions": 1,
+    "repair": "disabled",
+    "graph": {
+      "version": "bounded-retrieval-2",
+      "maxSupplementalRetrievals": 1,
+      "maxModelCallsPerQuestion": 4,
+      "controlMaxTokens": 2048,
+      "maxEvidence": 4,
+      "maxContextChars": 12000,
+      "evidenceSelection": "balanced"
+    }
+  }
+}

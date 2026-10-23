@@ -1,0 +1,808 @@
+{
+  "version": "framework-semantic-review-1",
+  "recordsSha256": "3bfbb1ee8748c266c48cafc10dd84895133092109e6ee6b3ce36ce9ad3a5d428",
+  "reviewedAt": "2026-10-21T04:55:14.898027Z",
+  "reviewer": {
+    "kind": "single-ai-evidence-audit",
+    "identity": "Codex assistant in the F5 development chat; same assistant that implemented the harness",
+    "modelPin": null,
+    "blinded": false,
+    "independentHuman": false,
+    "limitations": "Single non-blinded AI reviewer, no independently pinned judge model and no second reviewer. Exploratory rubric was finalized while inspecting this pilot, not preregistered. Only rendered GroundedText fields are counted; structural strings and overall answer scope were inspected separately. Judgments test support by the supplied corpus, not real-world truth of that corpus. Repetitions and related fields are correlated."
+  },
+  "fields": [
+    {
+      "recordKey": "1/rag-001/native",
+      "path": "/cards/0/definition",
+      "fieldSha256": "004c2ae2496364be6f4f868da69d593d6df0cdfe6bf19577e1bc6d5fe1298b97",
+      "verdict": "supported",
+      "rationale": "The cited passage states the definition verbatim; the RAG card title supplies the same subject. This is source support, not independent verification of the source.",
+      "citations": [
+        {
+          "evidenceId": "rag/rag-motivation#body#0-a74c2bc6",
+          "verdict": "supports",
+          "quote": "Retrieval-augmented generation attaches a second, external store that the model reads at inference time.",
+          "rationale": "The cited passage states the definition verbatim; the RAG card title supplies the same subject. This is source support, not independent verification of the source."
+        }
+      ],
+      "claim": "Retrieval-augmented generation attaches a second, external store that the model reads at inference time."
+    },
+    {
+      "recordKey": "1/rag-001/native",
+      "path": "/cards/0/keyPoints/0",
+      "fieldSha256": "b4216c94112861200cffad2c24292d52e2b29c6b5b5234c1de70667880a18f9a",
+      "verdict": "supported",
+      "rationale": "The first paragraph explicitly attributes the three limitations to the knowledge stored in model weights. The field compresses that same argument without adding a new limitation.",
+      "citations": [
+        {
+          "evidenceId": "rag/rag-motivation#body#0-a74c2bc6",
+          "verdict": "supports",
+          "quote": "A language model stores what it learned during training in its weights. That store has three properties that make it awkward as a knowledge base: it cannot be updated without retraining, it cannot cite where a claim came from, and it fails silently — a model that does not know something produces fluent text anyway. Retrieval-augmented generation attaches a second, external store that the model reads at inference time. The paper this note is drawn from named the pattern and gave it its first end-to-end treatment.",
+          "rationale": "The first paragraph explicitly attributes the three limitations to the knowledge stored in model weights. The field compresses that same argument without adding a new limitation."
+        }
+      ],
+      "claim": "A language model's weights form an awkward knowledge base because they cannot be updated without retraining, cannot cite where a claim came from, and fail silently."
+    },
+    {
+      "recordKey": "1/rag-001/langchain",
+      "path": "/cards/0/definition",
+      "fieldSha256": "601cdd52630024904ce76010689854c02331b133b7b5fa7e16f61f1fd26327d1",
+      "verdict": "supported",
+      "rationale": "The cited passage states the definition verbatim; the RAG card title supplies the same subject. This is source support, not independent verification of the source.",
+      "citations": [
+        {
+          "evidenceId": "rag/rag-motivation#body#0-a74c2bc6",
+          "verdict": "supports",
+          "quote": "Retrieval-augmented generation attaches a second, external store that the model reads at inference time.",
+          "rationale": "The cited passage states the definition verbatim; the RAG card title supplies the same subject. This is source support, not independent verification of the source."
+        }
+      ],
+      "claim": "Retrieval-augmented generation attaches a second, external store that the model reads at inference time."
+    },
+    {
+      "recordKey": "1/rag-001/langchain",
+      "path": "/cards/0/keyPoints/0",
+      "fieldSha256": "aa6991ec59849a68b75b8087125eee69ae0c2216b1216fb2fe58bc9d27b1f1a9",
+      "verdict": "supported",
+      "rationale": "The first paragraph explicitly attributes the three limitations to the knowledge stored in model weights. The field compresses that same argument without adding a new limitation.",
+      "citations": [
+        {
+          "evidenceId": "rag/rag-motivation#body#0-a74c2bc6",
+          "verdict": "supports",
+          "quote": "A language model stores what it learned during training in its weights. That store has three properties that make it awkward as a knowledge base: it cannot be updated without retraining, it cannot cite where a claim came from, and it fails silently — a model that does not know something produces fluent text anyway. Retrieval-augmented generation attaches a second, external store that the model reads at inference time. The paper this note is drawn from named the pattern and gave it its first end-to-end treatment.",
+          "rationale": "The first paragraph explicitly attributes the three limitations to the knowledge stored in model weights. The field compresses that same argument without adding a new limitation."
+        }
+      ],
+      "claim": "A language model stores what it learned during training in its weights, which cannot be updated without retraining, cannot cite where a claim came from, and fails silently."
+    },
+    {
+      "recordKey": "1/rag-001/langgraph",
+      "path": "/cards/0/definition",
+      "fieldSha256": "5d838fc92f5bd6204e878fed1cd64b9e488d7971f588fbb5afc70c14c3b6705e",
+      "verdict": "supported",
+      "rationale": "The cited passage states the definition verbatim; the RAG card title supplies the same subject. This is source support, not independent verification of the source.",
+      "citations": [
+        {
+          "evidenceId": "rag/rag-motivation#body#0-a74c2bc6",
+          "verdict": "supports",
+          "quote": "Retrieval-augmented generation attaches a second, external store that the model reads at inference time.",
+          "rationale": "The cited passage states the definition verbatim; the RAG card title supplies the same subject. This is source support, not independent verification of the source."
+        }
+      ],
+      "claim": "Retrieval-augmented generation attaches a second, external store that the model reads at inference time."
+    },
+    {
+      "recordKey": "1/rag-001/langgraph",
+      "path": "/cards/0/keyPoints/0",
+      "fieldSha256": "5efd9fa036b119bee4e23c17f0edab6fd867860b0a74a8bd83302bb7d68eb7a5",
+      "verdict": "supported",
+      "rationale": "The first paragraph explicitly attributes the three limitations to the knowledge stored in model weights. The field compresses that same argument without adding a new limitation.",
+      "citations": [
+        {
+          "evidenceId": "rag/rag-motivation#body#0-a74c2bc6",
+          "verdict": "supports",
+          "quote": "A language model stores what it learned during training in its weights. That store has three properties that make it awkward as a knowledge base: it cannot be updated without retraining, it cannot cite where a claim came from, and it fails silently — a model that does not know something produces fluent text anyway. Retrieval-augmented generation attaches a second, external store that the model reads at inference time. The paper this note is drawn from named the pattern and gave it its first end-to-end treatment.",
+          "rationale": "The first paragraph explicitly attributes the three limitations to the knowledge stored in model weights. The field compresses that same argument without adding a new limitation."
+        }
+      ],
+      "claim": "A language model's weights are an awkward knowledge store because they cannot be updated without retraining, cannot cite where a claim came from, and fail silently."
+    },
+    {
+      "recordKey": "2/rag-001/langchain",
+      "path": "/cards/0/definition",
+      "fieldSha256": "d4d8880b2cb1843da695c519d3a2a4c97e213d1e5597176800f7eb3b8a12c7ad",
+      "verdict": "supported",
+      "rationale": "The cited passage states the definition verbatim; the RAG card title supplies the same subject. This is source support, not independent verification of the source.",
+      "citations": [
+        {
+          "evidenceId": "rag/rag-motivation#body#0-a74c2bc6",
+          "verdict": "supports",
+          "quote": "Retrieval-augmented generation attaches a second, external store that the model reads at inference time.",
+          "rationale": "The cited passage states the definition verbatim; the RAG card title supplies the same subject. This is source support, not independent verification of the source."
+        }
+      ],
+      "claim": "Retrieval-augmented generation attaches a second, external store that the model reads at inference time."
+    },
+    {
+      "recordKey": "2/rag-001/langchain",
+      "path": "/cards/0/keyPoints/0",
+      "fieldSha256": "1ce794e751fd392165b10683b78651f2c664a50ca8eb4b016e2ae484e9e5b0dd",
+      "verdict": "supported",
+      "rationale": "The first paragraph explicitly attributes the three limitations to the knowledge stored in model weights. The field compresses that same argument without adding a new limitation.",
+      "citations": [
+        {
+          "evidenceId": "rag/rag-motivation#body#0-a74c2bc6",
+          "verdict": "supports",
+          "quote": "A language model stores what it learned during training in its weights. That store has three properties that make it awkward as a knowledge base: it cannot be updated without retraining, it cannot cite where a claim came from, and it fails silently — a model that does not know something produces fluent text anyway. Retrieval-augmented generation attaches a second, external store that the model reads at inference time. The paper this note is drawn from named the pattern and gave it its first end-to-end treatment.",
+          "rationale": "The first paragraph explicitly attributes the three limitations to the knowledge stored in model weights. The field compresses that same argument without adding a new limitation."
+        }
+      ],
+      "claim": "A language model stores what it learned during training in its weights, which makes it awkward as a knowledge base because it cannot be updated without retraining, cannot cite sources, and fails silently."
+    },
+    {
+      "recordKey": "2/rag-001/langchain",
+      "path": "/cards/0/keyPoints/1",
+      "fieldSha256": "52ef1a324d49e769b8a3c546207e8431fab7000a86615f4a2ebc5a30da3fcfc7",
+      "verdict": "supported",
+      "rationale": "Reading a second external store at inference time supports the paraphrase that RAG accesses information outside the model weights; the preceding source paragraph identifies the original store as weights.",
+      "citations": [
+        {
+          "evidenceId": "rag/rag-motivation#body#0-a74c2bc6",
+          "verdict": "supports",
+          "quote": "Retrieval-augmented generation attaches a second, external store that the model reads at inference time.",
+          "rationale": "Reading a second external store at inference time supports the paraphrase that RAG accesses information outside the model weights; the preceding source paragraph identifies the original store as weights."
+        }
+      ],
+      "claim": "RAG pairs the model with an external store read at inference time, giving it access to information outside its weights."
+    },
+    {
+      "recordKey": "2/rag-001/langgraph",
+      "path": "/cards/0/definition",
+      "fieldSha256": "5802e4ed7e5e6658e0f5be44c3953e3bbf8361c6e8a1b32272e1ee9340642bdd",
+      "verdict": "supported",
+      "rationale": "The cited passage states the definition verbatim; the RAG card title supplies the same subject. This is source support, not independent verification of the source.",
+      "citations": [
+        {
+          "evidenceId": "rag/rag-motivation#body#0-a74c2bc6",
+          "verdict": "supports",
+          "quote": "Retrieval-augmented generation attaches a second, external store that the model reads at inference time.",
+          "rationale": "The cited passage states the definition verbatim; the RAG card title supplies the same subject. This is source support, not independent verification of the source."
+        }
+      ],
+      "claim": "Retrieval-augmented generation attaches a second, external store that the model reads at inference time."
+    },
+    {
+      "recordKey": "2/rag-001/langgraph",
+      "path": "/cards/0/keyPoints/0",
+      "fieldSha256": "9e2f7a2de724e92cf4d2e6573fa8a5dafe5c5d88c5125c9a13240d2fe619ea5b",
+      "verdict": "supported",
+      "rationale": "The first paragraph explicitly attributes the three limitations to the knowledge stored in model weights. The field compresses that same argument without adding a new limitation.",
+      "citations": [
+        {
+          "evidenceId": "rag/rag-motivation#body#0-a74c2bc6",
+          "verdict": "supports",
+          "quote": "A language model stores what it learned during training in its weights. That store has three properties that make it awkward as a knowledge base: it cannot be updated without retraining, it cannot cite where a claim came from, and it fails silently — a model that does not know something produces fluent text anyway. Retrieval-augmented generation attaches a second, external store that the model reads at inference time. The paper this note is drawn from named the pattern and gave it its first end-to-end treatment.",
+          "rationale": "The first paragraph explicitly attributes the three limitations to the knowledge stored in model weights. The field compresses that same argument without adding a new limitation."
+        }
+      ],
+      "claim": "A language model's weights are an awkward knowledge base: they cannot be updated without retraining, cannot cite where a claim came from, and fail silently."
+    },
+    {
+      "recordKey": "2/rag-001/langgraph",
+      "path": "/cards/0/keyPoints/1",
+      "fieldSha256": "405e142e5e2cb12f1e5e8bb78a7cd74f29ec7a2aa36688d894db7f89204b300a",
+      "verdict": "supported",
+      "rationale": "The sentence is copied exactly. It remains self-referential and does not identify the paper in the card, which limits usefulness; no paper identity or date is invented.",
+      "citations": [
+        {
+          "evidenceId": "rag/rag-motivation#body#0-a74c2bc6",
+          "verdict": "supports",
+          "quote": "The paper this note is drawn from named the pattern and gave it its first end-to-end treatment.",
+          "rationale": "The sentence is copied exactly. It remains self-referential and does not identify the paper in the card, which limits usefulness; no paper identity or date is invented."
+        }
+      ],
+      "claim": "The paper this note is drawn from named the pattern and gave it its first end-to-end treatment."
+    },
+    {
+      "recordKey": "2/rag-001/native",
+      "path": "/cards/0/definition",
+      "fieldSha256": "f8672a6c860ead4b9d14ab46c7c6347e9dc7d2116d94b1c9d482b89ccb06104e",
+      "verdict": "supported",
+      "rationale": "The cited passage states the definition verbatim; the RAG card title supplies the same subject. This is source support, not independent verification of the source.",
+      "citations": [
+        {
+          "evidenceId": "rag/rag-motivation#body#0-a74c2bc6",
+          "verdict": "supports",
+          "quote": "Retrieval-augmented generation attaches a second, external store that the model reads at inference time.",
+          "rationale": "The cited passage states the definition verbatim; the RAG card title supplies the same subject. This is source support, not independent verification of the source."
+        }
+      ],
+      "claim": "Retrieval-augmented generation attaches a second, external store that the model reads at inference time."
+    },
+    {
+      "recordKey": "2/rag-001/native",
+      "path": "/cards/0/keyPoints/0",
+      "fieldSha256": "8753bf6e4b652476c8398bd0458fcc27bda997e03350cec71055835d57e34bb1",
+      "verdict": "supported",
+      "rationale": "The first paragraph explicitly attributes the three limitations to the knowledge stored in model weights. The field compresses that same argument without adding a new limitation.",
+      "citations": [
+        {
+          "evidenceId": "rag/rag-motivation#body#0-a74c2bc6",
+          "verdict": "supports",
+          "quote": "A language model stores what it learned during training in its weights. That store has three properties that make it awkward as a knowledge base: it cannot be updated without retraining, it cannot cite where a claim came from, and it fails silently — a model that does not know something produces fluent text anyway. Retrieval-augmented generation attaches a second, external store that the model reads at inference time. The paper this note is drawn from named the pattern and gave it its first end-to-end treatment.",
+          "rationale": "The first paragraph explicitly attributes the three limitations to the knowledge stored in model weights. The field compresses that same argument without adding a new limitation."
+        }
+      ],
+      "claim": "A language model's weights alone are an awkward knowledge base because they cannot be updated without retraining, cannot cite sources, and fail silently."
+    },
+    {
+      "recordKey": "2/rag-003/langgraph",
+      "path": "/cards/0/rows/0/values/0",
+      "fieldSha256": "c3a103a46050e1946dc522e362683ce9cb743e297c15054192797d9800fa8949",
+      "verdict": "supported",
+      "rationale": "The cited sparse-retrieval paragraph explicitly describes literal query terms, a mostly-zero vocabulary vector, and inverted-index lookup. These match the sparse column and its mechanism heading.",
+      "citations": [
+        {
+          "evidenceId": "rag/sparse-retrieval#body#0-d441a718",
+          "verdict": "supports",
+          "quote": "Sparse retrieval scores a document by the query terms it literally contains. The representation is a vector over the vocabulary, almost all of whose entries are zero — hence \"sparse\" — and matching is a lookup in an inverted index rather than a distance computation in a learned space. BM25 is the scoring function most systems mean when they say \"keyword search\". It is forty years old, has no learned parameters beyond two constants, and remains a serious baseline that dense retrievers are still measured against.",
+          "rationale": "The cited sparse-retrieval paragraph explicitly describes literal query terms, a mostly-zero vocabulary vector, and inverted-index lookup. These match the sparse column and its mechanism heading."
+        }
+      ],
+      "claim": "Sparse retrieval scores a document by the query terms it literally contains and uses an inverted-index lookup rather than distance computation in a learned space."
+    },
+    {
+      "recordKey": "2/rag-003/langgraph",
+      "path": "/cards/0/rows/0/values/1",
+      "fieldSha256": "f506bd7df0099abf66d3fcb046e9b9258021d67c52a30953e18e9ede8f5f7989",
+      "verdict": "supported",
+      "rationale": "The supplemental dual-encoder passage directly supports separate query/passage encodings and nearest-passage vector similarity. This detail was absent from the baseline context.",
+      "citations": [
+        {
+          "evidenceId": "rag/dense-retrieval#the-dual-encoder#0-37fa4383",
+          "verdict": "supports",
+          "quote": "Two encoders, one for questions and one for passages. Passages are encoded once at ingest and stored; a query is encoded at request time and the nearest passages are returned by vector similarity.",
+          "rationale": "The supplemental dual-encoder passage directly supports separate query/passage encodings and nearest-passage vector similarity. This detail was absent from the baseline context."
+        }
+      ],
+      "claim": "Dense retrieval encodes queries and passages separately and returns the nearest passages by vector similarity."
+    },
+    {
+      "recordKey": "2/rag-003/langgraph",
+      "path": "/cards/0/rows/1/values/0",
+      "fieldSha256": "07ea520978fb88f34e212aa8730c563d6a84e9e930b726ca5587c7a8dc975622",
+      "verdict": "partial",
+      "rationale": "The citation supports a terminology/paraphrase contrast for this project corpus. The generic sparse-versus-dense card presents strongest/weakest without preserving that corpus-specific scope. Even the conditional corpus wording in one cell generalizes beyond this corpus. The direction is related to the source, but the unqualified superlative is not fully entailed.",
+      "citations": [
+        {
+          "evidenceId": "rag/dense-retrieval#what-this-means-here#0-22bc9fbf",
+          "verdict": "partial",
+          "quote": "This corpus is dense with exact terminology, which is dense retrieval's weakest case and lexical retrieval's strongest. It is also full of paraphrase between how a note is written and how a question is asked, which is the reverse.",
+          "rationale": "The citation supports a terminology/paraphrase contrast for this project corpus. The generic sparse-versus-dense card presents strongest/weakest without preserving that corpus-specific scope. Even the conditional corpus wording in one cell generalizes beyond this corpus. The direction is related to the source, but the unqualified superlative is not fully entailed."
+        }
+      ],
+      "claim": "Strongest on exact terminology and weakest on paraphrase."
+    },
+    {
+      "recordKey": "2/rag-003/langgraph",
+      "path": "/cards/0/rows/1/values/1",
+      "fieldSha256": "f3c7467cc6e03f06a1301f1a9f8d4b170a4db0105c5030d11a9ec2c6f534af58",
+      "verdict": "partial",
+      "rationale": "The citation supports a terminology/paraphrase contrast for this project corpus. The generic sparse-versus-dense card presents strongest/weakest without preserving that corpus-specific scope. Even the conditional corpus wording in one cell generalizes beyond this corpus. The direction is related to the source, but the unqualified superlative is not fully entailed.",
+      "citations": [
+        {
+          "evidenceId": "rag/dense-retrieval#what-this-means-here#0-22bc9fbf",
+          "verdict": "partial",
+          "quote": "This corpus is dense with exact terminology, which is dense retrieval's weakest case and lexical retrieval's strongest. It is also full of paraphrase between how a note is written and how a question is asked, which is the reverse.",
+          "rationale": "The citation supports a terminology/paraphrase contrast for this project corpus. The generic sparse-versus-dense card presents strongest/weakest without preserving that corpus-specific scope. Even the conditional corpus wording in one cell generalizes beyond this corpus. The direction is related to the source, but the unqualified superlative is not fully entailed."
+        }
+      ],
+      "claim": "Weakest on exact terminology and strongest on paraphrase."
+    },
+    {
+      "recordKey": "2/rag-003/native",
+      "path": "/cards/0/rows/0/values/0",
+      "fieldSha256": "8e4c2a3cc3732169221fc53b28c6992fe2b390d2569311d0af27eaf5809c6ce2",
+      "verdict": "supported",
+      "rationale": "The cited sparse-retrieval paragraph explicitly describes literal query terms, a mostly-zero vocabulary vector, and inverted-index lookup. These match the sparse column and its mechanism heading.",
+      "citations": [
+        {
+          "evidenceId": "rag/sparse-retrieval#body#0-d441a718",
+          "verdict": "supports",
+          "quote": "Sparse retrieval scores a document by the query terms it literally contains. The representation is a vector over the vocabulary, almost all of whose entries are zero — hence \"sparse\" — and matching is a lookup in an inverted index rather than a distance computation in a learned space. BM25 is the scoring function most systems mean when they say \"keyword search\". It is forty years old, has no learned parameters beyond two constants, and remains a serious baseline that dense retrievers are still measured against.",
+          "rationale": "The cited sparse-retrieval paragraph explicitly describes literal query terms, a mostly-zero vocabulary vector, and inverted-index lookup. These match the sparse column and its mechanism heading."
+        }
+      ],
+      "claim": "Scores a document by literal query-term overlap via an inverted index lookup over a mostly-zero vocabulary vector."
+    },
+    {
+      "recordKey": "2/rag-003/native",
+      "path": "/cards/0/rows/0/values/1",
+      "fieldSha256": "c18c21445ed35dc9704a2df2a9c84e9bc34c962ac472f8aceefdcba7a88fd84b",
+      "verdict": "supported",
+      "rationale": "This is a limited inference, explicitly labelled inferred: the passage contrasts sparse inverted-index matching with distance computation in a learned space and names dense retrievers as the contrasting baseline. It does not license additional encoder or training details, and the field does not give such details.",
+      "citations": [
+        {
+          "evidenceId": "rag/sparse-retrieval#body#0-d441a718",
+          "verdict": "supports",
+          "quote": "Sparse retrieval scores a document by the query terms it literally contains. The representation is a vector over the vocabulary, almost all of whose entries are zero — hence \"sparse\" — and matching is a lookup in an inverted index rather than a distance computation in a learned space. BM25 is the scoring function most systems mean when they say \"keyword search\". It is forty years old, has no learned parameters beyond two constants, and remains a serious baseline that dense retrievers are still measured against.",
+          "rationale": "This is a limited inference, explicitly labelled inferred: the passage contrasts sparse inverted-index matching with distance computation in a learned space and names dense retrievers as the contrasting baseline. It does not license additional encoder or training details, and the field does not give such details."
+        }
+      ],
+      "claim": "Uses distance computation in a learned space."
+    },
+    {
+      "recordKey": "2/rag-003/native",
+      "path": "/cards/0/rows/1/values/0",
+      "fieldSha256": "8d5a9f4d964a1ce377e3a8816701256852932b86f96d5a20052c3a9f28f13d71",
+      "verdict": "partial",
+      "rationale": "The citation supports a terminology/paraphrase contrast for this project corpus. The generic sparse-versus-dense card presents strongest/weakest without preserving that corpus-specific scope. Even the conditional corpus wording in one cell generalizes beyond this corpus. The direction is related to the source, but the unqualified superlative is not fully entailed.",
+      "citations": [
+        {
+          "evidenceId": "rag/dense-retrieval#what-this-means-here#0-22bc9fbf",
+          "verdict": "partial",
+          "quote": "This corpus is dense with exact terminology, which is dense retrieval's weakest case and lexical retrieval's strongest. It is also full of paraphrase between how a note is written and how a question is asked, which is the reverse.",
+          "rationale": "The citation supports a terminology/paraphrase contrast for this project corpus. The generic sparse-versus-dense card presents strongest/weakest without preserving that corpus-specific scope. Even the conditional corpus wording in one cell generalizes beyond this corpus. The direction is related to the source, but the unqualified superlative is not fully entailed."
+        }
+      ],
+      "claim": "Strongest for exact terminology; weakest for paraphrase."
+    },
+    {
+      "recordKey": "2/rag-003/native",
+      "path": "/cards/0/rows/1/values/1",
+      "fieldSha256": "eaf30beac121245acfff82d498fbdba15cf5f5274889ec315c72fa81be8276e9",
+      "verdict": "partial",
+      "rationale": "The citation supports a terminology/paraphrase contrast for this project corpus. The generic sparse-versus-dense card presents strongest/weakest without preserving that corpus-specific scope. Even the conditional corpus wording in one cell generalizes beyond this corpus. The direction is related to the source, but the unqualified superlative is not fully entailed.",
+      "citations": [
+        {
+          "evidenceId": "rag/dense-retrieval#what-this-means-here#0-22bc9fbf",
+          "verdict": "partial",
+          "quote": "This corpus is dense with exact terminology, which is dense retrieval's weakest case and lexical retrieval's strongest. It is also full of paraphrase between how a note is written and how a question is asked, which is the reverse.",
+          "rationale": "The citation supports a terminology/paraphrase contrast for this project corpus. The generic sparse-versus-dense card presents strongest/weakest without preserving that corpus-specific scope. Even the conditional corpus wording in one cell generalizes beyond this corpus. The direction is related to the source, but the unqualified superlative is not fully entailed."
+        }
+      ],
+      "claim": "Weakest for exact terminology; strongest for paraphrase."
+    },
+    {
+      "recordKey": "2/rag-003/langchain",
+      "path": "/cards/0/rows/0/values/0",
+      "fieldSha256": "2f608681606a4b06fd5c64b1539a2e97a1d8d64d3e0e70b9b9a4278399c1c5a5",
+      "verdict": "supported",
+      "rationale": "The cited sparse-retrieval paragraph explicitly describes literal query terms, a mostly-zero vocabulary vector, and inverted-index lookup. These match the sparse column and its mechanism heading.",
+      "citations": [
+        {
+          "evidenceId": "rag/sparse-retrieval#body#0-d441a718",
+          "verdict": "supports",
+          "quote": "Sparse retrieval scores a document by the query terms it literally contains. The representation is a vector over the vocabulary, almost all of whose entries are zero — hence \"sparse\" — and matching is a lookup in an inverted index rather than a distance computation in a learned space. BM25 is the scoring function most systems mean when they say \"keyword search\". It is forty years old, has no learned parameters beyond two constants, and remains a serious baseline that dense retrievers are still measured against.",
+          "rationale": "The cited sparse-retrieval paragraph explicitly describes literal query terms, a mostly-zero vocabulary vector, and inverted-index lookup. These match the sparse column and its mechanism heading."
+        }
+      ],
+      "claim": "Scores a document by the query terms it literally contains, using a sparse vector over the vocabulary and an inverted-index lookup."
+    },
+    {
+      "recordKey": "2/rag-003/langchain",
+      "path": "/cards/0/rows/0/values/1",
+      "fieldSha256": "2832b250c8c3e9a00666d6380af8743437d5b7ed323beca2739c0afd6b967722",
+      "verdict": "supported",
+      "rationale": "This is a limited inference, explicitly labelled inferred: the passage contrasts sparse inverted-index matching with distance computation in a learned space and names dense retrievers as the contrasting baseline. It does not license additional encoder or training details, and the field does not give such details.",
+      "citations": [
+        {
+          "evidenceId": "rag/sparse-retrieval#body#0-d441a718",
+          "verdict": "supports",
+          "quote": "Sparse retrieval scores a document by the query terms it literally contains. The representation is a vector over the vocabulary, almost all of whose entries are zero — hence \"sparse\" — and matching is a lookup in an inverted index rather than a distance computation in a learned space. BM25 is the scoring function most systems mean when they say \"keyword search\". It is forty years old, has no learned parameters beyond two constants, and remains a serious baseline that dense retrievers are still measured against.",
+          "rationale": "This is a limited inference, explicitly labelled inferred: the passage contrasts sparse inverted-index matching with distance computation in a learned space and names dense retrievers as the contrasting baseline. It does not license additional encoder or training details, and the field does not give such details."
+        }
+      ],
+      "claim": "Matches via a distance computation in a learned space."
+    },
+    {
+      "recordKey": "2/rag-003/langchain",
+      "path": "/cards/0/rows/1/values/0",
+      "fieldSha256": "cd231c7bd8dda54f276eb594a6b48c9d27a1bc9c13b65c3f3e5c881946cee1c8",
+      "verdict": "partial",
+      "rationale": "The citation supports a terminology/paraphrase contrast for this project corpus. The generic sparse-versus-dense card presents strongest/weakest without preserving that corpus-specific scope. Even the conditional corpus wording in one cell generalizes beyond this corpus. The direction is related to the source, but the unqualified superlative is not fully entailed.",
+      "citations": [
+        {
+          "evidenceId": "rag/dense-retrieval#what-this-means-here#0-22bc9fbf",
+          "verdict": "partial",
+          "quote": "This corpus is dense with exact terminology, which is dense retrieval's weakest case and lexical retrieval's strongest. It is also full of paraphrase between how a note is written and how a question is asked, which is the reverse.",
+          "rationale": "The citation supports a terminology/paraphrase contrast for this project corpus. The generic sparse-versus-dense card presents strongest/weakest without preserving that corpus-specific scope. Even the conditional corpus wording in one cell generalizes beyond this corpus. The direction is related to the source, but the unqualified superlative is not fully entailed."
+        }
+      ],
+      "claim": "Strongest on exact terminology; weakest on paraphrase."
+    },
+    {
+      "recordKey": "2/rag-003/langchain",
+      "path": "/cards/0/rows/1/values/1",
+      "fieldSha256": "62fad1e81a0d18c177cbbfdf12bd7d1c465013193769800bbd535aa54fa13054",
+      "verdict": "partial",
+      "rationale": "The citation supports a terminology/paraphrase contrast for this project corpus. The generic sparse-versus-dense card presents strongest/weakest without preserving that corpus-specific scope. Even the conditional corpus wording in one cell generalizes beyond this corpus. The direction is related to the source, but the unqualified superlative is not fully entailed.",
+      "citations": [
+        {
+          "evidenceId": "rag/dense-retrieval#what-this-means-here#0-22bc9fbf",
+          "verdict": "partial",
+          "quote": "This corpus is dense with exact terminology, which is dense retrieval's weakest case and lexical retrieval's strongest. It is also full of paraphrase between how a note is written and how a question is asked, which is the reverse.",
+          "rationale": "The citation supports a terminology/paraphrase contrast for this project corpus. The generic sparse-versus-dense card presents strongest/weakest without preserving that corpus-specific scope. Even the conditional corpus wording in one cell generalizes beyond this corpus. The direction is related to the source, but the unqualified superlative is not fully entailed."
+        }
+      ],
+      "claim": "Weakest on exact terminology; strongest on paraphrase."
+    },
+    {
+      "recordKey": "3/rag-001/native",
+      "path": "/cards/0/definition",
+      "fieldSha256": "2d75cd3a476dc7deacc9dfe28526cfabe91bdd1c365b4dbdc1b5568451d1e3db",
+      "verdict": "supported",
+      "rationale": "The cited passage states the definition verbatim; the RAG card title supplies the same subject. This is source support, not independent verification of the source.",
+      "citations": [
+        {
+          "evidenceId": "rag/rag-motivation#body#0-a74c2bc6",
+          "verdict": "supports",
+          "quote": "Retrieval-augmented generation attaches a second, external store that the model reads at inference time.",
+          "rationale": "The cited passage states the definition verbatim; the RAG card title supplies the same subject. This is source support, not independent verification of the source."
+        }
+      ],
+      "claim": "Retrieval-augmented generation attaches a second, external store that the model reads at inference time."
+    },
+    {
+      "recordKey": "3/rag-001/native",
+      "path": "/cards/0/keyPoints/0",
+      "fieldSha256": "ffac42f334135fdf57174440b848323584022dd775e8d429cead2d66469dcf9d",
+      "verdict": "supported",
+      "rationale": "This is an exact source sentence about the weight store.",
+      "citations": [
+        {
+          "evidenceId": "rag/rag-motivation#body#0-a74c2bc6",
+          "verdict": "supports",
+          "quote": "A language model stores what it learned during training in its weights.",
+          "rationale": "This is an exact source sentence about the weight store."
+        }
+      ],
+      "claim": "A language model stores what it learned during training in its weights."
+    },
+    {
+      "recordKey": "3/rag-001/native",
+      "path": "/cards/0/keyPoints/1",
+      "fieldSha256": "4007dd361f2aadc0e56d833c19671e58614948d996861bc3feeca55bf6d2ee8e",
+      "verdict": "supported",
+      "rationale": "The first paragraph explicitly attributes the three limitations to the knowledge stored in model weights. The field compresses that same argument without adding a new limitation.",
+      "citations": [
+        {
+          "evidenceId": "rag/rag-motivation#body#0-a74c2bc6",
+          "verdict": "supports",
+          "quote": "A language model stores what it learned during training in its weights. That store has three properties that make it awkward as a knowledge base: it cannot be updated without retraining, it cannot cite where a claim came from, and it fails silently — a model that does not know something produces fluent text anyway. Retrieval-augmented generation attaches a second, external store that the model reads at inference time. The paper this note is drawn from named the pattern and gave it its first end-to-end treatment.",
+          "rationale": "The first paragraph explicitly attributes the three limitations to the knowledge stored in model weights. The field compresses that same argument without adding a new limitation."
+        }
+      ],
+      "claim": "That weight store cannot be updated without retraining, cannot cite where a claim came from, and fails silently."
+    },
+    {
+      "recordKey": "3/rag-001/native",
+      "path": "/cards/0/keyPoints/2",
+      "fieldSha256": "427996dde13f4ae8dbbdf94d447c7e4c3b0eee0c4086fbd0593ef63c03610349",
+      "verdict": "supported",
+      "rationale": "The sentence is copied exactly. It remains self-referential and does not identify the paper in the card, which limits usefulness; no paper identity or date is invented.",
+      "citations": [
+        {
+          "evidenceId": "rag/rag-motivation#body#0-a74c2bc6",
+          "verdict": "supports",
+          "quote": "The paper this note is drawn from named the pattern and gave it its first end-to-end treatment.",
+          "rationale": "The sentence is copied exactly. It remains self-referential and does not identify the paper in the card, which limits usefulness; no paper identity or date is invented."
+        }
+      ],
+      "claim": "The paper this note is drawn from named the pattern and gave it its first end-to-end treatment."
+    },
+    {
+      "recordKey": "3/rag-001/langchain",
+      "path": "/cards/0/definition",
+      "fieldSha256": "7bdc228756207675824beab2601598dbeac662cd31fe172fba950223f6ad26de",
+      "verdict": "supported",
+      "rationale": "The cited passage states the definition verbatim; the RAG card title supplies the same subject. This is source support, not independent verification of the source.",
+      "citations": [
+        {
+          "evidenceId": "rag/rag-motivation#body#0-a74c2bc6",
+          "verdict": "supports",
+          "quote": "Retrieval-augmented generation attaches a second, external store that the model reads at inference time.",
+          "rationale": "The cited passage states the definition verbatim; the RAG card title supplies the same subject. This is source support, not independent verification of the source."
+        }
+      ],
+      "claim": "Retrieval-augmented generation attaches a second, external store that the model reads at inference time."
+    },
+    {
+      "recordKey": "3/rag-001/langchain",
+      "path": "/cards/0/keyPoints/0",
+      "fieldSha256": "345aad72efeb1a8c53125594059b068142eecd1e329d4cca502eedca3e0259e5",
+      "verdict": "supported",
+      "rationale": "This is an exact source sentence about the weight store.",
+      "citations": [
+        {
+          "evidenceId": "rag/rag-motivation#body#0-a74c2bc6",
+          "verdict": "supports",
+          "quote": "A language model stores what it learned during training in its weights.",
+          "rationale": "This is an exact source sentence about the weight store."
+        }
+      ],
+      "claim": "A language model stores what it learned during training in its weights."
+    },
+    {
+      "recordKey": "3/rag-001/langchain",
+      "path": "/cards/0/keyPoints/1",
+      "fieldSha256": "58cd9d886f5df15c876b03106f061bc58589d71264e94af4f4e1ae99f5913aaa",
+      "verdict": "supported",
+      "rationale": "The first paragraph explicitly attributes the three limitations to the knowledge stored in model weights. The field compresses that same argument without adding a new limitation.",
+      "citations": [
+        {
+          "evidenceId": "rag/rag-motivation#body#0-a74c2bc6",
+          "verdict": "supports",
+          "quote": "A language model stores what it learned during training in its weights. That store has three properties that make it awkward as a knowledge base: it cannot be updated without retraining, it cannot cite where a claim came from, and it fails silently — a model that does not know something produces fluent text anyway. Retrieval-augmented generation attaches a second, external store that the model reads at inference time. The paper this note is drawn from named the pattern and gave it its first end-to-end treatment.",
+          "rationale": "The first paragraph explicitly attributes the three limitations to the knowledge stored in model weights. The field compresses that same argument without adding a new limitation."
+        }
+      ],
+      "claim": "That built-in store cannot be updated without retraining, cannot cite where a claim came from, and fails silently."
+    },
+    {
+      "recordKey": "3/rag-003/native",
+      "path": "/cards/0/rows/0/values/0",
+      "fieldSha256": "a01008dd06fa9f5d01d893aa7433b5da7636726e2e99917b7fc49e8eb3f5c7e9",
+      "verdict": "supported",
+      "rationale": "The cited sparse-retrieval paragraph explicitly describes literal query terms, a mostly-zero vocabulary vector, and inverted-index lookup. These match the sparse column and its mechanism heading.",
+      "citations": [
+        {
+          "evidenceId": "rag/sparse-retrieval#body#0-d441a718",
+          "verdict": "supports",
+          "quote": "Sparse retrieval scores a document by the query terms it literally contains. The representation is a vector over the vocabulary, almost all of whose entries are zero — hence \"sparse\" — and matching is a lookup in an inverted index rather than a distance computation in a learned space. BM25 is the scoring function most systems mean when they say \"keyword search\". It is forty years old, has no learned parameters beyond two constants, and remains a serious baseline that dense retrievers are still measured against.",
+          "rationale": "The cited sparse-retrieval paragraph explicitly describes literal query terms, a mostly-zero vocabulary vector, and inverted-index lookup. These match the sparse column and its mechanism heading."
+        }
+      ],
+      "claim": "Sparse retrieval scores by literal query terms; its vocabulary vector is mostly zero and matching is an inverted-index lookup."
+    },
+    {
+      "recordKey": "3/rag-003/native",
+      "path": "/cards/0/rows/0/values/1",
+      "fieldSha256": "256f6e18fbf4054efef4f466bffd44cb506bcdae26b23337a1c57a2e75ea5e11",
+      "verdict": "supported",
+      "rationale": "This is a limited inference, explicitly labelled inferred: the passage contrasts sparse inverted-index matching with distance computation in a learned space and names dense retrievers as the contrasting baseline. It does not license additional encoder or training details, and the field does not give such details.",
+      "citations": [
+        {
+          "evidenceId": "rag/sparse-retrieval#body#0-d441a718",
+          "verdict": "supports",
+          "quote": "Sparse retrieval scores a document by the query terms it literally contains. The representation is a vector over the vocabulary, almost all of whose entries are zero — hence \"sparse\" — and matching is a lookup in an inverted index rather than a distance computation in a learned space. BM25 is the scoring function most systems mean when they say \"keyword search\". It is forty years old, has no learned parameters beyond two constants, and remains a serious baseline that dense retrievers are still measured against.",
+          "rationale": "This is a limited inference, explicitly labelled inferred: the passage contrasts sparse inverted-index matching with distance computation in a learned space and names dense retrievers as the contrasting baseline. It does not license additional encoder or training details, and the field does not give such details."
+        }
+      ],
+      "claim": "Dense retrieval uses distance computation in a learned space."
+    },
+    {
+      "recordKey": "3/rag-003/native",
+      "path": "/cards/0/rows/1/values/0",
+      "fieldSha256": "ccbe05c241ea777d5581aeed4daad2b5c7ba2f95c95583c816b10c142d5e9f76",
+      "verdict": "partial",
+      "rationale": "The citation supports a terminology/paraphrase contrast for this project corpus. The generic sparse-versus-dense card presents strongest/weakest without preserving that corpus-specific scope. Even the conditional corpus wording in one cell generalizes beyond this corpus. The direction is related to the source, but the unqualified superlative is not fully entailed.",
+      "citations": [
+        {
+          "evidenceId": "rag/dense-retrieval#what-this-means-here#0-22bc9fbf",
+          "verdict": "partial",
+          "quote": "This corpus is dense with exact terminology, which is dense retrieval's weakest case and lexical retrieval's strongest. It is also full of paraphrase between how a note is written and how a question is asked, which is the reverse.",
+          "rationale": "The citation supports a terminology/paraphrase contrast for this project corpus. The generic sparse-versus-dense card presents strongest/weakest without preserving that corpus-specific scope. Even the conditional corpus wording in one cell generalizes beyond this corpus. The direction is related to the source, but the unqualified superlative is not fully entailed."
+        }
+      ],
+      "claim": "Sparse/lexical retrieval is strongest on exact terminology and weakest on paraphrase."
+    },
+    {
+      "recordKey": "3/rag-003/native",
+      "path": "/cards/0/rows/1/values/1",
+      "fieldSha256": "5cac775d254cc67ac6973a879fa5811ba4c280fa72a39dd9779dc3c86d573f4f",
+      "verdict": "partial",
+      "rationale": "The citation supports a terminology/paraphrase contrast for this project corpus. The generic sparse-versus-dense card presents strongest/weakest without preserving that corpus-specific scope. Even the conditional corpus wording in one cell generalizes beyond this corpus. The direction is related to the source, but the unqualified superlative is not fully entailed.",
+      "citations": [
+        {
+          "evidenceId": "rag/dense-retrieval#what-this-means-here#0-22bc9fbf",
+          "verdict": "partial",
+          "quote": "This corpus is dense with exact terminology, which is dense retrieval's weakest case and lexical retrieval's strongest. It is also full of paraphrase between how a note is written and how a question is asked, which is the reverse.",
+          "rationale": "The citation supports a terminology/paraphrase contrast for this project corpus. The generic sparse-versus-dense card presents strongest/weakest without preserving that corpus-specific scope. Even the conditional corpus wording in one cell generalizes beyond this corpus. The direction is related to the source, but the unqualified superlative is not fully entailed."
+        }
+      ],
+      "claim": "Dense retrieval is weakest on exact terminology and strongest on paraphrase."
+    },
+    {
+      "recordKey": "3/rag-003/langchain",
+      "path": "/cards/0/rows/0/values/0",
+      "fieldSha256": "7c935156b87e34ef751952c3d080c91b0bfc50cb2e833b0c598e5a188882f1ee",
+      "verdict": "supported",
+      "rationale": "The cited sparse-retrieval paragraph explicitly describes literal query terms, a mostly-zero vocabulary vector, and inverted-index lookup. These match the sparse column and its mechanism heading.",
+      "citations": [
+        {
+          "evidenceId": "rag/sparse-retrieval#body#0-d441a718",
+          "verdict": "supports",
+          "quote": "Sparse retrieval scores a document by the query terms it literally contains. The representation is a vector over the vocabulary, almost all of whose entries are zero — hence \"sparse\" — and matching is a lookup in an inverted index rather than a distance computation in a learned space. BM25 is the scoring function most systems mean when they say \"keyword search\". It is forty years old, has no learned parameters beyond two constants, and remains a serious baseline that dense retrievers are still measured against.",
+          "rationale": "The cited sparse-retrieval paragraph explicitly describes literal query terms, a mostly-zero vocabulary vector, and inverted-index lookup. These match the sparse column and its mechanism heading."
+        }
+      ],
+      "claim": "Represents documents as a vector over the vocabulary with almost all entries zero, matching via lookup in an inverted index."
+    },
+    {
+      "recordKey": "3/rag-003/langchain",
+      "path": "/cards/0/rows/0/values/1",
+      "fieldSha256": "3e44829b5781d8c8309c374a0a1690599595fedd245729d7121a784046825165",
+      "verdict": "supported",
+      "rationale": "This is a limited inference, explicitly labelled inferred: the passage contrasts sparse inverted-index matching with distance computation in a learned space and names dense retrievers as the contrasting baseline. It does not license additional encoder or training details, and the field does not give such details.",
+      "citations": [
+        {
+          "evidenceId": "rag/sparse-retrieval#body#0-d441a718",
+          "verdict": "supports",
+          "quote": "Sparse retrieval scores a document by the query terms it literally contains. The representation is a vector over the vocabulary, almost all of whose entries are zero — hence \"sparse\" — and matching is a lookup in an inverted index rather than a distance computation in a learned space. BM25 is the scoring function most systems mean when they say \"keyword search\". It is forty years old, has no learned parameters beyond two constants, and remains a serious baseline that dense retrievers are still measured against.",
+          "rationale": "This is a limited inference, explicitly labelled inferred: the passage contrasts sparse inverted-index matching with distance computation in a learned space and names dense retrievers as the contrasting baseline. It does not license additional encoder or training details, and the field does not give such details."
+        }
+      ],
+      "claim": "Uses learned dense representations scored by distance computation in a learned space."
+    },
+    {
+      "recordKey": "3/rag-003/langchain",
+      "path": "/cards/0/rows/1/values/0",
+      "fieldSha256": "85c203f42a2dbda62d1bba2dd913d3d7c7b1d69aaaddd64440965c2e4ee54aa8",
+      "verdict": "partial",
+      "rationale": "The citation supports a terminology/paraphrase contrast for this project corpus. The generic sparse-versus-dense card presents strongest/weakest without preserving that corpus-specific scope. Even the conditional corpus wording in one cell generalizes beyond this corpus. The direction is related to the source, but the unqualified superlative is not fully entailed.",
+      "citations": [
+        {
+          "evidenceId": "rag/dense-retrieval#what-this-means-here#0-22bc9fbf",
+          "verdict": "partial",
+          "quote": "This corpus is dense with exact terminology, which is dense retrieval's weakest case and lexical retrieval's strongest. It is also full of paraphrase between how a note is written and how a question is asked, which is the reverse.",
+          "rationale": "The citation supports a terminology/paraphrase contrast for this project corpus. The generic sparse-versus-dense card presents strongest/weakest without preserving that corpus-specific scope. Even the conditional corpus wording in one cell generalizes beyond this corpus. The direction is related to the source, but the unqualified superlative is not fully entailed."
+        }
+      ],
+      "claim": "Strongest when the corpus is dense with exact terminology; weakest when it is full of paraphrase."
+    },
+    {
+      "recordKey": "3/rag-003/langchain",
+      "path": "/cards/0/rows/1/values/1",
+      "fieldSha256": "70762d63f41cd4a2edd5c208b637fe4c4316f11255504b7d0decf28418e6598e",
+      "verdict": "partial",
+      "rationale": "The citation supports a terminology/paraphrase contrast for this project corpus. The generic sparse-versus-dense card presents strongest/weakest without preserving that corpus-specific scope. Even the conditional corpus wording in one cell generalizes beyond this corpus. The direction is related to the source, but the unqualified superlative is not fully entailed.",
+      "citations": [
+        {
+          "evidenceId": "rag/dense-retrieval#what-this-means-here#0-22bc9fbf",
+          "verdict": "partial",
+          "quote": "This corpus is dense with exact terminology, which is dense retrieval's weakest case and lexical retrieval's strongest. It is also full of paraphrase between how a note is written and how a question is asked, which is the reverse.",
+          "rationale": "The citation supports a terminology/paraphrase contrast for this project corpus. The generic sparse-versus-dense card presents strongest/weakest without preserving that corpus-specific scope. Even the conditional corpus wording in one cell generalizes beyond this corpus. The direction is related to the source, but the unqualified superlative is not fully entailed."
+        }
+      ],
+      "claim": "Weakest with exact terminology; strongest with paraphrase."
+    }
+  ],
+  "responses": [
+    {
+      "recordKey": "1/rag-001/native",
+      "verdict": "adequate-minimal",
+      "rationale": "The external-store-at-inference definition directly answers the basic question and the cited motivation supports its key points. Some versions retain an unhelpful self-reference to a paper; source correctness itself is outside this audit."
+    },
+    {
+      "recordKey": "1/rag-001/langchain",
+      "verdict": "adequate-minimal",
+      "rationale": "The external-store-at-inference definition directly answers the basic question and the cited motivation supports its key points. Some versions retain an unhelpful self-reference to a paper; source correctness itself is outside this audit."
+    },
+    {
+      "recordKey": "1/rag-001/langgraph",
+      "verdict": "adequate-minimal",
+      "rationale": "The external-store-at-inference definition directly answers the basic question and the cited motivation supports its key points. Some versions retain an unhelpful self-reference to a paper; source correctness itself is outside this audit."
+    },
+    {
+      "recordKey": "1/rag-003/langchain",
+      "verdict": "rejected-not-rendered",
+      "rationale": "No renderable result was published. Preserve the original truncation or extractive-policy failure; unrendered raw claims are excluded from rendered-field precision."
+    },
+    {
+      "recordKey": "1/rag-003/langgraph",
+      "verdict": "overcautious-partial-answer-available",
+      "rationale": "The final context already states literal/inverted-index sparse matching, says dense retrieval learns a semantic space, and contrasts terminology with paraphrase. Detailed dense mechanics are still missing, but a qualified high-level comparison or partial card is possible. Returning no cards is judged overcautious, not a hallucination; this is a reviewer interpretation, not a new golden label."
+    },
+    {
+      "recordKey": "1/rag-003/native",
+      "verdict": "rejected-not-rendered",
+      "rationale": "No renderable result was published. Preserve the original truncation or extractive-policy failure; unrendered raw claims are excluded from rendered-field precision."
+    },
+    {
+      "recordKey": "1/ins-001/langgraph",
+      "verdict": "incomplete-justified",
+      "rationale": "None of the actual retained passages names and prices production vector-database alternatives. Refusing a vendor/pricing recommendation is justified within the supplied evidence; no external product knowledge is used."
+    },
+    {
+      "recordKey": "1/ins-001/native",
+      "verdict": "incomplete-justified",
+      "rationale": "None of the actual retained passages names and prices production vector-database alternatives. Refusing a vendor/pricing recommendation is justified within the supplied evidence; no external product knowledge is used."
+    },
+    {
+      "recordKey": "1/ins-001/langchain",
+      "verdict": "incomplete-justified",
+      "rationale": "None of the actual retained passages names and prices production vector-database alternatives. Refusing a vendor/pricing recommendation is justified within the supplied evidence; no external product knowledge is used."
+    },
+    {
+      "recordKey": "2/rag-001/langchain",
+      "verdict": "adequate-minimal",
+      "rationale": "The external-store-at-inference definition directly answers the basic question and the cited motivation supports its key points. Some versions retain an unhelpful self-reference to a paper; source correctness itself is outside this audit."
+    },
+    {
+      "recordKey": "2/rag-001/langgraph",
+      "verdict": "adequate-minimal",
+      "rationale": "The external-store-at-inference definition directly answers the basic question and the cited motivation supports its key points. Some versions retain an unhelpful self-reference to a paper; source correctness itself is outside this audit."
+    },
+    {
+      "recordKey": "2/rag-001/native",
+      "verdict": "adequate-minimal",
+      "rationale": "The external-store-at-inference definition directly answers the basic question and the cited motivation supports its key points. Some versions retain an unhelpful self-reference to a paper; source correctness itself is outside this audit."
+    },
+    {
+      "recordKey": "2/rag-003/langgraph",
+      "verdict": "answers-with-scope-overstatement",
+      "rationale": "The card answers the mechanism comparison, but the exact-terminology/paraphrase cells overgeneralize a corpus-specific observation. Mechanically valid does not mean fully supported in scope."
+    },
+    {
+      "recordKey": "2/rag-003/native",
+      "verdict": "answers-with-scope-overstatement",
+      "rationale": "The card answers the mechanism comparison, but the exact-terminology/paraphrase cells overgeneralize a corpus-specific observation. Mechanically valid does not mean fully supported in scope."
+    },
+    {
+      "recordKey": "2/rag-003/langchain",
+      "verdict": "answers-with-scope-overstatement",
+      "rationale": "The card answers the mechanism comparison, but the exact-terminology/paraphrase cells overgeneralize a corpus-specific observation. Mechanically valid does not mean fully supported in scope."
+    },
+    {
+      "recordKey": "2/ins-001/native",
+      "verdict": "incomplete-justified",
+      "rationale": "None of the actual retained passages names and prices production vector-database alternatives. Refusing a vendor/pricing recommendation is justified within the supplied evidence; no external product knowledge is used."
+    },
+    {
+      "recordKey": "2/ins-001/langchain",
+      "verdict": "incomplete-justified",
+      "rationale": "None of the actual retained passages names and prices production vector-database alternatives. Refusing a vendor/pricing recommendation is justified within the supplied evidence; no external product knowledge is used."
+    },
+    {
+      "recordKey": "2/ins-001/langgraph",
+      "verdict": "incomplete-justified",
+      "rationale": "None of the actual retained passages names and prices production vector-database alternatives. Refusing a vendor/pricing recommendation is justified within the supplied evidence; no external product knowledge is used."
+    },
+    {
+      "recordKey": "3/rag-001/langgraph",
+      "verdict": "rejected-not-rendered",
+      "rationale": "No renderable result was published. Preserve the original truncation or extractive-policy failure; unrendered raw claims are excluded from rendered-field precision."
+    },
+    {
+      "recordKey": "3/rag-001/native",
+      "verdict": "adequate-minimal",
+      "rationale": "The external-store-at-inference definition directly answers the basic question and the cited motivation supports its key points. Some versions retain an unhelpful self-reference to a paper; source correctness itself is outside this audit."
+    },
+    {
+      "recordKey": "3/rag-001/langchain",
+      "verdict": "adequate-minimal",
+      "rationale": "The external-store-at-inference definition directly answers the basic question and the cited motivation supports its key points. Some versions retain an unhelpful self-reference to a paper; source correctness itself is outside this audit."
+    },
+    {
+      "recordKey": "3/rag-003/native",
+      "verdict": "answers-with-scope-overstatement",
+      "rationale": "The card answers the mechanism comparison, but the exact-terminology/paraphrase cells overgeneralize a corpus-specific observation. Mechanically valid does not mean fully supported in scope."
+    },
+    {
+      "recordKey": "3/rag-003/langchain",
+      "verdict": "answers-with-scope-overstatement",
+      "rationale": "The card answers the mechanism comparison, but the exact-terminology/paraphrase cells overgeneralize a corpus-specific observation. Mechanically valid does not mean fully supported in scope."
+    },
+    {
+      "recordKey": "3/rag-003/langgraph",
+      "verdict": "rejected-not-rendered",
+      "rationale": "No renderable result was published. Preserve the original truncation or extractive-policy failure; unrendered raw claims are excluded from rendered-field precision."
+    },
+    {
+      "recordKey": "3/ins-001/langchain",
+      "verdict": "incomplete-justified",
+      "rationale": "None of the actual retained passages names and prices production vector-database alternatives. Refusing a vendor/pricing recommendation is justified within the supplied evidence; no external product knowledge is used."
+    },
+    {
+      "recordKey": "3/ins-001/langgraph",
+      "verdict": "incomplete-justified",
+      "rationale": "None of the actual retained passages names and prices production vector-database alternatives. Refusing a vendor/pricing recommendation is justified within the supplied evidence; no external product knowledge is used."
+    },
+    {
+      "recordKey": "3/ins-001/native",
+      "verdict": "incomplete-justified",
+      "rationale": "None of the actual retained passages names and prices production vector-database alternatives. Refusing a vendor/pricing recommendation is justified within the supplied evidence; no external product knowledge is used."
+    }
+  ]
+}

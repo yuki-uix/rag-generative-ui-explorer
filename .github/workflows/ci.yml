@@ -56,6 +56,8 @@ jobs:
       - run: pnpm framework:compare
       # Bounded graph: sufficient, one supplement, and still missing. Offline.
       - run: pnpm framework:graph
+      # Three-arm pilot with matched final context, offline generated report.
+      - run: pnpm framework:study
       # Replay measured image/OCR/CLIP outputs; no model download or Vision dependency.
       - run: pnpm images:budget
       - run: pnpm images:replay --out ../../eval/images/runs/ci

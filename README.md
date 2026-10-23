@@ -95,6 +95,7 @@ pnpm install --frozen-lockfile
 pnpm framework:smoke
 pnpm framework:compare  # native + LangChain, identical fixed evidence, no key
 pnpm framework:graph    # LangGraph: check coverage, supplement at most once, no key
+pnpm framework:study    # three-arm pilot with matched final context and report, no key
 ```
 
 This exercises real retrieval, SDK request construction and citation validation
@@ -103,7 +104,10 @@ structured-output API, with actual request differences recorded. For the live
 command and artifacts, see [framework experiments](eval/framework/README.md);
 for the observed live run and framework tradeoffs, see [F2 notes](eval/framework/F2-LANGCHAIN.md).
 The graph's three offline paths, complete traces, failure case and limits are
-documented in [F3 notes](eval/framework/F3-LANGGRAPH.md).
+documented in [F3 notes](eval/framework/F3-LANGGRAPH.md). The [F5 pilot findings](eval/framework/F5-FINDINGS.md)
+compare both implementation and retrieval strategy. The [live pilot](eval/framework/F5-LIVE-PILOT.md)
+adds real responses, field-level semantic judgments, and a reconciled account
+deduction of approximately CNY 0.94.
 
 ## Independent image retrieval experiment
 

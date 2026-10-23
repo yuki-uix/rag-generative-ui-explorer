@@ -1,0 +1,31 @@
+{
+  "version": "framework-balance-observation-1",
+  "recordsSha256": "3bfbb1ee8748c266c48cafc10dd84895133092109e6ee6b3ce36ce9ad3a5d428",
+  "sourceEndpoint": "https://api.deepseek.com/user/balance",
+  "currency": "CNY",
+  "windowStartedAt": "2026-10-21T04:39:26.011Z",
+  "observations": [
+    {
+      "at": "2026-10-21T04:51:02.848Z",
+      "deductionAmount": "0.680000000",
+      "reportedDecimalPlaces": 2
+    },
+    {
+      "at": "2026-10-21T04:52:39.799Z",
+      "deductionAmount": "0.840000000",
+      "reportedDecimalPlaces": 2
+    },
+    {
+      "at": "2026-10-21T04:56:33.873Z",
+      "deductionAmount": "0.940000000",
+      "reportedDecimalPlaces": 2
+    },
+    {
+      "at": "2026-10-21T04:58:26.600Z",
+      "deductionAmount": "0.940000000",
+      "reportedDecimalPlaces": 2
+    }
+  ],
+  "rawBalanceTotalsPublished": false,
+  "otherAccountActivity": "not-independently-excluded"
+}

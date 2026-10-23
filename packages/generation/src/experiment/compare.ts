@@ -11,7 +11,7 @@ function differingPaths(left: unknown, right: unknown, path = ''): string[] {
   return [path];
 }
 
-function text(content: unknown): string {
+export function requestText(content: unknown): string {
   if (typeof content === 'string') return content;
   if (Array.isArray(content)) return content.map((block: { text?: string }) => block.text ?? '').join('');
   return '';
@@ -26,10 +26,11 @@ export function compareRecords(records: readonly ExperimentRecord[]) {
     const a = left.requests[0]?.body as Record<string, unknown> | undefined;
     const b = right.requests[0]?.body as Record<string, unknown> | undefined;
     const messages = (body: Record<string, unknown>) => (body['messages'] as { role: string; content: unknown }[])
-      .map((message) => ({ role: message.role, content: text(message.content) }));
+      .map((message) => ({ role: message.role, content: requestText(message.content) }));
     const sameEvidence = JSON.stringify(left.evidence) === JSON.stringify(right.evidence);
-    const samePrompt = a && b ? text(a['system']) === text(b['system']) && JSON.stringify(messages(a)) === JSON.stringify(messages(b)) : null;
-    const sameModelSettings = a && b ? a['model'] === b['model'] && a['max_tokens'] === b['max_tokens'] && a['stream'] === b['stream'] : null;
+    const samePrompt = a && b ? requestText(a['system']) === requestText(b['system']) && JSON.stringify(messages(a)) === JSON.stringify(messages(b)) : null;
+    const effort = (body: Record<string, unknown>) => (body['output_config'] as Record<string, unknown> | undefined)?.['effort'];
+    const sameModelSettings = a && b ? ['model', 'max_tokens', 'stream', 'thinking', 'temperature', 'top_p', 'top_k'].every((key) => JSON.stringify(a[key]) === JSON.stringify(b[key])) && effort(a) === effort(b) : null;
     if (!sameEvidence || samePrompt === false || sameModelSettings === false) {
       throw new Error(`Comparison invariants changed for ${left.question.id}; inspect saved records.`);
     }

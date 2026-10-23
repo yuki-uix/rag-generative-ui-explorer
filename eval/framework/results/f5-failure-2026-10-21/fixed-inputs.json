@@ -1,0 +1,198 @@
+[
+  {
+    "question": {
+      "id": "rag-001",
+      "question": "What is retrieval-augmented generation?",
+      "domain": "rag",
+      "expectedCardTypes": [
+        "definition"
+      ],
+      "goldenEvidenceIds": [
+        "rag/rag-motivation#body#0-a74c2bc6",
+        "rag/rag-motivation#the-distinction-the-paper-draws#0-8850bcf8",
+        "rag/rag-motivation#the-architecture#0-974b7d0e"
+      ],
+      "expectInsufficient": false
+    },
+    "evidence": [
+      {
+        "id": "rag/rag-motivation#body#0-a74c2bc6",
+        "documentId": "rag/rag-motivation",
+        "documentTitle": "RAG motivation and core architecture",
+        "text": "A language model stores what it learned during training in its weights. That\nstore has three properties that make it awkward as a knowledge base: it cannot\nbe updated without retraining, it cannot cite where a claim came from, and it\nfails silently — a model that does not know something produces fluent text\nanyway.\n\nRetrieval-augmented generation attaches a second, external store that the model\nreads at inference time. The paper this note is drawn from named the pattern\nand gave it its first end-to-end treatment.",
+        "retrievalScore": 8.668844432576837,
+        "metadata": {
+          "author": "yuki-uix",
+          "category": "rag"
+        }
+      },
+      {
+        "id": "generative-ui/design-time-and-runtime-generation#what-partial-runtime-generation-buys#0-d4d9fa5f",
+        "documentId": "generative-ui/design-time-and-runtime-generation",
+        "documentTitle": "Design-time and runtime generation",
+        "section": "What partial runtime generation buys",
+        "text": "Between the two sits generation constrained to a reviewed vocabulary: the model\ndecides at runtime, but only among things reviewed at design time.\n\nThis recovers most of what design-time review provided — components are tested,\naccessible, and consistent — while keeping the ability to respond to an\nunanticipated request. What it gives up is expressiveness: the interface can\nonly be composed of what someone thought to build.",
+        "retrievalScore": 4.169736943867533,
+        "metadata": {
+          "author": "yuki-uix",
+          "category": "generative-ui"
+        }
+      },
+      {
+        "id": "generative-ui/design-time-and-runtime-generation#design-time-versus-runtime#0-3b6b66b7",
+        "documentId": "generative-ui/design-time-and-runtime-generation",
+        "documentTitle": "Design-time and runtime generation",
+        "section": "Design-time versus runtime",
+        "text": "The axis that matters operationally is *when* generation happens.\n\n**Design time.** A model generates an interface once, a person reviews it, and\nthe result is committed as code. The model is a productivity tool for the\ndeveloper, and the user never meets it. Every downstream guarantee — testing,\naccessibility, security review — applies exactly as it would to hand-written\ncode, because that is what the artefact is.\n\n**Runtime.** A model generates an interface per request, and the user sees the\noutput directly. Nobody reviews any particular rendering, because there are as\nmany renderings as requests.\n\nAlmost every practical problem with generative UI belongs to the second case.\nIt is not the generation that is hard, it is the absence of a review step\nbetween generation and a person.",
+        "retrievalScore": 4.046107912204362,
+        "metadata": {
+          "author": "yuki-uix",
+          "category": "generative-ui"
+        }
+      },
+      {
+        "id": "intersection/ui-driven-retrieval#what-a-follow-up-must-not-break#0-5a9e41d8",
+        "documentId": "intersection/ui-driven-retrieval",
+        "documentTitle": "Retrieval driven by UI actions",
+        "section": "What a follow-up must not break",
+        "text": "Two failures are easy to introduce and hard to notice.\n\n**Replacing instead of appending.** Regenerating the whole response to add one\ncard discards the reader's state by construction, and it also re-answers parts\nthey were satisfied with — inviting an inconsistency between what they read a\nmoment ago and what is now on screen.\n\n**Validating against the wrong retrieval set.** New cards must have their\nevidence identifiers checked against the *new* generation's set. Reusing the\nprevious set would let a follow-up cite evidence it never retrieved.",
+        "retrievalScore": 3.6602495025451955,
+        "metadata": {
+          "author": "yuki-uix",
+          "category": "intersection"
+        }
+      }
+    ],
+    "retrievalMs": 0.3274170000000254
+  },
+  {
+    "question": {
+      "id": "rag-003",
+      "question": "How does sparse retrieval differ from dense retrieval?",
+      "domain": "rag",
+      "expectedCardTypes": [
+        "comparison"
+      ],
+      "goldenEvidenceIds": [
+        "rag/sparse-retrieval#why-it-survives#0-ab8549d1",
+        "rag/sparse-retrieval#where-it-fails#0-e2e9969a",
+        "rag/dense-retrieval#where-it-fails#0-cd5a43de",
+        "rag/dense-retrieval#the-dual-encoder#0-37fa4383"
+      ],
+      "expectInsufficient": false
+    },
+    "evidence": [
+      {
+        "id": "rag/sparse-retrieval#body#0-d441a718",
+        "documentId": "rag/sparse-retrieval",
+        "documentTitle": "Sparse retrieval",
+        "text": "Sparse retrieval scores a document by the query terms it literally contains.\nThe representation is a vector over the vocabulary, almost all of whose entries\nare zero — hence \"sparse\" — and matching is a lookup in an inverted index\nrather than a distance computation in a learned space.\n\nBM25 is the scoring function most systems mean when they say \"keyword search\".\nIt is forty years old, has no learned parameters beyond two constants, and\nremains a serious baseline that dense retrievers are still measured against.",
+        "retrievalScore": 10.895548744257338,
+        "metadata": {
+          "author": "yuki-uix",
+          "category": "rag"
+        }
+      },
+      {
+        "id": "rag/dense-retrieval#what-this-means-here#0-22bc9fbf",
+        "documentId": "rag/dense-retrieval",
+        "documentTitle": "Dense retrieval",
+        "section": "What this means here",
+        "text": "This corpus is dense with exact terminology, which is dense retrieval's weakest\ncase and lexical retrieval's strongest. It is also full of paraphrase between\nhow a note is written and how a question is asked, which is the reverse.\n\nThat is the argument for running both and fusing, and for reporting each arm's\nRecall@10 separately as well as the fused result. If the fused system does not\nbeat the better single arm, the fusion is not earning its complexity, and the\nper-arm numbers are the only way to notice.",
+        "retrievalScore": 9.697944054818674,
+        "metadata": {
+          "author": "yuki-uix",
+          "category": "rag"
+        }
+      },
+      {
+        "id": "rag/sparse-retrieval#what-this-means-here#0-179d75b3",
+        "documentId": "rag/sparse-retrieval",
+        "documentTitle": "Sparse retrieval",
+        "section": "What this means here",
+        "text": "Sparse and dense retrieval fail in different directions, which is the whole\nargument for running both and fusing the results rather than choosing one. The\nfusion step has its own note.\n\nFor evaluation, BM25 is worth keeping as a reported arm even after hybrid\nretrieval is in place. If the hybrid system cannot beat BM25 alone on this\ncorpus, that is a finding about the corpus or the embedding model, and it is\nbetter to know it than to assume the more elaborate pipeline is earning its\ncost.",
+        "retrievalScore": 9.441062018564251,
+        "metadata": {
+          "author": "yuki-uix",
+          "category": "rag"
+        }
+      },
+      {
+        "id": "rag/query-transformation#the-three-transformations#0-80c928cf",
+        "documentId": "rag/query-transformation",
+        "documentTitle": "Query rewriting, decomposition, and expansion",
+        "section": "The three transformations",
+        "text": "**Rewriting** produces one better query from one query. Resolving pronouns\nagainst the conversation, dropping conversational framing, substituting the\ncorpus's terminology for the asker's. This is the cheapest and the most\nreliably useful.\n\n**Decomposition** produces several queries from one. \"How does hybrid retrieval\ndiffer from reranking, and which should I add first?\" contains two questions\nwith different evidence needs; retrieving once for the concatenation tends to\nreturn material that is mediocre for both. Decomposition matters most for\ncomparison questions, which for this project is not an edge case — comparison\nis one of the five card types.\n\n**Expansion** adds terms rather than replacing them: synonyms, spelled-out\nacronyms, related terminology. A variant generates a hypothetical answer and\nretrieves against *that*, on the argument that an answer resembles the passages\nthat contain it more than a question does.",
+        "retrievalScore": 8.858831338809633,
+        "metadata": {
+          "author": "yuki-uix",
+          "category": "rag"
+        }
+      }
+    ],
+    "retrievalMs": 0.11583399999994981
+  },
+  {
+    "question": {
+      "id": "ins-001",
+      "question": "Which vector database should I use in production, and what does each cost?",
+      "domain": "rag",
+      "expectedCardTypes": [
+        "evidence"
+      ],
+      "goldenEvidenceIds": [],
+      "expectInsufficient": true
+    },
+    "evidence": [
+      {
+        "id": "rag/query-transformation#why-the-raw-question-underperforms#0-6171afd8",
+        "documentId": "rag/query-transformation",
+        "documentTitle": "Query rewriting, decomposition, and expansion",
+        "section": "Why the raw question underperforms",
+        "text": "Real questions carry things retrieval cannot use. They refer to earlier turns\n(\"what about the second one?\"), they include framing that is not content (\"I'm\nnew to this, can you explain...\"), and they use the asker's vocabulary rather\nthan the corpus's.\n\nThe observation behind this note is that the gap can be closed from the query\nside: rather than accepting the question as fixed and improving the retriever,\nrewrite the question into something the retriever handles better. Placing a\nrewriting step in front of a frozen retriever and a frozen generator improved\nresults without touching either.",
+        "retrievalScore": 9.981686041579716,
+        "metadata": {
+          "author": "yuki-uix",
+          "category": "rag"
+        }
+      },
+      {
+        "id": "generative-ui/a2ui-protocol-model#the-version-line-matters#0-47b95abe",
+        "documentId": "generative-ui/a2ui-protocol-model",
+        "documentTitle": "The A2UI protocol model",
+        "section": "The version line matters",
+        "text": "As of 2026-08-30, A2UI v0.9.1 is identified by the project as the current\nproduction release, while v1.0 is a candidate and v0.8 is legacy. Many early\nexamples use the v0.8 names `surfaceUpdate`, `dataModelUpdate`, and\n`beginRendering`. The v0.9 family uses `createSurface`, `updateComponents`,\n`updateDataModel`, and `deleteSurface` and has a different component shape.\n\nVersion labels belong in examples, fixtures, and stored traces. A document\nsaying only \"A2UI JSON\" is not enough to reconstruct which parser and catalog\nwere expected.",
+        "retrievalScore": 9.754366009696673,
+        "metadata": {
+          "author": "yuki-uix",
+          "category": "generative-ui"
+        }
+      },
+      {
+        "id": "generative-ui/predictability-and-user-control#learning-requires-repetition#0-ffd57023",
+        "documentId": "generative-ui/predictability-and-user-control",
+        "documentTitle": "Predictability and user control",
+        "section": "Learning requires repetition",
+        "text": "A user builds a model of an interface by using it. Skills transfer between\nsessions because the interface is the same interface.\n\nAn interface generated per response denies that. Two similar questions can\nproduce different structures, and the reader starts over each time — where are\nthe sources, is this expandable, what does this control do. The cost is small\nper response and paid on every response, which is the shape of cost people\nunderestimate.\n\nWorse, variation carries no information. When a table appears for one question\nand prose for another, the reader reasonably infers a reason. If there is no\nreason — if the model simply chose differently — the interface has taught them\nsomething false.\n\nConsistency is therefore not aesthetic tidiness. It is the mechanism by which\nan interface becomes cheap to use, and a system that varies without meaning is\nspending the user's attention to no purpose.",
+        "retrievalScore": 9.55409003261033,
+        "metadata": {
+          "author": "yuki-uix",
+          "category": "generative-ui"
+        }
+      },
+      {
+        "id": "rag/sparse-retrieval#where-it-fails#0-e2e9969a",
+        "documentId": "rag/sparse-retrieval",
+        "documentTitle": "Sparse retrieval",
+        "section": "Where it fails",
+        "text": "It cannot match paraphrase. A note explaining \"chunk boundaries should follow\ndocument structure\" will not be retrieved by a query asking \"how should I split\nmy documents\", because the two share almost no terms. Vocabulary mismatch\nbetween what an author wrote and what a reader asks is the classic failure of\nlexical retrieval, and it is exactly what dense retrieval was built to fix.\n\nIt also has no notion of a term's importance beyond corpus statistics. A term\nthat is rare in the collection is treated as discriminative even when it is\nrare because it is incidental.",
+        "retrievalScore": 9.538783689762885,
+        "metadata": {
+          "author": "yuki-uix",
+          "category": "rag"
+        }
+      }
+    ],
+    "retrievalMs": 0.14449999999999363
+  }
+]
