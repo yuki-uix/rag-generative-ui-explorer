@@ -1,0 +1,607 @@
+{
+  "version": "image-corpus-1",
+  "author": "Codex assistant, authored for this repository",
+  "blind": false,
+  "figures": [
+    {
+      "id": "figure-01-a",
+      "group": "doc-01",
+      "split": "development",
+      "image": "assets/figure-01-a.png",
+      "imageSha256": "f1a5c5eb682769b31dfc9b85f84a4e42c8153f3d5947a38c828d4e6a55b460f9",
+      "width": 768,
+      "height": 768,
+      "source": "sources/doc-01.md",
+      "sourceSha256": "88da0427ed4efb3551a69eb1ea34da2c84e6434dcc5ee513221450707f607d73",
+      "sourcePath": "knowledge/rag/sparse-retrieval.md",
+      "sourceCommit": "37813a283f9f0a2f1adc7daa373e973b3a7a0332",
+      "authorship": "Repository-authored teaching diagram, not a figure from the cited papers",
+      "license": "MIT (repository-authored artwork and source notes)",
+      "render": {
+        "layout": "vertical-chain",
+        "nodes": [
+          "Query terms",
+          "Inverted index",
+          "Posting lists",
+          "BM25 ranking"
+        ],
+        "pillow": "12.2.0"
+      }
+    },
+    {
+      "id": "figure-01-b",
+      "group": "doc-01",
+      "split": "development",
+      "image": "assets/figure-01-b.png",
+      "imageSha256": "91a4017f943d6ae40f8c597fea26c3b7d2c0cc7c683ecbc17f80f812121edd58",
+      "width": 768,
+      "height": 768,
+      "source": "sources/doc-01.md",
+      "sourceSha256": "88da0427ed4efb3551a69eb1ea34da2c84e6434dcc5ee513221450707f607d73",
+      "sourcePath": "knowledge/rag/sparse-retrieval.md",
+      "sourceCommit": "37813a283f9f0a2f1adc7daa373e973b3a7a0332",
+      "authorship": "Repository-authored teaching diagram, not a figure from the cited papers",
+      "license": "MIT (repository-authored artwork and source notes)",
+      "render": {
+        "layout": "diamond-branches",
+        "nodes": [
+          "Query terms",
+          "Term frequency",
+          "Document length",
+          "BM25 score"
+        ],
+        "pillow": "12.2.0"
+      }
+    },
+    {
+      "id": "figure-02-a",
+      "group": "doc-02",
+      "split": "evaluation",
+      "image": "assets/figure-02-a.png",
+      "imageSha256": "012ce4bd54db3d76bdce94ae5f464ce88a86d5d51a4a8dc0bcc0f5d6b4147b71",
+      "width": 768,
+      "height": 768,
+      "source": "sources/doc-02.md",
+      "sourceSha256": "6152333df5c9d89f9bc91b824c847b4d3144b11284b766ac24c91713561bb401",
+      "sourcePath": "knowledge/rag/dense-retrieval.md",
+      "sourceCommit": "37813a283f9f0a2f1adc7daa373e973b3a7a0332",
+      "authorship": "Repository-authored teaching diagram, not a figure from the cited papers",
+      "license": "MIT (repository-authored artwork and source notes)",
+      "render": {
+        "layout": "vertical-chain",
+        "nodes": [
+          "Passages",
+          "Passage encoder",
+          "Stored vectors",
+          "Nearest neighbors"
+        ],
+        "pillow": "12.2.0"
+      }
+    },
+    {
+      "id": "figure-02-b",
+      "group": "doc-02",
+      "split": "evaluation",
+      "image": "assets/figure-02-b.png",
+      "imageSha256": "c970089530d0080122b3cf32ca4c647184f7d1a296d1eeb2828a07ce340ed867",
+      "width": 768,
+      "height": 768,
+      "source": "sources/doc-02.md",
+      "sourceSha256": "6152333df5c9d89f9bc91b824c847b4d3144b11284b766ac24c91713561bb401",
+      "sourcePath": "knowledge/rag/dense-retrieval.md",
+      "sourceCommit": "37813a283f9f0a2f1adc7daa373e973b3a7a0332",
+      "authorship": "Repository-authored teaching diagram, not a figure from the cited papers",
+      "license": "MIT (repository-authored artwork and source notes)",
+      "render": {
+        "layout": "diamond-branches",
+        "nodes": [
+          "Query and passage",
+          "Question encoder",
+          "Passage encoder",
+          "Vector similarity"
+        ],
+        "pillow": "12.2.0"
+      }
+    },
+    {
+      "id": "figure-03-a",
+      "group": "doc-03",
+      "split": "development",
+      "image": "assets/figure-03-a.png",
+      "imageSha256": "0227d1a7e66720ad253fd2bd5f21abe6c8bebf96b4cb77f390fce78f70019639",
+      "width": 768,
+      "height": 768,
+      "source": "sources/doc-03.md",
+      "sourceSha256": "25ce2046c4da91124c0188a9b666455d6d59933a17a4fe8a2321f75a58663f0d",
+      "sourcePath": "knowledge/rag/candidate-fusion.md",
+      "sourceCommit": "37813a283f9f0a2f1adc7daa373e973b3a7a0332",
+      "authorship": "Repository-authored teaching diagram, not a figure from the cited papers",
+      "license": "MIT (repository-authored artwork and source notes)",
+      "render": {
+        "layout": "vertical-chain",
+        "nodes": [
+          "Retriever outputs",
+          "Rank positions",
+          "Reciprocal ranks",
+          "Merged ranking"
+        ],
+        "pillow": "12.2.0"
+      }
+    },
+    {
+      "id": "figure-03-b",
+      "group": "doc-03",
+      "split": "development",
+      "image": "assets/figure-03-b.png",
+      "imageSha256": "7d6fc2cf8699491ffcf521ff856e11c013d4df77ed5cd18d3a8b3245928708de",
+      "width": 768,
+      "height": 768,
+      "source": "sources/doc-03.md",
+      "sourceSha256": "25ce2046c4da91124c0188a9b666455d6d59933a17a4fe8a2321f75a58663f0d",
+      "sourcePath": "knowledge/rag/candidate-fusion.md",
+      "sourceCommit": "37813a283f9f0a2f1adc7daa373e973b3a7a0332",
+      "authorship": "Repository-authored teaching diagram, not a figure from the cited papers",
+      "license": "MIT (repository-authored artwork and source notes)",
+      "render": {
+        "layout": "diamond-branches",
+        "nodes": [
+          "Ranked candidates",
+          "Lexical list",
+          "Dense list",
+          "RRF combination"
+        ],
+        "pillow": "12.2.0"
+      }
+    },
+    {
+      "id": "figure-04-a",
+      "group": "doc-04",
+      "split": "evaluation",
+      "image": "assets/figure-04-a.png",
+      "imageSha256": "2f142782a614090c3d64a99528267705fd63211c56e6e53768be07fdc7c56822",
+      "width": 768,
+      "height": 768,
+      "source": "sources/doc-04.md",
+      "sourceSha256": "fd99445565076a87108c4f3fb513521660fb234f332a49e98e5d7817980f40e9",
+      "sourcePath": "knowledge/rag/reranking.md",
+      "sourceCommit": "37813a283f9f0a2f1adc7daa373e973b3a7a0332",
+      "authorship": "Repository-authored teaching diagram, not a figure from the cited papers",
+      "license": "MIT (repository-authored artwork and source notes)",
+      "render": {
+        "layout": "vertical-chain",
+        "nodes": [
+          "Retrieved candidates",
+          "Query passage pairs",
+          "Cross encoder",
+          "Reordered top K"
+        ],
+        "pillow": "12.2.0"
+      }
+    },
+    {
+      "id": "figure-04-b",
+      "group": "doc-04",
+      "split": "evaluation",
+      "image": "assets/figure-04-b.png",
+      "imageSha256": "73e69a16e84fa91f376edc6853bd2e9f18fc12481cc4901736a9175c03062dc8",
+      "width": 768,
+      "height": 768,
+      "source": "sources/doc-04.md",
+      "sourceSha256": "fd99445565076a87108c4f3fb513521660fb234f332a49e98e5d7817980f40e9",
+      "sourcePath": "knowledge/rag/reranking.md",
+      "sourceCommit": "37813a283f9f0a2f1adc7daa373e973b3a7a0332",
+      "authorship": "Repository-authored teaching diagram, not a figure from the cited papers",
+      "license": "MIT (repository-authored artwork and source notes)",
+      "render": {
+        "layout": "diamond-branches",
+        "nodes": [
+          "Candidate pool",
+          "Relevant passages",
+          "Irrelevant passages",
+          "Reordered subset"
+        ],
+        "pillow": "12.2.0"
+      }
+    },
+    {
+      "id": "figure-05-a",
+      "group": "doc-05",
+      "split": "development",
+      "image": "assets/figure-05-a.png",
+      "imageSha256": "b07e3e8a20b8fe592393c8429dbcf8144c65f3acdd9682019643d31990d311bc",
+      "width": 768,
+      "height": 768,
+      "source": "sources/doc-05.md",
+      "sourceSha256": "6ec603b8bcf3bc41937bed8dbd5c7d033a6ac3ebe249bc28c41ffabdce2e7897",
+      "sourcePath": "knowledge/rag/ingestion-and-chunking.md",
+      "sourceCommit": "37813a283f9f0a2f1adc7daa373e973b3a7a0332",
+      "authorship": "Repository-authored teaching diagram, not a figure from the cited papers",
+      "license": "MIT (repository-authored artwork and source notes)",
+      "render": {
+        "layout": "vertical-chain",
+        "nodes": [
+          "Source document",
+          "Section boundaries",
+          "Text chunks",
+          "Stable identifiers"
+        ],
+        "pillow": "12.2.0"
+      }
+    },
+    {
+      "id": "figure-05-b",
+      "group": "doc-05",
+      "split": "development",
+      "image": "assets/figure-05-b.png",
+      "imageSha256": "e406c11fda7d9e99fdf9534c0c7842018c02417db403fd8fa06b4f8ea61ee0cb",
+      "width": 768,
+      "height": 768,
+      "source": "sources/doc-05.md",
+      "sourceSha256": "6ec603b8bcf3bc41937bed8dbd5c7d033a6ac3ebe249bc28c41ffabdce2e7897",
+      "sourcePath": "knowledge/rag/ingestion-and-chunking.md",
+      "sourceCommit": "37813a283f9f0a2f1adc7daa373e973b3a7a0332",
+      "authorship": "Repository-authored teaching diagram, not a figure from the cited papers",
+      "license": "MIT (repository-authored artwork and source notes)",
+      "render": {
+        "layout": "diamond-branches",
+        "nodes": [
+          "Document metadata",
+          "Source title",
+          "Section location",
+          "Addressable chunks"
+        ],
+        "pillow": "12.2.0"
+      }
+    },
+    {
+      "id": "figure-06-a",
+      "group": "doc-06",
+      "split": "evaluation",
+      "image": "assets/figure-06-a.png",
+      "imageSha256": "b1c59c6dac7c43f30c8122478c442083a9a6fa981e7cbfdca95b81cf0332935f",
+      "width": 768,
+      "height": 768,
+      "source": "sources/doc-06.md",
+      "sourceSha256": "720682d81ffb8d5964e9c42f47b68fd763b399c0b0e60d33fcb8e325ab754380",
+      "sourcePath": "knowledge/rag/context-assembly.md",
+      "sourceCommit": "37813a283f9f0a2f1adc7daa373e973b3a7a0332",
+      "authorship": "Repository-authored teaching diagram, not a figure from the cited papers",
+      "license": "MIT (repository-authored artwork and source notes)",
+      "render": {
+        "layout": "vertical-chain",
+        "nodes": [
+          "Retrieved passages",
+          "Deduplicate",
+          "Token budget",
+          "Ordered context"
+        ],
+        "pillow": "12.2.0"
+      }
+    },
+    {
+      "id": "figure-06-b",
+      "group": "doc-06",
+      "split": "evaluation",
+      "image": "assets/figure-06-b.png",
+      "imageSha256": "fe2e5dd4f939f17386216b90ed4449a8936ba6a4acbe00b24ac530ce483467ad",
+      "width": 768,
+      "height": 768,
+      "source": "sources/doc-06.md",
+      "sourceSha256": "720682d81ffb8d5964e9c42f47b68fd763b399c0b0e60d33fcb8e325ab754380",
+      "sourcePath": "knowledge/rag/context-assembly.md",
+      "sourceCommit": "37813a283f9f0a2f1adc7daa373e973b3a7a0332",
+      "authorship": "Repository-authored teaching diagram, not a figure from the cited papers",
+      "license": "MIT (repository-authored artwork and source notes)",
+      "render": {
+        "layout": "diamond-branches",
+        "nodes": [
+          "Evidence context",
+          "Source identifiers",
+          "Passage boundaries",
+          "Traceable prompt"
+        ],
+        "pillow": "12.2.0"
+      }
+    },
+    {
+      "id": "figure-07-a",
+      "group": "doc-07",
+      "split": "development",
+      "image": "assets/figure-07-a.png",
+      "imageSha256": "c7048473c539887fca7c611650f14b19ad1dc093e8023483eb433e1bc829290d",
+      "width": 768,
+      "height": 768,
+      "source": "sources/doc-07.md",
+      "sourceSha256": "091f52afd8ea39da366aceff9942f2b6d612326a822d015e3e765c968b0723b3",
+      "sourcePath": "knowledge/rag/query-transformation.md",
+      "sourceCommit": "37813a283f9f0a2f1adc7daa373e973b3a7a0332",
+      "authorship": "Repository-authored teaching diagram, not a figure from the cited papers",
+      "license": "MIT (repository-authored artwork and source notes)",
+      "render": {
+        "layout": "vertical-chain",
+        "nodes": [
+          "User question",
+          "Query rewrite",
+          "Retrieve passages",
+          "Original intent"
+        ],
+        "pillow": "12.2.0"
+      }
+    },
+    {
+      "id": "figure-07-b",
+      "group": "doc-07",
+      "split": "development",
+      "image": "assets/figure-07-b.png",
+      "imageSha256": "f0f5145f30f728a06ee61b168c8000dd3b57b2796435a25b7d8c579ad1108b76",
+      "width": 768,
+      "height": 768,
+      "source": "sources/doc-07.md",
+      "sourceSha256": "091f52afd8ea39da366aceff9942f2b6d612326a822d015e3e765c968b0723b3",
+      "sourcePath": "knowledge/rag/query-transformation.md",
+      "sourceCommit": "37813a283f9f0a2f1adc7daa373e973b3a7a0332",
+      "authorship": "Repository-authored teaching diagram, not a figure from the cited papers",
+      "license": "MIT (repository-authored artwork and source notes)",
+      "render": {
+        "layout": "diamond-branches",
+        "nodes": [
+          "Question input",
+          "Decomposition",
+          "Expansion",
+          "Retrieval queries"
+        ],
+        "pillow": "12.2.0"
+      }
+    },
+    {
+      "id": "figure-08-a",
+      "group": "doc-08",
+      "split": "evaluation",
+      "image": "assets/figure-08-a.png",
+      "imageSha256": "67efebd326e2cf57267b04c9aeea77368febb48c7a442a0fe7dca640ecc3a483",
+      "width": 768,
+      "height": 768,
+      "source": "sources/doc-08.md",
+      "sourceSha256": "f05b1b23fe1d958dc14c3a9f5bb2196ac6e2ca48dadc1aa9e39d4ce2d24d003a",
+      "sourcePath": "knowledge/rag/grounded-generation.md",
+      "sourceCommit": "37813a283f9f0a2f1adc7daa373e973b3a7a0332",
+      "authorship": "Repository-authored teaching diagram, not a figure from the cited papers",
+      "license": "MIT (repository-authored artwork and source notes)",
+      "render": {
+        "layout": "vertical-chain",
+        "nodes": [
+          "Retrieved evidence",
+          "Generate claims",
+          "Check support",
+          "Cited answer"
+        ],
+        "pillow": "12.2.0"
+      }
+    },
+    {
+      "id": "figure-08-b",
+      "group": "doc-08",
+      "split": "evaluation",
+      "image": "assets/figure-08-b.png",
+      "imageSha256": "bad49ed1336dc8f60b984b568713e64d162282dd245a31a5a01a85269086d02a",
+      "width": 768,
+      "height": 768,
+      "source": "sources/doc-08.md",
+      "sourceSha256": "f05b1b23fe1d958dc14c3a9f5bb2196ac6e2ca48dadc1aa9e39d4ce2d24d003a",
+      "sourcePath": "knowledge/rag/grounded-generation.md",
+      "sourceCommit": "37813a283f9f0a2f1adc7daa373e973b3a7a0332",
+      "authorship": "Repository-authored teaching diagram, not a figure from the cited papers",
+      "license": "MIT (repository-authored artwork and source notes)",
+      "render": {
+        "layout": "diamond-branches",
+        "nodes": [
+          "Generated statement",
+          "Extracted words",
+          "Inferred claim",
+          "Evidence reference"
+        ],
+        "pillow": "12.2.0"
+      }
+    },
+    {
+      "id": "figure-09-a",
+      "group": "doc-09",
+      "split": "development",
+      "image": "assets/figure-09-a.png",
+      "imageSha256": "94089a85b87fc3c423da7cefe2f94cc046ed4c5a048b03832b415e53bc4b3148",
+      "width": 768,
+      "height": 768,
+      "source": "sources/doc-09.md",
+      "sourceSha256": "e2bab739a034312c5149637583d381da4c037ecdd67aa15d54c640805e0a8265",
+      "sourcePath": "knowledge/generative-ui/declarative-ui-schemas.md",
+      "sourceCommit": "37813a283f9f0a2f1adc7daa373e973b3a7a0332",
+      "authorship": "Repository-authored teaching diagram, not a figure from the cited papers",
+      "license": "MIT (repository-authored artwork and source notes)",
+      "render": {
+        "layout": "vertical-chain",
+        "nodes": [
+          "Model intent",
+          "Schema validation",
+          "Known components",
+          "Rendered interface"
+        ],
+        "pillow": "12.2.0"
+      }
+    },
+    {
+      "id": "figure-09-b",
+      "group": "doc-09",
+      "split": "development",
+      "image": "assets/figure-09-b.png",
+      "imageSha256": "1672e9e47be5d7edd0e060157abbc05d03fd72ac06c4be96f080258443ead1e4",
+      "width": 768,
+      "height": 768,
+      "source": "sources/doc-09.md",
+      "sourceSha256": "e2bab739a034312c5149637583d381da4c037ecdd67aa15d54c640805e0a8265",
+      "sourcePath": "knowledge/generative-ui/declarative-ui-schemas.md",
+      "sourceCommit": "37813a283f9f0a2f1adc7daa373e973b3a7a0332",
+      "authorship": "Repository-authored teaching diagram, not a figure from the cited papers",
+      "license": "MIT (repository-authored artwork and source notes)",
+      "render": {
+        "layout": "diamond-branches",
+        "nodes": [
+          "UI declaration",
+          "Allowed types",
+          "Required fields",
+          "Validated structure"
+        ],
+        "pillow": "12.2.0"
+      }
+    },
+    {
+      "id": "figure-10-a",
+      "group": "doc-10",
+      "split": "evaluation",
+      "image": "assets/figure-10-a.png",
+      "imageSha256": "fc92a1eb617dae2efe81c806363bee4725eaa066c0cc58216eda69d45064508f",
+      "width": 768,
+      "height": 768,
+      "source": "sources/doc-10.md",
+      "sourceSha256": "975bdfae01e37cdd21861710732479fcfc922303b96d9434bff11bb40bc49295",
+      "sourcePath": "knowledge/generative-ui/streaming-and-incremental-rendering.md",
+      "sourceCommit": "37813a283f9f0a2f1adc7daa373e973b3a7a0332",
+      "authorship": "Repository-authored teaching diagram, not a figure from the cited papers",
+      "license": "MIT (repository-authored artwork and source notes)",
+      "render": {
+        "layout": "vertical-chain",
+        "nodes": [
+          "Partial JSON",
+          "Buffer structure",
+          "Validate component",
+          "Render complete card"
+        ],
+        "pillow": "12.2.0"
+      }
+    },
+    {
+      "id": "figure-10-b",
+      "group": "doc-10",
+      "split": "evaluation",
+      "image": "assets/figure-10-b.png",
+      "imageSha256": "c0d7d6d8f24699696156d56c78aa6f094ed06b11884a17b944d1059055df17c5",
+      "width": 768,
+      "height": 768,
+      "source": "sources/doc-10.md",
+      "sourceSha256": "975bdfae01e37cdd21861710732479fcfc922303b96d9434bff11bb40bc49295",
+      "sourcePath": "knowledge/generative-ui/streaming-and-incremental-rendering.md",
+      "sourceCommit": "37813a283f9f0a2f1adc7daa373e973b3a7a0332",
+      "authorship": "Repository-authored teaching diagram, not a figure from the cited papers",
+      "license": "MIT (repository-authored artwork and source notes)",
+      "render": {
+        "layout": "diamond-branches",
+        "nodes": [
+          "Streaming response",
+          "Progress status",
+          "Validated content",
+          "Incremental display"
+        ],
+        "pillow": "12.2.0"
+      }
+    },
+    {
+      "id": "figure-11-a",
+      "group": "doc-11",
+      "split": "development",
+      "image": "assets/figure-11-a.png",
+      "imageSha256": "28d75f24d8cf95548b9e8bc93359574ceed0c18bbd17f8fd9a2008e3253bdb13",
+      "width": 768,
+      "height": 768,
+      "source": "sources/doc-11.md",
+      "sourceSha256": "ceeeee0e3ab5fd62d539e0a83cae37f9e106956ebc4c6d6568521bb302432814",
+      "sourcePath": "knowledge/intersection/field-level-citation.md",
+      "sourceCommit": "37813a283f9f0a2f1adc7daa373e973b3a7a0332",
+      "authorship": "Repository-authored teaching diagram, not a figure from the cited papers",
+      "license": "MIT (repository-authored artwork and source notes)",
+      "render": {
+        "layout": "vertical-chain",
+        "nodes": [
+          "Factual field",
+          "Evidence identifier",
+          "Source passage",
+          "Check attribution"
+        ],
+        "pillow": "12.2.0"
+      }
+    },
+    {
+      "id": "figure-11-b",
+      "group": "doc-11",
+      "split": "development",
+      "image": "assets/figure-11-b.png",
+      "imageSha256": "0a54a85cc66962933f97f38f97ea35e1023ad11469f53e814734754b196afc66",
+      "width": 768,
+      "height": 768,
+      "source": "sources/doc-11.md",
+      "sourceSha256": "ceeeee0e3ab5fd62d539e0a83cae37f9e106956ebc4c6d6568521bb302432814",
+      "sourcePath": "knowledge/intersection/field-level-citation.md",
+      "sourceCommit": "37813a283f9f0a2f1adc7daa373e973b3a7a0332",
+      "authorship": "Repository-authored teaching diagram, not a figure from the cited papers",
+      "license": "MIT (repository-authored artwork and source notes)",
+      "render": {
+        "layout": "diamond-branches",
+        "nodes": [
+          "Knowledge card",
+          "First factual field",
+          "Second factual field",
+          "Individual citations"
+        ],
+        "pillow": "12.2.0"
+      }
+    },
+    {
+      "id": "figure-12-a",
+      "group": "doc-12",
+      "split": "evaluation",
+      "image": "assets/figure-12-a.png",
+      "imageSha256": "015c0ea7e3a505de9a55d0a944621dfdd491020c924af267d2634513d733ebcd",
+      "width": 768,
+      "height": 768,
+      "source": "sources/doc-12.md",
+      "sourceSha256": "2ac8f71baff3d8863450317c0db2f17bdaa7f906dede34695fd11871a0edf2e4",
+      "sourcePath": "knowledge/generative-ui/state-continuity.md",
+      "sourceCommit": "37813a283f9f0a2f1adc7daa373e973b3a7a0332",
+      "authorship": "Repository-authored teaching diagram, not a figure from the cited papers",
+      "license": "MIT (repository-authored artwork and source notes)",
+      "render": {
+        "layout": "vertical-chain",
+        "nodes": [
+          "First interface",
+          "User selection",
+          "Next response",
+          "Preserved state"
+        ],
+        "pillow": "12.2.0"
+      }
+    },
+    {
+      "id": "figure-12-b",
+      "group": "doc-12",
+      "split": "evaluation",
+      "image": "assets/figure-12-b.png",
+      "imageSha256": "1c731b90e153ce480e84e7120b204392eb5f010717a98ae5a1d8dc118101650a",
+      "width": 768,
+      "height": 768,
+      "source": "sources/doc-12.md",
+      "sourceSha256": "2ac8f71baff3d8863450317c0db2f17bdaa7f906dede34695fd11871a0edf2e4",
+      "sourcePath": "knowledge/generative-ui/state-continuity.md",
+      "sourceCommit": "37813a283f9f0a2f1adc7daa373e973b3a7a0332",
+      "authorship": "Repository-authored teaching diagram, not a figure from the cited papers",
+      "license": "MIT (repository-authored artwork and source notes)",
+      "render": {
+        "layout": "diamond-branches",
+        "nodes": [
+          "State categories",
+          "Conversation state",
+          "UI state",
+          "Distinct ownership"
+        ],
+        "pillow": "12.2.0"
+      }
+    }
+  ]
+}

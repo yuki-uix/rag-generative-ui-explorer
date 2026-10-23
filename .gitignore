@@ -1,12 +1,19 @@
 .DS_Store
 .env
 .env.*
+.dev.vars
+.dev.vars.*
 !.env.example
 .next/
 node_modules/
 coverage/
 dist/
+dist-review/
 *.log
 .verify-ok
 .claude-worktrees/
 eval/framework/runs/
+# Image experiment model weights and temporary observations; never part of F5.
+eval/images/.cache/
+eval/images/runs/
+eval/images-review/runs/

@@ -22,7 +22,10 @@
     "eval:check": "tsx scripts/build-eval.ts",
     "retriever:search": "tsx scripts/search.ts",
     "corpus:embed": "tsx scripts/embed.ts",
-    "corpus:bundle": "tsx scripts/bundle.ts"
+    "corpus:bundle": "tsx scripts/bundle.ts",
+    "images:replay": "node --import tsx scripts/images/replay.ts",
+    "images:budget": "node --import tsx scripts/images/check-budget.ts",
+    "images:review": "node --import tsx scripts/images/review.ts"
   },
   "dependencies": {
     "@rgux/contracts": "workspace:*",

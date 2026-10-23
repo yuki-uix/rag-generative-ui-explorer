@@ -22,9 +22,9 @@ import { SERVER_ONLY } from './server-only-packages.js';
 
 const here = dirname(fileURLToPath(import.meta.url));
 
-
 /** Both bundles run without a real filesystem, so both are scanned. */
-const BUNDLE_DIRS = ['client', 'server'] as const;
+const staticReview = process.argv.includes('--review');
+const BUNDLE_DIRS = staticReview ? ['../dist-review'] : ['client', 'server'];
 
 function listFiles(dir: string): string[] {
   const out: string[] = [];
@@ -41,7 +41,7 @@ const missing = BUNDLE_DIRS.filter(
 );
 if (missing.length > 0) {
   console.error(
-    `No build output for ${missing.join(', ')} under apps/web/dist — run web:build first.`,
+    `No build output for ${missing.join(', ')} — run ${staticReview ? 'web:review:build' : 'web:build'} first.`,
   );
   process.exit(1);
 }
@@ -52,12 +52,22 @@ let fileCount = 0;
 for (const name of BUNDLE_DIRS) {
   const files = listFiles(resolve(here, '../dist', name));
   if (files.length === 0) {
-    console.error(`No files under apps/web/dist/${name} — run web:build first.`);
+    console.error(
+      `No files under apps/web/dist/${name} — run web:build first.`,
+    );
     process.exit(1);
   }
   fileCount += files.length;
   for (const file of files) {
+    if (staticReview && !/\.(js|html|css)$/.test(file)) continue;
     const source = readFileSync(file, 'utf8');
+    if (
+      staticReview &&
+      file.endsWith('.js') &&
+      /createHash|node:crypto|node:fs/.test(source)
+    ) {
+      failures.push(`Node-only module code in ${file}`);
+    }
     for (const { package: pkg, markers } of SERVER_ONLY) {
       for (const marker of markers) {
         if (source.includes(marker)) {
@@ -75,5 +85,5 @@ if (failures.length > 0) {
 }
 
 console.log(
-  `Checked ${fileCount} files under dist/client and dist/server; no server-only package markers.`,
+  `Checked ${fileCount} files under ${staticReview ? 'dist-review' : 'dist/client and dist/server'}; no server-only package markers.`,
 );

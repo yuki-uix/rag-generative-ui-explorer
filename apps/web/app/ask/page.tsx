@@ -1,34 +1,25 @@
-import { AskPanel } from '@/components/ask-panel';
+import { LiveAskPanel } from '@/components/live-ask-panel';
+import { SiteFooter, SiteNav } from '@/components/review/site-nav';
+import '../live-ask.css';
 
-/**
- * The Markdown baseline, wired end to end. Retrieval, generation, and citation
- * verification all run on the server; the browser receives prose and a record
- * of what was checked.
- *
- * Retrieval here is lexical. Dense retrieval measures better — 65.9% against
- * 48.9% recall — but it embeds the query at request time, which needs
- * onnxruntime, which does not exist in workerd. What is measured and what is
- * served are not the same system, and saying so is cheaper than discovering it
- * from a number that will not reproduce.
- */
-export default function AskPage() {
+/** Live card delivery is separate from the preserved Markdown/F5 baseline. */
+export default function AskPage({ endpoint }: { endpoint?: string } = {}) {
   return (
-    <main className="mx-auto max-w-3xl px-5 py-10">
-      <header className="mb-6">
-        <p className="font-mono text-[0.62rem] font-medium uppercase tracking-[0.14em] text-neutral-500 dark:text-neutral-400">
-          Markdown baseline &middot; lexical retrieval &middot; live model
-        </p>
-        <h1 className="mt-1 text-xl font-semibold text-neutral-900 dark:text-neutral-100">
-          Ask the corpus
-        </h1>
-        <p className="mt-2 max-w-prose text-[0.95rem] text-neutral-600 dark:text-neutral-400">
-          This is the arm dynamic cards have to beat. Every citation is verified against the
-          passages the model was actually given, and any it invents is stripped before the text
-          reaches this page — the counts under each answer say which happened.
-        </p>
-      </header>
-
-      <AskPanel />
-    </main>
+    <div className="delivery-site live-ask-page" lang="zh-CN">
+      <SiteNav active="ask" />
+      <main className="delivery-main live-ask-main">
+        <header className="live-ask-heading">
+          <p className="delivery-eyebrow">
+            <span /> LIVE QUESTIONS · REAL EVIDENCE
+          </p>
+          <h1>向知识语料提问。</h1>
+          <p>
+            从实际检索到的段落生成知识卡，点击卡片里的引用标记，查看它依据的原文。
+          </p>
+        </header>
+        <LiveAskPanel endpoint={endpoint} />
+      </main>
+      <SiteFooter />
+    </div>
   );
 }

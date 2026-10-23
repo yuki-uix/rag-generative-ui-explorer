@@ -1,0 +1,1408 @@
+{
+  "completedAt" : "2026-10-22T06:28:45Z",
+  "engine" : "Apple Vision VNRecognizeTextRequest",
+  "languageCorrection" : false,
+  "languages" : [
+    "en-US"
+  ],
+  "os" : "Version 26.6.2 (Build 25G83)",
+  "recognitionLevel" : "accurate",
+  "records" : [
+    {
+      "elapsedMs" : 209.13207530975342,
+      "id" : "control-01-1",
+      "imageSha256" : "1e168563ccc32e428e4019facbc34e2ef04fe012388a10d08fc2bd8dd6e28d48",
+      "lines" : [
+        {
+          "box" : [
+            0.36666666860119052,
+            0.8916666673717053,
+            0.27083333333333331,
+            0.038020833084980721
+          ],
+          "confidence" : 1,
+          "text" : "Dense retrieval"
+        },
+        {
+          "box" : [
+            0.43154568838903917,
+            0.73162522130681751,
+            0.13412190477053321,
+            0.030129065116246467
+          ],
+          "confidence" : 1,
+          "text" : "Passages"
+        },
+        {
+          "box" : [
+            0.36979166451822926,
+            0.54947916657986107,
+            0.25781249999999994,
+            0.03125
+          ],
+          "confidence" : 1,
+          "text" : "Passage encoder"
+        },
+        {
+          "box" : [
+            0.39322916880208325,
+            0.36979166674479169,
+            0.21354166666666663,
+            0.028645833333333259
+          ],
+          "confidence" : 1,
+          "text" : "Stored vectors"
+        },
+        {
+          "box" : [
+            0.36250000119791664,
+            0.17916666614583343,
+            0.27083333333333331,
+            0.04218749950329459
+          ],
+          "confidence" : 1,
+          "text" : "Nearest neighbors"
+        }
+      ],
+      "text" : "Dense retrieval\nPassages\nPassage encoder\nStored vectors\nNearest neighbors"
+    },
+    {
+      "elapsedMs" : 51.009058952331543,
+      "id" : "control-01-2",
+      "imageSha256" : "97f3f46eda16d52c1d92a2d58dc0fcf406d5973a8f6baa9abbae52b0234956fc",
+      "lines" : [
+        {
+          "box" : [
+            0.36666666860119052,
+            0.8916666673717053,
+            0.27083333333333331,
+            0.038020833084980721
+          ],
+          "confidence" : 1,
+          "text" : "Dense retrieval"
+        },
+        {
+          "box" : [
+            0.43229166510416678,
+            0.74218750042317705,
+            0.13541666666666669,
+            0.033854166666666741
+          ],
+          "confidence" : 1,
+          "text" : "Passages"
+        },
+        {
+          "box" : [
+            0.1380208364257812,
+            0.4973958335286458,
+            0.24739583333333334,
+            0.031250000000000111
+          ],
+          "confidence" : 1,
+          "text" : "Passage encoder"
+        },
+        {
+          "box" : [
+            0.63541666930338536,
+            0.50000000009765633,
+            0.2109375,
+            0.028645833333333259
+          ],
+          "confidence" : 1,
+          "text" : "Stored vectors"
+        },
+        {
+          "box" : [
+            0.36650797513236916,
+            0.20753425504461853,
+            0.26702179511388141,
+            0.041812082131703621
+          ],
+          "confidence" : 1,
+          "text" : "Nearest neighbors"
+        }
+      ],
+      "text" : "Dense retrieval\nPassages\nPassage encoder\nStored vectors\nNearest neighbors"
+    },
+    {
+      "elapsedMs" : 48.774003982543945,
+      "id" : "control-01-3",
+      "imageSha256" : "393afc508f35889af6ce0d45ff7b5a2b8941a421635ac3371bcf30ebf0ab1e6a",
+      "lines" : [
+        {
+          "box" : [
+            0.36666666860119052,
+            0.8916666673717053,
+            0.27083333333333331,
+            0.038020833084980721
+          ],
+          "confidence" : 1,
+          "text" : "Dense retrieval"
+        },
+        {
+          "box" : [
+            0.43116408556498526,
+            0.72953715268073749,
+            0.13488511244455975,
+            0.034305202464262718
+          ],
+          "confidence" : 1,
+          "text" : "Passages"
+        },
+        {
+          "box" : [
+            0.36979166408854169,
+            0.54947916661458329,
+            0.2578125,
+            0.03125
+          ],
+          "confidence" : 1,
+          "text" : "Passage encoder"
+        },
+        {
+          "box" : [
+            0.39583333463541664,
+            0.37239583343098959,
+            0.20833333333333331,
+            0.02604166666666663
+          ],
+          "confidence" : 1,
+          "text" : "Stored vectors"
+        },
+        {
+          "box" : [
+            0.36250000542432143,
+            0.1833333339862887,
+            0.274999996026357,
+            0.038020833084980721
+          ],
+          "confidence" : 1,
+          "text" : "Nearest neighbors"
+        }
+      ],
+      "text" : "Dense retrieval\nPassages\nPassage encoder\nStored vectors\nNearest neighbors"
+    },
+    {
+      "elapsedMs" : 47.369003295898438,
+      "id" : "control-01-4",
+      "imageSha256" : "82beab8c3bfd4e01ef185ebea400d8526f2189d1af0faebb7d06157186754dc1",
+      "lines" : [
+        {
+          "box" : [
+            0.36666666860119052,
+            0.8916666673717053,
+            0.27083333333333331,
+            0.038020833084980721
+          ],
+          "confidence" : 1,
+          "text" : "Dense retrieval"
+        },
+        {
+          "box" : [
+            0.43167465508017949,
+            0.74516566868831191,
+            0.13634779055913288,
+            0.028895090023676517
+          ],
+          "confidence" : 1,
+          "text" : "Passages"
+        },
+        {
+          "box" : [
+            0.13802083180338542,
+            0.49739583323567704,
+            0.24479166666666669,
+            0.031250000000000111
+          ],
+          "confidence" : 1,
+          "text" : "Passage encoder"
+        },
+        {
+          "box" : [
+            0.63541666796874996,
+            0.50260416676432285,
+            0.20833333333333337,
+            0.026041666666666741
+          ],
+          "confidence" : 1,
+          "text" : "Stored vectors"
+        },
+        {
+          "box" : [
+            0.36650797513236916,
+            0.20753425504461853,
+            0.26702179511388141,
+            0.041812082131703621
+          ],
+          "confidence" : 1,
+          "text" : "Nearest neighbors"
+        }
+      ],
+      "text" : "Dense retrieval\nPassages\nPassage encoder\nStored vectors\nNearest neighbors"
+    },
+    {
+      "elapsedMs" : 44.383049011230469,
+      "id" : "control-02-1",
+      "imageSha256" : "3de53f7583c83c522238945276b771241106fab57e46b48bd295ecf4cbb91aba",
+      "lines" : [
+        {
+          "box" : [
+            0.41145833357514877,
+            0.89062500027901781,
+            0.17968750000000006,
+            0.0390625
+          ],
+          "confidence" : 1,
+          "text" : "Reranking"
+        },
+        {
+          "box" : [
+            0.34895833710937491,
+            0.74739583343098959,
+            0.30208333333333331,
+            0.02864583333333337
+          ],
+          "confidence" : 1,
+          "text" : "Retrieved candidates"
+        },
+        {
+          "box" : [
+            0.11458333600260413,
+            0.49739583372395835,
+            0.29166666666666669,
+            0.03125
+          ],
+          "confidence" : 1,
+          "text" : "Query passage pairs"
+        },
+        {
+          "box" : [
+            0.63281250175781256,
+            0.4999999996419271,
+            0.21354166666666663,
+            0.028645833333333259
+          ],
+          "confidence" : 1,
+          "text" : "Cross encoder"
+        },
+        {
+          "box" : [
+            0.38281250122767857,
+            0.21093749977678566,
+            0.24479166666666669,
+            0.03125
+          ],
+          "confidence" : 1,
+          "text" : "Reordered top K"
+        }
+      ],
+      "text" : "Reranking\nRetrieved candidates\nQuery passage pairs\nCross encoder\nReordered top K"
+    },
+    {
+      "elapsedMs" : 40.798068046569824,
+      "id" : "control-02-2",
+      "imageSha256" : "b8fcaa70baa32e00cf701103e24a33d157c90b673a1dce2c6a652fb25fa709c3",
+      "lines" : [
+        {
+          "box" : [
+            0.41145833385416669,
+            0.89062500045572912,
+            0.17708333333333331,
+            0.03645833333333337
+          ],
+          "confidence" : 1,
+          "text" : "Reranking"
+        },
+        {
+          "box" : [
+            0.34895833547247018,
+            0.73697916674107145,
+            0.29947916666666669,
+            0.02604166666666663
+          ],
+          "confidence" : 1,
+          "text" : "Retrieved candidates"
+        },
+        {
+          "box" : [
+            0.35416667031249993,
+            0.54947916673177088,
+            0.29166666666666663,
+            0.03125
+          ],
+          "confidence" : 1,
+          "text" : "Query passage pairs"
+        },
+        {
+          "box" : [
+            0.39322916762152776,
+            0.37239583355034722,
+            0.21354166666666669,
+            0.02604166666666663
+          ],
+          "confidence" : 1,
+          "text" : "Cross encoder"
+        },
+        {
+          "box" : [
+            0.38281250201822914,
+            0.18229166624348958,
+            0.24479166666666663,
+            0.033854166666666741
+          ],
+          "confidence" : 1,
+          "text" : "Reordered topK"
+        }
+      ],
+      "text" : "Reranking\nRetrieved candidates\nQuery passage pairs\nCross encoder\nReordered topK"
+    },
+    {
+      "elapsedMs" : 42.708992958068848,
+      "id" : "control-02-3",
+      "imageSha256" : "e4cd760b58115fe084cdbeb5a05e454ef77fdc50ad82ce944cbb430d9cdc2d4b",
+      "lines" : [
+        {
+          "box" : [
+            0.41142334568838229,
+            0.89046342703520287,
+            0.17975747585296636,
+            0.03938564658164978
+          ],
+          "confidence" : 1,
+          "text" : "Reranking"
+        },
+        {
+          "box" : [
+            0.34895833119419639,
+            0.74999999985119048,
+            0.29947916666666663,
+            0.02604166666666663
+          ],
+          "confidence" : 1,
+          "text" : "Retrieved candidates"
+        },
+        {
+          "box" : [
+            0.1145833354947916,
+            0.49739583364583329,
+            0.2890625,
+            0.03125
+          ],
+          "confidence" : 1,
+          "text" : "Query passage pairs"
+        },
+        {
+          "box" : [
+            0.63281250095486108,
+            0.50260416688368048,
+            0.21354166666666663,
+            0.026041666666666741
+          ],
+          "confidence" : 1,
+          "text" : "Cross encoder"
+        },
+        {
+          "box" : [
+            0.38281250138888884,
+            0.21093749973958342,
+            0.24479166666666669,
+            0.03125
+          ],
+          "confidence" : 1,
+          "text" : "Reordered top K"
+        }
+      ],
+      "text" : "Reranking\nRetrieved candidates\nQuery passage pairs\nCross encoder\nReordered top K"
+    },
+    {
+      "elapsedMs" : 50.015926361083984,
+      "id" : "control-02-4",
+      "imageSha256" : "b18a6f53fbdc16f9be5d04f3966cd44fc4b02df712881838008c495b1c94247e",
+      "lines" : [
+        {
+          "box" : [
+            0.41142569037622412,
+            0.89046576788991127,
+            0.17714862028757727,
+            0.036776798466841343
+          ],
+          "confidence" : 1,
+          "text" : "Reranking"
+        },
+        {
+          "box" : [
+            0.34895833083767364,
+            0.73697916653645845,
+            0.29947916666666669,
+            0.02604166666666663
+          ],
+          "confidence" : 1,
+          "text" : "Retrieved candidates"
+        },
+        {
+          "box" : [
+            0.35416666880208342,
+            0.54947916697916654,
+            0.29166666666666669,
+            0.03125
+          ],
+          "confidence" : 1,
+          "text" : "Query passage pairs"
+        },
+        {
+          "box" : [
+            0.39322916762152776,
+            0.3697916669053819,
+            0.21354166666666669,
+            0.02864583333333337
+          ],
+          "confidence" : 1,
+          "text" : "Cross encoder"
+        },
+        {
+          "box" : [
+            0.38281250201822914,
+            0.18229166624348958,
+            0.24479166666666663,
+            0.033854166666666741
+          ],
+          "confidence" : 1,
+          "text" : "Reordered topK"
+        }
+      ],
+      "text" : "Reranking\nRetrieved candidates\nQuery passage pairs\nCross encoder\nReordered topK"
+    },
+    {
+      "elapsedMs" : 52.264928817749023,
+      "id" : "control-03-1",
+      "imageSha256" : "e10aba5dd258de7776dd1f0a6ab27d62141cd1ca99411f54f2c61cbfcf9a3237",
+      "lines" : [
+        {
+          "box" : [
+            0.34166667173682147,
+            0.88281249954166663,
+            0.31666666269302363,
+            0.046875
+          ],
+          "confidence" : 1,
+          "text" : "Context assembly"
+        },
+        {
+          "box" : [
+            0.36197916390625001,
+            0.73177083328125003,
+            0.27604166666666669,
+            0.03125
+          ],
+          "confidence" : 1,
+          "text" : "Retrieved passages"
+        },
+        {
+          "box" : [
+            0.41145833510416657,
+            0.54947916677083319,
+            0.17708333333333331,
+            0.03125
+          ],
+          "confidence" : 1,
+          "text" : "Deduplicate"
+        },
+        {
+          "box" : [
+            0.39843750138020834,
+            0.36718749968750009,
+            0.20572916666666669,
+            0.03125
+          ],
+          "confidence" : 1,
+          "text" : "Token budget"
+        },
+        {
+          "box" : [
+            0.36979166350911469,
+            0.1901041666015626,
+            0.25260416666666669,
+            0.02604166666666663
+          ],
+          "confidence" : 1,
+          "text" : "Ordered context"
+        }
+      ],
+      "text" : "Context assembly\nRetrieved passages\nDeduplicate\nToken budget\nOrdered context"
+    },
+    {
+      "elapsedMs" : 40.268063545227051,
+      "id" : "control-03-2",
+      "imageSha256" : "ab658589f8e328e730bd1c43eb3f06906904054398d7d6bb9b91b3b502192086",
+      "lines" : [
+        {
+          "box" : [
+            0.34166667240348803,
+            0.8828124994270834,
+            0.31666666269302368,
+            0.046875
+          ],
+          "confidence" : 1,
+          "text" : "Context assembly"
+        },
+        {
+          "box" : [
+            0.35833333981463111,
+            0.73697916664253871,
+            0.28333332141240442,
+            0.04218749950329459
+          ],
+          "confidence" : 1,
+          "text" : "Retrieved passages"
+        },
+        {
+          "box" : [
+            0.17187500177083329,
+            0.49739583343749993,
+            0.17708333333333329,
+            0.03125
+          ],
+          "confidence" : 1,
+          "text" : "Deduplicate"
+        },
+        {
+          "box" : [
+            0.63802083471354154,
+            0.49739583302083334,
+            0.20572916666666674,
+            0.031250000000000111
+          ],
+          "confidence" : 1,
+          "text" : "Token budget"
+        },
+        {
+          "box" : [
+            0.38020833642578117,
+            0.21354166689453125,
+            0.24739583333333331,
+            0.028645833333333259
+          ],
+          "confidence" : 1,
+          "text" : "Ordered context"
+        }
+      ],
+      "text" : "Context assembly\nRetrieved passages\nDeduplicate\nToken budget\nOrdered context"
+    },
+    {
+      "elapsedMs" : 41.931986808776855,
+      "id" : "control-03-3",
+      "imageSha256" : "ba88a5df59883b0eddb1b8cb5119742e1d73b281262e7d968a9745fc0cf01716",
+      "lines" : [
+        {
+          "box" : [
+            0.34166667240348803,
+            0.8828124994270834,
+            0.31666666269302368,
+            0.046875
+          ],
+          "confidence" : 1,
+          "text" : "Context assembly"
+        },
+        {
+          "box" : [
+            0.36197916896701382,
+            0.73177083346354155,
+            0.27604166666666669,
+            0.031250000000000111
+          ],
+          "confidence" : 1,
+          "text" : "Retrieved passages"
+        },
+        {
+          "box" : [
+            0.41145833480902771,
+            0.54947916679687503,
+            0.17708333333333337,
+            0.03125
+          ],
+          "confidence" : 1,
+          "text" : "Deduplicate"
+        },
+        {
+          "box" : [
+            0.39583333435639884,
+            0.36718749975818454,
+            0.21093749999999994,
+            0.03385416666666663
+          ],
+          "confidence" : 1,
+          "text" : "Token budget"
+        },
+        {
+          "box" : [
+            0.36979166728515622,
+            0.18749999964192698,
+            0.25260416666666663,
+            0.02864583333333337
+          ],
+          "confidence" : 1,
+          "text" : "Ordered context"
+        }
+      ],
+      "text" : "Context assembly\nRetrieved passages\nDeduplicate\nToken budget\nOrdered context"
+    },
+    {
+      "elapsedMs" : 39.142012596130371,
+      "id" : "control-03-4",
+      "imageSha256" : "a7577b217190062d03b74f524e0dabaf679af8c7faed6453d2b155eb15ec52aa",
+      "lines" : [
+        {
+          "box" : [
+            0.34166667240348803,
+            0.8828124994270834,
+            0.31666666269302368,
+            0.046875
+          ],
+          "confidence" : 1,
+          "text" : "Context assembly"
+        },
+        {
+          "box" : [
+            0.36197916896701382,
+            0.74479166679687503,
+            0.27604166666666669,
+            0.03125
+          ],
+          "confidence" : 1,
+          "text" : "Retrieved passages"
+        },
+        {
+          "box" : [
+            0.1718750022135416,
+            0.49739583346354166,
+            0.1770833333333334,
+            0.031249999999999889
+          ],
+          "confidence" : 1,
+          "text" : "Deduplicate"
+        },
+        {
+          "box" : [
+            0.63541666807291663,
+            0.49739583302083334,
+            0.20833333333333326,
+            0.031250000000000111
+          ],
+          "confidence" : 1,
+          "text" : "Token budget"
+        },
+        {
+          "box" : [
+            0.36979166344401054,
+            0.21354166656901052,
+            0.25781249999999994,
+            0.02864583333333337
+          ],
+          "confidence" : 1,
+          "text" : "Ordered context"
+        }
+      ],
+      "text" : "Context assembly\nRetrieved passages\nDeduplicate\nToken budget\nOrdered context"
+    },
+    {
+      "elapsedMs" : 38.347005844116211,
+      "id" : "control-04-1",
+      "imageSha256" : "d8eb819132e2e42211eeb21c6aa60bd95374018aa18fc3ecdf2a1674979bef5e",
+      "lines" : [
+        {
+          "box" : [
+            0.3041666630680237,
+            0.88749999958333337,
+            0.38750000794728595,
+            0.04218749950329459
+          ],
+          "confidence" : 1,
+          "text" : "Grounded generation"
+        },
+        {
+          "box" : [
+            0.36458333559027772,
+            0.75000000008680556,
+            0.27083333333333331,
+            0.02604166666666663
+          ],
+          "confidence" : 1,
+          "text" : "Retrieved evidence"
+        },
+        {
+          "box" : [
+            0.14322916434895838,
+            0.50260416651041662,
+            0.23177083333333337,
+            0.026041666666666741
+          ],
+          "confidence" : 1,
+          "text" : "Generate claims"
+        },
+        {
+          "box" : [
+            0.63281250154389879,
+            0.49739583348214278,
+            0.21614583333333337,
+            0.031250000000000111
+          ],
+          "confidence" : 1,
+          "text" : "Check support"
+        },
+        {
+          "box" : [
+            0.40364583143229171,
+            0.21354166653645823,
+            0.19010416666666663,
+            0.02864583333333337
+          ],
+          "confidence" : 1,
+          "text" : "Cited answer"
+        }
+      ],
+      "text" : "Grounded generation\nRetrieved evidence\nGenerate claims\nCheck support\nCited answer"
+    },
+    {
+      "elapsedMs" : 38.213968276977539,
+      "id" : "control-04-2",
+      "imageSha256" : "721583f4754c453cefc7996042d13cfaabfe88e48054ce3d251b109e9b47685c",
+      "lines" : [
+        {
+          "box" : [
+            0.30729166598307289,
+            0.89062500045572912,
+            0.3828125,
+            0.03645833333333337
+          ],
+          "confidence" : 1,
+          "text" : "Grounded generation"
+        },
+        {
+          "box" : [
+            0.36458333559027772,
+            0.73697916675347219,
+            0.27083333333333331,
+            0.02604166666666663
+          ],
+          "confidence" : 1,
+          "text" : "Retrieved evidence"
+        },
+        {
+          "box" : [
+            0.38541666946614583,
+            0.55208333297526035,
+            0.22916666666666663,
+            0.028645833333333481
+          ],
+          "confidence" : 1,
+          "text" : "Generate claims"
+        },
+        {
+          "box" : [
+            0.39322916786458323,
+            0.36458333296875001,
+            0.21875000000000006,
+            0.03645833333333337
+          ],
+          "confidence" : 1,
+          "text" : "Check support"
+        },
+        {
+          "box" : [
+            0.40625000005208339,
+            0.1874999997135417,
+            0.18749999999999994,
+            0.02864583333333337
+          ],
+          "confidence" : 1,
+          "text" : "Cited answer"
+        }
+      ],
+      "text" : "Grounded generation\nRetrieved evidence\nGenerate claims\nCheck support\nCited answer"
+    },
+    {
+      "elapsedMs" : 39.604067802429199,
+      "id" : "control-04-3",
+      "imageSha256" : "ea832d03faeaa9294a830e4060df9018f6315efdbf38749f3431fdad1981b048",
+      "lines" : [
+        {
+          "box" : [
+            0.30416665881802379,
+            0.88749999983333328,
+            0.38750000794728595,
+            0.042187499503294701
+          ],
+          "confidence" : 1,
+          "text" : "Grounded generation"
+        },
+        {
+          "box" : [
+            0.36458333559027772,
+            0.75000000008680556,
+            0.27083333333333331,
+            0.02604166666666663
+          ],
+          "confidence" : 1,
+          "text" : "Retrieved evidence"
+        },
+        {
+          "box" : [
+            0.14583333497023809,
+            0.50260416677827391,
+            0.22916666666666669,
+            0.026041666666666519
+          ],
+          "confidence" : 1,
+          "text" : "Generate claims"
+        },
+        {
+          "box" : [
+            0.63281250154389879,
+            0.49739583348214278,
+            0.21614583333333337,
+            0.031250000000000111
+          ],
+          "confidence" : 1,
+          "text" : "Check support"
+        },
+        {
+          "box" : [
+            0.40364583095703127,
+            0.21354166656901052,
+            0.19010416666666669,
+            0.02864583333333337
+          ],
+          "confidence" : 1,
+          "text" : "Cited answer"
+        }
+      ],
+      "text" : "Grounded generation\nRetrieved evidence\nGenerate claims\nCheck support\nCited answer"
+    },
+    {
+      "elapsedMs" : 40.122032165527344,
+      "id" : "control-04-4",
+      "imageSha256" : "4ff5c595f166d981f322707412e3fc534b2ce81a3c190f83a4591a783cc11a82",
+      "lines" : [
+        {
+          "box" : [
+            0.3041666630680237,
+            0.88749999958333337,
+            0.38750000794728595,
+            0.04218749950329459
+          ],
+          "confidence" : 1,
+          "text" : "Grounded generation"
+        },
+        {
+          "box" : [
+            0.36458333559027772,
+            0.73697916675347219,
+            0.27083333333333331,
+            0.02604166666666663
+          ],
+          "confidence" : 1,
+          "text" : "Retrieved evidence"
+        },
+        {
+          "box" : [
+            0.3854166680989583,
+            0.55468750009765633,
+            0.22916666666666669,
+            0.026041666666666519
+          ],
+          "confidence" : 1,
+          "text" : "Generate claims"
+        },
+        {
+          "box" : [
+            0.39062499726562505,
+            0.36718749986979171,
+            0.21875,
+            0.03125
+          ],
+          "confidence" : 1,
+          "text" : "Check support"
+        },
+        {
+          "box" : [
+            0.40625000133928574,
+            0.1901041667782738,
+            0.18749999999999994,
+            0.026041666666666741
+          ],
+          "confidence" : 1,
+          "text" : "Cited answer"
+        }
+      ],
+      "text" : "Grounded generation\nRetrieved evidence\nGenerate claims\nCheck support\nCited answer"
+    },
+    {
+      "elapsedMs" : 42.057991027832031,
+      "id" : "control-05-1",
+      "imageSha256" : "a3da4537de626f34e9de285279f3d0cd55fc1bb43ad6ea62b780d2fc6dad7448",
+      "lines" : [
+        {
+          "box" : [
+            0.29583335015009543,
+            0.8828124994270834,
+            0.39999997615814215,
+            0.046875
+          ],
+          "confidence" : 1,
+          "text" : "Incremental rendering"
+        },
+        {
+          "box" : [
+            0.41145833538411453,
+            0.7343749996419271,
+            0.17447916666666669,
+            0.02864583333333337
+          ],
+          "confidence" : 1,
+          "text" : "Partial JSON"
+        },
+        {
+          "box" : [
+            0.38541666475694453,
+            0.55468749986979171,
+            0.22916666666666669,
+            0.026041666666666519
+          ],
+          "confidence" : 1,
+          "text" : "Buffer structure"
+        },
+        {
+          "box" : [
+            0.35156250097656255,
+            0.36718749973958331,
+            0.29427083333333331,
+            0.03125
+          ],
+          "confidence" : 1,
+          "text" : "Validate component"
+        },
+        {
+          "box" : [
+            0.34114583411458338,
+            0.18489583294270828,
+            0.31770833333333331,
+            0.03125
+          ],
+          "confidence" : 1,
+          "text" : "Render complete card"
+        }
+      ],
+      "text" : "Incremental rendering\nPartial JSON\nBuffer structure\nValidate component\nRender complete card"
+    },
+    {
+      "elapsedMs" : 38.548946380615234,
+      "id" : "control-05-2",
+      "imageSha256" : "dc51d767e2aa4a01932a845eeef2b843273d153559a1cc764918bbba08bd168c",
+      "lines" : [
+        {
+          "box" : [
+            0.29583335015009543,
+            0.8828124994270834,
+            0.39999997615814215,
+            0.046875
+          ],
+          "confidence" : 1,
+          "text" : "Incremental rendering"
+        },
+        {
+          "box" : [
+            0.40885416718749995,
+            0.74739583297526035,
+            0.17708333333333331,
+            0.02864583333333337
+          ],
+          "confidence" : 1,
+          "text" : "Partial JSON"
+        },
+        {
+          "box" : [
+            0.14583333497023809,
+            0.50260416677827391,
+            0.22916666666666669,
+            0.026041666666666519
+          ],
+          "confidence" : 1,
+          "text" : "Buffer structure"
+        },
+        {
+          "box" : [
+            0.59114583430989587,
+            0.49739583307291668,
+            0.29427083333333337,
+            0.03125
+          ],
+          "confidence" : 1,
+          "text" : "Validate component"
+        },
+        {
+          "box" : [
+            0.34114583401041659,
+            0.21093749968750009,
+            0.31770833333333331,
+            0.03125
+          ],
+          "confidence" : 1,
+          "text" : "Render complete card"
+        }
+      ],
+      "text" : "Incremental rendering\nPartial JSON\nBuffer structure\nValidate component\nRender complete card"
+    },
+    {
+      "elapsedMs" : 38.943052291870117,
+      "id" : "control-05-3",
+      "imageSha256" : "adee4f41d6ad3e28e35455fb533a4712bd44dcfa78860226248ef879850e4fcc",
+      "lines" : [
+        {
+          "box" : [
+            0.29583334025426239,
+            0.88281249994791666,
+            0.39999997615814215,
+            0.046875
+          ],
+          "confidence" : 1,
+          "text" : "Incremental rendering"
+        },
+        {
+          "box" : [
+            0.408854164453125,
+            0.73697916653645834,
+            0.17708333333333331,
+            0.02604166666666663
+          ],
+          "confidence" : 1,
+          "text" : "Partial JSON"
+        },
+        {
+          "box" : [
+            0.38541666857638884,
+            0.55468750008680545,
+            0.22916666666666669,
+            0.026041666666666741
+          ],
+          "confidence" : 1,
+          "text" : "Buffer structure"
+        },
+        {
+          "box" : [
+            0.35000000543197629,
+            0.36197916719132739,
+            0.29999999205271399,
+            0.038020831843217251
+          ],
+          "confidence" : 1,
+          "text" : "Validate component"
+        },
+        {
+          "box" : [
+            0.34114583411458338,
+            0.18489583294270828,
+            0.31770833333333331,
+            0.03125
+          ],
+          "confidence" : 1,
+          "text" : "Render complete card"
+        }
+      ],
+      "text" : "Incremental rendering\nPartial JSON\nBuffer structure\nValidate component\nRender complete card"
+    },
+    {
+      "elapsedMs" : 50.987005233764648,
+      "id" : "control-05-4",
+      "imageSha256" : "c5c87e3d530f6ba09f73ab6503d9d56225495c9590b1a956990fb0ba47a5bbc3",
+      "lines" : [
+        {
+          "box" : [
+            0.29583334025426239,
+            0.88281249994791666,
+            0.39999997615814215,
+            0.046875
+          ],
+          "confidence" : 1,
+          "text" : "Incremental rendering"
+        },
+        {
+          "box" : [
+            0.40885416489583332,
+            0.7499999998437501,
+            0.17708333333333331,
+            0.02604166666666663
+          ],
+          "confidence" : 1,
+          "text" : "Partial JSON"
+        },
+        {
+          "box" : [
+            0.14583333524305553,
+            0.50260416675347219,
+            0.22916666666666663,
+            0.026041666666666741
+          ],
+          "confidence" : 1,
+          "text" : "Buffer structure"
+        },
+        {
+          "box" : [
+            0.59114583430989587,
+            0.49739583307291668,
+            0.29427083333333337,
+            0.03125
+          ],
+          "confidence" : 1,
+          "text" : "Validate component"
+        },
+        {
+          "box" : [
+            0.34114583401041659,
+            0.21093749968750009,
+            0.31770833333333331,
+            0.03125
+          ],
+          "confidence" : 1,
+          "text" : "Render complete card"
+        }
+      ],
+      "text" : "Incremental rendering\nPartial JSON\nBuffer structure\nValidate component\nRender complete card"
+    },
+    {
+      "elapsedMs" : 48.385024070739746,
+      "id" : "control-06-1",
+      "imageSha256" : "dae039595f84ec082ea592b8c486279f48a6eab3cafd6a9e01e6281ff2608a85",
+      "lines" : [
+        {
+          "box" : [
+            0.35833334262713107,
+            0.88281249997587208,
+            0.28333332141240436,
+            0.04218749950329459
+          ],
+          "confidence" : 1,
+          "text" : "State continuity"
+        },
+        {
+          "box" : [
+            0.40104166864583329,
+            0.75000000010416668,
+            0.19791666666666669,
+            0.02604166666666663
+          ],
+          "confidence" : 1,
+          "text" : "First interface"
+        },
+        {
+          "box" : [
+            0.1588541641601563,
+            0.50260416653645845,
+            0.20052083333333331,
+            0.026041666666666519
+          ],
+          "confidence" : 1,
+          "text" : "User selection"
+        },
+        {
+          "box" : [
+            0.63541666406249997,
+            0.49739583326822912,
+            0.20833333333333337,
+            0.03125
+          ],
+          "confidence" : 1,
+          "text" : "Next response"
+        },
+        {
+          "box" : [
+            0.38802083613281241,
+            0.2161458333984374,
+            0.22395833333333331,
+            0.02604166666666663
+          ],
+          "confidence" : 1,
+          "text" : "Preserved state"
+        }
+      ],
+      "text" : "State continuity\nFirst interface\nUser selection\nNext response\nPreserved state"
+    },
+    {
+      "elapsedMs" : 53.226947784423828,
+      "id" : "control-06-2",
+      "imageSha256" : "34dc3cf8ec5d9554ac62be5685549e4808fe35443fd44e66f1a0997e76965c8e",
+      "lines" : [
+        {
+          "box" : [
+            0.3583333420437978,
+            0.88281250008003875,
+            0.28333332141240436,
+            0.04218749950329459
+          ],
+          "confidence" : 1,
+          "text" : "State continuity"
+        },
+        {
+          "box" : [
+            0.40104166788736978,
+            0.73697916676432285,
+            0.19531249999999994,
+            0.026041666666666741
+          ],
+          "confidence" : 1,
+          "text" : "First interface"
+        },
+        {
+          "box" : [
+            0.40104166831597227,
+            0.55468750008680545,
+            0.19791666666666669,
+            0.026041666666666741
+          ],
+          "confidence" : 1,
+          "text" : "User selection"
+        },
+        {
+          "box" : [
+            0.39583333593749992,
+            0.36718750013020829,
+            0.20833333333333337,
+            0.03125
+          ],
+          "confidence" : 1,
+          "text" : "Next response"
+        },
+        {
+          "box" : [
+            0.38802083056640635,
+            0.19010416656901041,
+            0.22135416666666663,
+            0.0234375
+          ],
+          "confidence" : 1,
+          "text" : "Preserved state"
+        }
+      ],
+      "text" : "State continuity\nFirst interface\nUser selection\nNext response\nPreserved state"
+    },
+    {
+      "elapsedMs" : 40.71497917175293,
+      "id" : "control-06-3",
+      "imageSha256" : "95c9e62ec66da189425d5968e99fda16e304107ab4a13a0aa4c2c53181fa5476",
+      "lines" : [
+        {
+          "box" : [
+            0.35833334262713107,
+            0.88281249997587208,
+            0.28333332141240436,
+            0.04218749950329459
+          ],
+          "confidence" : 1,
+          "text" : "State continuity"
+        },
+        {
+          "box" : [
+            0.40104166831597227,
+            0.75000000008680556,
+            0.19791666666666669,
+            0.02604166666666663
+          ],
+          "confidence" : 1,
+          "text" : "First interface"
+        },
+        {
+          "box" : [
+            0.15885416466145838,
+            0.50260416656250007,
+            0.20052083333333334,
+            0.026041666666666519
+          ],
+          "confidence" : 1,
+          "text" : "User selection"
+        },
+        {
+          "box" : [
+            0.63541666468749991,
+            0.49739583364583329,
+            0.20833333333333337,
+            0.03125
+          ],
+          "confidence" : 1,
+          "text" : "Next response"
+        },
+        {
+          "box" : [
+            0.3880208314887153,
+            0.21614583320312486,
+            0.22135416666666669,
+            0.026041666666666741
+          ],
+          "confidence" : 1,
+          "text" : "Preserved state"
+        }
+      ],
+      "text" : "State continuity\nFirst interface\nUser selection\nNext response\nPreserved state"
+    },
+    {
+      "elapsedMs" : 37.711024284362793,
+      "id" : "control-06-4",
+      "imageSha256" : "c28e95b276f64a0f3cb8c178326445a7e91ceedb05565412107c4d899a6ee750",
+      "lines" : [
+        {
+          "box" : [
+            0.35833334196046446,
+            0.88281249954166663,
+            0.28333332141240436,
+            0.046875
+          ],
+          "confidence" : 1,
+          "text" : "State continuity"
+        },
+        {
+          "box" : [
+            0.40104166864583329,
+            0.73697916671874997,
+            0.19791666666666669,
+            0.026041666666666741
+          ],
+          "confidence" : 1,
+          "text" : "First interface"
+        },
+        {
+          "box" : [
+            0.39843749749348961,
+            0.55468749986979171,
+            0.20052083333333331,
+            0.026041666666666741
+          ],
+          "confidence" : 1,
+          "text" : "User selection"
+        },
+        {
+          "box" : [
+            0.39583333506944446,
+            0.36718750013020829,
+            0.20833333333333331,
+            0.03125
+          ],
+          "confidence" : 1,
+          "text" : "Next response"
+        },
+        {
+          "box" : [
+            0.38802083056640635,
+            0.18749999990234389,
+            0.22135416666666663,
+            0.02864583333333337
+          ],
+          "confidence" : 1,
+          "text" : "Preserved state"
+        }
+      ],
+      "text" : "State continuity\nFirst interface\nUser selection\nNext response\nPreserved state"
+    }
+  ],
+  "revision" : 3,
+  "startedAt" : "2026-10-22T06:28:44Z",
+  "totalMs" : 1216.5489196777344,
+  "version" : "image-ocr-1"
+}

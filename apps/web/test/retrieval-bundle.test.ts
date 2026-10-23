@@ -14,7 +14,10 @@ const { evidence, corpusVersion, errors } = ingest(
   resolve(import.meta.dirname, '../../../knowledge'),
 );
 const committed = JSON.parse(
-  readFileSync(resolve(import.meta.dirname, '../fixtures/retrieval-bundle.json'), 'utf8'),
+  readFileSync(
+    resolve(import.meta.dirname, '../fixtures/retrieval-bundle.json'),
+    'utf8',
+  ),
 ) as { corpusVersion: string; retrieval: string; evidence: unknown[] };
 
 describe('the retrieval bundle', () => {
@@ -43,7 +46,7 @@ describe('the retrieval bundle', () => {
    */
   it('declares the retrieval the route actually constructs, not a remembered one', () => {
     const route = readFileSync(
-      resolve(import.meta.dirname, '../app/api/ask/route.ts'),
+      resolve(import.meta.dirname, '../server/live-cards.ts'),
       'utf8',
     );
 

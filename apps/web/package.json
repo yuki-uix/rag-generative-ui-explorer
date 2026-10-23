@@ -8,7 +8,7 @@
   },
   "scripts": {
     "dev": "vinext dev",
-    "build": "vinext build",
+    "build": "pnpm run planner-schema:check && vinext build",
     "start": "wrangler dev --config dist/server/wrangler.json",
     "deploy": "pnpm build && wrangler deploy --config dist/server/wrangler.json",
     "secret": "wrangler secret put --name rgux-web",
@@ -19,7 +19,13 @@
     "evidence:build": "tsx scripts/generate-evidence.ts",
     "bundle:check": "tsx scripts/check-bundle.ts",
     "format": "oxfmt",
-    "deploy:check": "pnpm build && wrangler deploy --dry-run --config dist/server/wrangler.json"
+    "deploy:check": "pnpm build && wrangler deploy --dry-run --config dist/server/wrangler.json",
+    "images:build": "node --import tsx scripts/generate-image-review.ts",
+    "images:check": "node --import tsx scripts/generate-image-review.ts --check",
+    "review:dev": "pnpm run review:build && vite preview --config vite.review.config.ts --host 127.0.0.1 --port 4174 --strictPort",
+    "review:build": "pnpm run images:check && vite build --config vite.review.config.ts && node --import tsx scripts/check-bundle.ts --review",
+    "planner-schema:build": "node --import tsx scripts/generate-planner-schema.ts",
+    "planner-schema:check": "node --import tsx scripts/generate-planner-schema.ts --check"
   },
   "dependencies": {
     "@rgux/contracts": "workspace:*",

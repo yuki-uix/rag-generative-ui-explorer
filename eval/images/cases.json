@@ -1,0 +1,417 @@
+{
+  "version": "image-cases-1",
+  "selection": "Illustrative first-pass cases, selected after inspecting results; full set and all failures retained in original records.",
+  "cases": [
+    {
+      "question": {
+        "id": "figure-04-b-layout",
+        "group": "doc-04",
+        "split": "evaluation",
+        "category": "layout",
+        "question": "Find the reranking diagram with orange boxes, two parallel branches and a merge at the bottom.",
+        "goldenImageIds": [
+          "figure-04-b"
+        ],
+        "rationale": "The orange diamond layout is visible only in this diagram of this source group."
+      },
+      "firstPass": {
+        "text": {
+          "goldenRank": 2,
+          "top5": [
+            {
+              "evidenceId": "figure-04-a",
+              "score": 2.9197467452353543
+            },
+            {
+              "evidenceId": "figure-04-b",
+              "score": 2.9197467452353543
+            },
+            {
+              "evidenceId": "figure-03-a",
+              "score": 2.8810504652906412
+            },
+            {
+              "evidenceId": "figure-03-b",
+              "score": 2.8810504652906412
+            },
+            {
+              "evidenceId": "figure-02-a",
+              "score": 2.479540890814749
+            }
+          ]
+        },
+        "ocr": {
+          "goldenRank": 1,
+          "top5": [
+            {
+              "evidenceId": "figure-04-b",
+              "score": 2.5273493645444414
+            },
+            {
+              "evidenceId": "figure-04-a",
+              "score": 2.262345741854345
+            },
+            {
+              "evidenceId": "figure-02-b",
+              "score": 2.001716509707552
+            },
+            {
+              "evidenceId": "figure-05-b",
+              "score": 2.001716509707552
+            },
+            {
+              "evidenceId": "figure-05-a",
+              "score": 1.8055410259975562
+            }
+          ]
+        },
+        "clip": {
+          "goldenRank": 1,
+          "top5": [
+            {
+              "evidenceId": "figure-04-b",
+              "score": 0.28252969338745115
+            },
+            {
+              "evidenceId": "figure-11-b",
+              "score": 0.26728560532687917
+            },
+            {
+              "evidenceId": "figure-11-a",
+              "score": 0.26559614454627534
+            },
+            {
+              "evidenceId": "figure-07-b",
+              "score": 0.2631394734615429
+            },
+            {
+              "evidenceId": "figure-04-a",
+              "score": 0.261945320895919
+            }
+          ]
+        }
+      }
+    },
+    {
+      "question": {
+        "id": "figure-02-a-concept",
+        "group": "doc-02",
+        "split": "evaluation",
+        "category": "concept",
+        "question": "Find the illustration of precomputing document representations for nearest-neighbor lookup.",
+        "goldenImageIds": [
+          "figure-02-a"
+        ],
+        "rationale": "Concept flow in the vertical diagram."
+      },
+      "firstPass": {
+        "clip": {
+          "goldenRank": 16,
+          "top5": [
+            {
+              "evidenceId": "figure-04-b",
+              "score": 0.27989975181732374
+            },
+            {
+              "evidenceId": "figure-12-a",
+              "score": 0.27681996074267784
+            },
+            {
+              "evidenceId": "figure-06-a",
+              "score": 0.2752206455569907
+            },
+            {
+              "evidenceId": "figure-12-b",
+              "score": 0.27246282508268505
+            },
+            {
+              "evidenceId": "figure-10-a",
+              "score": 0.26966616222907064
+            }
+          ]
+        },
+        "text": {
+          "goldenRank": 3,
+          "top5": [
+            {
+              "evidenceId": "figure-01-a",
+              "score": 3.1392468383690324
+            },
+            {
+              "evidenceId": "figure-01-b",
+              "score": 3.1392468383690324
+            },
+            {
+              "evidenceId": "figure-02-a",
+              "score": 1.8457218383901486
+            },
+            {
+              "evidenceId": "figure-02-b",
+              "score": 1.8457218383901486
+            },
+            {
+              "evidenceId": "figure-05-a",
+              "score": 1.4238927306589138
+            }
+          ]
+        },
+        "ocr": {
+          "goldenRank": null,
+          "top5": [
+            {
+              "evidenceId": "figure-01-b",
+              "score": 2.076937589404287
+            },
+            {
+              "evidenceId": "figure-05-b",
+              "score": 2.001716509707552
+            },
+            {
+              "evidenceId": "figure-05-a",
+              "score": 1.8055410259975562
+            }
+          ]
+        }
+      }
+    },
+    {
+      "question": {
+        "id": "figure-08-a-literal",
+        "group": "doc-08",
+        "split": "evaluation",
+        "category": "literal",
+        "question": "Which grounded generation figure contains the label \"Check support\"?",
+        "goldenImageIds": [
+          "figure-08-a"
+        ],
+        "rationale": "The requested label is present in figure-08-a."
+      },
+      "firstPass": {
+        "ocr": {
+          "goldenRank": 1,
+          "top5": [
+            {
+              "evidenceId": "figure-08-a",
+              "score": 9.228724191079815
+            },
+            {
+              "evidenceId": "figure-08-b",
+              "score": 4.864751803987422
+            },
+            {
+              "evidenceId": "figure-11-a",
+              "score": 2.114533678865676
+            }
+          ]
+        },
+        "clip": {
+          "goldenRank": 1,
+          "top5": [
+            {
+              "evidenceId": "figure-08-a",
+              "score": 0.283245444310583
+            },
+            {
+              "evidenceId": "figure-08-b",
+              "score": 0.2714339584169298
+            },
+            {
+              "evidenceId": "figure-10-a",
+              "score": 0.25767613569282055
+            },
+            {
+              "evidenceId": "figure-07-a",
+              "score": 0.2570638599636966
+            },
+            {
+              "evidenceId": "figure-11-a",
+              "score": 0.2532820414481857
+            }
+          ]
+        },
+        "text": {
+          "goldenRank": 1,
+          "top5": [
+            {
+              "evidenceId": "figure-08-a",
+              "score": 7.959780155397029
+            },
+            {
+              "evidenceId": "figure-08-b",
+              "score": 7.959780155397029
+            },
+            {
+              "evidenceId": "figure-11-a",
+              "score": 6.3730087613167345
+            },
+            {
+              "evidenceId": "figure-11-b",
+              "score": 6.3730087613167345
+            },
+            {
+              "evidenceId": "figure-05-a",
+              "score": 4.330203987803672
+            }
+          ]
+        }
+      }
+    },
+    {
+      "question": {
+        "id": "figure-10-b-layout",
+        "group": "doc-10",
+        "split": "evaluation",
+        "category": "layout",
+        "question": "Find the incremental rendering diagram with orange boxes, two parallel branches and a merge at the bottom.",
+        "goldenImageIds": [
+          "figure-10-b"
+        ],
+        "rationale": "The orange diamond layout is visible only in this diagram of this source group."
+      },
+      "firstPass": {
+        "text": {
+          "goldenRank": 2,
+          "top5": [
+            {
+              "evidenceId": "figure-10-a",
+              "score": 4.257710375803183
+            },
+            {
+              "evidenceId": "figure-10-b",
+              "score": 4.257710375803183
+            },
+            {
+              "evidenceId": "figure-12-a",
+              "score": 3.4949909065508367
+            },
+            {
+              "evidenceId": "figure-12-b",
+              "score": 3.4949909065508367
+            },
+            {
+              "evidenceId": "figure-09-a",
+              "score": 2.7339024568685844
+            }
+          ]
+        },
+        "ocr": {
+          "goldenRank": 1,
+          "top5": [
+            {
+              "evidenceId": "figure-10-b",
+              "score": 5.718999476196778
+            },
+            {
+              "evidenceId": "figure-10-a",
+              "score": 4.371887643733537
+            },
+            {
+              "evidenceId": "figure-02-b",
+              "score": 2.001716509707552
+            },
+            {
+              "evidenceId": "figure-05-b",
+              "score": 2.001716509707552
+            },
+            {
+              "evidenceId": "figure-05-a",
+              "score": 1.8055410259975562
+            }
+          ]
+        },
+        "clip": {
+          "goldenRank": 12,
+          "top5": [
+            {
+              "evidenceId": "figure-11-b",
+              "score": 0.27870613076845735
+            },
+            {
+              "evidenceId": "figure-04-b",
+              "score": 0.27485286703065787
+            },
+            {
+              "evidenceId": "figure-11-a",
+              "score": 0.2714449156377562
+            },
+            {
+              "evidenceId": "figure-07-b",
+              "score": 0.26700466227839925
+            },
+            {
+              "evidenceId": "figure-01-a",
+              "score": 0.26371515922400124
+            }
+          ]
+        }
+      }
+    },
+    {
+      "question": {
+        "id": "negative-2",
+        "group": "negative-2",
+        "split": "evaluation",
+        "category": "negative",
+        "question": "Which diagram shows a Kubernetes pod autoscaler?",
+        "goldenImageIds": [],
+        "rationale": "No image in this authored corpus depicts this request."
+      },
+      "firstPass": {
+        "ocr": {
+          "goldenRank": null,
+          "top5": []
+        },
+        "clip": {
+          "goldenRank": null,
+          "top5": [
+            {
+              "evidenceId": "figure-07-a",
+              "score": 0.2808380954513549
+            },
+            {
+              "evidenceId": "figure-12-b",
+              "score": 0.2805651168422394
+            },
+            {
+              "evidenceId": "figure-12-a",
+              "score": 0.2801330075766661
+            },
+            {
+              "evidenceId": "figure-02-a",
+              "score": 0.2790270970285105
+            },
+            {
+              "evidenceId": "figure-07-b",
+              "score": 0.2778638391364917
+            }
+          ]
+        },
+        "text": {
+          "goldenRank": null,
+          "top5": [
+            {
+              "evidenceId": "figure-02-a",
+              "score": 0.08100158252067921
+            },
+            {
+              "evidenceId": "figure-02-b",
+              "score": 0.08100158252067921
+            },
+            {
+              "evidenceId": "figure-12-a",
+              "score": 0.0787177575776109
+            },
+            {
+              "evidenceId": "figure-12-b",
+              "score": 0.0787177575776109
+            },
+            {
+              "evidenceId": "figure-06-a",
+              "score": 0.07712740403718892
+            }
+          ]
+        }
+      }
+    }
+  ]
+}
